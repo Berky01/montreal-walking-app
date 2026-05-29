@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Montreal Walk Scout",
+    "slug": "montreal-walk-scout",
+    "scheme": "walkscout",
+    "version": "0.1.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "orientation": "default",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.walkingapp.prototype",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Allow Montreal Walk Scout to use your location only while an active walk is tracking."
+      }
+    },
+    "android": {
+      "package": "com.walkingapp.prototype",
+      "usesCleartextTraffic": true,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sharing"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
+  }
+}

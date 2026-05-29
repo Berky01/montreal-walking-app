@@ -1,0 +1,75 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:80/ >/dev/null 2>&1 && wget -qO- http://127.0.0.1:80/api/health/providers >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      API_HOST: 0.0.0.0
+      API_PORT: 5174
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+      ENABLE_OPS_PANEL: ${ENABLE_OPS_PANEL:-false}
+      DATABASE_URL: postgres://walking:${POSTGRES_PASSWORD:-walking_dev}@db:5432/walking
+      MAPTILER_API_KEY: ${MAPTILER_API_KEY:-}
+      MAPBOX_ACCESS_TOKEN: ${MAPBOX_ACCESS_TOKEN:-}
+      GEOAPIFY_API_KEY: ${GEOAPIFY_API_KEY:-}
+      POI_CACHE_PATH: /app/data/montreal-pois.json
+      ROUTE_STORE_PATH: /app/data/route-store.json
+      ROUTE_STORE_MAX_REQUESTS: ${ROUTE_STORE_MAX_REQUESTS:-200}
+      USE_SEEDED_PROVIDERS: ${USE_SEEDED_PROVIDERS:-false}
+      ROUTE_GENERATION_RATE_LIMIT_MAX: ${ROUTE_GENERATION_RATE_LIMIT_MAX:-30}
+      ROUTE_GENERATION_RATE_LIMIT_WINDOW_MS: ${ROUTE_GENERATION_RATE_LIMIT_WINDOW_MS:-60000}
+      GEOCODE_RATE_LIMIT_MAX: ${GEOCODE_RATE_LIMIT_MAX:-60}
+      GEOCODE_RATE_LIMIT_WINDOW_MS: ${GEOCODE_RATE_LIMIT_WINDOW_MS:-60000}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${API_BIND:-127.0.0.1}:${API_PORT:-5174}:5174"
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR:-./data}:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:5174/api/health/providers >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: walking
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-walking_dev}
+      POSTGRES_DB: walking
+    volumes:
+      - walking_pgdata:/var/lib/postgresql/data
+      - ./deploy/db:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "${POSTGRES_BIND:-127.0.0.1}:${POSTGRES_PORT:-5432}:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U walking -d walking"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+volumes:
+  walking_pgdata:

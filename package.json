@@ -1,0 +1,77 @@
+{
+  "name": "montreal-walking-app",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "dev:api": "tsx watch src/server/index.ts",
+    "dev:mobile": "npm --workspace @walking-app/mobile run start",
+    "test:mobile": "npm --workspace @walking-app/mobile test",
+    "test:mobile:matrix": "tsx src/testing/mobileSurfaceMatrixCli.ts",
+    "test:mobile:unit": "npm --workspace @walking-app/mobile run typecheck && npm --workspace @walking-app/mobile test -- --runInBand",
+    "test:mobile:web": "tsx src/testing/mobileSurfaceMatrixCli.ts --surface desktop-browser",
+    "test:mobile:expo-web": "tsx src/testing/mobileSurfaceMatrixCli.ts --surface desktop-browser",
+    "test:mobile:android-shot": "tsx src/testing/mobileSurfaceMatrixCli.ts --surface android-emulator-browser",
+    "start:api": "tsx src/server/index.ts",
+    "setup:env": "tsx src/server/envBootstrapCli.ts",
+    "import:pois": "tsx src/server/poiImportCli.ts",
+    "doctor": "tsx src/server/deploymentDoctorCli.ts",
+    "build": "tsc -b && vite build",
+    "screenshots:stitch": "node scripts/capture-stitch-screenshots.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@vitejs/plugin-react": "^5.1.1",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.8.5",
+    "lucide-react": "^0.468.0",
+    "maplibre-gl": "^5.24.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "vite": "^7.2.6",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "jsdom": "^27.2.0",
+    "react-test-renderer": "19.2.0",
+    "tsx": "^4.22.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
+  },
+  "description": "Open-source urban walking route planner and walk companion for Montreal.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Berky01/montreal-walking-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Berky01/montreal-walking-app/issues"
+  },
+  "homepage": "https://github.com/Berky01/montreal-walking-app#readme",
+  "keywords": [
+    "walking",
+    "route-planning",
+    "montreal",
+    "urban-mobility",
+    "poi",
+    "react",
+    "fastify",
+    "expo",
+    "typescript"
+  ]
+}

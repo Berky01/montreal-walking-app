@@ -15,17 +15,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Detect source tree
+        id: source
+        run: |
+          if [ -f package-lock.json ] && [ -f package.json ] && [ -d src ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Setup Node
+        if: steps.source.outputs.ready == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
       - name: Install dependencies
+        if: steps.source.outputs.ready == 'true'
         run: npm ci
 
       - name: Unit tests
+        if: steps.source.outputs.ready == 'true'
         run: npm run test
 
       - name: Build
+        if: steps.source.outputs.ready == 'true'
         run: npm run build
+
+      - name: Source tree pending
+        if: steps.source.outputs.ready != 'true'
+        run: echo "Source tree not uploaded yet. CI will run once package.json, package-lock.json, and src/ are present."

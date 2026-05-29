@@ -1,0 +1,29 @@
+# Dependencies
+node_modules
+apps/mobile/node_modules
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Build and test output
+dist
+build
+coverage
+output
+playwright-report
+test-results
+
+# Runtime data and caches
+data
+.expo
+.expo-shared
+.playwright-cli
+
+# Repository and editor metadata
+.git
+.gitignore
+.vscode
+.idea
+.DS_Store

@@ -6,7 +6,7 @@ Updated: 2026-07-02
 
 This report tracks the audit-package implementation against the P0/P1 backlog preserved in `docs/audits/2026-07-02/`.
 
-Current status: non-visual P0 foundation and hardening slice completed locally. Major UI redesign/layout implementation is deferred until the updated Stitch mockup package is complete.
+Current status: non-visual P0 foundation and hardening slice completed and deployed live. Major UI redesign/layout implementation is deferred until the updated Stitch mockup package is complete.
 
 ## Baseline
 
@@ -33,6 +33,20 @@ Baseline commands:
 | `npm run lint` | Pass. |
 | `npm run build` | Pass: 126 static pages generated. |
 | `npm run test:smoke` | Fail before edits: Playwright could not connect to `http://127.0.0.1:3105`; no web server was started by `playwright.config.ts`. |
+
+Final validation after implementation:
+
+| Command | Result |
+|---|---|
+| `npm run lint` | Pass. |
+| `npm run typecheck` | Pass. |
+| `npm run validate:content` | Pass: 12 public routes, 60 public places, 105 crawl paths. |
+| `npm run validate:data` | Pass: 32 routes, 190 places; public readiness 12 routes, 60 places. |
+| `npm run validate:routes` | Pass: 32 routes, 32 ready. |
+| `npm run validate:media` | Pass: 293 assets, 71 approved real photos, 222 generated fallbacks. |
+| `npm test` | Pass: 26 test files, 103 tests. |
+| `npm run build` | Pass: 128 static pages generated. |
+| `npm run test:smoke` | Pass: 6 Playwright smoke tests. |
 
 ## P0 Backlog Status
 
@@ -77,7 +91,18 @@ Baseline commands:
 
 ## Deploy Notes
 
-Deployment has not been attempted yet. Code/runtime changes require Unraid deployment before completion unless blocked by missing Docker, SSH, Cloudflare, Unraid, or environment access.
+Deployment completed to Unraid.
+
+Evidence:
+
+- Branch pushed: `codex/stitch-discovery-redesign`.
+- Deployed commit: `6ee5cc814f1e89284e996f61033f5a6d465cf422`.
+- Container: `routeapp` rebuilt and restarted on Unraid; Docker status healthy.
+- Live health: `https://routeapp.plexplease.xyz/api/health` returned HTTP 200 with `status="healthy"`, `publicRoutes=12`, `publicPlaces=60`, and `publicCrawlPaths=105`.
+- Live build info: `https://routeapp.plexplease.xyz/api/build-info` returned `gitSha="6ee5cc814f1e89284e996f61033f5a6d465cf422"`.
+- Live route/place checks: `/places/montreal-city-hall` returned 200; `/routes/not-a-real-route` returned 404.
+- Live security headers include `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, and CSP `frame-ancestors 'none'`.
+- Cloudflared ingress validation returned `OK`.
 
 Notes:
 
@@ -87,7 +112,6 @@ Notes:
 
 ## Remaining Work
 
-- Run the final full validation sequence after docs edits.
-- Commit and push the non-visual P0 hardening slice.
-- Deploy to Unraid and verify the live URL, or report the exact deployment blocker.
+- Add durable server-side persistence for issue reports before switching away from mock/in-process storage.
+- Consider addressing `npm ci` audit output from Docker build separately: 7 vulnerabilities reported by npm audit in existing dependencies.
 - After the updated Stitch mockup package is available, compare it against current app surfaces before any major layout implementation.

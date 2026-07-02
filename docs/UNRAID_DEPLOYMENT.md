@@ -18,10 +18,12 @@ The app boots without an external map key. When `NEXT_PUBLIC_MAP_STYLE_URL` is b
 ```powershell
 npm run lint
 npm run typecheck
+npm run validate:content
 npm run validate:data
 npm run validate:routes
 npm run validate:media
 npm run build
+npm run test:smoke
 ```
 
 ## Docker Compose
@@ -69,7 +71,7 @@ Container health uses:
 GET http://127.0.0.1:3000/api/health
 ```
 
-The endpoint returns data source, counts, and validation status.
+The endpoint returns data source, counts, validation status, and the number of public crawl paths generated from published routes and places.
 
 ## Data Validation
 

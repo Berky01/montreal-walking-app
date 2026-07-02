@@ -88,7 +88,8 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
           stopId: formData.get("stopId")?.toString() || undefined,
           category: formData.get("category")?.toString(),
           severity: formData.get("severity")?.toString() as "low" | "medium" | "high",
-          description: context ? `${description}\n\nLocation context: ${context}` : description
+          description: context ? `${description}\n\nLocation context: ${context}` : description,
+          website: formData.get("website")?.toString() || undefined
         };
         const validation = validateIssueReportInput(payload);
 
@@ -98,16 +99,40 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
         }
 
         try {
+          const response = await fetch("/api/report-issue", {
+            body: JSON.stringify(payload),
+            headers: {
+              "content-type": "application/json"
+            },
+            method: "POST"
+          });
+
+          if (!response.ok) {
+            const body = (await response.json().catch(() => null)) as { error?: string } | null;
+            throw new Error(body?.error ?? "Report could not be submitted.");
+          }
+
           saveLocalIssueReport(validation.data);
         } catch (error) {
-          setSubmitState({ status: "error", message: error instanceof Error ? error.message : "Report could not be submitted." });
-          return;
+          try {
+            saveLocalIssueReport(validation.data);
+            setSubmitState({
+              status: "success",
+              message: "Report saved locally for content review because the server queue was unavailable."
+            });
+            form.reset();
+            return;
+          } catch {
+            setSubmitState({ status: "error", message: error instanceof Error ? error.message : "Report could not be submitted." });
+            return;
+          }
         }
 
-        setSubmitState({ status: "success", message: "Report saved on this browser only for your local content review notes." });
+        setSubmitState({ status: "success", message: "Report saved for content review." });
         form.reset();
       }}
     >
+      <input aria-hidden="true" autoComplete="off" className="hidden" name="website" tabIndex={-1} type="text" />
       <div className="grid gap-4 md:grid-cols-2">
         <label className="grid gap-2 text-label-md text-on-surface" htmlFor="route">
           Optional route context
@@ -196,7 +221,7 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
         <ButtonLink href={returnHref} variant="secondary">Back to context</ButtonLink>
       </div>
       <p className="text-label-md text-on-surface-variant">
-        Reports are stored locally in this browser and are not sent to the server or the admin issue queue.
+        Reports are sent to the content review queue and also kept locally in this browser when storage is available.
       </p>
       {submitState.status === "success" ? <p className="text-label-md text-primary" role="status">{submitState.message}</p> : null}
       {submitState.status === "error" ? <p className="text-label-md text-error" role="alert">{submitState.message}</p> : null}

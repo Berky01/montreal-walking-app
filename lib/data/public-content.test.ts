@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   getAllPlaces,
+  getAllPublicSlugsForCrawl,
   getAllRoutes,
   getPlaceBySlug,
   getPlaces,
@@ -53,5 +54,20 @@ describe("public content boundary", () => {
       expect(isPublicRoute(route, allPlaces), route.slug).toBe(true);
       expect(route.stops.every((stop) => publicPlaceIds.has(stop.placeId)), route.slug).toBe(true);
     }
+  });
+
+  it("exposes a deterministic crawl manifest for public content health checks", () => {
+    const crawl = getAllPublicSlugsForCrawl();
+
+    expect(crawl.places).toHaveLength(60);
+    expect(crawl.routes).toHaveLength(12);
+    expect(crawl.routeLive).toHaveLength(12);
+    expect(crawl.places).toContain("/places/montreal-city-hall");
+    expect(crawl.places).toContain("/places/crew-collective-cafe");
+    expect(crawl.places).toContain("/places/kondiaronk-belvedere");
+    expect(crawl.routes).toContain("/routes/old-montreal-monuments-loop");
+    expect(crawl.routeLive).toContain("/routes/old-montreal-monuments-loop/live");
+    expect(new Set(crawl.paths).size).toBe(crawl.paths.length);
+    expect(crawl.paths.some((path) => path.includes("regional"))).toBe(false);
   });
 });

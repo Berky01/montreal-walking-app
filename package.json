@@ -15,7 +15,11 @@
     "sync:pois": "tsx scripts/sync-pois.ts --city montreal",
     "sync:routes": "tsx scripts/sync-routes.ts --city montreal",
     "test": "vitest run",
-    "test:smoke": "playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts"
+    "test:e2e": "playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts",
+    "test:smoke": "playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts",
+    "smoke": "npm run test:smoke",
+    "validate:content": "tsx scripts/content-health.ts",
+    "content:health": "tsx scripts/content-health.ts"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

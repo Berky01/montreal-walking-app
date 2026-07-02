@@ -61,10 +61,12 @@ git status --short --branch
 git remote -v
 npm run lint
 npm run typecheck
+npm run validate:content
 npm run validate:data
 npm run validate:routes
 npm run validate:media
 npm run build
+npm run test:smoke
 git add <explicit files for this task>
 git commit -m "Short description of completed change"
 git push -u origin $(git branch --show-current)
@@ -151,10 +153,12 @@ For code/data/media changes, run:
 ```powershell
 npm run lint
 npm run typecheck
+npm run validate:content
 npm run validate:data
 npm run validate:routes
 npm run validate:media
 npm run build
+npm run test:smoke
 ```
 
 For focused data validator changes, this narrower sequence is acceptable during iteration:

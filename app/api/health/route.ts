@@ -1,4 +1,4 @@
-import { getAllPlaces, getAllRoutes } from "@/lib/data/index";
+import { getAllPlaces, getAllPublicSlugsForCrawl, getAllRoutes } from "@/lib/data/index";
 import { validateDataCatalog, validatePublicContentReadiness } from "@/lib/data/validators";
 
 export function GET() {
@@ -6,6 +6,7 @@ export function GET() {
   const places = getAllPlaces();
   const validation = validateDataCatalog({ routes, places });
   const publicReadiness = validatePublicContentReadiness({ routes, places });
+  const crawl = getAllPublicSlugsForCrawl();
   const ok = validation.ok && publicReadiness.ok;
 
   return Response.json({
@@ -15,7 +16,8 @@ export function GET() {
     counts: {
       ...validation.counts,
       publicRoutes: publicReadiness.counts.publicRoutes,
-      publicPlaces: publicReadiness.counts.publicPlaces
+      publicPlaces: publicReadiness.counts.publicPlaces,
+      publicCrawlPaths: crawl.paths.length
     },
     checkedAt: new Date().toISOString()
   }, { status: ok ? 200 : 503 });

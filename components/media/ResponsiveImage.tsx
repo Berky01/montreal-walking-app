@@ -17,5 +17,5 @@ export function ResponsiveImage({
     return null;
   }
 
-  return <Image alt={asset.alt} className={cn("object-cover", className)} fill priority={priority} sizes={sizes} src={asset.url} />;
+  return <Image alt={asset.alt} className={cn("pointer-events-none object-cover", className)} fill priority={priority} sizes={sizes} src={asset.url} />;
 }

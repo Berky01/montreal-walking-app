@@ -16,7 +16,7 @@ export default function AdminIssuesPage() {
             <Chip tone="tertiary">Issue reports</Chip>
             <h1 className="mt-3 text-headline-mobile text-on-surface md:text-headline-lg">Reported route issues</h1>
             <p className="mt-2 max-w-2xl text-body-md text-on-surface-variant">
-              This queue only shows server-created reports. The public report form currently stores notes locally in the submitter&apos;s browser.
+              This queue shows reports submitted through the public route and place issue form for review in the current server process.
             </p>
           </div>
           {issues.length ? (
@@ -37,7 +37,7 @@ export default function AdminIssuesPage() {
               ))}
             </div>
           ) : (
-            <EmptyState title="No server issue reports" description="Public form reports are local-only until a server-backed storage layer is added." />
+            <EmptyState title="No issue reports" description="New public reports will appear here after submission. The mock provider keeps this queue in process memory until database storage is enabled." />
           )}
         </PageContainer>
       </main>

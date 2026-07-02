@@ -79,12 +79,7 @@ export function MapShell(props: MeaningfulMapProps) {
   }, [buildConfig]);
 
   if (!config.configured || !config.styleUrl) {
-    return (
-      <MapFallback
-        {...props}
-        fallbackReason="Map preview - live tile style is loading or unavailable in this browser"
-      />
-    );
+    return <MapFallback {...props} />;
   }
 
   return <MapLibreMapShell {...props} config={config} />;
@@ -338,7 +333,7 @@ function MapLibreMapShell({
       <MapFallback
         className={className}
         currentStopId={currentStopId}
-        fallbackReason="Map preview - live tile style unavailable"
+        fallbackReason="Interactive tiles did not load, so this static route map is shown with the same stops and route geometry."
         id={id}
         nextStopId={nextStopId}
         onSelect={onSelect}

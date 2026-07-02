@@ -84,6 +84,27 @@ export function searchRoutes(intent: string) {
   return rankRoutes(intent, getRoutes());
 }
 
+export function getAllPublicSlugsForCrawl() {
+  const places = getPlaces();
+  const routes = getRoutes();
+  const placePaths = places.map((place) => `/places/${place.slug}`).sort();
+  const routePaths = routes.map((route) => `/routes/${route.slug}`).sort();
+  const routeLivePaths = routes.map((route) => `/routes/${route.slug}/live`).sort();
+  const reportPaths = routes.flatMap((route) =>
+    route.stops.slice(0, 1).map((stop) => `/report-issue?route=${route.slug}&stop=${stop.id}`)
+  );
+  const staticPaths = ["/", "/app", "/places", "/routes", "/search", "/saved", "/history", "/settings", "/cities"];
+
+  return {
+    places: placePaths,
+    routes: routePaths,
+    routeLive: routeLivePaths,
+    reports: reportPaths,
+    static: staticPaths,
+    paths: unique([...staticPaths, ...placePaths, ...routePaths, ...routeLivePaths, ...reportPaths])
+  };
+}
+
 export { isPublicPlace, isPublicRoute } from "@/lib/data/public-content";
 
 export type {
@@ -116,3 +137,7 @@ export type {
   UserPreferences,
   WalkSession
 } from "@/lib/data/types";
+
+function unique<T>(items: T[]): T[] {
+  return [...new Set(items)];
+}

@@ -24,6 +24,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: route.description,
     alternates: {
       canonical: `/routes/${route.slug}`
+    },
+    openGraph: {
+      title: route.title,
+      description: route.description,
+      type: "article",
+      url: `/routes/${route.slug}`
     }
   };
 }

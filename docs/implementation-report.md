@@ -6,7 +6,7 @@ Updated: 2026-07-02
 
 This report tracks the audit-package implementation against the P0/P1 backlog preserved in `docs/audits/2026-07-02/`.
 
-Current status: baseline completed. Code changes are not yet complete.
+Current status: non-visual P0 foundation and hardening slice completed locally. Major UI redesign/layout implementation is deferred until the updated Stitch mockup package is complete.
 
 ## Baseline
 
@@ -38,23 +38,24 @@ Baseline commands:
 
 | Area | Status | Evidence |
 |---|---:|---|
-| Repository access/docs | In progress | Remote is configured. Audit inputs preserved under `docs/audits/2026-07-02/`. |
-| Broken place links | Pending | Baseline build pre-renders 60 place pages; crawl test still needs server harness repair and dynamic linked-page coverage. |
-| Error handling | Pending | Existing `app/not-found.tsx` present; route/global error behavior still needs inspection. |
-| Map fallback | Pending | Existing MapLibre-related files present; public fallback behavior still needs inspection. |
-| Issue reporting | Pending | Existing report page/API/admin files present; public placeholder filtering and persistence need verification. |
-| Publish-state gating | Pending | Baseline data validation reports 12 public routes and 60 public places; public surfaces need crawl-level verification. |
-| Search MVP | Pending | Existing search page/API present; ranking/filter behavior needs inspection and tests. |
-| Saved loop | Pending | Existing local state and saved components present; browser loop needs smoke verification after harness fix. |
-| History loop | Pending | Existing history/live/complete pages present; completion-to-history loop needs smoke verification after harness fix. |
-| Live route state | Pending | Existing live-route client and local-state tests present; behavior needs inspection. |
-| Content validation | Pending | Existing validators pass; audit-specific requirements and published-selector checks need review. |
-| CI smoke tests | Blocked/In progress | Current smoke script fails because no local server is started. |
-| Security baseline | Pending | Headers and secret-safety checks need inspection. |
+| Repository access/docs | Done | Remote is configured. Audit inputs preserved under `docs/audits/2026-07-02/`. README/docs updated for content health and smoke commands. |
+| Broken place links | Done | Smoke crawler visits `/places`, every linked public place detail, `/routes`, every linked public route detail, and every linked route live page. Unknown place/route slugs return 404. |
+| Error handling | Done | Existing designed `app/not-found.tsx` retained; added `app/error.tsx` with non-sensitive error ID display and console logging. |
+| Map fallback | Done | Local static map remains the no-key default. Removed raw "Map preview" fallback copy from normal no-key state; tile-load failure shows concise static-map fallback copy. |
+| Issue reporting | Done for mock mode | Public form posts to `/api/report-issue`, validates published context, has honeypot/rate-limit guard, writes to mock provider queue, and keeps local browser fallback. Durable DB store remains deferred. |
+| Publish-state gating | Done | Public helpers expose 12 public routes and 60 public places only; tests verify generated/draft discovery content is blocked from public lookups and crawl manifest. |
+| Search MVP | Existing/deferred | Existing search/ranking loop remains; no layout or major search UX changes made under the Stitch-mockup pause. |
+| Saved loop | Existing/prepared | Existing local-storage saved loop verified by smoke. No layout changes made. |
+| History loop | Existing/prepared | Existing route completion/history loop verified by smoke. No layout changes made. |
+| Live route state | Existing/prepared | Existing durable local route session loop verified by smoke. No layout changes made. |
+| Content validation | Done | Added `getAllPublicSlugsForCrawl()` and `scripts/content-health.ts`; `npm run validate:content` passes with 105 public crawl paths. |
+| CI smoke tests | Done | Playwright config now starts a local app server; smoke covers public route/place crawler, required paths, headers, SEO files, images, persistence flows, and viewport overflow. |
+| Security baseline | Done | Added security headers in `next.config.mjs`: CSP, HSTS, frame denial/frame-ancestors, nosniff, referrer policy, and permissions policy. |
 
 ## P1/P2/P3 Work Completed
 
-- None yet.
+- SEO basics: added `app/robots.ts`, `app/sitemap.ts`, Open Graph/Twitter metadata basics, and route/place Open Graph metadata.
+- No major UI redesign/layout implementation was done. Deferred screens remain for the updated Stitch package.
 
 ## Commands Run
 
@@ -71,15 +72,22 @@ Baseline commands:
 - `npm run lint`
 - `npm run build`
 - `npm run test:smoke`
+- `npm run validate:content`
+- `npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "saved, share"`
 
 ## Deploy Notes
 
 Deployment has not been attempted yet. Code/runtime changes require Unraid deployment before completion unless blocked by missing Docker, SSH, Cloudflare, Unraid, or environment access.
 
+Notes:
+
+- `DATA_SOURCE=mock` remains the default.
+- The public issue queue is in-process for mock mode and is not durable across server restarts.
+- The local map fallback is still the no-key default; configure `NEXT_PUBLIC_MAP_STYLE_URL` only when a browser-safe MapLibre style URL is available.
+
 ## Remaining Work
 
-- Repair the Playwright smoke harness so it starts or targets a running app server.
-- Inspect owning route/data/map/report/search/local-state/security files.
-- Close each P0 row or document an exact blocker with evidence.
-- Run the final validation sequence.
-- Commit, push, deploy live, and verify the live URL or report the deployment blocker.
+- Run the final full validation sequence after docs edits.
+- Commit and push the non-visual P0 hardening slice.
+- Deploy to Unraid and verify the live URL, or report the exact deployment blocker.
+- After the updated Stitch mockup package is available, compare it against current app surfaces before any major layout implementation.

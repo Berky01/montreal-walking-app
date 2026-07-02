@@ -19,6 +19,18 @@ export const metadata: Metadata = {
     "Discover meaningful Montreal places, monuments, landmarks, neighborhoods, and optional routes that connect them.",
   alternates: {
     canonical: "/"
+  },
+  openGraph: {
+    title: "Meaningful Routes",
+    description: "Discover meaningful Montreal places, monuments, landmarks, neighborhoods, and optional routes that connect them.",
+    siteName: "Meaningful Routes",
+    type: "website",
+    url: "/"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meaningful Routes",
+    description: "Discover meaningful Montreal places, monuments, landmarks, neighborhoods, and optional routes that connect them."
   }
 };
 

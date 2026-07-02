@@ -10,7 +10,9 @@ Public places require ready MVP content, verified editorial source quality, vali
 
 The current public Montreal MVP is the curated set of 12 routes and 60 places. The expanded discovery catalog remains available to admin/validation flows as internal review material.
 
-Issue reports from the public report form are currently browser-local only. The admin issue queue only shows server-created reports until a future Unraid-safe storage layer is added.
+Issue reports from the public report form post to `/api/report-issue`, validate against published route/place/stop context, apply a lightweight honeypot/rate-limit guard, and are kept in the mock provider's in-process review queue. The form also keeps a local browser copy when storage is available. A durable database-backed report store is still required before switching away from `DATA_SOURCE=mock`.
+
+`npm run validate:content` runs the catalog validators plus public crawl-manifest checks. It should pass before deploys and after content edits.
 
 ## Content States
 

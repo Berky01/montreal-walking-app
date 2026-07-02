@@ -21,12 +21,14 @@ Open the local Next.js URL printed by the dev server.
 | `npm run lint` | Run ESLint with zero warnings |
 | `npm run typecheck` | Run TypeScript checks |
 | `npm run validate:data` | Validate catalog/data shape |
+| `npm run validate:content` | Run content health checks, public readiness gates, and public crawl manifest checks |
 | `npm run validate:routes` | Validate route geometry and stop coverage |
 | `npm run validate:media` | Validate local media, licensing, and attribution metadata |
 | `npm run sync:pois` | Dry-run the configured Montreal POI sync/review cache |
 | `npm run sync:routes` | Dry-run the generated Montreal route sync/review cache |
 | `npm run build` | Build the production Next.js app |
 | `npm test` | Run Vitest tests |
+| `npm run test:e2e` | Run the Playwright public smoke crawl |
 | `npm run test:smoke` | Run the Playwright smoke test |
 
 ## Final Validation Before Code Completion
@@ -36,10 +38,12 @@ Run the full sequence before claiming implementation work is complete:
 ```powershell
 npm run lint
 npm run typecheck
+npm run validate:content
 npm run validate:data
 npm run validate:routes
 npm run validate:media
 npm run build
+npm run test:smoke
 ```
 
 Docs-only changes can use a narrower check, but code/data/media changes need the full sequence unless the exact blocker is reported.

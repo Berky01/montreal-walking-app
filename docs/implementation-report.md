@@ -138,6 +138,7 @@ Current search continuation slice:
 - `npm test`
 - `npm run build`
 - `npm run test:smoke`
+- `npm ci --dry-run`
 - `git rev-parse HEAD`
 - `git archive --format=tar HEAD | ssh plexplease "cd /mnt/user/appdata/routeapp && tar -xf -"`
 - `ssh plexplease "cd /mnt/user/appdata/routeapp && BUILD_SHA=72811f8045717f65ac09ed94736418984ffae4b3 BUILD_TIME=2026-07-02T19:50:56.6455115-04:00 docker compose -f docker-compose.routeapp.yml up -d --build routeapp"`
@@ -175,6 +176,7 @@ Latest continuation validation:
 | `npm test` | Pass: 27 test files, 105 tests. |
 | `npm run build` | Pass: 128 static pages generated. |
 | `npm run test:smoke` | Pass: 6 Playwright smoke tests. |
+| `npm ci --dry-run` | Pass: dependency tree up to date. Existing npm `allow-scripts` review warning reported for install-script packages. |
 
 ## Deploy Notes
 

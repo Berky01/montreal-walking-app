@@ -160,6 +160,17 @@ Deployment completed to Unraid.
 
 Evidence:
 
+- Latest runtime deploy for the report issue selector slice:
+  - Branch pushed: `codex/stitch-discovery-redesign`.
+  - Deployed commit: `98f049597f0c04352c2d69f34915d90968d04f7f`.
+  - Container: `routeapp` rebuilt and restarted on Unraid; Docker status healthy.
+  - Live health: `https://routeapp.plexplease.xyz/api/health` returned HTTP 200 with `status="healthy"`, `publicRoutes=12`, `publicPlaces=60`, and `publicCrawlPaths=105`.
+  - Live build info: `https://routeapp.plexplease.xyz/api/build-info` returned `gitSha="98f049597f0c04352c2d69f34915d90968d04f7f"`.
+  - Live focused smoke: `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "production pages do not expose"` passed.
+  - Cloudflared ingress validation returned `OK`.
+
+Previous deployment evidence:
+
 - Branch pushed: `codex/stitch-discovery-redesign`.
 - Deployed commit: `6ee5cc814f1e89284e996f61033f5a6d465cf422`.
 - Container: `routeapp` rebuilt and restarted on Unraid; Docker status healthy.

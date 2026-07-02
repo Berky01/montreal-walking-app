@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meaningful Routes - Mobile Design Board</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#002b02",
+                      "surface-bright": "#fbf8ff",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e3e1ec",
+                      "inverse-surface": "#2f3038",
+                      "on-primary-fixed": "#002201",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#a1d494",
+                      "secondary-container": "#badeff",
+                      "on-secondary-fixed-variant": "#264a65",
+                      "on-primary-fixed-variant": "#24501f",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f4f2fd",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#ffb86d",
+                      "stone-surface": "#eeedf7",
+                      "on-background": "#1a1b22",
+                      "surface-container-high": "#e8e7f1",
+                      "ink-text": "#1a1b22",
+                      "surface-dim": "#dad9e3",
+                      "outline-variant": "#c2c9bb",
+                      "on-primary-container": "#7eaf73",
+                      "tertiary-container": "#553000",
+                      "primary-fixed": "#bcf0ae",
+                      "surface-container": "#eeedf7",
+                      "map-water": "#CFE2DF",
+                      "secondary": "#3f627e",
+                      "on-surface": "#1a1b22",
+                      "surface-tint": "#3b6934",
+                      "on-tertiary-container": "#db9444",
+                      "on-tertiary-fixed": "#2c1600",
+                      "surface-container-lowest": "#ffffff",
+                      "parchment-bg": "#F7F8F3",
+                      "background": "#fbf8ff",
+                      "primary-container": "#154212",
+                      "inverse-primary": "#a1d494",
+                      "inverse-on-surface": "#f1effa",
+                      "secondary-fixed": "#cbe6ff",
+                      "map-park": "#DDE9D2",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#693c00",
+                      "tertiary-fixed": "#ffdcbd",
+                      "tertiary": "#371d00",
+                      "error-container": "#ffdad6",
+                      "brass-accent": "#C78335",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "surface": "#fbf8ff",
+                      "on-surface-variant": "#42493e",
+                      "on-secondary-container": "#40637f",
+                      "surface-container-highest": "#e3e1ec",
+                      "outline": "#72796e",
+                      "on-secondary-fixed": "#001e30"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "margin-mobile": "16px",
+                      "md": "16px",
+                      "gutter": "16px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "margin-desktop": "48px",
+                      "xl": "32px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "metric-lg": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "metric-lg": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: theme('colors.parchment-bg');
+            color: theme('colors.ink-text');
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center py-xl px-margin-mobile">
+<div class="w-full max-w-md bg-surface-bright rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col">
+<!-- Header Section -->
+<header class="bg-surface-container-lowest p-md border-b border-outline-variant flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Meaningful Routes</span>
+<div class="flex items-center gap-xs bg-primary-container px-2 py-1 rounded-full border border-primary-fixed">
+<span class="w-2 h-2 rounded-full bg-primary-fixed"></span>
+<span class="font-label-sm text-label-sm text-on-primary-container">scope-reconciled prototype</span>
+</div>
+</div>
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">P0 Trust, Walk, Planner, QA - Mobile</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs border-l-2 border-brass-accent pl-sm">Montreal MVP; mock data; deferred concepts marked</p>
+</div>
+</header>
+<!-- Link Map Section -->
+<div class="p-md flex flex-col gap-lg bg-surface">
+<h2 class="font-label-md text-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-base">account_tree</span>
+                Prototype Link Map
+            </h2>
+<div class="flex flex-col gap-md">
+<!-- Group 1: POI -->
+<div class="flex flex-col gap-xs border-l border-outline-variant pl-sm relative">
+<div class="absolute -left-1 top-1.5 w-2 h-2 rounded-full bg-outline"></div>
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface">POI page</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_right_alt</span>
+<span class="font-body-md text-body-md text-secondary">source drawer</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface">POI page</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_right_alt</span>
+<span class="font-body-md text-body-md text-secondary">then/now comparison</span>
+</div>
+</div>
+<!-- Group 2: Walk Experience -->
+<div class="flex flex-col gap-xs border-l border-outline-variant pl-sm relative">
+<div class="absolute -left-1 top-1.5 w-2 h-2 rounded-full bg-primary"></div>
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface">route detail</span>
+<span class="material-symbols-outlined text-primary text-sm">arrow_right_alt</span>
+<span class="font-label-md text-label-md text-primary bg-primary-fixed/20 px-2 rounded">start walk</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface">start walk</span>
+<span class="material-symbols-outlined text-primary text-sm">arrow_right_alt</span>
+<span class="font-label-md text-label-md text-primary bg-primary-fixed/20 px-2 rounded">live walk</span>
+</div>
+<div class="flex items-center gap-sm pl-4 border-l border-dashed border-outline-variant ml-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">subdirectory_arrow_right</span>
+<span class="font-body-md text-body-md text-secondary">next stop</span>
+</div>
+<div class="flex items-center gap-sm pl-4 border-l border-dashed border-outline-variant ml-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">subdirectory_arrow_right</span>
+<span class="font-body-md text-body-md text-secondary">completion</span>
+</div>
+<div class="flex items-center gap-sm mt-1">
+<span class="font-label-md text-label-md text-on-surface">completion</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_right_alt</span>
+<span class="font-body-md text-body-md text-secondary">journal/share</span>
+</div>
+</div>
+<!-- Group 3: Planner -->
+<div class="flex flex-col gap-xs border-l border-outline-variant pl-sm relative">
+<div class="absolute -left-1 top-1.5 w-2 h-2 rounded-full bg-brass-accent"></div>
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface">planner</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_right_alt</span>
+<span class="font-body-md text-body-md text-secondary">saved places to itinerary</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface">planner</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_right_alt</span>
+<span class="font-body-md text-body-md text-secondary">export/share</span>
+</div>
+</div>
+<!-- Group 4: Deferred -->
+<div class="flex flex-col gap-xs border-l border-outline-variant pl-sm relative opacity-60">
+<div class="absolute -left-1 top-1.5 w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface line-through">settings/devices</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline border border-outline px-1 rounded text-[10px]">DEFERRED</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface line-through">offline pack</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline border border-outline px-1 rounded text-[10px]">DEFERRED</span>
+</div>
+</div>
+<!-- Group 5: Admin -->
+<div class="flex flex-col gap-xs border-l border-outline-variant pl-sm relative pt-sm border-t border-dashed mt-sm">
+<div class="absolute -left-1 top-4 w-2 h-2 rounded-full bg-error"></div>
+<div class="flex items-center gap-sm flex-wrap">
+<span class="font-label-md text-label-md text-on-surface">admin dashboard</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_right_alt</span>
+<span class="font-body-md text-body-md text-secondary">source editor</span>
+<span class="material-symbols-outlined text-error text-sm">arrow_right_alt</span>
+<span class="font-label-md text-label-md text-error bg-error-container/50 px-2 rounded">issue report</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

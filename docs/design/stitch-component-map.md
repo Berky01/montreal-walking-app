@@ -4,6 +4,12 @@ Updated: 2026-07-02
 
 This maps approved Stitch UI patterns to production React components. Use this before adding new pages from the Stitch project.
 
+## P0 Prototype Extension
+
+The 2026-07-02 P0 Trust/Walk/Planner/QA prototype adds design references for source trust, then/now media, live walk metrics, journal stats, planner itinerary items, voting, and admin source QA. Treat these as patterns to map onto existing production owners, not as generated code to copy.
+
+Deferred/mock-only prototype components remain out of current MVP implementation scope: `AudioStoryCard`, `DeviceProviderCard`, and `OfflinePackCard`.
+
 | Stitch component or pattern | Production component/module | Props/data needed | Accessibility notes |
 |---|---|---|---|
 | App frame with desktop nav and mobile bottom nav | `components/layout/app-shell.tsx`, `desktop-top-nav.tsx`, `mobile-bottom-nav.tsx` | Current route links and local-first public nav | Keep all nav links keyboard focusable and avoid linking to disabled feature screens. |

@@ -27,6 +27,7 @@ Suggested row y positions:
 - Row 4 P1 place/accessibility/partner/admin: `8400`
 - Row 5 P2 expansion A: `11800`
 - Row 6 P2 expansion B: `14400`
+- Row 7 P0 trust/walk/planner/QA prototype boards: `17000`
 
 Rows 4-6 intentionally use wider vertical offsets than the nominal `2600` row gap so the taller P1 page mockups do not overlap the P2 rows.
 
@@ -150,6 +151,17 @@ Suggested x positions for pairs:
 5. PDF/GPX export
    - Desktop: `d5be518a97144138b12cb48b4a78c75a`
    - Mobile: `1513a00e28fa48ccb974a0984846c6c6`
+
+## Row 7 - P0 Trust/Walk/Planner/QA Prototype Boards
+
+These are scope-reconciled design/reference screens generated on 2026-07-02. They should remain visually separate from active MVP implementation rows.
+
+1. P0 Trust, Walk, Planner, QA - Desktop
+   - Desktop board: `568a02d02bf74fdbb3b624b84880064e`
+2. P0 Trust, Walk, Planner, QA - Mobile
+   - Flow map: `ba989cdc5c914fc69d74f37bf3eff324`
+   - Deferred boundaries: `0eb0fc6e4d824b069a30b5ab6173788f`
+   - Component notes: `355efd66b089441fa1720b6effb6f9a7`
 
 ## Superseded Or Utility Screens To Keep Outside The Walkthrough Rows
 

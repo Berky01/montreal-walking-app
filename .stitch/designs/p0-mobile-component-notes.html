@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Original Meaningful Routes - Component Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#002b02",
+                      "surface-bright": "#fbf8ff",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e3e1ec",
+                      "inverse-surface": "#2f3038",
+                      "on-primary-fixed": "#002201",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#a1d494",
+                      "secondary-container": "#badeff",
+                      "on-secondary-fixed-variant": "#264a65",
+                      "on-primary-fixed-variant": "#24501f",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f4f2fd",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#ffb86d",
+                      "stone-surface": "#eeedf7",
+                      "on-background": "#1a1b22",
+                      "surface-container-high": "#e8e7f1",
+                      "ink-text": "#1a1b22",
+                      "surface-dim": "#dad9e3",
+                      "outline-variant": "#c2c9bb",
+                      "on-primary-container": "#7eaf73",
+                      "tertiary-container": "#553000",
+                      "primary-fixed": "#bcf0ae",
+                      "surface-container": "#eeedf7",
+                      "map-water": "#CFE2DF",
+                      "secondary": "#3f627e",
+                      "on-surface": "#1a1b22",
+                      "surface-tint": "#3b6934",
+                      "on-tertiary-container": "#db9444",
+                      "on-tertiary-fixed": "#2c1600",
+                      "surface-container-lowest": "#ffffff",
+                      "parchment-bg": "#F7F8F3",
+                      "background": "#fbf8ff",
+                      "primary-container": "#154212",
+                      "inverse-primary": "#a1d494",
+                      "inverse-on-surface": "#f1effa",
+                      "secondary-fixed": "#cbe6ff",
+                      "map-park": "#DDE9D2",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#693c00",
+                      "tertiary-fixed": "#ffdcbd",
+                      "tertiary": "#371d00",
+                      "error-container": "#ffdad6",
+                      "brass-accent": "#C78335",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "surface": "#fbf8ff",
+                      "on-surface-variant": "#42493e",
+                      "on-secondary-container": "#40637f",
+                      "surface-container-highest": "#e3e1ec",
+                      "outline": "#72796e",
+                      "on-secondary-fixed": "#001e30"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "margin-mobile": "16px",
+                      "md": "16px",
+                      "gutter": "16px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "margin-desktop": "48px",
+                      "xl": "32px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "metric-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "metric-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-background dark:bg-on-background docked full-width top-0 bg-surface dark:bg-inverse-surface shadow-sm z-50 sticky hidden md:block">
+<div class="flex justify-between items-center w-full px-margin-desktop py-md max-w-7xl mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">
+                Original Meaningful Routes
+            </div>
+<nav class="flex gap-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-label-md text-label-md" href="#">Design Tokens</a>
+<a class="text-primary dark:text-inverse-primary border-b-2 border-primary font-bold font-label-md text-label-md" href="#">Components</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-label-md text-label-md" href="#">Visual Diagnosis</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-label-md text-label-md" href="#">City Guide</a>
+</nav>
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-on-surface font-body-md shadow-sm focus:outline-none focus:border-primary w-64" placeholder="Search..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-primary-container transition-colors shadow-sm scale-95 duration-150 ease-in-out">
+                    Lock Style
+                </button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar Desktop -->
+<aside class="bg-surface-container-low dark:bg-surface-container-lowest docked left-0 h-full w-64 flat no shadows fixed left-0 top-0 h-full z-40 flex flex-col pt-24 pb-lg px-md hidden md:flex border-r border-outline-variant">
+<div class="mb-xl flex items-center gap-sm px-4">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary border border-outline-variant inline-flex items-center justify-center font-label-md text-label-md">QA</div>
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">System Architect</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Internal Reference Only</div>
+</div>
+</div>
+<nav class="flex flex-col gap-sm flex-1">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                    Overview
+                </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">palette</span>
+                    Color Palette
+                </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">text_fields</span>
+                    Typography
+                </a>
+<a class="flex items-center gap-md bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg px-4 py-3 Active: scale-98 transition-transform duration-200 font-label-md text-label-md font-bold shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">category</span>
+                    Component Library
+                </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">map</span>
+                    Montreal Maps
+                </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop overflow-y-auto bg-parchment-bg">
+<div class="max-w-6xl mx-auto">
+<header class="mb-xl border-b border-outline-variant pb-md">
+<h1 class="font-display-lg text-display-lg text-primary mb-sm">Component Library</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+                        Technical specification and visual documentation of core UI components used throughout the Original Meaningful Routes application. Designed with an editorial, tactile aesthetic.
+                    </p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Basic Components Column -->
+<div class="flex flex-col gap-lg">
+<!-- Badges -->
+<section class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-surface-variant pb-sm mb-md">Badges &amp; Chips</h2>
+<div class="flex flex-col gap-md">
+<div class="flex gap-sm items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-24">SourceBadge</span>
+<div class="inline-flex items-center gap-xs px-2 py-1 bg-surface-container-highest rounded border border-outline-variant text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+                                        Archives
+                                    </div>
+</div>
+<div class="flex gap-sm items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-24">VerificationBadge</span>
+<div class="inline-flex items-center gap-xs px-2 py-1 bg-primary-fixed-dim bg-opacity-20 text-on-primary-fixed-variant rounded-full font-label-sm text-label-sm border border-primary-fixed">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        Verified
+                                    </div>
+</div>
+<div class="flex gap-sm items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-24">AdminStatusChip</span>
+<div class="inline-flex items-center gap-xs px-2 py-1 bg-secondary-container text-on-secondary-container rounded font-label-sm text-label-sm border border-secondary-fixed">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">admin_panel_settings</span>
+                                        Active
+                                    </div>
+</div>
+</div>
+</section>
+<!-- Route Progress -->
+<section class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-surface-variant pb-sm mb-md">Progress</h2>
+<div class="flex flex-col gap-md">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-sm">RouteProgressBar</span>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+<div class="flex justify-between mt-1 font-label-sm text-label-sm text-on-surface-variant">
+<span>Start</span>
+<span>66%</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Complex Cards Column -->
+<div class="flex flex-col gap-lg">
+<!-- PlaceCard -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="h-32 w-full bg-surface-variant relative">
+<img class="w-full h-full object-cover" data-alt="Place d'Armes square in Old Montreal with historic buildings around it." src="../../public/media/places/place-darmes.jpg"/>
+<div class="absolute top-2 right-2 inline-flex items-center gap-xs px-2 py-1 bg-surface-container-lowest bg-opacity-90 rounded border border-outline-variant text-on-surface font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">history_edu</span>
+                                    Heritage
+                                </div>
+</div>
+<div class="p-md flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Notre-Dame Basilica</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">A masterpiece of Gothic Revival architecture in the historic district of Old Montreal, known for its stunning interior.</p>
+</div>
+<div class="border-t border-outline-variant p-sm flex justify-between items-center bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">PlaceCard</span>
+<button class="text-primary hover:bg-surface-variant p-1 rounded transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- RouteCard -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden shadow-sm p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Architectural Wonders</h3>
+<div class="font-label-sm text-label-sm text-on-surface-variant flex gap-sm items-center mt-xs">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 2h 30m</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">route</span> 3.5 km</span>
+</div>
+</div>
+<div class="w-12 h-12 bg-map-water rounded border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">A guided walk through the most significant historical structures in the city center.</p>
+<div class="mt-md pt-sm border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">RouteCard</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-3 py-1.5 rounded hover:bg-primary-container transition-colors shadow-sm">
+                                    Start Route
+                                </button>
+</div>
+</section>
+</div>
+<!-- Interactive/Status Column -->
+<div class="flex flex-col gap-lg">
+<!-- Timeline -->
+<section class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-surface-variant pb-sm mb-md">Timeline</h2>
+<div class="relative pl-6 border-l-2 border-outline-variant ml-2 flex flex-col gap-md py-sm">
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-primary border-2 border-surface-container-lowest shadow-sm"></div>
+<div class="font-label-md text-label-md font-bold text-on-surface">1824 - Construction Begins</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Foundation laid for the new church.</div>
+</div>
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-surface-variant border-2 border-outline-variant"></div>
+<div class="font-label-md text-label-md text-on-surface-variant">1830 - Sanctuary Completed</div>
+</div>
+</div>
+<div class="mt-md pt-sm border-t border-outline-variant text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Timeline</span>
+</div>
+</section>
+<!-- LiveMetricRibbon -->
+<section class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-surface-variant pb-sm mb-md">LiveMetricRibbon</h2>
+<div class="flex bg-surface-container-high rounded border border-outline-variant p-sm gap-md justify-around items-center">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 0;">thermometer</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">18°C</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 0;">group</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">Low</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 0;">wb_sunny</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">Clear</span>
+</div>
+</div>
+</section>
+<!-- Deferred Mocks -->
+<section class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant border-dashed">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-surface-variant pb-sm mb-md">Deferred / Mock-Only</h2>
+<ul class="font-label-sm text-label-sm text-on-surface-variant space-y-2 list-disc pl-4">
+<li>AudioStoryCard</li>
+<li>DeviceProviderCard</li>
+<li>OfflinePackCard</li>
+</ul>
+<div class="mt-sm text-xs italic text-outline">Scheduled for implementation in Phase 2.</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-surface-container-high docked full-width bottom-0 border-t border-outline-variant w-full py-xl px-margin-desktop flex justify-between items-center hidden md:flex">
+<div class="font-label-md text-label-md text-primary dark:text-inverse-primary">
+            © 2024 Original Meaningful Routes - Montreal Edition
+        </div>
+<div class="flex gap-lg">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary fade-in duration-200" href="#">Documentation</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary fade-in duration-200" href="#">Changelog</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary fade-in duration-200" href="#">Style Guide PDF</a>
+</div>
+</footer>
+</body></html>

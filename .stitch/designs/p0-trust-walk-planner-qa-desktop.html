@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>P0 Trust, Walk, Planner, QA - Desktop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#3b6934",
+                        "stone-surface": "#eeedf7",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f4f2fd",
+                        "brass-accent": "#C78335",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e3e1ec",
+                        "on-tertiary-container": "#db9444",
+                        "surface-dim": "#dad9e3",
+                        "primary-fixed": "#bcf0ae",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1effa",
+                        "surface": "#fbf8ff",
+                        "on-background": "#1a1b22",
+                        "surface-bright": "#fbf8ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb86d",
+                        "primary": "#002b02",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e3e1ec",
+                        "secondary-container": "#badeff",
+                        "tertiary-container": "#553000",
+                        "on-secondary-container": "#40637f",
+                        "secondary-fixed-dim": "#a7cbeb",
+                        "surface-container-high": "#e8e7f1",
+                        "parchment-bg": "#F7F8F3",
+                        "on-primary-fixed": "#002201",
+                        "inverse-surface": "#2f3038",
+                        "on-tertiary-fixed-variant": "#693c00",
+                        "on-tertiary-fixed": "#2c1600",
+                        "tertiary": "#371d00",
+                        "inverse-primary": "#a1d494",
+                        "on-secondary-fixed": "#001e30",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#42493e",
+                        "outline": "#72796e",
+                        "on-primary-fixed-variant": "#24501f",
+                        "primary-fixed-dim": "#a1d494",
+                        "secondary-fixed": "#cbe6ff",
+                        "ink-text": "#1a1b22",
+                        "tertiary-fixed": "#ffdcbd",
+                        "on-tertiary": "#ffffff",
+                        "map-water": "#CFE2DF",
+                        "on-secondary-fixed-variant": "#264a65",
+                        "on-primary": "#ffffff",
+                        "background": "#fbf8ff",
+                        "secondary": "#3f627e",
+                        "surface-container": "#eeedf7",
+                        "primary-container": "#154212",
+                        "outline-variant": "#c2c9bb",
+                        "on-surface": "#1a1b22",
+                        "map-park": "#DDE9D2",
+                        "on-primary-container": "#7eaf73"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "metric-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F7F8F3; color: #1a1b22; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .fill-icon { font-variation-settings: 'FILL' 1; }
+        .grid-baseline { background-image: linear-gradient(to bottom, transparent 3px, #e3e1ec 4px); background-size: 100% 4px; }
+        .canvas-container { padding: 48px; max-width: 1600px; margin: 0 auto; }
+        .flow-arrow { position: absolute; background: #c2c9bb; }
+        .flow-arrow.horizontal { height: 2px; }
+        .flow-arrow.vertical { width: 2px; }
+        .arrow-head { position: absolute; border: solid #c2c9bb; border-width: 0 2px 2px 0; display: inline-block; padding: 4px; }
+        .arrow-head.right { transform: rotate(-45deg); right: 0; top: -3px; }
+        .arrow-head.down { transform: rotate(45deg); bottom: 0; left: -3px; }
+    </style>
+</head>
+<body class="bg-parchment-bg min-h-screen">
+<!-- Top Navigation -->
+<nav class="flex justify-between items-center px-margin-desktop h-16 w-full fixed top-0 z-50 bg-surface dark:bg-inverse-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-6">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Meaningful Routes</span>
+<div class="hidden md:flex gap-4">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md" href="#">Discover</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md" href="#">Planner</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-md text-label-md" href="#">Live Walk</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md" href="#">Journal</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md" href="#">Admin</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">map</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">settings</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary-container transition-colors">Start Walk</button>
+<span aria-label="User profile" class="w-8 h-8 rounded-full border border-outline-variant bg-primary text-on-primary inline-flex items-center justify-center font-label-sm text-label-sm">MR</span>
+</div>
+</nav>
+<!-- Canvas Container -->
+<main class="canvas-container pt-24 space-y-xl">
+<!-- Header -->
+<header class="bg-surface p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">P0 Trust, Walk, Planner, QA</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Scope-reconciled prototype • October 26, 2023</p>
+</div>
+<div class="bg-surface-container-low px-md py-sm rounded-lg border border-outline-variant text-right">
+<p class="font-label-md text-label-md text-primary">Montreal MVP</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Mock data • Deferred concepts marked</p>
+</div>
+</header>
+<!-- Flow Map -->
+<section class="bg-surface p-lg rounded-xl border border-outline-variant overflow-x-auto">
+<h2 class="font-headline-md text-headline-md text-primary mb-lg">Prototype Transition Map</h2>
+<div class="relative min-w-[1200px] h-[150px] flex items-center justify-between px-md py-xl">
+<!-- Nodes -->
+<div class="z-10 bg-surface-container-low border border-outline-variant rounded-lg px-md py-sm shadow-sm flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-xs">pin_drop</span>
+<span class="font-label-md text-label-md">POI Detail</span>
+</div>
+<div class="z-10 bg-surface-container-low border border-outline-variant rounded-lg px-md py-sm shadow-sm flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-xs">directions_walk</span>
+<span class="font-label-md text-label-md">Live Walk</span>
+</div>
+<div class="z-10 bg-surface-container-low border border-outline-variant rounded-lg px-md py-sm shadow-sm flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-xs">menu_book</span>
+<span class="font-label-md text-label-md">Journal</span>
+</div>
+<div class="z-10 bg-surface-container-low border border-outline-variant rounded-lg px-md py-sm shadow-sm flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-xs">edit_calendar</span>
+<span class="font-label-md text-label-md">Planner</span>
+</div>
+<div class="z-10 bg-surface-container-low border border-outline-variant rounded-lg px-md py-sm shadow-sm flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-xs">admin_panel_settings</span>
+<span class="font-label-md text-label-md">Admin</span>
+</div>
+<!-- Connectors (Simplified for rendering) -->
+<div class="absolute w-[calc(100%-120px)] h-px bg-outline-variant left-[60px] top-1/2 -translate-y-1/2 z-0"></div>
+</div>
+</section>
+<!-- Screens Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-xl">
+<!-- Screen A: POI Detail -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="bg-surface-variant px-md py-sm border-b border-outline-variant flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Screen A: Rich POI Detail</span>
+</div>
+<div class="relative h-64 w-full">
+<div class="bg-cover bg-center w-full h-full" data-alt="Notre-Dame Basilica facade facing Place d'Armes in Old Montreal." style="background-image: url('../../public/media/places/notre-dame-basilica.jpg')"></div>
+<button class="absolute top-md right-md bg-surface/80 backdrop-blur-sm p-sm rounded-full border border-surface">
+<span class="material-symbols-outlined text-primary">bookmark_border</span>
+</button>
+<div class="absolute bottom-0 left-0 w-full p-lg bg-gradient-to-t from-black/60 to-transparent">
+<h3 class="font-display-lg text-display-lg text-white">Notre-Dame Basilica</h3>
+<p class="font-body-md text-body-md text-white/90">Gothic Revival masterpiece in Old Montreal</p>
+</div>
+</div>
+<div class="p-lg space-y-md">
+<div class="flex items-center gap-sm bg-primary-fixed/20 text-primary-container px-sm py-xs rounded w-fit border border-primary-fixed">
+<span class="material-symbols-outlined fill-icon text-[18px]">verified</span>
+<span class="font-label-sm text-label-sm">Verified Source</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+                        Built in 1829, its dramatic interior features a deep blue vault studded with gold stars. A cornerstone of Montreal's religious and architectural history.
+                    </p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Photo by Diego Delso, CC BY-SA 4.0, via Wikimedia Commons. Last checked 2026-07-01.</p>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container-low p-sm border border-outline-variant rounded">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Architect</span>
+<span class="font-body-md text-body-md text-on-surface">James O'Donnell</span>
+</div>
+<div class="bg-surface-container-low p-sm border border-outline-variant rounded">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Era</span>
+<span class="font-body-md text-body-md text-on-surface">19th Century</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Screen D: Live Walk Flow -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="bg-surface-variant px-md py-sm border-b border-outline-variant flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Screen D: Live Walk Flow</span>
+</div>
+<div class="flex-1 flex bg-map-park/20 relative p-md">
+<!-- Map Mock -->
+<div class="absolute inset-0 bg-map-park opacity-20"></div>
+<!-- Route Line Mock -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M 20,80 Q 50,50 80,20" fill="none" stroke="#002b02" stroke-dasharray="4" stroke-width="2"></path>
+</svg>
+<!-- UI Panel -->
+<div class="relative z-10 w-full max-w-sm ml-auto bg-surface border border-outline-variant rounded-xl shadow-md flex flex-col h-full">
+<div class="p-md border-b border-outline-variant">
+<div class="flex justify-between items-center mb-sm">
+<h4 class="font-headline-sm text-headline-sm text-primary">Old Port Circuit</h4>
+<span class="bg-surface-container-high px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant">Live</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary w-1/3 h-full"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs text-right">3 of 8 stops • 45 min left</p>
+</div>
+<div class="flex-1 p-md overflow-y-auto space-y-md">
+<!-- Current Stop -->
+<div class="bg-primary-fixed/20 p-md rounded-lg border border-primary-fixed">
+<p class="font-label-sm text-label-sm text-primary-container mb-xs uppercase">Next Stop (0.2km)</p>
+<h5 class="font-headline-md text-headline-md text-on-surface">Pointe-à-Callière</h5>
+<button class="mt-sm w-full bg-primary text-on-primary font-label-md text-label-md py-2 rounded hover:bg-primary-container transition-colors">Mark Visited</button>
+</div>
+</div>
+<div class="p-md border-t border-outline-variant flex justify-center gap-md">
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">pause</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-error text-on-error flex items-center justify-center hover:bg-error-container hover:text-on-error-container transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

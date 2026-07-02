@@ -14,6 +14,19 @@ Updated: 2026-07-02
 
 This inventory maps the approved Stitch mockups to the current Next.js app. Do not copy static Stitch HTML into production. Build reusable components and preserve the current Montreal MVP boundaries in `AGENTS.md`.
 
+## Scope-Reconciled Prototype Boards
+
+These screens are design/reference artifacts generated on 2026-07-02. They do not change production scope and must not be copied directly into the app.
+
+| Stitch screen or group | Local export | Priority | Status | Notes |
+|---|---|---|---|---|
+| P0 Trust, Walk, Planner, QA - Desktop `568a02d02bf74fdbb3b624b84880064e` | `.stitch/designs/p0-trust-walk-planner-qa-desktop.html`, `.stitch/designs/p0-trust-walk-planner-qa-desktop.png` | Design reference | Generated | Desktop board for rich POI trust, source transparency, then/now, live walk metrics, completion journal, planner, admin QA, and deferred boundary cards. |
+| Mobile Prototype Board Header & Flow Map `ba989cdc5c914fc69d74f37bf3eff324` | `.stitch/designs/p0-mobile-flow-map.html`, `.stitch/designs/p0-mobile-flow-map.png`, `.stitch/designs/p0-trust-walk-planner-qa-mobile.html` | Design reference | Generated | Mobile flow map for requested prototype transitions. Additional generated mobile frames are in Stitch session `7665574538289893934`; several IDs were truncated by the MCP response. |
+| Deferred MVP Boundaries (Mobile) `0eb0fc6e4d824b069a30b5ab6173788f` | Stitch only | Design reference | Generated | Marks devices/health, offline downloads, partner kits, audio, tickets/tours, and premium packs as mock-only/deferred. |
+| Mobile Component Notes Strip `355efd66b089441fa1720b6effb6f9a7` | `.stitch/designs/p0-mobile-component-notes.html`, `.stitch/designs/p0-mobile-component-notes.png` | Design reference | Generated | Component inventory for active patterns plus deferred/mock-only component callouts. |
+
+See `.stitch/DESIGN.p0-trust-walk-planner-qa.md` for the design handoff, prototype connection map, local export list, and scope reconciliation.
+
 ## Current MVP Screen Map
 
 | Stitch screen or group | App route/component | Desktop source | Mobile source | Priority | Status | Notes |

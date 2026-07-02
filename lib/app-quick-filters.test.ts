@@ -2,18 +2,18 @@ import { describe, expect, it } from "vitest";
 import { appQuickFilters } from "@/lib/app-quick-filters";
 
 describe("app quick filters", () => {
-  it("links each home chip to route results with meaningful filter params", () => {
+  it("links each home chip to meaningful place discovery filters", () => {
     expect(appQuickFilters).toEqual([
-      { label: "30 min", href: "/routes?duration=35" },
-      { label: "1 hour", href: "/routes?duration=60" },
-      { label: "2 hours", href: "/routes?duration=120" },
-      { label: "quiet", href: "/routes?interest=quiet" },
-      { label: "scenic", href: "/routes?interest=scenic&sort=scenic" },
-      { label: "history", href: "/routes?interest=history" },
-      { label: "architecture", href: "/routes?interest=architecture" },
-      { label: "cafes", href: "/routes?interest=cafes" },
-      { label: "rainy day", href: "/routes?weather=rainy" },
-      { label: "accessible", href: "/routes?accessible=true" }
+      { label: "monuments", href: "/places?category=monument" },
+      { label: "churches", href: "/places?category=church" },
+      { label: "markets", href: "/places?category=market" },
+      { label: "viewpoints", href: "/places?category=viewpoint" },
+      { label: "public art", href: "/places?category=public_art" },
+      { label: "hidden gems", href: "/places?category=hidden_gem" },
+      { label: "history", href: "/places?tag=history" },
+      { label: "architecture", href: "/places?tag=architecture" },
+      { label: "rainy day", href: "/places?tag=rainy%20day" },
+      { label: "optional walks", href: "/routes" }
     ]);
   });
 });

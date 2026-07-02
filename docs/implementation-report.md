@@ -138,6 +138,14 @@ Current search continuation slice:
 - `npm test`
 - `npm run build`
 - `npm run test:smoke`
+- `git rev-parse HEAD`
+- `git archive --format=tar HEAD | ssh plexplease "cd /mnt/user/appdata/routeapp && tar -xf -"`
+- `ssh plexplease "cd /mnt/user/appdata/routeapp && BUILD_SHA=72811f8045717f65ac09ed94736418984ffae4b3 BUILD_TIME=2026-07-02T19:50:56.6455115-04:00 docker compose -f docker-compose.routeapp.yml up -d --build routeapp"`
+- `ssh plexplease "docker ps --filter name=routeapp --format '{{.Names}} {{.Status}} {{.Image}}'"`
+- `curl.exe -sS -D - https://routeapp.plexplease.xyz/api/health`
+- `curl.exe -sS https://routeapp.plexplease.xyz/api/build-info`
+- `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "saved, share"`
+- `ssh plexplease "docker exec cloudflared cloudflared tunnel --config /etc/cloudflared/config.yml ingress validate"`
 - `npm run validate:content`
 - `npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "saved, share"`
 - `npm test -- lib/issue-reports.test.ts` (red: missing `getIssueReportPlaceOptions`; green after implementation)
@@ -175,8 +183,13 @@ Deployment completed to Unraid.
 Evidence:
 
 - Current search explanation slice:
-  - Local validation passed.
-  - Runtime deployment pending until this slice is committed, pushed, rebuilt on Unraid, and verified live.
+  - Branch pushed: `codex/stitch-discovery-redesign`.
+  - Deployed commit: `72811f8045717f65ac09ed94736418984ffae4b3`.
+  - Container: `routeapp` rebuilt and restarted on Unraid; Docker status healthy.
+  - Live health: `https://routeapp.plexplease.xyz/api/health` returned HTTP 200 with `status="healthy"`, `publicRoutes=12`, `publicPlaces=60`, and `publicCrawlPaths=105`.
+  - Live build info: `https://routeapp.plexplease.xyz/api/build-info` returned `gitSha="72811f8045717f65ac09ed94736418984ffae4b3"`.
+  - Live focused smoke: `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "saved, share"` passed.
+  - Cloudflared ingress validation returned `OK` through the running `cloudflared` container.
 
 - Latest runtime deploy for the report issue selector slice:
   - Branch pushed: `codex/stitch-discovery-redesign`.

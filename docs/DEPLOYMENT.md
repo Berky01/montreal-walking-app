@@ -18,11 +18,13 @@ The app currently requires no runtime secrets. Cloudflare and SSH credentials ar
 Use Git/GitHub as the release trail:
 
 1. Commit a verified local checkpoint.
-2. Push to the private remote when configured.
+2. Push to `origin` at `https://github.com/Berky01/meaningful-routes.git`.
 3. Deploy implementation changes to Unraid.
 4. Verify the live URL.
 
 Docs-only changes do not require a live app redeploy because the running container is unchanged.
+
+The deployed `/api/build-info` response should match the pushed commit SHA after implementation deploys.
 
 ## Build Pattern
 

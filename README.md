@@ -75,4 +75,32 @@ Docs-only changes can use a narrower check, but code/data/media changes need the
 6. Push to GitHub when a remote is configured and the checkpoint is worth keeping.
 7. Deploy completed implementation work to Unraid.
 
-If `git remote -v` is empty, do not invent a GitHub remote. Add the correct private repository URL first, then push.
+## GitHub Remote
+
+The private GitHub repo is:
+
+```txt
+https://github.com/Berky01/meaningful-routes
+```
+
+Expected local remote:
+
+```powershell
+git remote -v
+# origin  https://github.com/Berky01/meaningful-routes.git (fetch)
+# origin  https://github.com/Berky01/meaningful-routes.git (push)
+```
+
+If `origin` is missing, add it:
+
+```powershell
+git remote add origin https://github.com/Berky01/meaningful-routes.git
+```
+
+Push committed work with normal Git:
+
+```powershell
+git push -u origin $(git branch --show-current)
+```
+
+`gh` login is useful for pull requests, but it is not required for a basic `git push` when Git Credential Manager already has a GitHub credential.

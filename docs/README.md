@@ -14,7 +14,7 @@ This folder contains the active engineering and operations docs for the live Mea
 
 | File | Use |
 |---|---|
-| `docs/WORKFLOW.md` | Branches, commits, GitHub, validation, docs updates, and release safety |
+| `docs/WORKFLOW.md` | Branches, commits, GitHub remote/push flow, validation, docs updates, and release safety |
 | `docs/DEPLOYMENT.md` | Production deployment target, Cloudflare route, and live verification |
 | `docs/UNRAID_DEPLOYMENT.md` | Unraid container defaults, validation, and update procedure |
 | `docs/BACKUPS.md` | Source, media, local state, and future database backup rules |
@@ -54,3 +54,12 @@ Update docs in the same change when code changes affect:
 - live-app risks or blockers
 
 Do not rewrite archived handoff tickets unless the request is specifically about the archive.
+
+## GitHub Source Of Truth
+
+- Private repo: `https://github.com/Berky01/meaningful-routes`
+- Local remote: `origin` -> `https://github.com/Berky01/meaningful-routes.git`
+- Stable branch: `main`
+- Active Codex branch: `codex/phase-2a-live-app`
+
+Future sessions should run `git status --short --branch` and `git remote -v` before changing files. If the worktree is mixed, stage explicit file paths only.

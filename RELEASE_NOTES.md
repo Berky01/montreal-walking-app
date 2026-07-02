@@ -5,6 +5,7 @@
 - Added a root `README.md` for quick start, validation, documentation, and safe project workflow.
 - Added `docs/README.md` as the active documentation index and source-of-truth guide.
 - Added `docs/WORKFLOW.md` with the Git, GitHub, branch, commit, validation, and deployment operating model.
+- Documented the private GitHub remote `https://github.com/Berky01/meaningful-routes` and the normal `git push` flow for future sessions.
 - Added `docs/decisions/ADR-001-operating-model.md` to record the local-first app and GitHub-backed workflow decision.
 - Tightened `.gitignore` so generated logs, test artifacts, package caches, Playwright CLI output, and deployment output do not become baseline Git history.
 - Updated project instructions and deployment/backups/media/data docs to clarify docs-only versus implementation deployment rules.

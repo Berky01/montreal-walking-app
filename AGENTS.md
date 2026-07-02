@@ -32,8 +32,11 @@ This is the live Meaningful Routes Next.js app. Preserve the existing visual MVP
 - Use one branch per coherent job.
 - Commit small verified checkpoints with descriptive messages.
 - Keep generated artifacts out of Git: `output/`, `.playwright-cli/`, `.npm-restore/`, `test-results/`, logs, build output, and local env files.
-- Use GitHub as the private remote backup/review system when the correct remote URL is configured.
-- If `git remote -v` is empty, do not invent a remote; report that the repo needs a private GitHub remote URL before pushing.
+- Use GitHub as the private remote backup/review system. Expected remote: `origin` -> `https://github.com/Berky01/meaningful-routes.git`.
+- If `git remote -v` is empty, add the expected private remote before pushing; do not invent another remote.
+- If the worktree contains unrelated changes, stage only the files owned by the current task. Do not use `git add .` in a mixed worktree.
+- Push committed checkpoints with `git push -u origin $(git branch --show-current)`.
+- `gh` authentication is optional for basic pushes; use normal `git push` when Git Credential Manager already has a usable GitHub credential. Use `gh` only for PRs or GitHub metadata workflows.
 - Treat docs-only changes as not requiring live app deployment. Code, data, media, runtime config, build, or UI changes do require the Unraid deploy rule above.
 
 ## Documentation

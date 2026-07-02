@@ -3,7 +3,8 @@
 ## Source Backup
 
 - Git commits are the first rollback point.
-- A private GitHub remote should be used as the off-machine backup and review system once the correct remote URL is configured.
+- The private GitHub remote is the off-machine backup and review system: `https://github.com/Berky01/meaningful-routes`.
+- Expected local remote: `origin` -> `https://github.com/Berky01/meaningful-routes.git`.
 - Do not commit real credentials, `.env` files, generated logs, local test artifacts, package caches, or deployment archives.
 - Keep curated audit findings in Markdown docs, not only in `output/` logs.
 

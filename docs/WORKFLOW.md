@@ -14,6 +14,30 @@ This is the practical operating model for evolving Meaningful Routes safely.
 
 Use Git locally for every meaningful checkpoint. Use GitHub whenever work is worth keeping or sharing.
 
+## Current Remote
+
+The private GitHub repository is:
+
+```txt
+https://github.com/Berky01/meaningful-routes
+```
+
+Expected remote:
+
+```powershell
+git remote -v
+# origin  https://github.com/Berky01/meaningful-routes.git (fetch)
+# origin  https://github.com/Berky01/meaningful-routes.git (push)
+```
+
+If `origin` is missing:
+
+```powershell
+git remote add origin https://github.com/Berky01/meaningful-routes.git
+```
+
+If `origin` points somewhere else, stop and confirm before changing it.
+
 ## Branch Model
 
 Keep `main` stable and live-ready.
@@ -34,18 +58,21 @@ Do not mix unrelated jobs in one branch. If the task changes direction, commit o
 
 ```powershell
 git status --short --branch
+git remote -v
 npm run lint
 npm run typecheck
 npm run validate:data
 npm run validate:routes
 npm run validate:media
 npm run build
-git add .
+git add <explicit files for this task>
 git commit -m "Short description of completed change"
-git push
+git push -u origin $(git branch --show-current)
 ```
 
 Use narrower validation while iterating, then the full sequence before claiming implementation work is complete.
+
+If the worktree contains unrelated changes, do not use `git add .` or `git add -A`. Stage only the files that belong to the current task.
 
 ## First Baseline Commit
 
@@ -94,14 +121,28 @@ Use GitHub for:
 
 Do not depend on GitHub for local boot. The app must still build and run from the local checkout with `DATA_SOURCE=mock`.
 
-If `git remote -v` is empty, the next step is to create or identify the private GitHub repo and run:
+If `git remote -v` is empty, add the known private repo:
 
 ```powershell
-git remote add origin <repo-url>
+git remote add origin https://github.com/Berky01/meaningful-routes.git
 git push -u origin <branch-name>
 ```
 
-Do not invent a remote URL.
+Do not invent a different remote URL.
+
+`gh` is useful for pull requests, issue work, and repo metadata, but basic pushes should use normal Git. If `gh auth status` is not logged in but `git push` works through Git Credential Manager, proceed with `git push` and note that PR creation is the only blocked part.
+
+If GitHub CLI is unavailable, install it with:
+
+```powershell
+winget install --id GitHub.cli -e --source winget --silent --accept-package-agreements --accept-source-agreements
+```
+
+If `gh` login is needed for PRs:
+
+```powershell
+gh auth login --hostname github.com --git-protocol https
+```
 
 ## Validation Policy
 
@@ -152,3 +193,33 @@ Update Markdown with the change when behavior changes. Prefer the active docs:
 Dry-run sync commands such as `npm run sync:pois` and `npm run sync:routes` are allowed during content work. Only use their `-- --write` mode when the generated cache is intentionally part of the review workflow.
 
 Treat `meaningful_routes_codex_handoff/` as archived planning context unless the task specifically asks to update the handoff package.
+
+## Session Start Checklist
+
+Run this at the start of every coding or docs session:
+
+```powershell
+git status --short --branch
+git remote -v
+git branch -vv
+```
+
+Then decide:
+
+- Clean worktree: create or continue the task branch.
+- Mixed worktree: inspect diffs and stage explicit files only.
+- Remote missing: add `origin` with the known private GitHub URL.
+- Remote branch missing: push with `git push -u origin $(git branch --show-current)`.
+
+Never revert, overwrite, or stage unrelated user/session changes unless explicitly asked.
+
+## Session Finish Checklist
+
+Before ending a completed task:
+
+```powershell
+git status --short --branch
+git log --oneline --decorate --max-count=5
+```
+
+For docs-only changes, a commit and push is enough. For implementation changes, complete validation, commit, push, deploy to Unraid, and verify the live URL or report the exact deployment blocker.

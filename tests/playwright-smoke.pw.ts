@@ -170,6 +170,9 @@ test("saved, share, settings, live route, completion, history, and issue flows p
   await expect(page.locator("main")).toContainText("brisk pace");
 
   await gotoReady(page, "/search?q=quiet%20architecture%20walk%20under%201%20hour");
+  await expect(page.locator("main")).toContainText("Best matching places");
+  await expect(page.locator("main")).toContainText("Why this matched");
+  await expect(page.locator("main")).toContainText("Matches architecture");
   await expect(page.locator("main")).toContainText("Optional route matches");
   await expect(page.locator("main")).toContainText("Matches quiet mood");
   await page.getByRole("button", { name: /Remove Architecture theme/ }).click();

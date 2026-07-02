@@ -10,6 +10,8 @@ Current status: non-visual P0 foundation and hardening slice completed and deplo
 
 Continuation slice on 2026-07-02: the public report issue form now keeps route-context selected reports compact by limiting place choices to the selected route's published stops, while still allowing a no-route place-only report path. This advances P0 report issue cleanup without changing the approved Stitch style lock.
 
+Search continuation slice on 2026-07-02: place search now shares a tested ranking helper with visible "Why this matched" explanations on published place results. This completes the remaining local-first search MVP gap without introducing AI generation or changing the approved Stitch layout.
+
 ## Stitch Implementation Status
 
 Active Stitch project inspected: `https://stitch.withgoogle.com/projects/7741303272075430847`
@@ -30,7 +32,7 @@ Active intake docs:
 | Route Detail / Public Route Page | `/routes/[slug]` | Implemented | `app/routes/[slug]/page.tsx`, `components/routes/route-guide-client.tsx` | Public route page consolidated with route detail to avoid duplicate surfaces. |
 | Live Route | `/routes/[slug]/live` | Implemented | `app/routes/[slug]/live/page.tsx`, `components/walk/live-route-client.tsx` | Local route session; no required geolocation. |
 | Completion / Share | `/routes/[slug]/complete` | Implemented/partial | `app/routes/[slug]/complete/page.tsx`, share component | Advanced share-card generation remains deferred. |
-| Search | `/search` | Implemented | `app/search/page.tsx`, `components/search/search-page-client.tsx` | Deterministic local ranking instead of real AI. |
+| Search | `/search` | Implemented | `app/search/page.tsx`, `components/search/search-page-client.tsx`, `lib/search/place-search.ts` | Deterministic local ranking with visible match reasons instead of real AI. |
 | Saved / History / Settings | `/saved`, `/history`, `/settings` | Implemented | App routes and `components/library`, `components/walk` | Browser-local state by design. |
 | Issue Reporting | `/report-issue` | Implemented for mock mode | `app/report-issue/page.tsx`, `components/feedback/issue-report-form.tsx` | Durable backend remains deferred. |
 | Admin QA | `/admin/route-qa` | Implemented, disabled by default | `app/admin/layout.tsx`, `app/admin/route-qa/page.tsx` | Uses `ENABLE_ADMIN_TOOLS` gate rather than public exposure. |
@@ -86,7 +88,7 @@ Final validation after implementation:
 | Map fallback | Done | Local static map remains the no-key default. Removed raw "Map preview" fallback copy from normal no-key state; tile-load failure shows concise static-map fallback copy. |
 | Issue reporting | Done for mock mode | Public form posts to `/api/report-issue`, validates published context, has honeypot/rate-limit guard, writes to mock provider queue, keeps local browser fallback, and limits place selectors to the selected route's public stops unless the user chooses a no-route place-only report. Durable DB store remains deferred. |
 | Publish-state gating | Done | Public helpers expose 12 public routes and 60 public places only; tests verify generated/draft discovery content is blocked from public lookups and crawl manifest. |
-| Search MVP | Done | Existing search/ranking loop maps to the Stitch search surface while staying deterministic and local-first. |
+| Search MVP | Done | Existing route ranking and new tested place ranking map to the Stitch search surface while staying deterministic and local-first. Place cards now explain why each published result matched. |
 | Saved loop | Existing/prepared | Existing local-storage saved loop verified by smoke. No layout changes made. |
 | History loop | Existing/prepared | Existing route completion/history loop verified by smoke. No layout changes made. |
 | Live route state | Existing/prepared | Existing durable local route session loop verified by smoke. No layout changes made. |
@@ -101,12 +103,13 @@ Final validation after implementation:
 
 ## Files Changed
 
-Current continuation slice:
+Current search continuation slice:
 
-- `components/feedback/issue-report-form.tsx` - route-scoped place selector and no-route report option.
-- `lib/issue-reports.ts` - shared helper for report place options.
-- `lib/issue-reports.test.ts` - regression coverage for route-scoped place options.
-- `tests/playwright-smoke.pw.ts` - smoke coverage for compact report selectors.
+- `components/search/search-page-client.tsx` - uses the shared place ranking helper and passes match reasons to place cards.
+- `components/places/place-card.tsx` - renders compact match explanations when search results provide them.
+- `lib/search/place-search.ts` - deterministic place scoring and match-reason generation.
+- `lib/search/place-search.test.ts` - regression coverage for place ranking explanations.
+- `tests/playwright-smoke.pw.ts` - smoke coverage for rendered search match explanations.
 - `docs/implementation-report.md` - current implementation evidence.
 
 ## Commands Run
@@ -122,6 +125,17 @@ Current continuation slice:
 - `npm run validate:media`
 - `npm run typecheck`
 - `npm run lint`
+- `npm run build`
+- `npm run test:smoke`
+- `npm test -- lib/search/place-search.test.ts` (red: missing module / behavior before helper; green after implementation)
+- `npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "saved, share"`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run validate:content`
+- `npm run validate:data`
+- `npm run validate:routes`
+- `npm run validate:media`
+- `npm test`
 - `npm run build`
 - `npm run test:smoke`
 - `npm run validate:content`
@@ -150,7 +164,7 @@ Latest continuation validation:
 | `npm run validate:data` | Pass: 32 routes, 190 places; public readiness 12 routes, 60 places. |
 | `npm run validate:routes` | Pass: 32 routes, 32 ready. |
 | `npm run validate:media` | Pass: 293 assets, 71 approved real photos, 222 generated fallbacks. |
-| `npm test` | Pass: 26 test files, 104 tests. |
+| `npm test` | Pass: 27 test files, 105 tests. |
 | `npm run build` | Pass: 128 static pages generated. |
 | `npm run test:smoke` | Pass: 6 Playwright smoke tests. |
 
@@ -159,6 +173,10 @@ Latest continuation validation:
 Deployment completed to Unraid.
 
 Evidence:
+
+- Current search explanation slice:
+  - Local validation passed.
+  - Runtime deployment pending until this slice is committed, pushed, rebuilt on Unraid, and verified live.
 
 - Latest runtime deploy for the report issue selector slice:
   - Branch pushed: `codex/stitch-discovery-redesign`.

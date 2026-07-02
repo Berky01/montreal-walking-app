@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Chip } from "@/components/ui/chip";
 import { EmptyState } from "@/components/ui/empty-state";
 import { rankRoutes } from "@/lib/route-engine";
+import { rankPlaces } from "@/lib/search/place-search";
 import type { Place, Route, RouteSearchResult } from "@/lib/types";
 
 const suggestions = [
@@ -43,7 +44,8 @@ export function SearchPageClient({ routes, places }: { routes: Route[]; places: 
   const placeResults = useMemo(() => rankPlaces(query, places), [places, query]);
   const displayedResults = hasRouteIntent ? results : [];
   const resultRoutes = displayedResults.map((result) => result.route);
-  const mapPlaces = query.trim() ? placeResults : places.slice(0, 18);
+  const resultPlaces = placeResults.map((result) => result.place);
+  const mapPlaces = query.trim() ? resultPlaces : places.slice(0, 18);
   const activeSelection =
     selected?.type === "place" && mapPlaces.some((place) => place.slug === selected.slug)
       ? selected
@@ -124,12 +126,13 @@ export function SearchPageClient({ routes, places }: { routes: Route[]; places: 
             <p className="text-label-sm text-on-surface-variant">{placeResults.length} places</p>
           </div>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            {placeResults.map((place) => (
+            {placeResults.map((result) => (
               <PlaceCard
-                key={place.id}
-                onPreview={() => setSelected({ type: "place", slug: place.slug })}
-                place={place}
-                selected={activeSelection?.type === "place" && activeSelection.slug === place.slug}
+                key={result.place.id}
+                matchReasons={result.matchReasons}
+                onPreview={() => setSelected({ type: "place", slug: result.place.slug })}
+                place={result.place}
+                selected={activeSelection?.type === "place" && activeSelection.slug === result.place.slug}
                 variant="large"
               />
             ))}
@@ -216,55 +219,6 @@ export function SearchPageClient({ routes, places }: { routes: Route[]; places: 
   );
 }
 
-function rankPlaces(query: string, places: Place[]): Place[] {
-  const normalizedQuery = normalize(query);
-  if (!normalizedQuery) {
-    return places.slice(0, 6);
-  }
-
-  const terms = normalizedQuery.split(" ").filter(Boolean);
-
-  return places
-    .map((place) => {
-      const name = normalize(place.name);
-      const area = normalize(place.area);
-      const category = normalize(place.category);
-      const tags = place.tags.map(normalize);
-      const searchable = [
-        name,
-        area,
-        category,
-        normalize(place.shortDescription),
-        normalize(place.whyItMatters),
-        normalize(place.story),
-        normalize(place.periodOrStyle ?? ""),
-        ...tags,
-        ...place.whatToNotice.map(normalize),
-        ...place.practicalInfo.map(normalize)
-      ];
-
-      let score = 0;
-      if (name === normalizedQuery) score += 120;
-      if (name.includes(normalizedQuery)) score += 90;
-      if (area.includes(normalizedQuery)) score += 45;
-      if (category.includes(normalizedQuery)) score += 35;
-      if (tags.some((tag) => tag.includes(normalizedQuery))) score += 35;
-
-      for (const term of terms) {
-        if (name.includes(term)) score += 28;
-        if (area.includes(term) || category.includes(term)) score += 12;
-        if (tags.some((tag) => tag.includes(term))) score += 10;
-        if (searchable.some((value) => value.includes(term))) score += 5;
-      }
-
-      return { place, score };
-    })
-    .filter((result) => result.score > 0)
-    .sort((a, b) => b.score - a.score || a.place.name.localeCompare(b.place.name))
-    .slice(0, 12)
-    .map((result) => result.place);
-}
-
 function sortResults(results: RouteSearchResult[], sort: SearchSort): RouteSearchResult[] {
   if (sort === "shortest") {
     return [...results].sort((a, b) => a.route.durationMin - b.route.durationMin || b.score - a.score);
@@ -279,16 +233,6 @@ function sortResults(results: RouteSearchResult[], sort: SearchSort): RouteSearc
 
 function difficultyScore(route: Route): number {
   return route.difficulty === "easy" ? 0 : route.difficulty === "moderate" ? 1 : 2;
-}
-
-function normalize(value: string): string {
-  return value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s-]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
 }
 
 function removeChipTerms(query: string, chip: string): string {

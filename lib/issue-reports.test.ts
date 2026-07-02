@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { validateIssueReportInput } from "@/lib/issue-reports";
+import { getIssueReportPlaceOptions, validateIssueReportInput } from "@/lib/issue-reports";
+import { getPlaces, getRouteBySlug } from "@/lib/data/index";
 
 describe("issue report validation", () => {
   it("accepts valid route, stop, and place context", () => {
@@ -31,5 +32,20 @@ describe("issue report validation", () => {
       ok: false,
       error: "valid category is required"
     });
+  });
+
+  it("scopes place context options to the selected public route stops", () => {
+    const places = getPlaces();
+    const route = getRouteBySlug("old-montreal-monuments-loop");
+
+    expect(route).toBeDefined();
+
+    const options = getIssueReportPlaceOptions({ places, route });
+
+    expect(options).toHaveLength(route!.stops.length);
+    expect(options.map((place) => place.slug)).toEqual(
+      route!.stops.map((stop) => places.find((place) => place.id === stop.placeId)?.slug)
+    );
+    expect(options.some((place) => place.slug === "crew-collective-cafe")).toBe(false);
   });
 });

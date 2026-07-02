@@ -8,6 +8,8 @@ This report tracks the audit-package implementation against the P0/P1 backlog pr
 
 Current status: non-visual P0 foundation and hardening slice completed and deployed live. The updated private Stitch mockup package has now been inspected and mapped to the current app. The public MVP surfaces are implemented through existing production components; remaining Stitch concepts are either consolidated, gated, deferred, or excluded by current scope.
 
+Continuation slice on 2026-07-02: the public report issue form now keeps route-context selected reports compact by limiting place choices to the selected route's published stops, while still allowing a no-route place-only report path. This advances P0 report issue cleanup without changing the approved Stitch style lock.
+
 ## Stitch Implementation Status
 
 Active Stitch project inspected: `https://stitch.withgoogle.com/projects/7741303272075430847`
@@ -70,7 +72,7 @@ Final validation after implementation:
 | `npm run validate:data` | Pass: 32 routes, 190 places; public readiness 12 routes, 60 places. |
 | `npm run validate:routes` | Pass: 32 routes, 32 ready. |
 | `npm run validate:media` | Pass: 293 assets, 71 approved real photos, 222 generated fallbacks. |
-| `npm test` | Pass: 26 test files, 103 tests. |
+| `npm test` | Pass: 26 test files, 104 tests. |
 | `npm run build` | Pass: 128 static pages generated. |
 | `npm run test:smoke` | Pass: 6 Playwright smoke tests. |
 
@@ -82,7 +84,7 @@ Final validation after implementation:
 | Broken place links | Done | Smoke crawler visits `/places`, every linked public place detail, `/routes`, every linked public route detail, and every linked route live page. Unknown place/route slugs return 404. |
 | Error handling | Done | Existing designed `app/not-found.tsx` retained; added `app/error.tsx` with non-sensitive error ID display and console logging. |
 | Map fallback | Done | Local static map remains the no-key default. Removed raw "Map preview" fallback copy from normal no-key state; tile-load failure shows concise static-map fallback copy. |
-| Issue reporting | Done for mock mode | Public form posts to `/api/report-issue`, validates published context, has honeypot/rate-limit guard, writes to mock provider queue, and keeps local browser fallback. Durable DB store remains deferred. |
+| Issue reporting | Done for mock mode | Public form posts to `/api/report-issue`, validates published context, has honeypot/rate-limit guard, writes to mock provider queue, keeps local browser fallback, and limits place selectors to the selected route's public stops unless the user chooses a no-route place-only report. Durable DB store remains deferred. |
 | Publish-state gating | Done | Public helpers expose 12 public routes and 60 public places only; tests verify generated/draft discovery content is blocked from public lookups and crawl manifest. |
 | Search MVP | Done | Existing search/ranking loop maps to the Stitch search surface while staying deterministic and local-first. |
 | Saved loop | Existing/prepared | Existing local-storage saved loop verified by smoke. No layout changes made. |
@@ -96,6 +98,16 @@ Final validation after implementation:
 
 - SEO basics: added `app/robots.ts`, `app/sitemap.ts`, Open Graph/Twitter metadata basics, and route/place Open Graph metadata.
 - No wholesale UI rewrite was done. The current production UI already maps to the approved Stitch public MVP hierarchy through reusable app components, and deferred screens are now tracked in `docs/design/stitch-screen-inventory.md`.
+
+## Files Changed
+
+Current continuation slice:
+
+- `components/feedback/issue-report-form.tsx` - route-scoped place selector and no-route report option.
+- `lib/issue-reports.ts` - shared helper for report place options.
+- `lib/issue-reports.test.ts` - regression coverage for route-scoped place options.
+- `tests/playwright-smoke.pw.ts` - smoke coverage for compact report selectors.
+- `docs/implementation-report.md` - current implementation evidence.
 
 ## Commands Run
 
@@ -114,6 +126,33 @@ Final validation after implementation:
 - `npm run test:smoke`
 - `npm run validate:content`
 - `npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "saved, share"`
+- `npm test -- lib/issue-reports.test.ts` (red: missing `getIssueReportPlaceOptions`; green after implementation)
+- `npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "production pages do not expose"`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run validate:content`
+- `npm run validate:data`
+- `npm run validate:routes`
+- `npm run validate:media`
+- `npm test`
+- `npm run build`
+- `npm run test:smoke`
+
+## Test Evidence
+
+Latest continuation validation:
+
+| Command | Result |
+|---|---|
+| `npm run lint` | Pass. |
+| `npm run typecheck` | Pass. |
+| `npm run validate:content` | Pass: 12 public routes, 60 public places, 105 crawl paths. |
+| `npm run validate:data` | Pass: 32 routes, 190 places; public readiness 12 routes, 60 places. |
+| `npm run validate:routes` | Pass: 32 routes, 32 ready. |
+| `npm run validate:media` | Pass: 293 assets, 71 approved real photos, 222 generated fallbacks. |
+| `npm test` | Pass: 26 test files, 104 tests. |
+| `npm run build` | Pass: 128 static pages generated. |
+| `npm run test:smoke` | Pass: 6 Playwright smoke tests. |
 
 ## Deploy Notes
 

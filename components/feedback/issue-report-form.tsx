@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Button, ButtonLink } from "@/components/ui/button";
-import { validateIssueReportInput } from "@/lib/issue-reports";
+import { getIssueReportPlaceOptions, validateIssueReportInput } from "@/lib/issue-reports";
 import { saveLocalIssueReport } from "@/lib/local-state";
 import type { Place, Route } from "@/lib/types";
 
@@ -18,6 +18,10 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
   const [selectedStopId, setSelectedStopId] = useState("");
   const [selectedPlaceSlug, setSelectedPlaceSlug] = useState("");
   const selectedRoute = useMemo(() => routes.find((route) => route.slug === selectedRouteSlug), [routes, selectedRouteSlug]);
+  const placeOptions = useMemo(
+    () => getIssueReportPlaceOptions({ places, route: selectedRoute }),
+    [places, selectedRoute]
+  );
   const returnHref = selectedPlaceSlug ? `/places/${selectedPlaceSlug}` : selectedRouteSlug ? `/routes/${selectedRouteSlug}${selectedStopId ? "/live" : ""}` : "/places";
 
   useEffect(() => {
@@ -29,6 +33,8 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
 
     if (routeFromQuery) {
       setSelectedRouteSlug(routeFromQuery.slug);
+    } else if (placeSlug) {
+      setSelectedRouteSlug("");
     }
 
     const routeStop = routeFromQuery?.stops.find((stop) => stop.id === stopId);
@@ -44,6 +50,16 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
       setSelectedPlaceSlug(placeSlug);
     }
   }, [places, routes]);
+
+  useEffect(() => {
+    if (!selectedPlaceSlug) {
+      return;
+    }
+
+    if (!placeOptions.some((place) => place.slug === selectedPlaceSlug)) {
+      setSelectedPlaceSlug("");
+    }
+  }, [placeOptions, selectedPlaceSlug]);
 
   useEffect(() => {
     if (!selectedRoute || !selectedStopId) {
@@ -64,6 +80,11 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
 
   function selectStop(stopId: string) {
     setSelectedStopId(stopId);
+    if (!stopId) {
+      setSelectedPlaceSlug("");
+      return;
+    }
+
     const stop = selectedRoute?.stops.find((item) => item.id === stopId);
     const stopPlace = stop ? places.find((place) => place.id === stop.placeId) : undefined;
     if (stopPlace) {
@@ -136,7 +157,18 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
       <div className="grid gap-4 md:grid-cols-2">
         <label className="grid gap-2 text-label-md text-on-surface" htmlFor="route">
           Optional route context
-          <select className="h-11 rounded-control border border-outline-variant bg-white px-3 text-body-md" id="route" name="route" onChange={(event) => setSelectedRouteSlug(event.target.value)} value={selectedRouteSlug}>
+          <select
+            className="h-11 rounded-control border border-outline-variant bg-white px-3 text-body-md"
+            id="route"
+            name="route"
+            onChange={(event) => {
+              setSelectedRouteSlug(event.target.value);
+              setSelectedStopId("");
+              setSelectedPlaceSlug("");
+            }}
+            value={selectedRouteSlug}
+          >
+            <option value="">No route / place-only issue</option>
             {routes.map((route) => (
               <option key={route.id} value={route.slug}>
                 {route.title}
@@ -162,7 +194,7 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
         Place context
         <select className="h-11 rounded-control border border-outline-variant bg-white px-3 text-body-md" id="placeSlug" name="placeSlug" onChange={(event) => setSelectedPlaceSlug(event.target.value)} value={selectedPlaceSlug}>
           <option value="">No specific place</option>
-          {places.map((place) => (
+          {placeOptions.map((place) => (
             <option key={place.id} value={place.slug}>
               {place.name}
             </option>

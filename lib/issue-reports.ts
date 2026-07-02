@@ -1,4 +1,4 @@
-import type { IssueReportInput } from "@/lib/types";
+import type { IssueReportInput, Place, Route } from "@/lib/types";
 
 const categories = new Set([
   "closed",
@@ -50,4 +50,23 @@ export function validateIssueReportInput(input: unknown): IssueReportValidationR
       description
     }
   };
+}
+
+export function getIssueReportPlaceOptions({
+  places,
+  route
+}: {
+  places: Place[];
+  route?: Route;
+}): Place[] {
+  if (!route) {
+    return places;
+  }
+
+  const placesById = new Map(places.map((place) => [place.id, place]));
+
+  return route.stops.flatMap((stop) => {
+    const place = placesById.get(stop.placeId);
+    return place ? [place] : [];
+  });
 }

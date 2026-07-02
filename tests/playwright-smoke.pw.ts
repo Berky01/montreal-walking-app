@@ -42,8 +42,11 @@ test("production pages do not expose prototype copy or duplicate stop numbering"
 
   const routeOptions = await page.locator("#route option").allTextContents();
   const placeOptions = await page.locator("#placeSlug option").allTextContents();
-  expect(routeOptions).toHaveLength(12);
-  expect(placeOptions.length).toBeGreaterThanOrEqual(60);
+  expect(routeOptions).toHaveLength(13);
+  expect(placeOptions).toHaveLength(8);
+  expect(placeOptions).toContain("No specific place");
+  expect(placeOptions).toContain(placeTitle);
+  expect(placeOptions).not.toContain("Crew Collective Cafe");
   expect([...routeOptions, ...placeOptions].join("\n")).not.toMatch(/\bLaval\b|\bLongueuil\b|\bSouth Shore\b|\bday-trip\b|\bdraft\b/i);
 });
 

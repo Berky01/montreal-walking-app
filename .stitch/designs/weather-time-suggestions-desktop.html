@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Best Time to Walk - Meaningful Routes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-container": "#9dd090",
+                      "inverse-on-surface": "#f1effa",
+                      "surface": "#fbf8ff",
+                      "primary-container": "#2d5a27",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf8ff",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary": "#3f627e",
+                      "on-surface": "#1a1b22",
+                      "primary": "#154212",
+                      "surface-container-highest": "#e3e1ec",
+                      "surface-bright": "#fbf8ff",
+                      "secondary-fixed": "#cbe6ff",
+                      "on-surface-variant": "#42493e",
+                      "tertiary-container": "#7c4100",
+                      "on-secondary-container": "#3f637e",
+                      "surface-container-low": "#f4f2fd",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#ffb77d",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#23501e",
+                      "inverse-primary": "#a1d494",
+                      "on-secondary-fixed-variant": "#254a65",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "tertiary-fixed": "#ffdcc3",
+                      "on-background": "#1a1b22",
+                      "primary-fixed-dim": "#a1d494",
+                      "inverse-surface": "#2f3038",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#3b6934",
+                      "outline-variant": "#c2c9bb",
+                      "secondary-container": "#badeff",
+                      "primary-fixed": "#bcf0ae",
+                      "surface-variant": "#e3e1ec",
+                      "surface-dim": "#dad9e3",
+                      "on-tertiary-fixed": "#2f1500",
+                      "on-primary-fixed": "#002201",
+                      "tertiary": "#5a2e00",
+                      "on-tertiary-container": "#ffb273",
+                      "outline": "#72796e",
+                      "on-secondary-fixed": "#001e30",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#e8e7f1",
+                      "surface-container": "#eeedf7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "base": "4px",
+                      "md": "16px",
+                      "margin-desktop": "48px",
+                      "gutter": "16px",
+                      "margin-mobile": "16px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "metric-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "metric-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-background dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline docked full-width top-0 sticky top-0 z-50 flex justify-between items-center px-margin-desktop py-md w-full">
+<div class="flex items-center gap-lg">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">Meaningful Routes</a>
+<div class="hidden md:flex gap-lg ml-xl">
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">Explore</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-body-md text-body-md" href="#">Routes</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">History</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">Community</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-xl pr-md py-sm rounded-lg border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md w-64" placeholder="Old Montreal Historic Walk" type="text" value="Old Montreal Historic Walk"/>
+</div>
+<button class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">Sign In</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow px-margin-mobile md:px-margin-desktop py-xl w-full max-w-7xl mx-auto flex flex-col gap-xl">
+<!-- Hero Section -->
+<header class="flex flex-col gap-sm">
+<h1 class="font-display-lg text-display-lg text-on-surface">Best Time to Walk</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">Optimize your journey based on live weather, daylight, and crowd data. Find your perfect window to experience the route.</p>
+<div class="flex gap-md mt-sm">
+<div class="flex items-center gap-xs bg-surface-container-low px-md py-sm rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="font-label-md text-label-md text-on-surface">Montreal, QC</span>
+</div>
+<div class="flex items-center gap-xs bg-surface-container-low px-md py-sm rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-primary">route</span>
+<span class="font-label-md text-label-md text-on-surface">Old Montreal Historic Walk</span>
+</div>
+</div>
+</header>
+<!-- Alerts Tray -->
+<div class="flex flex-col md:flex-row gap-md">
+<div class="flex-1 bg-error-container text-on-error-container px-md py-sm rounded-lg flex items-start gap-sm">
+<span class="material-symbols-outlined mt-0.5">warning</span>
+<div>
+<span class="font-label-md text-label-md block">Temporary Closure</span>
+<span class="font-body-md text-body-md text-sm">Place d'Armes fountain area is under maintenance until Friday.</span>
+</div>
+</div>
+<div class="flex-1 bg-surface-container-high text-on-surface px-md py-sm rounded-lg flex items-start gap-sm">
+<span class="material-symbols-outlined mt-0.5 text-secondary">info</span>
+<div>
+<span class="font-label-md text-label-md block">Surface Note</span>
+<span class="font-body-md text-body-md text-sm">Watch for icy patches on cobblestones along Rue Saint-Paul.</span>
+</div>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Left Column: Route Details & Filters -->
+<div class="lg:col-span-3 flex flex-col gap-lg">
+<!-- Route Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] overflow-hidden border border-surface-variant">
+<div class="bg-cover bg-center w-full h-40" data-alt="A detailed wide shot of a classic Old Montreal street during daytime. The street features historic stone buildings with European architecture, intricate iron balconies, and charming storefronts. The street is paved with uneven, historic cobblestones. The lighting suggests a bright, crisp morning with soft shadows. The overall aesthetic is professional, clean, and modern, fitting a high-end travel application, utilizing a light-mode color palette with subtle greens and neutrals." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHFp-LBx_5EFmOq21bbTsM5pn9APTB04621TuQT6U2-Ni3ttZs9buW0Iw3mo4bE1CnzzqgW5UWmMyAfSXhgyw4iSiXsEzpVJhhcorWSpWd3aDEq1d5roR8w8iHZ2dtoOnm7niOwc1Qz7Da6teQ477f2tKWJvP50aIJWN8Kapkbf8ZRk2zCKCJ9w0JJyaO6vBMeu4gNw-5iX9sVIutbZWDxp3-lJarOWP1GTW0fB2zlEr87qwL9xaLS2xM6h_YVvIOjy4C85ZQS9i4')"></div>
+<div class="p-md flex flex-col gap-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Old Montreal Historic Walk</h3>
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded-lg border border-outline-variant">
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Distance</span>
+<span class="font-metric-lg text-metric-lg text-primary">3.2km</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Time</span>
+<span class="font-metric-lg text-metric-lg text-primary">55m</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Diff</span>
+<span class="font-metric-lg text-metric-lg text-primary">Easy</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Filters -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant flex flex-col gap-md">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Planning Filters</h4>
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Mood</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-sm text-body-md focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Quiet / Solitary</option>
+<option>Social / Bustling</option>
+</select>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Weather Tolerance</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-sm text-body-md focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Dry Only</option>
+<option>Rain-ready</option>
+</select>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Pace</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-sm text-body-md focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Leisurely Stroll</option>
+<option>Brisk Walk</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Center Column: Timeline -->
+<div class="lg:col-span-5 flex flex-col gap-md">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm">Suggested Windows</h2>
+<!-- Timeline Item 1 (Highlighted) -->
+<div class="relative pl-xl">
+<!-- Line -->
+<div class="absolute left-3.5 top-0 bottom-0 w-0.5 bg-outline-variant"></div>
+<!-- Dot -->
+<div class="absolute left-2 top-6 w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-primary-container z-10"></div>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_8px_24px_rgba(0,0,0,0.1)] border-2 border-primary p-md relative ml-sm overflow-hidden mb-lg">
+<div class="absolute top-0 right-0 bg-primary text-on-primary px-sm py-xs rounded-bl-lg font-label-sm text-label-sm">Top Pick</div>
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Tomorrow 9:30 AM</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Crisp morning light, low crowds.</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-metric-lg text-metric-lg text-primary">94</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Score</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-sm bg-surface-container-low p-sm rounded-lg mb-md">
+<div class="flex flex-col items-center justify-center p-sm">
+<span class="material-symbols-outlined text-secondary mb-xs">partly_cloudy_day</span>
+<span class="font-label-md text-label-md text-on-surface">18°C</span>
+</div>
+<div class="flex flex-col items-center justify-center p-sm">
+<span class="material-symbols-outlined text-secondary mb-xs">water_drop</span>
+<span class="font-label-md text-label-md text-on-surface">0%</span>
+</div>
+<div class="flex flex-col items-center justify-center p-sm">
+<span class="material-symbols-outlined text-secondary mb-xs">air</span>
+<span class="font-label-md text-label-md text-on-surface">12km/h</span>
+</div>
+<div class="flex flex-col items-center justify-center p-sm">
+<span class="material-symbols-outlined text-secondary mb-xs">groups</span>
+<span class="font-label-md text-label-md text-on-surface text-primary">Low</span>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 bg-primary text-on-primary py-sm rounded-lg font-label-md text-label-md hover:bg-opacity-90 transition">Save Time</button>
+<button class="flex-1 border border-outline text-on-surface py-sm rounded-lg font-label-md text-label-md hover:bg-surface-container transition">More Details</button>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-xl">
+<div class="absolute left-3.5 top-0 bottom-0 w-0.5 bg-outline-variant"></div>
+<div class="absolute left-2.5 top-6 w-2.5 h-2.5 rounded-full bg-outline z-10"></div>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant p-md relative ml-sm mb-lg hover:border-outline-variant transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Today 4:00 PM</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Golden hour, bustling atmosphere.</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-metric-lg text-metric-lg text-on-surface">82</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Score</span>
+</div>
+</div>
+<div class="flex gap-md text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">sunny</span> 22°C</div>
+<div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">groups</span> High</div>
+<div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">wb_twilight</span> Sunset soon</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-xl">
+<div class="absolute left-2.5 top-6 w-2.5 h-2.5 rounded-full bg-outline z-10"></div>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant p-md relative ml-sm hover:border-outline-variant transition-colors cursor-pointer opacity-75">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Wed 2:00 PM</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Midday warmth, moderate crowds.</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-metric-lg text-metric-lg text-on-surface">75</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Score</span>
+</div>
+</div>
+<div class="flex gap-md text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">cloud</span> 16°C</div>
+<div class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">groups</span> Med</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Map & Alternates -->
+<div class="lg:col-span-4 flex flex-col gap-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden flex flex-col">
+<div class="h-64 bg-surface-container-high relative">
+<!-- Simulated Map Area -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A stylized digital map interface showing the streets of Old Montreal. A vibrant, solid green line traces a walking route through the historic streets. Small, minimalist icons indicating weather (sun/clouds) and crowds are placed along the route. The map style is clean, modern, light-mode, with a soft, sophisticated color palette prioritizing greens, whites, and light grays to match a professional UI." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-dzsh6vdYpIp1NG7KwdCWm6GH3DXX6l4i3auKVkZeZi8Nxt9oxnB7ZQaJUwkIrf4VeUqDExD49MePpPJFph9Oglu_r251_vbyaD6OPe0pN8BxkaWixYJVmTgykagQ1w-9CabG0KGTh5dO8CWzJuiZAveAgcdnIePgpz9KVZMyvPUlDnoMcYWb5rGhuAO6B-0o26fGzjry86EI7X1cW8M4FDY0pzYubpvmKfO8iNIRXcbNWWV55CJyt1lzZtPJ19iTvsPsHOl3ECA')"></div>
+<div class="absolute top-sm right-sm bg-surface-container-lowest rounded-lg shadow p-sm flex flex-col gap-xs">
+<button class="bg-surface-container-low p-xs rounded hover:bg-surface-variant"><span class="material-symbols-outlined text-on-surface">add</span></button>
+<button class="bg-surface-container-low p-xs rounded hover:bg-surface-variant"><span class="material-symbols-outlined text-on-surface">remove</span></button>
+</div>
+</div>
+</div>
+<!-- Alternatives -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant p-md flex flex-col gap-sm mt-md">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">umbrella</span> Rainy Day Alternates
+                     </h4>
+<div class="flex items-center justify-between p-sm border border-outline-variant rounded-lg hover:bg-surface-container-low cursor-pointer transition">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Underground City Tunnel Walk</span>
+<span class="font-body-md text-body-md text-sm text-on-surface-variant">Fully indoor, 45 mins</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-surface-container-high w-full py-xl px-margin-desktop grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter border-t border-outline-variant mt-xl">
+<div class="flex flex-col gap-sm">
+<span class="font-headline-md text-headline-md font-extrabold text-primary dark:text-primary-fixed-dim">Meaningful Routes</span>
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 Meaningful Routes. Built for the curious explorer.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline transition-all hover:text-primary" href="#">About Us</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline transition-all hover:text-primary" href="#">Contact</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline transition-all hover:text-primary" href="#">Journal</a>
+</div>
+<div class="flex flex-col gap-sm">
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline transition-all hover:text-primary" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline transition-all hover:text-primary" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-sm">
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline transition-all hover:text-primary" href="#">Instagram</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline transition-all hover:text-primary" href="#">Accessibility</a>
+</div>
+</footer>
+</body></html>

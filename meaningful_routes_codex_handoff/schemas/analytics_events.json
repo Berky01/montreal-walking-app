@@ -1,0 +1,108 @@
+{
+  "events": [
+    {
+      "name": "app_opened",
+      "properties": [
+        "city",
+        "location_permission_state"
+      ]
+    },
+    {
+      "name": "route_impression",
+      "properties": [
+        "route_id",
+        "screen",
+        "rank",
+        "city"
+      ]
+    },
+    {
+      "name": "filter_applied",
+      "properties": [
+        "filter_type",
+        "filter_value",
+        "result_count"
+      ]
+    },
+    {
+      "name": "route_detail_opened",
+      "properties": [
+        "route_id",
+        "source"
+      ]
+    },
+    {
+      "name": "route_saved",
+      "properties": [
+        "route_id",
+        "source"
+      ]
+    },
+    {
+      "name": "route_unsaved",
+      "properties": [
+        "route_id"
+      ]
+    },
+    {
+      "name": "route_compare_opened",
+      "properties": [
+        "route_ids"
+      ]
+    },
+    {
+      "name": "active_walk_started",
+      "properties": [
+        "route_id",
+        "city",
+        "planned_distance_meters"
+      ]
+    },
+    {
+      "name": "active_walk_paused",
+      "properties": [
+        "route_id",
+        "elapsed_seconds",
+        "progress_percent"
+      ]
+    },
+    {
+      "name": "active_walk_completed",
+      "properties": [
+        "route_id",
+        "elapsed_seconds",
+        "actual_distance_meters",
+        "progress_percent",
+        "stops_visited"
+      ]
+    },
+    {
+      "name": "route_issue_reported",
+      "properties": [
+        "route_id",
+        "issue_type",
+        "screen"
+      ]
+    },
+    {
+      "name": "completion_saved_to_history",
+      "properties": [
+        "route_id"
+      ]
+    },
+    {
+      "name": "route_shared",
+      "properties": [
+        "route_id",
+        "source"
+      ]
+    },
+    {
+      "name": "premium_pack_viewed",
+      "properties": [
+        "city",
+        "pack_id"
+      ]
+    }
+  ]
+}

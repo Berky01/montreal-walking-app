@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dynamic Route Generation - Pathfinder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#254a65",
+                    "secondary-fixed-dim": "#a7cbeb",
+                    "on-surface-variant": "#42493e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1b22",
+                    "inverse-surface": "#2f3038",
+                    "primary-fixed-dim": "#a1d494",
+                    "on-tertiary-fixed": "#2f1500",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#9dd090",
+                    "primary-container": "#2d5a27",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#badeff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f4f2fd",
+                    "surface-bright": "#fbf8ff",
+                    "on-tertiary-container": "#ffb273",
+                    "surface-dim": "#dad9e3",
+                    "on-primary-fixed": "#002201",
+                    "primary": "#154212",
+                    "outline": "#72796e",
+                    "on-secondary-container": "#3f637e",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#ffb77d",
+                    "surface-variant": "#e3e1ec",
+                    "surface-container-highest": "#e3e1ec",
+                    "on-secondary-fixed": "#001e30",
+                    "primary-fixed": "#bcf0ae",
+                    "on-tertiary-fixed-variant": "#6e3900",
+                    "outline-variant": "#c2c9bb",
+                    "tertiary": "#5a2e00",
+                    "surface-container": "#eeedf7",
+                    "inverse-on-surface": "#f1effa",
+                    "surface-tint": "#3b6934",
+                    "surface": "#fbf8ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#cbe6ff",
+                    "secondary": "#3f627e",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#a1d494",
+                    "on-primary-fixed-variant": "#23501e",
+                    "tertiary-container": "#7c4100",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e8e7f1",
+                    "on-background": "#1a1b22",
+                    "tertiary-fixed": "#ffdcc3",
+                    "background": "#fbf8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "margin-desktop": "48px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "metric-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "metric-lg": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { background-color: #FAFAFA; color: #1a1b22; }
+        .shadow-soft { box-shadow: 0px 4px 12px rgba(0,0,0,0.05); }
+        .shadow-active { box-shadow: 0px 8px 24px rgba(0,0,0,0.1); }
+        input[type="range"] {
+            accent-color: #2d5a27;
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface shadow-sm sticky top-0 z-50 flex justify-between items-center px-lg py-sm w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-xl">
+<span class="text-headline-md font-headline-md font-bold text-primary">Pathfinder</span>
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors cursor-pointer duration-200" href="#">Explore</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md hover:text-primary transition-colors cursor-pointer duration-200" href="#">Routes</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors cursor-pointer duration-200" href="#">Monuments</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors cursor-pointer duration-200" href="#">Destinations</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors cursor-pointer duration-200" href="#">Map</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors cursor-pointer duration-200" href="#">Saved</a>
+</nav>
+</div>
+<div class="flex items-center gap-md text-primary">
+<button class="hover:bg-surface-variant p-sm rounded-full transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="hover:bg-surface-variant p-sm rounded-full transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<main class="flex-grow w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Hero Section -->
+<section class="mb-xl text-center max-w-3xl mx-auto">
+<h1 class="font-display-lg text-display-lg text-primary mb-sm">Build a route around what matters</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg">Generate a custom walking route tailored to your interests, time, and specific needs.</p>
+<div class="bg-surface-container-lowest rounded-xl shadow-soft p-md border border-outline-variant flex flex-col gap-md">
+<textarea class="w-full bg-transparent border-none outline-none resize-none font-body-md text-on-surface placeholder:text-outline h-24 p-sm focus:ring-0" placeholder="e.g., 2-hour Old Montreal walk with architecture, quiet streets, and coffee"></textarea>
+<div class="flex justify-between items-center border-t border-surface-variant pt-sm mt-sm">
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-sm rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[16px]">tune</span> Refine Options
+                        </button>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md px-xl py-sm rounded-lg shadow-sm hover:bg-primary hover:text-on-primary transition-colors">
+                        Generate Route
+                    </button>
+</div>
+</div>
+</section>
+<!-- Three-Column Builder Area -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Panel (Refine Interests) -->
+<aside class="lg:col-span-3 flex flex-col gap-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-soft p-md border border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Parameters</h3>
+<div class="space-y-md">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">Start / End</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-sm py-xs font-body-md text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="text" value="Old Port, Montreal"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant flex justify-between mb-xs"><span>Time</span> <span>2 hrs</span></label>
+<input class="w-full" max="240" min="30" type="range" value="120"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-xs">Pace</label>
+<div class="flex rounded-md overflow-hidden border border-outline-variant">
+<button class="flex-1 bg-surface-container-lowest py-xs text-sm font-label-sm hover:bg-surface-container">Relaxed</button>
+<button class="flex-1 bg-primary-container text-on-primary-container py-xs text-sm font-label-sm border-l border-r border-outline-variant">Balanced</button>
+<button class="flex-1 bg-surface-container-lowest py-xs text-sm font-label-sm hover:bg-surface-container">Brisk</button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-soft p-md border border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Themes &amp; Mood</h3>
+<div class="flex flex-wrap gap-sm">
+<label class="flex items-center gap-xs bg-surface-container-low px-sm py-xs rounded-full cursor-pointer hover:bg-surface-container">
+<input checked="" class="rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-label-sm text-label-sm">History</span>
+</label>
+<label class="flex items-center gap-xs bg-surface-container-low px-sm py-xs rounded-full cursor-pointer hover:bg-surface-container">
+<input checked="" class="rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-label-sm text-label-sm">Architecture</span>
+</label>
+<label class="flex items-center gap-xs bg-surface-container-low px-sm py-xs rounded-full cursor-pointer hover:bg-surface-container">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-label-sm text-label-sm">Nature</span>
+</label>
+<label class="flex items-center gap-xs bg-surface-container-low px-sm py-xs rounded-full cursor-pointer hover:bg-surface-container">
+<input checked="" class="rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-label-sm text-label-sm">Quiet</span>
+</label>
+<label class="flex items-center gap-xs bg-surface-container-low px-sm py-xs rounded-full cursor-pointer hover:bg-surface-container">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-label-sm text-label-sm">Vibrant</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- Center Panel (The Draft) -->
+<section class="lg:col-span-6 flex flex-col gap-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-active overflow-hidden flex flex-col h-full border border-outline-variant">
+<!-- Map Area -->
+<div class="h-64 bg-surface-dim relative" data-alt="A detailed, modern map interface displaying a walking route in a historic urban setting. The map uses a minimalist light-mode aesthetic with soft greens, whites, and subtle greys. A clear path connects several marked points of interest. The design is clean, professional, and optimized for legibility, matching a premium corporate travel app's visual identity." data-location="Montreal" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD83asP_urD_7uiPJpqseUue-WJGqcu49SDR9LFNVMuhiTOs5iI0qSznU8gbt3HIc7wiMK5cq3edpC6RY6ihXbCwgaK_BasY4aPZllNzXMkuiS0FuO3ox9-BFumbHBHCGKAuthp2ru6L4lzzA4lku9dpl4e4kd1Ad7HkXqqC0BRiD-YhBCta81oec4Jm4uuC252CW-roy-vo9A3hmkrjc-im9GQCZsd2qyBVXk-VefLOPeorYKYbPPc7CLR_GqRqrKagYXVglaKXTU'); background-size: cover; background-position: center;">
+<div class="absolute top-sm right-sm bg-surface-container-lowest px-sm py-xs rounded-md shadow-sm font-label-sm text-label-sm text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">map</span> Map View
+                        </div>
+</div>
+<div class="p-lg flex flex-col gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Quiet Architecture &amp; Coffee Loop</h2>
+<div class="flex items-center gap-md mt-sm text-on-surface-variant border-b border-surface-variant pb-sm">
+<span class="font-metric-lg text-metric-lg text-primary">3.2 km</span>
+<span class="w-px h-4 bg-outline-variant"></span>
+<span class="font-metric-lg text-metric-lg text-primary">1h 45m</span>
+<span class="w-px h-4 bg-outline-variant"></span>
+<span class="font-label-md text-label-md text-secondary">98% Confidence</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant bg-surface-container-low p-sm rounded-md italic">
+                            "This route prioritizes wide, paved sidewalks avoiding the main cobblestone arteries of the Old Port, hitting two major architectural landmarks and ending at a highly-rated quiet cafe."
+                        </p>
+<!-- Route Sequence -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-xs">Stops</h4>
+<!-- Stop 1 -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-sm border border-outline-variant rounded-lg hover:shadow-soft transition-shadow group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline-variant cursor-grab">drag_indicator</span>
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm text-label-sm">1</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Place d'Armes</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Architecture • 15 min</p>
+</div>
+</div>
+<button class="text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Stop 2 -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-sm border border-outline-variant rounded-lg hover:shadow-soft transition-shadow group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline-variant cursor-grab">drag_indicator</span>
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm text-label-sm">2</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Crew Collective &amp; Cafe</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Coffee • 30 min</p>
+</div>
+</div>
+<button class="text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Stop 3 -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-sm border border-outline-variant rounded-lg hover:shadow-soft transition-shadow group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline-variant cursor-grab">drag_indicator</span>
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm text-label-sm">3</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Rue Saint-Paul (West)</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Quiet Street • 20 min</p>
+</div>
+</div>
+<button class="text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Refinement Chips -->
+<div class="flex flex-wrap gap-xs mt-sm">
+<button class="bg-surface-variant text-on-surface font-label-sm text-label-sm px-sm py-xs rounded-full hover:bg-outline-variant transition-colors">Make quieter</button>
+<button class="bg-surface-variant text-on-surface font-label-sm text-label-sm px-sm py-xs rounded-full hover:bg-outline-variant transition-colors">More cafes</button>
+<button class="bg-surface-variant text-on-surface font-label-sm text-label-sm px-sm py-xs rounded-full hover:bg-outline-variant transition-colors">Shorten to 90 min</button>
+</div>
+<div class="flex justify-between items-center mt-auto pt-md border-t border-surface-variant">
+<button class="flex items-center gap-xs text-primary font-label-md text-label-md hover:underline">
+<span class="material-symbols-outlined text-[18px]">add</span> Add stop
+                            </button>
+<div class="flex gap-sm">
+<button class="px-md py-sm border border-outline-variant rounded-lg text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors">Regenerate</button>
+<button class="px-md py-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-fixed-variant transition-colors shadow-sm">Save Route</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel (Alternatives & Insights) -->
+<aside class="lg:col-span-3 flex flex-col gap-md">
+<!-- Insights -->
+<div class="bg-surface-container-lowest rounded-xl shadow-soft p-md border border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Route Health</h3>
+<ul class="space-y-xs font-body-md text-sm text-on-surface-variant">
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Weather fit: Good</li>
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span> Hours: All open</li>
+<li class="flex items-center gap-sm text-tertiary-container"><span class="material-symbols-outlined text-[18px]">warning</span> Surface: 10% Cobblestone</li>
+</ul>
+</div>
+<!-- Alternatives -->
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Alternatives</h3>
+<div class="flex flex-col gap-sm">
+<div class="bg-surface-container-lowest rounded-lg p-sm shadow-soft border border-outline-variant cursor-pointer hover:border-primary transition-colors">
+<h4 class="font-label-md text-label-md text-on-surface">The Scenic Riverfront</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">More nature, but 15 mins longer.</p>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-sm shadow-soft border border-outline-variant cursor-pointer hover:border-primary transition-colors">
+<h4 class="font-label-md text-label-md text-on-surface">Fast Historic Core</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Shorter (60m), but avoids quiet streets.</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant w-full py-xl px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md mt-auto">
+<div class="flex flex-col gap-sm items-center md:items-start text-center md:text-left">
+<span class="font-headline-md text-headline-md text-primary">Pathfinder</span>
+<p class="font-label-sm text-label-sm text-on-secondary-container max-w-lg">
+                © 2024 Pathfinder Navigation. All walking routes are generated with care. Please follow local safety guidelines. <br/>
+<span class="font-bold">Disclaimer:</span> All walking routes are generated with AI. Please verify local conditions and safety guidelines.
+            </p>
+</div>
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:underline hover:text-primary transition-all" href="#">Product</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:underline hover:text-primary transition-all" href="#">Safety</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:underline hover:text-primary transition-all" href="#">Privacy</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:underline hover:text-primary transition-all" href="#">Terms</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:underline hover:text-primary transition-all" href="#">Support</a>
+</nav>
+</footer>
+</body></html>

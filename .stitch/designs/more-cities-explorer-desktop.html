@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>More Cities - Meaningful Routes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#a1d494",
+                    "secondary-fixed-dim": "#a7cbeb",
+                    "secondary-fixed": "#cbe6ff",
+                    "on-secondary-container": "#3f637e",
+                    "outline": "#72796e",
+                    "on-tertiary-container": "#ffb273",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e3e1ec",
+                    "on-tertiary-fixed": "#2f1500",
+                    "surface-container-high": "#e8e7f1",
+                    "primary-fixed": "#bcf0ae",
+                    "secondary-container": "#badeff",
+                    "inverse-primary": "#a1d494",
+                    "on-secondary-fixed": "#001e30",
+                    "surface-container-highest": "#e3e1ec",
+                    "on-primary-fixed": "#002201",
+                    "secondary": "#3f627e",
+                    "primary-container": "#2d5a27",
+                    "tertiary": "#5a2e00",
+                    "on-surface-variant": "#42493e",
+                    "surface-tint": "#3b6934",
+                    "on-secondary-fixed-variant": "#254a65",
+                    "background": "#fbf8ff",
+                    "surface-dim": "#dad9e3",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#23501e",
+                    "on-background": "#1a1b22",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffdcc3",
+                    "surface": "#fbf8ff",
+                    "outline-variant": "#c2c9bb",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fbf8ff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#7c4100",
+                    "primary": "#154212",
+                    "on-tertiary-fixed-variant": "#6e3900",
+                    "on-primary-container": "#9dd090",
+                    "inverse-surface": "#2f3038",
+                    "inverse-on-surface": "#f1effa",
+                    "surface-container-low": "#f4f2fd",
+                    "tertiary-fixed-dim": "#ffb77d",
+                    "surface-container": "#eeedf7",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1b22"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "base": "4px",
+                    "margin-desktop": "48px",
+                    "gutter": "16px",
+                    "margin-mobile": "16px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "metric-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "metric-lg": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-20 md:pb-0">
+<!-- TopNavBar (Web) -->
+<nav class="hidden md:flex justify-between items-center w-full px-margin-desktop max-w-full h-16 bg-surface dark:bg-background shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex items-center gap-6">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim cursor-pointer">Meaningful Routes</span>
+<div class="hidden lg:flex items-center bg-surface-container rounded-full px-4 py-2 border border-outline-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none outline-none text-body-md text-on-surface placeholder:text-on-surface-variant w-48 focus:ring-0 p-0" placeholder="Search cities or routes..." type="text"/>
+</div>
+</div>
+<ul class="flex items-center gap-6">
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors px-2 py-1 rounded" href="#">Explore</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors px-2 py-1 rounded" href="#">Routes</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors px-2 py-1 rounded" href="#">Monuments</a></li>
+<li><a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1 px-2 py-1" href="#">Destinations</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors px-2 py-1 rounded" href="#">Map</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors px-2 py-1 rounded" href="#">Saved</a></li>
+</ul>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors scale-95 duration-100 active:opacity-80 flex items-center justify-center p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors scale-95 duration-100 active:opacity-80 flex items-center justify-center p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-colors scale-95 duration-100 active:opacity-80">Sign in</button>
+</div>
+</nav>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 md:hidden bg-surface dark:bg-surface-dim shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant active:bg-surface-variant transition-transform duration-200 active:scale-90 p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant active:bg-surface-variant transition-transform duration-200 active:scale-90 p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">route</span>
+<span class="font-label-sm text-label-sm mt-1">Routes</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-full px-4 py-1 transition-transform duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined filled">location_city</span>
+<span class="font-label-sm text-label-sm mt-1">Cities</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant active:bg-surface-variant transition-transform duration-200 active:scale-90 p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-label-sm text-label-sm mt-1">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant active:bg-surface-variant transition-transform duration-200 active:scale-90 p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+<main class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 flex flex-col gap-12">
+<!-- Hero Section -->
+<section class="text-center max-w-3xl mx-auto flex flex-col gap-6">
+<h1 class="font-display-lg text-display-lg text-primary md:text-[48px] text-[32px] leading-tight">Explore Meaningful Routes by City</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Discover curated walking routes in historical, cultural, and scenic cities around the world. Find your next journey.</p>
+<div class="flex flex-col md:flex-row gap-4 mt-4 w-full justify-center">
+<div class="relative flex-grow max-w-md">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-md text-body-md shadow-sm transition-all" placeholder="Search a city, region, or theme..." type="text"/>
+</div>
+<button class="flex items-center justify-center gap-2 px-6 py-4 bg-surface-container rounded-xl border border-outline-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary">my_location</span>
+                    Current location
+                </button>
+</div>
+<!-- Region Filters -->
+<div class="flex flex-wrap justify-center gap-3 mt-4">
+<button class="px-4 py-2 bg-primary-container text-on-primary-container rounded-full font-label-sm text-label-sm font-bold border border-transparent">All</button>
+<button class="px-4 py-2 bg-surface text-on-surface rounded-full font-label-sm text-label-sm border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-colors opacity-80">Canada</button>
+<button class="px-4 py-2 bg-surface text-on-surface rounded-full font-label-sm text-label-sm border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-colors opacity-80">Europe</button>
+<button class="px-4 py-2 bg-surface text-on-surface rounded-full font-label-sm text-label-sm border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-colors opacity-80">USA</button>
+<button class="px-4 py-2 bg-surface text-on-surface rounded-full font-label-sm text-label-sm border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-colors opacity-80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">hiking</span> Pilgrimage
+                </button>
+</div>
+</section>
+<!-- City Grid Sections -->
+<section class="flex flex-col gap-12">
+<!-- Available Now -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 border-b border-surface-variant pb-2">
+<span class="material-symbols-outlined text-primary">public</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Available Now</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Montreal Card -->
+<div class="bg-surface rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)] transition-shadow group flex flex-col h-full cursor-pointer">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="High quality architectural photo of old port Montreal during golden hour, cobblestone streets leading to historical buildings, warm cinematic lighting, modern travel guide aesthetic, crisp details." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABcG2rn5rUOBcaMr7qS2ISvbvTRZ0gHDBZMadI44KCe-ZYsGD5CynFtLU-X25BfWgWmt5PEQnM9V7naA7JKKHBL9f3jIJLAkgfy6Ulu3TvP8eqtiX78mPTl0spJYv6EtkxzmTvhPDGNc4TWLUqh0rEvSMqu2r0V6U6w1cSMT6v11IanjIcD1sFxeaPy5-1DzDflWu7B-Ax2LJpU2ombSK3FkfavAj7TqHMDJX94qPKypUww2BEqhCetiTeiTrqQaqddsaozxftUT8')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 rounded-full font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Available
+                            </div>
+<h3 class="absolute bottom-4 left-4 font-headline-md text-headline-md text-white drop-shadow-md">Montreal</h3>
+</div>
+<div class="p-5 flex flex-col flex-grow gap-4">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Routes</span>
+<span class="font-metric-lg text-metric-lg text-primary">136</span>
+</div>
+<div class="w-[1px] bg-outline-variant h-full"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Monuments</span>
+<span class="font-metric-lg text-metric-lg text-primary">450</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2 py-1 bg-surface-container-highest text-on-surface font-label-sm text-label-sm rounded-md opacity-80">History</span>
+<span class="px-2 py-1 bg-surface-container-highest text-on-surface font-label-sm text-label-sm rounded-md opacity-80">Architecture</span>
+<span class="px-2 py-1 bg-surface-container-highest text-on-surface font-label-sm text-label-sm rounded-md opacity-80">Waterfront</span>
+</div>
+<button class="w-full mt-2 py-3 bg-surface border border-outline-variant rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-container-low hover:border-primary transition-colors flex items-center justify-center gap-2">
+                                View City <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Beta Access -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 border-b border-surface-variant pb-2">
+<span class="material-symbols-outlined text-secondary">experiment</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Beta Access</h2>
+<span class="ml-auto font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Early release</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Quebec City Card -->
+<div class="bg-surface rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)] transition-shadow flex flex-col h-full cursor-pointer opacity-90 hover:opacity-100">
+<div class="relative h-40 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Chateau Frontenac in Quebec City towering over the lower town, winter scene with light snow, twilight lighting, professional architectural photography, minimalist and corporate travel guide style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCdmPmIfQUu2zvTKZv1IJNCILdX_07xt2sEnW_Jdf8FwHG8KIJyEkARsBcguwqmrQzjTK-NjzMowJ35V8TnwGvtGXY_G-GGE4druHR5t9tLbRRXR2m9ZC3eSVwsgP02kIeoXYdOpjiC5jI_S1NNIDxuJaB5oMnMlWCjwBUDmkW5xbI1C20BgNm4ToILibZATqRhWYBMxfdQ06LlFe9pC1MdhoCklMpxJEmdSczBQSr0ttLh_1YOX1YF_hOkeTwmYLAuDOcWCMse2Dw')"></div>
+<div class="absolute top-3 left-3 bg-secondary-container text-on-secondary-container px-2 py-1 rounded-md font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">science</span> Beta
+                            </div>
+</div>
+<div class="p-4 flex flex-col flex-grow justify-between gap-3">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Quebec City</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">42 routes available</p>
+</div>
+<button class="w-full py-2 bg-surface text-primary border border-primary rounded-lg font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors">
+                                Access Beta
+                            </button>
+</div>
+</div>
+<!-- Toronto Card -->
+<div class="bg-surface rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)] transition-shadow flex flex-col h-full cursor-pointer opacity-90 hover:opacity-100">
+<div class="relative h-40 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Toronto skyline and CN Tower viewed from the islands, clear sunny day, modern urban exploration vibe, crisp reflections on water, high utility and professional aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCRwp6fwMf6_FzjqfzNzaiILa-z_QQdra1SNnKoMahxdlJvWpMGinBEIPDHYPxXYLJzsRbXvgHodBWX0ZeA7SgycW7sseEAqCwqJzVm1dYZB6Wn4icuNB-pUvz545_dZhcQFvNLKdwLXTjge9ucyLFMqx55miD9xYUBPKJcSUodG3c6eBhBdzoeMa0v1Qh-mKraSlK7LMZtQXQmnnitaQh6s-_WpXdy1oxqmUuFLydkh_Iy6__8CmxG4olKWUAH_YjJijnmOfjEDk')"></div>
+<div class="absolute top-3 left-3 bg-secondary-container text-on-secondary-container px-2 py-1 rounded-md font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">science</span> Beta
+                            </div>
+</div>
+<div class="p-4 flex flex-col flex-grow justify-between gap-3">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Toronto</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">38 routes available</p>
+</div>
+<button class="w-full py-2 bg-surface text-primary border border-primary rounded-lg font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors">
+                                Access Beta
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

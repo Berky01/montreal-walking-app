@@ -1,0 +1,12 @@
+.git
+.next
+node_modules
+coverage
+output
+.stitch
+meaningful_routes_codex_handoff
+*.zip
+*.log
+.env
+.env*
+!.env.example

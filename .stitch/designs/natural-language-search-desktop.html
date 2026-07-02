@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Natural Language Search - HeritageQuest</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-container": "#9dd090",
+                      "surface-bright": "#fbf8ff",
+                      "on-primary-fixed": "#002201",
+                      "secondary-container": "#badeff",
+                      "on-secondary-fixed-variant": "#254a65",
+                      "surface-container-low": "#f4f2fd",
+                      "outline": "#72796e",
+                      "on-secondary-fixed": "#001e30",
+                      "on-surface": "#1a1b22",
+                      "inverse-surface": "#2f3038",
+                      "primary-fixed-dim": "#a1d494",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "inverse-primary": "#a1d494",
+                      "primary-fixed": "#bcf0ae",
+                      "on-surface-variant": "#42493e",
+                      "secondary": "#3f627e",
+                      "surface-container-highest": "#e3e1ec",
+                      "outline-variant": "#c2c9bb",
+                      "on-tertiary-container": "#ffb273",
+                      "surface": "#fbf8ff",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#ffb77d",
+                      "on-tertiary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-container-high": "#e8e7f1",
+                      "tertiary-container": "#7c4100",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "on-primary-fixed-variant": "#23501e",
+                      "surface-dim": "#dad9e3",
+                      "surface-variant": "#e3e1ec",
+                      "inverse-on-surface": "#f1effa",
+                      "background": "#fbf8ff",
+                      "tertiary": "#5a2e00",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#cbe6ff",
+                      "primary": "#154212",
+                      "on-tertiary-fixed": "#2f1500",
+                      "on-background": "#1a1b22",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-container": "#2d5a27",
+                      "surface-tint": "#3b6934",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#ffdcc3",
+                      "surface-container": "#eeedf7",
+                      "on-secondary-container": "#3f637e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "md": "16px",
+                      "gutter": "16px",
+                      "margin-desktop": "48px",
+                      "lg": "24px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "base": "4px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "metric-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "metric-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Soft ambient shadows for cards */
+        .ambient-shadow {
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+        }
+        .active-shadow {
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.1);
+        }
+        /* Custom scrollbar for panels */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #dad9e3; /* surface-dim */
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-full flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-on-surface shadow-sm dark:bg-surface-container-highest fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 shadow-sm">
+<div class="flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">HeritageQuest</span>
+<div class="hidden md:flex gap-lg ml-xl">
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 cursor-pointer transition-all duration-200" href="#">Explore</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer transition-all duration-200" href="#">Routes</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer transition-all duration-200" href="#">Saved</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer transition-all duration-200 p-sm rounded-full">
+<span class="material-symbols-outlined text-headline-md">notifications</span>
+</button>
+<button class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer transition-all duration-200 p-sm rounded-full">
+<span class="material-symbols-outlined text-headline-md">account_circle</span>
+</button>
+<button class="hidden md:block bg-primary text-on-primary font-label-md text-label-md px-lg py-sm rounded-lg hover:bg-primary-container transition-colors ml-sm">
+                Sign In
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 flex flex-col md:flex-row h-[calc(100vh-64px)] overflow-hidden bg-surface-container-lowest">
+<!-- Left & Center Panels Container (Scrollable) -->
+<div class="flex-1 flex flex-col md:flex-row h-full overflow-y-auto custom-scrollbar">
+<!-- Context & Search Area (Top of left section) -->
+<div class="w-full md:w-5/12 xl:w-1/3 flex flex-col h-full bg-surface-bright border-r border-outline-variant">
+<div class="p-lg md:p-margin-desktop pb-md">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-xl">Search routes the way you think</h1>
+<!-- Search Input -->
+<div class="relative mb-lg group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-md pl-[48px] pr-md font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all ambient-shadow" placeholder="Describe your ideal route..." type="text" value="quiet architecture walk near cafes under 90 minutes"/>
+<button class="absolute right-md top-1/2 -translate-y-1/2 text-primary hover:bg-surface-container-low p-xs rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+</div>
+<!-- Location Chip -->
+<div class="flex items-center gap-sm mb-xl">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">location_on</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Montreal, QC</span>
+<button class="text-primary font-label-sm text-label-sm hover:underline ml-xs">Change</button>
+</div>
+<h2 class="font-headline-md text-[18px] text-on-surface mb-md">Interpretations</h2>
+<p class="font-body-md text-[14px] text-on-surface-variant mb-lg">Here is how we understood your request:</p>
+<!-- Intent Cards Grid -->
+<div class="grid grid-cols-2 gap-md mb-xl">
+<div class="bg-secondary-container bg-opacity-20 rounded-lg p-md border border-secondary-container">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-weight="fill">mood</span>
+<span class="font-label-md text-label-md text-on-surface">Quiet Mood</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary-container block">High Confidence</span>
+</div>
+<div class="bg-tertiary-container bg-opacity-10 rounded-lg p-md border border-tertiary-container border-opacity-20">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]">account_balance</span>
+<span class="font-label-md text-label-md text-on-surface">Architecture Theme</span>
+</div>
+</div>
+<div class="bg-primary-container bg-opacity-10 rounded-lg p-md border border-primary-container border-opacity-20">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">local_cafe</span>
+<span class="font-label-md text-label-md text-on-surface">Cafe Stops Included</span>
+</div>
+</div>
+<div class="bg-surface-variant rounded-lg p-md border border-outline-variant">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">schedule</span>
+<span class="font-label-md text-label-md text-on-surface">&lt; 90 min Duration</span>
+</div>
+</div>
+</div>
+<!-- Search Assistant / Suggestions -->
+<div class="mt-auto pt-xl border-t border-outline-variant">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<span class="font-label-md text-label-md text-on-surface">Assistant Suggestions</span>
+</div>
+<div class="flex flex-wrap gap-sm">
+<button class="bg-surface-container-low border border-outline-variant rounded-full px-md py-sm font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">umbrella</span> Rainy day alternatives
+                            </button>
+<button class="bg-surface-container-low border border-outline-variant rounded-full px-md py-sm font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                                Accessible sunset walks
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Results Panel (Center) -->
+<div class="w-full md:w-7/12 xl:w-2/3 p-lg md:p-margin-desktop bg-surface-container-lowest h-full overflow-y-auto custom-scrollbar">
+<div class="flex justify-between items-center mb-xl">
+<h2 class="font-headline-md text-headline-md text-on-surface">Top Matches</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3 results found</span>
+</div>
+<div class="flex flex-col gap-lg">
+<!-- Result Card 1 -->
+<div class="bg-surface-bright rounded-xl ambient-shadow border border-outline-variant overflow-hidden group cursor-pointer hover:active-shadow transition-shadow">
+<div class="flex flex-col md:flex-row">
+<div class="w-full md:w-2/5 h-48 md:h-auto relative">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A serene, sunlit morning view down a narrow cobblestone street in Old Montreal. Historic stone architecture with ornate windows lines the street. In the distance, a small, welcoming cafe with a warm glowing interior and a small outdoor seating area is visible. The aesthetic is clean, professional, and inviting with a light-mode friendly brightness. Forest green accents are present in the street signs and awnings." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtkPThXkyyzG3Q0y9Tw3se9lyKE0v_88Y46KjhmeHX3AhE9Fg8wuv0SBfJvvbb-ElL8YOJDnsf9YSzID3lbHuxcTHdKOedoe_pZUb1zeN-hEtA96qPbIUDf6yXq_H7yj8fixxDMqUu4on6kW17IcVrgemUVNr8rpvHpnXGG_ROH6dGXfkkNUEg8QD93XmPP73xm38cl-HPAccaoD8nW2GmR-9XBR9467RQTpcB5BtmEJ_yyBR5y6hi7-2RUfrVBc-TdsGVkF9-3NA"/>
+<div class="absolute top-md right-md bg-surface-bright bg-opacity-90 rounded-full px-sm py-xs flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-primary text-[14px]" data-weight="fill">verified</span>
+<span class="font-label-sm text-label-sm text-primary">98% Match</span>
+</div>
+</div>
+<div class="w-full md:w-3/5 p-lg flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[20px] text-on-surface group-hover:text-primary transition-colors mb-xs">Old Montreal Historic Walk</h3>
+<!-- Match Snippet -->
+<div class="bg-surface-container-low rounded-lg p-sm mb-md flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary mt-[2px] text-[16px]">info</span>
+<p class="font-body-md text-[13px] text-on-surface-variant">Match: Quiet morning windows, 8 architectural stops, 55 min total, includes Crew Collective cafe near start.</p>
+</div>
+</div>
+<!-- Dashboard Ribbon Metrics -->
+<div class="flex items-center gap-md border-t border-surface-variant pt-sm mt-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-[10px]">Distance</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">3.2<span class="text-[14px] font-normal text-on-surface-variant ml-xs">km</span></span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-[10px]">Time</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">55<span class="text-[14px] font-normal text-on-surface-variant ml-xs">min</span></span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-[10px]">Stops</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">8</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Result Card 2 -->
+<div class="bg-surface-bright rounded-xl ambient-shadow border border-outline-variant overflow-hidden group cursor-pointer hover:active-shadow transition-shadow">
+<div class="flex flex-col md:flex-row">
+<div class="w-full md:w-2/5 h-48 md:h-auto relative">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A quiet residential street in the Plateau neighborhood of Montreal, characterized by iconic exterior spiral staircases and colorful Victorian-style houses. Mature trees provide dappled shade over the sidewalk. A small, hidden independent coffee shop is tucked into the ground floor of one of the buildings. The image is bright, crisp, and aligns with a professional, light-mode interface design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMdBDrflQ-4e_LWpTH-Fg239xpHlDBreUL3zFnvOsnw6QJnc9GyNFMPndhelXiBfoy3rTnHmq2JtKBXK2p3ONpU8kHWpG73VRBqKGRD8xUhovF1_8tSYz57Q7_i_BftVM9RMqfyROtun4kEr-8L32-S2LzxJpgIF3_lUoIxrHyD7C_fqjiFKMTjNd4QTfJ34TYywzDhqeKZNetZKyyLtRqKEwrRJGUY7lMNNVzflgqQJK9Fu0N3dkHAHk7RHPyIYQH6N0a_6ua_1E"/>
+<div class="absolute top-md right-md bg-surface-bright bg-opacity-90 rounded-full px-sm py-xs flex items-center gap-xs shadow-sm">
+<span class="font-label-sm text-label-sm text-primary">85% Match</span>
+</div>
+</div>
+<div class="w-full md:w-3/5 p-lg flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[20px] text-on-surface group-hover:text-primary transition-colors mb-xs">Plateau Architecture &amp; Cafe Crawl</h3>
+<!-- Match Snippet -->
+<div class="bg-surface-container-low rounded-lg p-sm mb-md flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary mt-[2px] text-[16px]">info</span>
+<p class="font-body-md text-[13px] text-on-surface-variant">Match: Residential quiet streets, 45 min duration, features iconic spiral staircases and 3 hidden cafes along the route.</p>
+</div>
+</div>
+<!-- Dashboard Ribbon Metrics -->
+<div class="flex items-center gap-md border-t border-surface-variant pt-sm mt-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-[10px]">Distance</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">2.8<span class="text-[14px] font-normal text-on-surface-variant ml-xs">km</span></span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-[10px]">Time</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">45<span class="text-[14px] font-normal text-on-surface-variant ml-xs">min</span></span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-[10px]">Stops</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">5</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Result Card 3 (Compact) -->
+<div class="bg-surface-bright rounded-xl ambient-shadow border border-outline-variant p-lg group cursor-pointer hover:active-shadow transition-shadow flex items-start gap-md">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up architectural detail of the Notre-Dame Basilica in Place d'Armes, Montreal. The stonework is intricate and well-lit by daytime sun against a clear, pale sky. A sleek, modern map pin icon overlay in forest green is subtly implied. The overall tone is historical yet presented in a clean, modern, high-utility digital context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc6izCY6r68QzgqcP4Lzn1q9gc09wcO6XByvMBqLXUh472ircpMjh1AuwhO8JjmCzgap1h-mFpexC8sQr4NsVKH4v21qwsLzIHcjUhp2dolo9YRzXnVTBs6KWrUK17s5_enUXG4hCugfEQcdVdbbe0BJAWl0KkWwHepKKIB3Eaj5Sw5fBaZCkZyp-q6EdwsXVEwpBOA93kC9XYWDxawDOKx6vRx3iqToWt84nTjzckFZneQcUuOsXA8jU9OIYQbCV7ZjCdQofVNTI"/>
+</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors mb-xs">Place d'Armes Circuit</h3>
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-tertiary-container bg-opacity-10 text-tertiary font-label-sm text-[10px] px-sm py-xs rounded-full uppercase tracking-wider">Monument Match</span>
+<span class="font-body-md text-[13px] text-on-surface-variant">Architecture icon</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1.5 km • 30 min • High traffic</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel (Map) -->
+<div class="hidden md:block w-5/12 bg-surface-container-high relative border-l border-outline-variant" data-location="Montreal, Canada" style="">
+<!-- Simulated Map Background -->
+<div class="w-full h-full bg-cover bg-center absolute inset-0" data-alt="A clean, minimalist digital map interface of downtown Montreal. The map style is highly legible, similar to a premium navigation app in light mode, with pale gray roads, subtle green parks, and off-white blocks. Several stylized route lines are drawn over the streets, featuring soft forest green strokes. Minimalist, premium map pins mark key locations." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBVzskwaExbaLLsKC_VYmM38-nxQENtJGzQ7OVlnehirC8eT9vmAPTzbEOdsmrw0TJHLvhA51ct6f5nnQJHSFPjZzEu4EnsG8qo9F7KzXwMeHxGiTLn9kQhKY0QDILNQz5e0zjhxlh_BlkL_EYtiyv0liTgBuDpk3yYN8sS7NMiWpNjMnM6umqcvKJcx4n7gMmrkKF4HBvDgD2LV1dSKqdI22CaiElwJchWkCRucy7gtFTCdSHnWM9HiFhEWiUYF3TWFdR_AIT3eYA')"></div>
+<!-- Map Overlay Controls -->
+<div class="absolute top-md right-md flex flex-col gap-sm">
+<button class="bg-surface-bright p-sm rounded-lg ambient-shadow text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">layers</span>
+</button>
+<button class="bg-surface-bright p-sm rounded-lg ambient-shadow text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<div class="absolute bottom-md right-md flex flex-col gap-sm">
+<button class="bg-surface-bright p-sm rounded-t-lg border-b border-outline-variant ambient-shadow text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="bg-surface-bright p-sm rounded-b-lg ambient-shadow text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<!-- Simulated Map Pins -->
+<div class="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer">
+<div class="bg-primary text-on-primary p-xs rounded-full active-shadow mb-xs group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]">architecture</span>
+</div>
+<div class="bg-surface-bright font-label-sm text-[10px] text-on-surface px-sm py-xs rounded-md shadow-sm border border-outline-variant opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    Place d'Armes
+                </div>
+</div>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-10">
+<div class="bg-primary text-on-primary p-sm rounded-full active-shadow mb-xs group-hover:scale-110 transition-transform border-2 border-surface-bright">
+<span class="material-symbols-outlined text-[24px]">local_cafe</span>
+</div>
+<div class="bg-surface-bright font-label-sm text-[12px] text-primary px-sm py-xs rounded-md shadow-sm border border-outline-variant whitespace-nowrap">
+                    Crew Collective
+                </div>
+</div>
+</div>
+</main>
+</body></html>

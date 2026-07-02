@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #154212;
+  --color-primary-container: #2d5a27;
+  --color-background: #f7f8f3;
+  --color-surface: #f7f8f3;
+  --color-surface-card: #ffffff;
+  --color-on-surface: #1a1b22;
+  --color-on-surface-variant: #42493e;
+  --color-outline: #72796e;
+  --color-outline-variant: #dde5da;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--color-background);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-on-surface);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(21, 66, 18, 0.35);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(21, 66, 18, 0.18);
+}
+
+@layer components {
+  .maplibregl-map {
+    min-height: inherit;
+    height: 100%;
+    width: 100%;
+    background: #dde6da;
+    color: var(--color-on-surface);
+    font: inherit;
+  }
+
+  .maplibregl-ctrl-group {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(26, 27, 34, 0.14);
+  }
+
+  .maplibregl-ctrl button {
+    color: var(--color-on-surface);
+  }
+
+  .maplibregl-ctrl button:focus-visible {
+    outline: 3px solid rgba(21, 66, 18, 0.35);
+    outline-offset: 2px;
+  }
+
+  .maplibregl-ctrl-attrib {
+    border-radius: 6px 0 0 0;
+    color: var(--color-on-surface-variant);
+    font-size: 11px;
+  }
+
+  .maplibregl-ctrl-attrib a {
+    color: var(--color-primary);
+  }
+}

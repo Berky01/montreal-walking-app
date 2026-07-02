@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Meaningful Routes - Partner Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+            .pt-safe { padding-top: env(safe-area-inset-top); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#ffb273",
+                      "on-primary-container": "#9dd090",
+                      "background": "#fbf8ff",
+                      "secondary-fixed": "#cbe6ff",
+                      "surface-container-high": "#e8e7f1",
+                      "secondary": "#3f627e",
+                      "surface-container": "#eeedf7",
+                      "surface-container-low": "#f4f2fd",
+                      "primary-fixed-dim": "#a1d494",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#ffdcc3",
+                      "tertiary": "#5a2e00",
+                      "surface": "#fbf8ff",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "secondary-container": "#badeff",
+                      "inverse-surface": "#2f3038",
+                      "surface-dim": "#dad9e3",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "on-surface-variant": "#42493e",
+                      "surface-bright": "#fbf8ff",
+                      "tertiary-fixed-dim": "#ffb77d",
+                      "primary-fixed": "#bcf0ae",
+                      "primary-container": "#2d5a27",
+                      "on-primary-fixed-variant": "#23501e",
+                      "inverse-on-surface": "#f1effa",
+                      "on-secondary-container": "#3f637e",
+                      "surface-container-highest": "#e3e1ec",
+                      "primary": "#154212",
+                      "outline": "#72796e",
+                      "inverse-primary": "#a1d494",
+                      "surface-tint": "#3b6934",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#7c4100",
+                      "surface-variant": "#e3e1ec",
+                      "error-container": "#ffdad6",
+                      "on-surface": "#1a1b22",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "outline-variant": "#c2c9bb",
+                      "on-tertiary-fixed": "#2f1500",
+                      "on-secondary-fixed": "#001e30",
+                      "on-primary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#254a65",
+                      "on-primary-fixed": "#002201",
+                      "on-background": "#1a1b22"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "margin-mobile": "16px",
+                      "lg": "24px",
+                      "xl": "32px",
+                      "xs": "4px",
+                      "gutter": "16px",
+                      "md": "16px",
+                      "margin-desktop": "48px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "metric-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "metric-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased pb-[80px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm flex justify-between items-center px-margin-mobile h-16 pt-safe transition-colors">
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low active:scale-95 transition-transform duration-150 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">explore</span>
+</button>
+<h1 class="font-headline-md-mobile text-headline-md-mobile text-primary font-bold">PartnerPortal</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="hidden sm:flex items-center gap-1 bg-surface-container rounded-full px-3 py-1 mr-2 border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">apartment</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">Hotel Place d'Armes</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low active:scale-95 transition-transform duration-150 text-on-surface-variant relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden active:scale-95 transition-transform duration-150 border-2 border-transparent hover:border-primary-container">
+<img alt="Profile photo of user" class="w-full h-full object-cover" data-alt="A professional headshot of a concierge staff member in a modern hotel lobby, soft natural lighting, high resolution, trustworthy expression, corporate attire, shallow depth of field, warm neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvSVZRm4BzAaqwAvITScScT8P4N62JRede3VCyae4oR3a9IOnpwJn6B0MDBkXyMMQRaeIpfTR49XSZpqjE-mNROSU-U1U00O8ikjlOnjU53JKQhC4VXmIskxE5hh1L1EWpj19pjx9Y2JpUNHfaYMc-X2kDgU_VxFZ66CPPO1gprY9rjjpeVMX8LXF3u5A1DGTnNGmu9i-MqNpFzWEz8HNuadkb51AgqnlRoLGeoPt5Bggb28nxSoSGYZocEs5VvW7OYbBZjHaBQsc"/>
+</button>
+</div>
+</header>
+<main class="pt-[80px] px-margin-mobile flex flex-col gap-lg">
+<!-- Hero Dashboard Summary -->
+<section class="flex flex-col gap-md">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-md-mobile text-headline-md-mobile text-on-surface">Guest Route Kits</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Monthly Performance</p>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md px-4 py-2 rounded-lg flex items-center gap-2 active:scale-95 transition-transform shadow-md">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                    Send a kit
+                </button>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-4 gap-xs sm:gap-sm bg-surface-container-low rounded-xl p-xs shadow-[0_4px_12px_rgba(0,0,0,0.02)] border border-surface-variant">
+<div class="flex flex-col items-center justify-center py-sm px-1 bg-surface rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center leading-tight">Opens</span>
+<span class="font-metric-lg text-metric-lg text-primary mt-1">842</span>
+</div>
+<div class="flex flex-col items-center justify-center py-sm px-1 bg-surface rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center leading-tight">Started</span>
+<span class="font-metric-lg text-metric-lg text-primary mt-1">315</span>
+</div>
+<div class="flex flex-col items-center justify-center py-sm px-1 bg-surface rounded-lg relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-container opacity-10"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center leading-tight z-10">Active</span>
+<span class="font-metric-lg text-metric-lg text-primary-container z-10 mt-1">12</span>
+</div>
+<div class="flex flex-col items-center justify-center py-sm px-1 bg-surface rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center leading-tight">Rating</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="font-metric-lg text-metric-lg text-primary">4.9</span>
+<span class="material-symbols-outlined text-[14px] text-tertiary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content: Kits -->
+<section class="flex flex-col gap-md">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Available Kits</h3>
+<div class="flex flex-col gap-sm">
+<!-- Expanded Card -->
+<div class="bg-surface rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-surface-variant overflow-hidden transition-all duration-300">
+<div class="h-32 relative w-full">
+<img class="w-full h-full object-cover" data-alt="A cinematic, wide-angle shot of Old Montreal streets in the early morning, cobblestone roads, historic architecture, soft golden hour sunlight filtering through buildings, crisp high-end photography, calm and inviting mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmVm1TvexlJph4WC9bSZWlgZce2FAawPsWaBJsT7i4stKXeZeEsE3bbZ3ypf9njwkb03MZVJb0Hzs0fPTG3JJbm21jqDbpiRpKFXV8SeGTCVJq7BESy-CP5UgQ3WaBv3Sviu74Sz4eZIAEt87HE6EZAw1htA6vD_AEzLdxfVmKV0eFbWYL6ixKDXMTVNhLfcmOFfnHL3-UMdbkTSMuwdi0kSStA50iYGPYozPHNkexdk3srJCc8zFWnQA2gCFSP1ynNdJDr3s_IF8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+<h4 class="font-headline-md-mobile text-headline-md-mobile text-on-primary font-bold drop-shadow-md">First Morning in Montreal</h4>
+<div class="bg-surface/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">map</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">3 stops</span>
+</div>
+</div>
+</div>
+<div class="p-md flex flex-col gap-md">
+<p class="font-body-md text-body-md text-on-surface-variant">A perfect introductory stroll covering essential historic landmarks, ideal for guests arriving late the previous night.</p>
+<!-- Customization Chips -->
+<div class="flex flex-wrap gap-2">
+<div class="bg-surface-container px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-outline-variant">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">apartment</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Hotel Lobby start</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-outline-variant">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">directions_walk</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Relaxed pace</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-outline-variant">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">translate</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">English</span>
+</div>
+<div class="bg-primary-container/20 px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-primary-container/30">
+<span class="material-symbols-outlined text-[14px] text-primary-container" style="font-variation-settings: 'FILL' 1;">accessible</span>
+<span class="font-label-sm text-label-sm text-primary-container font-bold">Accessibility on</span>
+</div>
+<div class="bg-primary-container/20 px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-primary-container/30">
+<span class="material-symbols-outlined text-[14px] text-primary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-primary-container font-bold">Branding on</span>
+</div>
+</div>
+<div class="h-[1px] w-full bg-surface-variant my-1"></div>
+<div class="flex justify-between items-center gap-3">
+<button class="flex-1 border border-outline text-on-surface font-label-md text-label-md py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                                Print Handout
+                            </button>
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                                Send Kit
+                            </button>
+<button class="w-10 h-10 border border-outline rounded-lg flex items-center justify-center hover:bg-surface-container-low transition-colors text-on-surface">
+<span class="material-symbols-outlined text-[20px]">qr_code</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Collapsed Card 1 -->
+<div class="bg-surface rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant p-md flex items-center gap-md hover:bg-surface-container-lowest transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A moody, atmospheric shot of an indoor museum or art gallery in Montreal, soft lighting, modern architecture, visitors looking at art, high quality professional photography, muted elegant color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1-7lFEzpKksLTBP-xOZaR4uwvV8MF_hxXDuR_aHEbsl-MiEtgOIfaI-aWhJDBRsv-yeb1bMe0AbEPWmDA7o7DQfjmujAPLnyBU_KQfcbBoqq0Kklj1o6-WH6vQAKZCRW3sQ9c6MXXNw-bdeHN7calZqTgTAgqxCK38yaAUFpLz2IkhG1KJTHMevzT9cPh_6U55J33W-IJHn8AJsGFUpTCh_D9oJLvIzXUr1i3sF_nE9Szkeq2QwcSXbptdggnshUd4ykm9ySgnXw"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Rainy Day Culture</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate mt-1">Museums &amp; covered walkways</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+<!-- Collapsed Card 2 -->
+<div class="bg-surface rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant p-md flex items-center gap-md hover:bg-surface-container-lowest transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A bright, cheerful shot of a family walking along the Old Port of Montreal waterfront, sunny day, clear blue sky, Ferris wheel in the background, candid professional lifestyle photography, vibrant colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPD2Z13aeKJbPxJ7nKG5Cgu_DqvCcpqooUX34KJiE51FOlX1tFdZyq33Wyw238ewFnuxN6cEvL6Y-p4e65m4VFDquiugjyA2mBGU0NBYLu12mTV_ytTHQc-5o2OYOxeeumnh2Y9OJT6_55Zuo-SftPNG6jCyHqQN5TFAm-DHXvoT_CW7b0pjwH115c70b3M_1p6cvpwWqPqdCYVdNesgzI0RXudN0YHq6mgdwPt4YBGEz0b93p5nODsA5l4ITWMWqb5Axfpn6raic"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Family-Friendly Old Port</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate mt-1">Interactive stops &amp; wide paths</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Quick Insights -->
+<section class="flex flex-col gap-sm mt-2 mb-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Quick Insights</h3>
+<div class="bg-surface-container-low rounded-xl p-md border border-surface-variant flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary-container">task_alt</span>
+</div>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Overall Completion</p>
+<p class="font-label-md text-label-md text-on-surface">92% Completion rate this week</p>
+</div>
+</div>
+<div class="h-[1px] w-full bg-surface-variant/50"></div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] text-secondary">location_on</span>
+</div>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Top Stop</p>
+<p class="font-label-md text-label-md text-on-surface">Notre-Dame Basilica</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl transition-all">
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 active:scale-90 transition-all duration-200 w-16">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-sm text-label-sm mt-0.5">Kits</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:bg-surface-container-highest active:scale-90 transition-all duration-200 rounded-xl w-16">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">send</span>
+<span class="font-label-sm text-label-sm mt-0.5">Send</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:bg-surface-container-highest active:scale-90 transition-all duration-200 rounded-xl w-16">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">qr_code_scanner</span>
+<span class="font-label-sm text-label-sm mt-0.5">QR</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:bg-surface-container-highest active:scale-90 transition-all duration-200 rounded-xl w-16">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="font-label-sm text-label-sm mt-0.5">Analytics</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:bg-surface-container-highest active:scale-90 transition-all duration-200 rounded-xl w-16">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-sm text-label-sm mt-0.5">Settings</span>
+</button>
+</nav>
+<!-- Bottom Sheet Overaly (Hidden state, demonstrated visually via fixed positioning just above nav for mock purposes) -->
+<!-- In a real app, this would be toggled. For the static design, we render it at the bottom above the nav to show the composer -->
+<div class="fixed bottom-[80px] w-full bg-surface rounded-t-xl shadow-[0_-8px_24px_rgba(0,0,0,0.1)] border-t border-surface-variant px-margin-mobile py-md z-40 transform translate-y-0 transition-transform">
+<div class="w-12 h-1 bg-surface-variant rounded-full mx-auto mb-4"></div>
+<h3 class="font-headline-md-mobile text-headline-md-mobile text-on-surface mb-4">Send to Guest</h3>
+<form class="flex flex-col gap-sm">
+<div class="flex gap-sm">
+<div class="flex-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 ml-1">Room #</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="e.g. 412" type="text"/>
+</div>
+<div class="flex-[2]">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 ml-1">Email or SMS</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Guest contact" type="text"/>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 ml-1">Concierge Note (Optional)</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none" placeholder="Add a personal touch..." rows="2"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg flex items-center justify-center gap-2 mt-2 shadow-md hover:bg-surface-tint active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">send</span>
+                Send Link
+            </button>
+</form>
+</div>
+</body></html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meaningful Routes - Admin Route QA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "tertiary": "#5a2e00",
+                        "surface": "#fbf8ff",
+                        "surface-container-low": "#f4f2fd",
+                        "secondary": "#3f627e",
+                        "on-secondary-fixed-variant": "#254a65",
+                        "on-primary-fixed": "#002201",
+                        "surface-container-high": "#e8e7f1",
+                        "secondary-container": "#badeff",
+                        "primary-container": "#2d5a27",
+                        "on-tertiary-fixed": "#2f1500",
+                        "on-background": "#1a1b22",
+                        "inverse-primary": "#a1d494",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2f3038",
+                        "on-primary-container": "#9dd090",
+                        "on-surface-variant": "#42493e",
+                        "on-secondary-container": "#3f637e",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdcc3",
+                        "surface-container": "#eeedf7",
+                        "secondary-fixed-dim": "#a7cbeb",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#dad9e3",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#cbe6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#a1d494",
+                        "outline-variant": "#c2c9bb",
+                        "on-secondary-fixed": "#001e30",
+                        "primary": "#154212",
+                        "tertiary-container": "#7c4100",
+                        "inverse-on-surface": "#f1effa",
+                        "surface-tint": "#3b6934",
+                        "on-tertiary-container": "#ffb273",
+                        "on-primary-fixed-variant": "#23501e",
+                        "surface-container-highest": "#e3e1ec",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#bcf0ae",
+                        "on-surface": "#1a1b22",
+                        "outline": "#72796e",
+                        "surface-bright": "#fbf8ff",
+                        "background": "#fbf8ff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e3e1ec",
+                        "error": "#ba1a1a"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "sm": "8px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "xl": "32px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "margin-desktop": "48px",
+                        "base": "4px",
+                        "md": "16px"
+                    },
+                    fontFamily: {
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "metric-lg": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "metric-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim fixed top-0 w-full z-50 transition-colors duration-200 flex justify-between items-center px-margin-mobile h-16 shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border-b border-outline-variant md:hidden">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-headline-md-mobile font-headline-md font-bold text-primary truncate max-w-[120px]">RouteAdmin</span>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full ml-1">Montreal Pilot</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<img alt="Admin Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A small, circular avatar portrait of a professional system administrator in a well-lit office setting. The image is a close-up, sharp, and modern, fitting for a corporate internal tool dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXsbr-7zmvJrJvX2LRRkvDoBltVYe7nVNqTk4IDQLXPxN0S1ZhOn1xI1h8vJvEkdpoteNK5aI-BSR_xiso7cCDpQhV2H0hPqaeJMV6IwQx_ZTPTqosr1WKVB1ApBKUABVvQHa9Qs8Kd_7yn8BWmyZ9QvC5gOBaDuPRi7PRwfBfxQDGXUnK1w4e1uzdgHQ4lPBEom1pXrSdzuUE1Hk1EY-iU7OAkq5gu38Z8YY7v6VqVDh8t9ItHU73We2Z3ELU2qZHdKCxg5V-KbQ"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-16 md:pt-0 px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto flex flex-col gap-lg">
+<!-- Header for Desktop (Optional, showing fluid grid concept) -->
+<div class="hidden md:flex justify-between items-end pt-lg pb-md border-b border-outline-variant">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Route QA</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Meaningful Routes - Montreal Pilot</p>
+</div>
+</div>
+<!-- URGENT Banner -->
+<div class="mt-md md:mt-0 bg-error-container text-on-error-container p-sm rounded-lg flex items-center gap-sm border border-error/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<p class="font-label-md text-label-md">URGENT: Blocked path at Place d'Armes</p>
+</div>
+<!-- Hero Metrics Grid -->
+<section class="grid grid-cols-3 md:grid-cols-5 gap-xs md:gap-gutter">
+<div class="bg-surface-container-lowest p-sm rounded-lg border border-outline-variant flex flex-col justify-between shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Pending</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">14</span>
+</div>
+<div class="bg-surface-container-lowest p-sm rounded-lg border border-outline-variant flex flex-col justify-between shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Issues</span>
+<span class="font-metric-lg text-metric-lg text-error">8</span>
+</div>
+<div class="bg-surface-container-lowest p-sm rounded-lg border border-outline-variant flex flex-col justify-between shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Stale</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">3</span>
+</div>
+<div class="bg-surface-container-lowest p-sm rounded-lg border border-outline-variant flex flex-col justify-between shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Reports</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">22</span>
+</div>
+<div class="bg-surface-container-lowest p-sm rounded-lg border border-outline-variant flex flex-col justify-between shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Ready</span>
+<span class="font-metric-lg text-metric-lg text-primary">45</span>
+</div>
+</section>
+<!-- Review Queue -->
+<section class="flex flex-col gap-md">
+<h2 class="font-headline-md text-headline-md-mobile md:text-headline-md text-on-surface">Review Queue</h2>
+<!-- Expanded Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0px_8px_24px_rgba(0,0,0,0.1)] overflow-hidden">
+<div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-start">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface text-lg">Old Montreal Historic Walk</h3>
+<div class="flex gap-2 mt-1">
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full">High Priority</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm flex items-center"><span class="material-symbols-outlined text-[14px] mr-1">update</span> Oct 24</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-metric-lg text-metric-lg text-primary">94/100</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Score</span>
+</div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="bg-error-container/30 text-error p-2 rounded flex items-center gap-2 border border-error/20">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+<span class="font-label-sm text-label-sm">1 Issue Flagged: Stop 3 accessibility concern.</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-2">
+<div class="flex flex-col border border-outline-variant rounded p-2 bg-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Stop Sequence</span>
+<span class="font-label-md text-label-md text-primary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">check_circle</span> Verified</span>
+</div>
+<div class="flex flex-col border border-outline-variant rounded p-2 bg-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Media</span>
+<span class="font-label-md text-label-md text-primary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">check_circle</span> 100%</span>
+</div>
+<div class="flex flex-col border border-outline-variant rounded p-2 bg-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Accessibility</span>
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-tertiary">warning</span> 85%</span>
+</div>
+</div>
+<div class="flex gap-2 mt-2 overflow-x-auto hide-scrollbar pb-2">
+<img alt="Stop 1" class="w-16 h-16 rounded object-cover border border-outline-variant shrink-0" data-alt="A small thumbnail showing a cobblestone street in Old Montreal during daytime. The architecture is historic and well-preserved. Shot in a clear, documentary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqVkj8_CIXGG4ddoe75A9NPJm7m0p0_N_91GC33nIBblliOJSDvE9hDQnDjaqUMLQ7jPHZE8plNBGg4RFol3AYVnKEXONT1dQugILlGdfH1B0TJrbgSIJVgVcNpi14Vr23U_IlU3ITxgV4GREQAtF0zKEcLZ87HFxSN69hsqBFeZNYpYOfv2BtYIadEqgJop74fZLO2c3QstnRAXxcYilByC4PAnYo4NyJs_YSGlgPZNQcNRBF49NocBAbS6iRrnsQnAXmI2xNSGs"/>
+<img alt="Stop 2" class="w-16 h-16 rounded object-cover border border-outline-variant shrink-0" data-alt="A small thumbnail showing the exterior of Notre-Dame Basilica in Montreal. The sky is bright and the architectural details are visible." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsea47ZALumuJZiqejueEBBeCcGUWVqtnBbk4cWx_vIEWHhCv_QTHdra22C7e-Y38ruBwzf3vm56r8Lws7pgBrnZQJb548zS3BsqgJxg8o_7QSpz2B3Y45Lk7FqVHigbkPfSr52FvyDMy-dbLtZlrsLMjI1wGHjcBP8pQpVMUWNvhO-tvvohaYvWPlLBjQN1ucr6UZpPTF_qP-v2d5PqH4eHN6Fb9IXu0XVkHBtxjqz2WVVlP4-twFHulw2qEHHLZ4j3OYAv1TbPw"/>
+<img alt="Stop 3" class="w-16 h-16 rounded object-cover border border-error shrink-0" data-alt="A small thumbnail showing a narrow alleyway with steps in Old Montreal, highlighting a potential accessibility obstacle. The image is utilitarian and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn5b7v7AP7UC3IzYWHUwSZV0yn5e4YoFfEDKPbsf1O4A8CZoSgCFJG4zx3hc5Tz3Gp3qFT63SbnRsHJV8FRRUqAkn6Jg5gZZhEM3lFoQ6mzGY9u5yghZNgdL2rqlZC-Luj0h7uAmdrAiKf4k0yoXrYYFgFD7L6JmWzSkhCg9oEN3iORhEWKK75b7CCjj27f8wW7W-2mqpMsutBqUIcpApRcugauEu1R4rW-86-YzwfUwImxEVeqYpnrVIG-QiIjW8kgv4HcztoDSk"/>
+<div class="w-16 h-16 rounded bg-surface-container flex items-center justify-center border border-outline-variant shrink-0 text-on-surface-variant font-label-sm">+4</div>
+</div>
+<div class="flex flex-col md:flex-row gap-2 mt-4">
+<button class="bg-primary text-on-primary font-label-md text-label-md py-2 px-4 rounded w-full md:w-auto hover:bg-primary/90 transition">Approve for Publish</button>
+<div class="flex gap-2 w-full md:w-auto">
+<button class="flex-1 border border-outline text-on-surface font-label-md text-label-md py-2 px-4 rounded hover:bg-surface-container-low transition">Request Changes</button>
+<button class="flex-1 border border-outline text-on-surface font-label-md text-label-md py-2 px-4 rounded hover:bg-surface-container-low transition" onclick="document.getElementById('field-check-sheet').classList.remove('translate-y-full')">Assign Field Check</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Collapsed Cards -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-sm flex justify-between items-center shadow-[0px_4px_12px_rgba(0,0,0,0.05)] cursor-pointer hover:bg-surface-container-low transition">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">Plateau Art Crawl</h3>
+<div class="flex gap-2 mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span>Status: In Review</span>
+<span>•</span>
+<span class="text-tertiary">Medium Risk</span>
+<span>•</span>
+<span>Oct 22</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-sm flex justify-between items-center shadow-[0px_4px_12px_rgba(0,0,0,0.05)] cursor-pointer hover:bg-surface-container-low transition opacity-75">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">Mount Royal Sunrise</h3>
+<div class="flex gap-2 mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span>Status: Draft</span>
+<span>•</span>
+<span>Low Risk</span>
+<span>•</span>
+<span>Oct 15</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface dark:bg-surface-container-low fixed bottom-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-sm shadow-[0px_-4px_12px_rgba(0,0,0,0.05)] md:hidden">
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-container text-on-secondary-container dark:text-on-secondary-container rounded-full px-4 py-1 scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">view_list</span>
+<span class="font-label-sm text-label-sm mt-1">Queue</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 scale-95 transition-transform duration-150 p-2 rounded">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-sm text-label-sm mt-1">Reports</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 scale-95 transition-transform duration-150 p-2 rounded">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm mt-1">Map</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 scale-95 transition-transform duration-150 p-2 rounded">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm mt-1">Activity</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 scale-95 transition-transform duration-150 p-2 rounded">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</button>
+</nav>
+<!-- Field Check Bottom Sheet -->
+<div class="fixed inset-x-0 bottom-0 z-[60] bg-surface-container-lowest rounded-t-xl shadow-[0px_-8px_24px_rgba(0,0,0,0.15)] transform translate-y-full transition-transform duration-300 ease-in-out md:max-w-md md:mx-auto md:bottom-md md:rounded-xl md:translate-y-0 md:hidden border border-outline-variant" id="field-check-sheet">
+<div class="p-md flex flex-col gap-md">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-headline-md text-headline-md-mobile text-on-surface">Assign Field Check</h3>
+<button class="text-on-surface-variant p-1" onclick="document.getElementById('field-check-sheet').classList.add('translate-y-full')"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="flex flex-col gap-4">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface block mb-1">Assignee</label>
+<select class="w-full border border-outline-variant rounded p-2 font-body-md text-body-md text-on-surface bg-surface focus:border-primary focus:ring-0">
+<option>Marie L. (Montreal Team)</option>
+<option>Jean P. (Montreal Team)</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface block mb-1">Task Type</label>
+<select class="w-full border border-outline-variant rounded p-2 font-body-md text-body-md text-on-surface bg-surface focus:border-primary focus:ring-0">
+<option>Accessibility</option>
+<option>Safety</option>
+<option>Content Verif.</option>
+</select>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface block mb-1">Due Date</label>
+<input class="w-full border border-outline-variant rounded p-2 font-body-md text-body-md text-on-surface bg-surface focus:border-primary focus:ring-0" type="date" value="2023-10-27"/>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface block mb-1">Route Segment</label>
+<input class="w-full border border-outline-variant rounded p-2 font-body-md text-body-md text-on-surface bg-surface focus:border-primary focus:ring-0" type="text" value="Stop 3 - Stop 4"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface block mb-1">Reviewer Note</label>
+<textarea class="w-full border border-outline-variant rounded p-2 font-body-md text-body-md text-on-surface bg-surface focus:border-primary focus:ring-0" rows="2">Please verify the temporary construction at Stop 3 for wheelchair access.</textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded mt-2 hover:bg-primary/90 transition">Send to Field</button>
+</div>
+</div>
+</div>
+<!-- Overlay for bottom sheet -->
+<div class="fixed inset-0 bg-on-background/50 z-[55] hidden md:hidden" id="sheet-overlay"></div>
+<script>
+        // Simple script for bottom sheet demo on mobile
+        const sheet = document.getElementById('field-check-sheet');
+        const overlay = document.getElementById('sheet-overlay');
+        
+        // This is just a basic toggle for demonstration. 
+        // In reality, you'd wire this up better.
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.textContent.includes('Assign Field Check')) {
+                btn.addEventListener('click', () => {
+                    if(window.innerWidth < 768) {
+                        sheet.classList.remove('translate-y-full');
+                        overlay.classList.remove('hidden');
+                    }
+                });
+            }
+        });
+
+        overlay.addEventListener('click', () => {
+            sheet.classList.add('translate-y-full');
+            overlay.classList.add('hidden');
+        });
+        
+        sheet.querySelector('.material-symbols-outlined').parentElement.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+        });
+    </script>
+</body></html>

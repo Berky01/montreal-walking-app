@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meaningful Routes - Explore by City</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#bcf0ae",
+                      "on-secondary-fixed-variant": "#254a65",
+                      "surface-variant": "#e3e1ec",
+                      "outline-variant": "#c2c9bb",
+                      "on-primary-fixed": "#002201",
+                      "secondary-fixed": "#cbe6ff",
+                      "on-background": "#1a1b22",
+                      "surface-bright": "#fbf8ff",
+                      "primary": "#154212",
+                      "outline": "#72796e",
+                      "on-primary": "#ffffff",
+                      "inverse-surface": "#2f3038",
+                      "surface-container": "#eeedf7",
+                      "inverse-on-surface": "#f1effa",
+                      "surface-tint": "#3b6934",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#a1d494",
+                      "on-primary-container": "#9dd090",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "tertiary-fixed": "#ffdcc3",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "on-secondary-fixed": "#001e30",
+                      "on-tertiary-container": "#ffb273",
+                      "surface-dim": "#dad9e3",
+                      "primary-container": "#2d5a27",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf8ff",
+                      "on-surface-variant": "#42493e",
+                      "tertiary-fixed-dim": "#ffb77d",
+                      "on-tertiary-fixed": "#2f1500",
+                      "on-secondary": "#ffffff",
+                      "surface": "#fbf8ff",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#23501e",
+                      "surface-container-highest": "#e3e1ec",
+                      "error": "#ba1a1a",
+                      "on-surface": "#1a1b22",
+                      "surface-container-low": "#f4f2fd",
+                      "surface-container-high": "#e8e7f1",
+                      "secondary-container": "#badeff",
+                      "tertiary": "#5a2e00",
+                      "primary-fixed-dim": "#a1d494",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#7c4100",
+                      "secondary": "#3f627e",
+                      "on-secondary-container": "#3f637e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "48px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "base": "4px",
+                      "margin-mobile": "16px",
+                      "gutter": "16px",
+                      "md": "16px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "metric-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "metric-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased pb-24 md:hidden">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface text-primary dark:text-primary-fixed-dim font-headline-md text-headline-md docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none transition-colors duration-200 ease-in-out flex justify-between items-center px-margin-mobile w-full py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">search</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">
+            Explore by City
+        </div>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+</header>
+<main class="px-margin-mobile py-lg flex flex-col gap-lg">
+<!-- Hero Search Section -->
+<section class="flex flex-col gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors font-body-md" placeholder="Search cities..." type="text"/>
+</div>
+<button class="flex items-center gap-2 text-primary font-label-md py-2 w-fit">
+<span class="material-symbols-outlined text-[20px]">my_location</span>
+                Use current location
+            </button>
+<!-- Filter Chips -->
+<div class="flex overflow-x-auto gap-sm pb-2 snap-x hide-scrollbar">
+<button class="snap-start whitespace-nowrap px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-md shrink-0">All</button>
+<button class="snap-start whitespace-nowrap px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md shrink-0">Canada</button>
+<button class="snap-start whitespace-nowrap px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md shrink-0">Europe</button>
+<button class="snap-start whitespace-nowrap px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md shrink-0">USA</button>
+<button class="snap-start whitespace-nowrap px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md shrink-0">Pilgrimage</button>
+</div>
+</section>
+<!-- Available Now -->
+<section class="flex flex-col gap-md">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">Available Now</h2>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] overflow-hidden border border-surface-variant relative">
+<div class="h-48 w-full bg-surface-variant relative" data-alt="A striking wide-angle photograph of Old Montreal at golden hour, capturing the historic cobblestone streets and stunning architectural details. The lighting is warm and inviting, casting long shadows that highlight the textures of the stone buildings. The mood is historic and romantic, fitting a premium travel guide aesthetic. High contrast, sharp details." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfynIKNKZksjSTB5cOsiVYOxzTrfB5T5t2XlOd2oEsK1DSwOQBKL79wqiA-0USPwZiiu6uPJdKPZwf7jgmJjiyTnb5dzMv4Q7ca0erY_s1ADO3mcPam2_0spI3qaRmQ8CX7rYPBJNHXkSvm83RRWiYi4YTTNwrT06cFc5eMDG28AdY8sx-DHP-__gAWqXpkSemcrOcxFqbJCgVrNio-bxYeXkxcMGzf6BB_Muz_03KZEmiMv5pXW5gHd8jQbBQN6wEuh7AEAJ9uQo')">
+<div class="absolute top-3 left-3 bg-primary-container text-on-primary-container font-label-sm px-3 py-1 rounded-full shadow-sm">
+                        Available
+                    </div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background">Montreal</h3>
+<p class="font-body-md text-on-surface-variant">Canada</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="bg-surface-container-low text-on-surface-variant font-label-sm px-2 py-1 rounded-md border border-outline-variant">History</span>
+<span class="bg-surface-container-low text-on-surface-variant font-label-sm px-2 py-1 rounded-md border border-outline-variant">Architecture</span>
+<span class="bg-surface-container-low text-on-surface-variant font-label-sm px-2 py-1 rounded-md border border-outline-variant">Waterfront</span>
+</div>
+<div class="flex items-center gap-4 mt-4 pt-4 border-t border-surface-variant">
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface-variant">Routes</span>
+<span class="font-metric-lg text-metric-lg text-on-background">136</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface-variant">Monuments</span>
+<span class="font-metric-lg text-metric-lg text-on-background">450</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Section (Beta Overlay) -->
+<section class="flex flex-col gap-md">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">Beta Access</h2>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden">
+<!-- Map Container -->
+<div class="h-64 w-full bg-surface-variant relative overflow-hidden" data-location="Quebec City" style="">
+<!-- Map placeholder would go here, simulated with a background for now -->
+<div class="absolute inset-0 bg-[#e5e3df] opacity-50"></div>
+<!-- Pin -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center shadow-[0px_8px_24px_rgba(0,0,0,0.1)] border-2 border-white z-10 relative">
+<span class="material-symbols-outlined text-on-secondary fill text-[20px]">location_on</span>
+</div>
+<div class="w-4 h-4 bg-secondary rotate-45 -mt-2 shadow-[0px_8px_24px_rgba(0,0,0,0.1)]"></div>
+</div>
+</div>
+<!-- Overlay Detail -->
+<div class="p-md bg-surface-container-lowest border-t border-surface-variant flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background">Quebec City</h3>
+<p class="font-body-md text-on-surface-variant">Canada • Beta Phase</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm px-3 py-1 rounded-full">
+                             42 Routes
+                         </span>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg border border-outline-variant flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-1">star</span>
+<div>
+<p class="font-label-md text-on-background">Highlight: Old Quebec</p>
+<p class="font-label-sm text-on-surface-variant mt-1">Explore the fortified city walls and historic European charm.</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-label-md text-on-surface-variant">Notify me when fully launched</span>
+<!-- Toggle Switch (Visual only) -->
+<div class="w-12 h-6 bg-surface-variant rounded-full relative cursor-pointer border border-outline-variant">
+<div class="w-4 h-4 bg-outline rounded-full absolute top-1 left-1"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Toronto List Item -->
+<div class="flex items-center justify-between p-md bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant">
+<div>
+<h4 class="font-headline-md text-[18px] text-on-background">Toronto</h4>
+<p class="font-body-md text-on-surface-variant">Canada • 38 Routes</p>
+</div>
+<button class="bg-surface-container border border-outline-variant text-on-surface px-4 py-2 rounded-lg font-label-md">
+                    View Beta
+                </button>
+</div>
+</section>
+<!-- Coming Soon -->
+<section class="flex flex-col gap-md">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">Coming Soon</h2>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant flex flex-col items-center text-center gap-2">
+<span class="material-symbols-outlined text-outline text-[32px]">public</span>
+<h4 class="font-label-md text-on-background">Rome</h4>
+<p class="font-label-sm text-on-surface-variant">Italy</p>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant flex flex-col items-center text-center gap-2">
+<span class="material-symbols-outlined text-outline text-[32px]">public</span>
+<h4 class="font-label-md text-on-background">Paris</h4>
+<p class="font-label-sm text-on-surface-variant">France</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant flex flex-col gap-3 mt-2">
+<div>
+<h4 class="font-label-md text-on-background">Boston</h4>
+<p class="font-label-sm text-on-surface-variant">USA • Planning Phase</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md py-2 rounded-lg w-full text-center">
+                     Join Waitlist
+                 </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface dark:bg-surface-container-lowest text-primary dark:text-primary-fixed-dim font-label-sm text-label-sm fixed bottom-0 w-full z-50 shadow-[0px_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center px-4 py-2 border-t-0">
+<div class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-1">
+<span class="material-symbols-outlined">explore</span>
+<span class="mt-1">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200">
+<span class="material-symbols-outlined">map</span>
+<span class="mt-1">Routes</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="mt-1">Saved</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="mt-1">Profile</span>
+</div>
+</nav>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

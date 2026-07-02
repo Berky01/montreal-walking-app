@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Road-trip Mode - Meaningful Routes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#a1d494",
+                        "primary": "#154212",
+                        "secondary": "#3f627e",
+                        "secondary-fixed": "#cbe6ff",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffb273",
+                        "on-primary-fixed-variant": "#23501e",
+                        "on-primary-container": "#9dd090",
+                        "surface-tint": "#3b6934",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002201",
+                        "inverse-primary": "#a1d494",
+                        "surface-bright": "#fbf8ff",
+                        "tertiary-fixed": "#ffdcc3",
+                        "inverse-on-surface": "#f1effa",
+                        "on-secondary-fixed-variant": "#254a65",
+                        "on-secondary-fixed": "#001e30",
+                        "background": "#fbf8ff",
+                        "on-tertiary-fixed": "#2f1500",
+                        "primary-container": "#2d5a27",
+                        "on-surface": "#1a1b22",
+                        "surface": "#fbf8ff",
+                        "outline-variant": "#c2c9bb",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#badeff",
+                        "on-surface-variant": "#42493e",
+                        "on-secondary-container": "#3f637e",
+                        "surface-container-highest": "#e3e1ec",
+                        "surface-container": "#eeedf7",
+                        "primary-fixed": "#bcf0ae",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3038",
+                        "surface-container-low": "#f4f2fd",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e8e7f1",
+                        "on-background": "#1a1b22",
+                        "tertiary-container": "#7c4100",
+                        "surface-dim": "#dad9e3",
+                        "tertiary": "#5a2e00",
+                        "outline": "#72796e",
+                        "secondary-fixed-dim": "#a7cbeb",
+                        "surface-variant": "#e3e1ec",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "metric-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col relative md:hidden">
+<!-- Top Navigation (Mobile App Bar) -->
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center px-margin-mobile h-16 shrink-0 border-b border-surface-variant">
+<button aria-label="Go back" class="text-on-surface p-sm -ml-sm rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface truncate px-sm">Road Trip Builder</h1>
+<div class="flex items-center gap-xs -mr-sm">
+<button aria-label="Search" class="text-on-surface p-sm rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button aria-label="Save" class="text-on-surface p-sm rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">bookmark_border</span>
+</button>
+<button aria-label="More options" class="text-on-surface p-sm rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col pb-24 relative">
+<!-- Sticky Map Section (Background) -->
+<div class="absolute inset-0 z-0 h-[353px] w-full" data-alt="A detailed overhead map view showing a route line from Montreal, winding through Trois-Rivieres, and ending in Quebec City. The map style is clean, modern, and high-utility with light grey roads, soft green parks, and pale blue rivers, typical of a professional navigation app. Route lines are distinct and easy to follow. Three prominent map pins highlight key stops. Lighting is flat and shadowless, optimizing readability." data-location="Quebec Route Map" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7LzykJufpImJQLjJ1FqtSK7i_zWcvUHSws5cx1ydNvnz_-HJ713UBo-pw1Pskfvk4WuSvxN7g7k0RVF5gMbMY5ofh13AcxG2WhxNevDkzFDYTbaVfYUs4aH7VjtSWv3y-v7-ea_RO-trOSEHp7a8tEX1_8ANVfjxyHR7k80o3ERsmeHlT2ydOAfoBi8iBHKelIO9AKZPBlE5U7x4ADmFEaNZQn5VsEj6kbXryCgul5BdZd0KoAEUBw09yTTe1esnveHOBESeUDDA')">
+<!-- Simulated gradient overlay to blend map into content -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
+<!-- Simulated Map Pins (Overlay) -->
+<div class="absolute top-[20%] left-[20%] bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center shadow-md border-2 border-surface transform -translate-x-1/2 -translate-y-1/2">
+<span class="font-label-sm text-label-sm">MTL</span>
+</div>
+<div class="absolute top-[50%] left-[45%] bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center shadow-md border-2 border-surface transform -translate-x-1/2 -translate-y-1/2">
+<span class="font-label-sm text-label-sm">TR</span>
+</div>
+<div class="absolute top-[30%] left-[80%] bg-secondary text-on-secondary w-8 h-8 rounded-full flex items-center justify-center shadow-md border-2 border-surface transform -translate-x-1/2 -translate-y-1/2">
+<span class="font-label-sm text-label-sm">QC</span>
+</div>
+</div>
+<!-- Scrollable Content overlaying the map -->
+<div class="z-10 mt-[221px] w-full flex-1 bg-surface rounded-t-[24px] shadow-[0px_-4px_16px_rgba(0,0,0,0.05)] overflow-hidden">
+<!-- Draggable handle indicator -->
+<div class="w-full flex justify-center pt-sm pb-xs">
+<div class="w-12 h-1.5 bg-surface-variant rounded-full"></div>
+</div>
+<div class="px-margin-mobile pb-xl space-y-lg">
+<!-- Hero: Trip Summary Card -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl p-md shadow-sm mt-sm">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Montreal to QC</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined" style="font-size: 18px;">calendar_month</span>
+                                Oct 12-14 • 3 Days
+                            </p>
+</div>
+<button aria-label="Edit Trip" class="text-primary p-xs rounded-full hover:bg-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-sm mb-md">
+<span class="bg-surface-variant text-on-surface font-label-sm text-label-sm px-sm py-xs rounded-full">Heritage</span>
+<span class="bg-primary-fixed-dim bg-opacity-20 text-primary font-label-sm text-label-sm px-sm py-xs rounded-full">Nature</span>
+</div>
+<!-- Alert / Advisory -->
+<div class="bg-error-container text-on-error-container rounded-lg p-sm flex items-start gap-sm border border-error/20">
+<span class="material-symbols-outlined shrink-0 text-error">warning</span>
+<p class="font-label-sm text-label-sm">Temporary road work near Trois-Rivieres. Add 20m drive time.</p>
+</div>
+</div>
+<!-- Itinerary List (Bottom Sheet Content Style) -->
+<section>
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Itinerary</h3>
+<button class="font-label-md text-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined" style="font-size: 18px;">swap_vert</span>
+                            Reorder
+                        </button>
+</div>
+<div class="space-y-md border-l-2 border-surface-variant ml-sm pl-md py-sm">
+<!-- Day 1 (Collapsed) -->
+<div class="relative">
+<div class="absolute -left-[27px] top-1 bg-surface border-2 border-primary w-5 h-5 rounded-full z-10 flex items-center justify-center">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-md border border-surface-variant">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-xs">Day 1: Montreal Start</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">3h walking • 0h drive</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<div class="mt-sm flex items-center gap-sm">
+<span class="bg-secondary-fixed bg-opacity-30 text-secondary font-label-sm text-label-sm px-sm py-xs rounded-full border border-secondary/20">Old Port Loop</span>
+</div>
+</div>
+</div>
+<!-- Day 2 (Expanded) -->
+<div class="relative">
+<div class="absolute -left-[27px] top-1 bg-primary w-5 h-5 rounded-full z-10 flex items-center justify-center shadow-[0px_4px_12px_rgba(21,66,18,0.3)]">
+<span class="material-symbols-outlined text-on-primary" style="font-size: 12px; font-variation-settings: 'FILL' 1;">directions_walk</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-xs">Day 2: Trois-Rivieres Heritage</h4>
+<div class="flex items-center gap-sm font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined" style="font-size: 14px;">directions_walk</span> 1.5h walk</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined" style="font-size: 14px;">directions_car</span> 1.5h drive</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary">expand_less</span>
+</div>
+<!-- Expanded Content: Route Card -->
+<div class="border border-outline-variant rounded-lg overflow-hidden mb-md">
+<div class="h-24 bg-surface-variant w-full relative" data-alt="A charming view of the old town streets in Trois-Rivieres, Quebec. The street is lined with historic stone buildings and mature trees displaying early autumn foliage. The sky is bright and clear, indicating a sunny, crisp day. The perspective is from a pedestrian's point of view, inviting exploration. A soft, high-quality, professional photography style suitable for a travel app interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLwEQArfdzMZbEmzWzirJtvgwdpceXhtP-r3VRH8RJDWZ7n1sUXj8rzQ1QqCQzDqY52-ts2OPepW1-k1LNbVGAhfNiOUiQsUffeeccxg3HPEQwzb6yRKUeOlNkBCKUQam_5SFJrUaSkoWrGsQmBm2GUSYgBWjHuVaTup3Q8k5c9MbuoDmjN_iQr1ERGkWfUzb0r-w1iDLECIgZ3QdW6dvTg2gGWjhGNMGvtWoJQXvOTQCV9enZezic3LSf-EuyViIW12V28pRHSg8')">
+<div class="absolute top-sm right-sm bg-surface/90 backdrop-blur text-on-surface font-label-sm text-label-sm px-sm py-xs rounded-full flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 14px;">download_done</span>
+                                            Offline Ready
+                                        </div>
+</div>
+<div class="p-sm">
+<h5 class="font-label-md text-label-md text-on-surface">Downtown Heritage Walk</h5>
+<div class="mt-xs flex gap-md">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Nearby Monument</p>
+<p class="font-label-sm text-label-sm font-bold text-on-surface">Old Prison</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Contextual Information Chips -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container-low p-sm rounded-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">local_parking</span>
+<span class="font-label-sm text-label-sm text-on-surface">Paid/Street</span>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">wc</span>
+<span class="font-label-sm text-label-sm text-on-surface">Restrooms</span>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">partly_cloudy_day</span>
+<span class="font-label-sm text-label-sm text-on-surface">22°C</span>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">accessible</span>
+<span class="font-label-sm text-label-sm text-on-surface">Mostly Flat</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Day 3 (Collapsed) -->
+<div class="relative">
+<div class="absolute -left-[27px] top-1 bg-surface border-2 border-surface-variant w-5 h-5 rounded-full z-10 flex items-center justify-center"></div>
+<div class="bg-surface-container-low rounded-xl p-md border border-surface-variant">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-xs">Day 3: Quebec City Finish</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">4h walk • 1.5h drive</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<div class="mt-sm flex items-center gap-sm">
+<span class="bg-secondary-fixed bg-opacity-30 text-secondary font-label-sm text-label-sm px-sm py-xs rounded-full border border-secondary/20">Fortified Loop</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Controls Section (Collapsible) -->
+<section class="border border-outline-variant rounded-xl overflow-hidden bg-surface-container-lowest">
+<div class="flex justify-between items-center p-md bg-surface cursor-pointer">
+<h3 class="font-label-md text-label-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined">tune</span>
+                            Trip Preferences
+                        </h3>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<div class="p-md pt-0 grid grid-cols-2 gap-md border-t border-surface-variant mt-xs">
+<!-- Placeholders for actual controls to avoid cluttering -->
+<div class="mt-sm">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Pace</p>
+<p class="font-body-md text-body-md text-on-surface">Relaxed</p>
+</div>
+<div class="mt-sm">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Max Drive</p>
+<p class="font-body-md text-body-md text-on-surface">4h/day</p>
+</div>
+</div>
+</section>
+<!-- Secondary Actions List -->
+<section class="space-y-sm">
+<button class="w-full bg-surface-container border border-outline-variant text-on-surface font-label-md text-label-md py-md px-md rounded-lg flex items-center justify-between hover:bg-surface-variant transition-colors">
+<span class="flex items-center gap-sm">
+<span class="material-symbols-outlined">group_add</span>
+                            Invite Collaborator
+                        </span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+<button class="w-full bg-surface-container border border-outline-variant text-on-surface font-label-md text-label-md py-md px-md rounded-lg flex items-center justify-between hover:bg-surface-variant transition-colors">
+<span class="flex items-center gap-sm">
+<span class="material-symbols-outlined">calendar_today</span>
+                            Sync to Calendar
+                        </span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+<button class="w-full bg-surface-container border border-outline-variant text-on-surface font-label-md text-label-md py-md px-md rounded-lg flex items-center justify-between hover:bg-surface-variant transition-colors">
+<span class="flex items-center gap-sm">
+<span class="material-symbols-outlined">ios_share</span>
+                            Export PDF/GPX
+                        </span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+</section>
+<!-- Spacing block for sticky nav -->
+<div class="h-8"></div>
+</div>
+</div>
+</main>
+<!-- Suppressed Bottom Nav as this is a specific trip detail view with back action -->
+<!-- According to "The Destination Rule", we hide the nav if page intent is task-focused with "Back" action -->
+</body></html>

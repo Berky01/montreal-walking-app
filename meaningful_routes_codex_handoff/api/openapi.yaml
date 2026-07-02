@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: Meaningful Routes API
+  version: 0.1.0
+  description: MVP API proposal for route discovery, saved routes, active walk sessions, and feedback.
+servers:
+  - url: http://localhost:3000
+paths:
+  /health:
+    get:
+      summary: API readiness check
+      responses:
+        '200': { description: OK }
+  /cities:
+    get:
+      summary: List active cities
+      responses:
+        '200': { description: Active cities }
+  /routes:
+    get:
+      summary: List routes with filters
+      parameters:
+        - in: query
+          name: cityId
+          schema: { type: string }
+        - in: query
+          name: timeMaxMinutes
+          schema: { type: integer }
+        - in: query
+          name: distanceMaxMeters
+          schema: { type: integer }
+        - in: query
+          name: interests
+          schema: { type: string }
+          description: Comma-separated interests
+        - in: query
+          name: routeType
+          schema: { type: string }
+      responses:
+        '200': { description: Route list }
+  /routes/{routeId}:
+    get:
+      summary: Get route detail
+      parameters:
+        - in: path
+          name: routeId
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Route detail }
+        '404': { description: Not found }
+  /routes/compare:
+    post:
+      summary: Compare routes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [routeIds]
+              properties:
+                routeIds:
+                  type: array
+                  items: { type: string }
+      responses:
+        '200': { description: Comparison table }
+  /saved-routes:
+    get:
+      summary: List saved routes
+      responses:
+        '200': { description: Saved routes }
+    post:
+      summary: Save a route
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [routeId]
+              properties:
+                routeId: { type: string }
+                collectionId: { type: string }
+                note: { type: string }
+      responses:
+        '201': { description: Saved }
+  /saved-routes/{routeId}:
+    delete:
+      summary: Unsave a route
+      parameters:
+        - in: path
+          name: routeId
+          required: true
+          schema: { type: string }
+      responses:
+        '204': { description: Removed }
+  /sessions:
+    post:
+      summary: Start an active walk session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [routeId]
+              properties:
+                routeId: { type: string }
+      responses:
+        '201': { description: Session created }
+  /sessions/{sessionId}:
+    patch:
+      summary: Update active walk session progress
+      parameters:
+        - in: path
+          name: sessionId
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: string }
+                elapsedSeconds: { type: integer }
+                actualDistanceMeters: { type: number }
+                progressPercent: { type: number }
+                visitedStopIds:
+                  type: array
+                  items: { type: string }
+      responses:
+        '200': { description: Updated }
+  /feedback/route-issue:
+    post:
+      summary: Report a route issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [routeId, issueType]
+              properties:
+                routeId: { type: string }
+                issueType:
+                  enum: [blocked_path, unsafe_crossing, wrong_distance, closed_place, boring_or_low_quality, map_error, other]
+                comment: { type: string }
+                screen: { type: string }
+      responses:
+        '201': { description: Created }

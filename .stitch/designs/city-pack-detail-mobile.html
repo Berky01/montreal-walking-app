@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Montreal Heritage Pack - Meaningful Routes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#a7cbeb",
+                        "secondary-fixed": "#cbe6ff",
+                        "on-secondary-container": "#3f637e",
+                        "primary-fixed-dim": "#a1d494",
+                        "surface-container-high": "#e8e7f1",
+                        "outline": "#72796e",
+                        "on-tertiary-container": "#ffb273",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e3e1ec",
+                        "on-tertiary-fixed": "#2f1500",
+                        "primary-fixed": "#bcf0ae",
+                        "secondary-container": "#badeff",
+                        "inverse-primary": "#a1d494",
+                        "on-secondary-fixed": "#001e30",
+                        "secondary": "#3f627e",
+                        "primary-container": "#2d5a27",
+                        "surface-container-highest": "#e3e1ec",
+                        "on-primary-fixed": "#002201",
+                        "surface-tint": "#3b6934",
+                        "on-secondary-fixed-variant": "#254a65",
+                        "background": "#fbf8ff",
+                        "tertiary": "#5a2e00",
+                        "on-surface-variant": "#42493e",
+                        "surface-dim": "#dad9e3",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#23501e",
+                        "on-background": "#1a1b22",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdcc3",
+                        "outline-variant": "#c2c9bb",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fbf8ff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fbf8ff",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "tertiary-container": "#7c4100",
+                        "primary": "#154212",
+                        "on-primary-container": "#9dd090",
+                        "inverse-surface": "#2f3038",
+                        "inverse-on-surface": "#f1effa",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "surface-container": "#eeedf7",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1b22",
+                        "surface-container-low": "#f4f2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "margin-desktop": "48px",
+                        "gutter": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "metric-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased pb-24 md:pb-0">
+<!-- Top Navigation (Mobile) -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-sm h-16 flex items-center justify-between px-margin-mobile md:hidden">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 -ml-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-label-md text-label-md text-on-surface">City Pack</h1>
+<div class="flex items-center space-x-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 -mr-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Top Navigation (Desktop) -->
+<nav class="hidden md:flex justify-between items-center w-full px-margin-desktop max-w-full h-16 docked full-width top-0 bg-surface shadow-sm sticky z-50">
+<div class="flex items-center gap-xl">
+<div class="font-headline-md text-headline-md font-bold text-primary">Meaningful Routes</div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md" href="#">Explore</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="#">Routes</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md" href="#">Monuments</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md" href="#">Destinations</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md" href="#">Map</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md" href="#">Saved</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-tint transition-colors">Sign in</button>
+</div>
+</nav>
+<main class="pt-16 md:pt-0 max-w-5xl mx-auto md:px-margin-desktop md:py-lg">
+<!-- Hero Section -->
+<section class="relative w-full h-[400px] md:h-[500px] md:rounded-xl overflow-hidden shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full" data-alt="A breathtaking view of Old Montreal at dusk, featuring the historic cobblestone streets, softly glowing streetlamps, and the stunning architecture of Notre-Dame Basilica against a deep twilight sky. The image has a calm, exploratory mood, captured in high definition with a modern, high-end travel guide aesthetic, utilizing a rich palette of deep blues, warm amber lights, and natural stone textures." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDV1ganTRbnHX7lVvOMXsHsyrqMtXCDTrbiu9cDLhg_C_tXhY_8-BSIYT3nFVVdP01CcD9C44xJsVmJfMIv32QLO9I-w4QWrgcMPQoXQ5NOT1Vdn0pra6u-jTGz_1VpmU_DZ1HbYjmOf80WlCEjugdGh7KP_shpXLSLMoSEeqM1VS_OdN25D6TfXWl0Gbpfzrm4Q_I9VgrFpJAtM5RIfVDvM6ZrWH6PlpsxLfUpCOq_FkTQ-URVWOdL8Ls6Lr4iyzegt4mOK9JFIB0')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/90 via-on-background/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-margin-mobile md:p-xl flex flex-col justify-end">
+<div class="flex items-center gap-2 mb-sm">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" data-icon="star">star</span>
+                        Premium Pack
+                    </span>
+<span class="bg-surface-container-high/80 backdrop-blur text-on-surface px-3 py-1 rounded-full font-label-sm text-label-sm">
+                        Montreal, CA
+                    </span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-display-lg md:text-display-lg text-on-primary mb-2 shadow-sm">Montreal Heritage Pack</h1>
+<p class="font-body-md text-body-md text-on-primary/90 mb-lg md:max-w-2xl">The definitive collection of historical and cultural routes, guiding you through centuries of stories.</p>
+<div class="hidden md:flex items-center justify-between bg-surface/95 backdrop-blur-md p-md rounded-xl shadow-lg border border-outline-variant">
+<div>
+<div class="font-metric-lg text-metric-lg text-on-surface">$14.99</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">One-time purchase • Lifetime access</div>
+</div>
+<div class="flex gap-md">
+<button class="border border-outline text-on-surface hover:bg-surface-container-low px-6 py-3 rounded-lg font-label-md text-label-md transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+                            Preview Routes
+                        </button>
+<button class="bg-primary text-on-primary hover:bg-surface-tint px-6 py-3 rounded-lg font-label-md text-label-md transition-colors flex items-center gap-2 shadow-md">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+                            Get Pack
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Actions (Mobile) -->
+<div class="flex md:hidden items-center justify-around p-margin-mobile bg-surface shadow-sm mb-sm border-b border-surface-variant">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined bg-primary-container/20 p-2 rounded-full" data-icon="visibility">visibility</span>
+<span class="font-label-sm text-label-sm">Preview</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined bg-surface-container p-2 rounded-full" data-icon="card_giftcard">card_giftcard</span>
+<span class="font-label-sm text-label-sm">Gift</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined bg-surface-container p-2 rounded-full" data-icon="bookmark_border">bookmark_border</span>
+<span class="font-label-sm text-label-sm">Save</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-md md:mt-xl">
+<!-- Left/Main Column -->
+<div class="md:col-span-2 space-y-xl px-margin-mobile md:px-0">
+<!-- Metric Grid (Bento Style) -->
+<section class="grid grid-cols-3 md:grid-cols-3 gap-sm md:gap-md">
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-surface-variant flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-1" data-icon="route">route</span>
+<div class="font-metric-lg text-metric-lg text-on-surface">12</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Routes</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-surface-variant flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-secondary mb-1" data-icon="castle">castle</span>
+<div class="font-metric-lg text-metric-lg text-on-surface">48</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Monuments</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-surface-variant flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-tertiary mb-1" data-icon="map">map</span>
+<div class="font-metric-lg text-metric-lg text-on-surface">5</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Neighborhoods</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-surface-variant flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-on-surface-variant mb-1" data-icon="timer">timer</span>
+<div class="font-metric-lg text-metric-lg text-on-surface">18h</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Walking</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-surface-variant flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-on-surface-variant mb-1" data-icon="cloud_download">cloud_download</span>
+<div class="font-metric-lg text-metric-lg text-on-surface">142<span class="text-[14px]">MB</span></div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Offline</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-surface-variant flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-on-surface-variant mb-1" data-icon="language">language</span>
+<div class="font-metric-lg text-metric-lg text-on-surface">3</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Languages</div>
+</div>
+</section>
+<!-- The Pack Story -->
+<section>
+<h2 class="font-headline-md text-headline-md text-on-background mb-md">The Pack Story</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-variant">
+                        Curated in collaboration with local historians and cultural guides, the Montreal Heritage Pack offers an unparalleled dive into the city's rich past. From the fortified origins of New France to the elegant Victorian squares and the bustling modern waterfront, these routes are designed to reveal the hidden narratives woven into the city's architecture and streets. Experience Montreal not just as a visitor, but as an insider discovering its enduring spirit.
+                    </p>
+</section>
+</div>
+<!-- Right Sidebar (Desktop) / Bottom Content (Mobile) -->
+<div class="space-y-xl px-margin-mobile md:px-0">
+<!-- Social & Ratings -->
+<section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-variant">
+<div class="flex items-center gap-md mb-md">
+<div class="font-display-lg text-display-lg text-primary">4.9</div>
+<div>
+<div class="flex text-on-tertiary-container mb-1">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star_half" data-weight="fill">star_half</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Based on 120 reviews</div>
+</div>
+</div>
+<div class="flex items-center gap-sm p-sm bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="verified">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface">Trusted by Hotel Place d'Armes</span>
+</div>
+</section>
+<!-- Offline & Features -->
+<section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-variant">
+<h3 class="font-label-md text-label-md text-on-background mb-md">Premium Features</h3>
+<ul class="space-y-md">
+<li class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="headphones">headphones</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Premium Audio Stories</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">Professional narration for key monuments.</div>
+</div>
+</li>
+<li class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="picture_as_pdf">picture_as_pdf</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Downloadable PDF Guides</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">Printable maps and notes for offline backup.</div>
+</div>
+</li>
+</ul>
+</section>
+<!-- Accessibility & Season -->
+<section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-variant">
+<h3 class="font-label-md text-label-md text-on-background mb-md">Good to Know</h3>
+<div class="flex items-center gap-sm mb-sm text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="accessible">accessible</span>
+<span class="font-body-md text-body-md text-sm">60% of routes are wheelchair friendly.</span>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-body-md text-body-md text-sm">Best time to visit: May to October.</span>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Bar (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-surface-variant shadow-[0_-4px_12px_rgba(0,0,0,0.05)] p-margin-mobile flex items-center justify-between">
+<div>
+<div class="font-metric-lg text-metric-lg text-on-surface">$14.99</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Lifetime access</div>
+</div>
+<button class="bg-primary text-on-primary hover:bg-surface-tint px-8 py-3 rounded-lg font-label-md text-label-md transition-colors shadow-md">
+            Buy Pack
+        </button>
+</div>
+</body></html>

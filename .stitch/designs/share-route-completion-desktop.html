@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Share Route - PathFinder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#bcf0ae",
+                        "primary-container": "#2d5a27",
+                        "on-tertiary-fixed": "#2f1500",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#a1d494",
+                        "outline": "#72796e",
+                        "secondary-fixed": "#cbe6ff",
+                        "inverse-primary": "#a1d494",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#5a2e00",
+                        "on-surface": "#1a1b22",
+                        "tertiary-fixed": "#ffdcc3",
+                        "surface-dim": "#dad9e3",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#a7cbeb",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-background": "#1a1b22",
+                        "surface-bright": "#fbf8ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3038",
+                        "surface-container-low": "#f4f2fd",
+                        "primary": "#154212",
+                        "secondary-container": "#badeff",
+                        "outline-variant": "#c2c9bb",
+                        "background": "#fbf8ff",
+                        "tertiary-container": "#7c4100",
+                        "surface-variant": "#e3e1ec",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#42493e",
+                        "on-primary-container": "#9dd090",
+                        "inverse-on-surface": "#f1effa",
+                        "surface-container-high": "#e8e7f1",
+                        "secondary": "#3f627e",
+                        "on-secondary-fixed-variant": "#254a65",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#3b6934",
+                        "surface-container": "#eeedf7",
+                        "on-secondary-fixed": "#001e30",
+                        "on-secondary-container": "#3f637e",
+                        "on-primary-fixed": "#002201",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "on-tertiary-container": "#ffb273",
+                        "on-primary-fixed-variant": "#23501e",
+                        "surface": "#fbf8ff",
+                        "surface-container-highest": "#e3e1ec"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "base": "4px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "metric-lg": ["20px", { lineHeight: "24px", fontWeight: "700" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<nav class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface dark:bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-lg">
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed" href="#">PathFinder</a>
+<div class="hidden md:flex items-center gap-lg ml-xl">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 text-label-md font-label-md" href="#">Discover</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 text-label-md font-label-md opacity-80 transition-opacity" href="#">Routes</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 text-label-md font-label-md" href="#">Community</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 text-label-md font-label-md" href="#">Planning</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<button class="hidden md:block bg-primary-container text-on-primary-container px-md py-sm rounded-lg text-label-md font-label-md hover:bg-primary hover:text-on-primary transition-colors">Create Route</button>
+<button class="hidden md:block border border-outline px-md py-sm rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container transition-colors">Sign Out</button>
+<img class="w-8 h-8 rounded-full object-cover border border-outline-variant hidden md:block" data-alt="A detailed headshot portrait of a smiling young professional woman in her late 20s, with curly dark hair, wearing a casual olive green jacket, standing outdoors in a city park with soft, natural daylight. The background is a soft blur of green trees and warm sunlight. The overall aesthetic is warm, approachable, and modern, suitable for a professional user profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4Sdwm-gNpmqHT2HR-W_jYTKmNfE09sSq82xyq9x9f6uA8N6L3LWeUog8vcILPN8O3HPFOisB54utSRe6ZSo-UgQODSyD96EzGj50CIrO6mxf1r-lhlIhsiqL7scax1lwEqe8uPBt-XnkLtOlKKfd7zBHHVJWYOgLoHD5gXIVe5NM_xMpa9iUDcAZWqrXaX6mPNzMpObhGwh8zuDHxgLwZGxp7H37Yuf_UDtWqFKfkj6mRTtCGTGivFPSj9fNDpeo9qMN6eTGYp3c"/>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl flex flex-col gap-xl">
+<!-- Hero Section -->
+<section class="flex flex-col gap-sm">
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-background">Share a Meaningful Route</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl">Send a walk plan or your completed journey to friends, guests, or travel companions.</p>
+<div class="mt-lg flex flex-col md:flex-row items-start md:items-center gap-md">
+<div class="relative w-full md:w-auto">
+<select class="w-full md:w-64 appearance-none bg-surface border border-outline rounded-lg px-md py-sm text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container cursor-pointer shadow-sm">
+<option>Old Montreal Historic Walk</option>
+<option>Mount Royal Loop</option>
+<option>Lachine Canal Path</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<div class="flex p-1 bg-surface-container-high rounded-lg w-full md:w-auto shadow-sm">
+<button class="flex-1 md:flex-none px-md py-sm bg-surface rounded text-label-md font-label-md text-on-surface shadow-sm transition-all">Route plan</button>
+<button class="flex-1 md:flex-none px-md py-sm text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-all">Completed walk</button>
+</div>
+</div>
+</section>
+<!-- Split View -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left: Share Composer -->
+<div class="lg:col-span-5 flex flex-col gap-lg bg-surface rounded-xl border border-surface-variant p-lg shadow-sm">
+<div class="flex flex-col gap-sm">
+<label class="text-label-md font-label-md text-on-surface">Recipients</label>
+<div class="flex flex-wrap gap-sm p-sm border border-outline rounded-lg bg-surface min-h-[44px] items-center focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container">
+<div class="flex items-center gap-xs bg-surface-container-high px-sm py-1 rounded-full">
+<span class="text-label-sm font-label-sm text-on-surface">alex@example.com</span>
+<span class="material-symbols-outlined text-[14px] cursor-pointer text-on-surface-variant hover:text-error">close</span>
+</div>
+<input class="flex-grow min-w-[120px] bg-transparent border-none p-0 text-body-md font-body-md focus:ring-0 text-on-surface placeholder:text-on-surface-variant/50" placeholder="Add names or emails..." type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="text-label-md font-label-md text-on-surface">Message (Optional)</label>
+<textarea class="w-full border border-outline rounded-lg p-sm text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container resize-none" placeholder="Check out this walk I found!" rows="3"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="flex flex-col gap-sm">
+<label class="text-label-md font-label-md text-on-surface">Permissions</label>
+<select class="w-full appearance-none bg-surface border border-outline rounded-lg px-md py-sm text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary-container shadow-sm cursor-pointer">
+<option>View only</option>
+<option>Can suggest stops</option>
+</select>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="text-label-md font-label-md text-on-surface">Link Expiry</label>
+<select class="w-full appearance-none bg-surface border border-outline rounded-lg px-md py-sm text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary-container shadow-sm cursor-pointer">
+<option>7 days</option>
+<option>30 days</option>
+<option>Never</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-md pt-md border-t border-surface-variant">
+<label class="text-label-md font-label-md text-on-surface">Privacy Settings</label>
+<label class="flex items-center gap-md cursor-pointer group">
+<div class="relative">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+<span class="text-body-md font-body-md text-on-surface group-hover:text-primary-container transition-colors">Hide personal notes</span>
+</label>
+<label class="flex items-center gap-md cursor-pointer group">
+<div class="relative">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+<span class="text-body-md font-body-md text-on-surface group-hover:text-primary-container transition-colors">Mask exact timestamps</span>
+</label>
+</div>
+<div class="flex flex-col gap-sm pt-md border-t border-surface-variant">
+<label class="text-label-md font-label-md text-on-surface">Share Channels</label>
+<div class="flex gap-sm">
+<button class="flex-1 flex flex-col items-center justify-center gap-xs py-sm bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors text-on-surface">
+<span class="material-symbols-outlined">link</span>
+<span class="text-label-sm font-label-sm">Copy Link</span>
+</button>
+<button class="flex-1 flex flex-col items-center justify-center gap-xs py-sm bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors text-on-surface">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-label-sm font-label-sm">Email</span>
+</button>
+<button class="flex-1 flex flex-col items-center justify-center gap-xs py-sm bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors text-on-surface">
+<span class="material-symbols-outlined">qr_code</span>
+<span class="text-label-sm font-label-sm">QR Code</span>
+</button>
+<button class="flex-1 flex flex-col items-center justify-center gap-xs py-sm bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors text-on-surface">
+<span class="material-symbols-outlined">sms</span>
+<span class="text-label-sm font-label-sm">SMS</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right: Live Preview Canvas -->
+<div class="lg:col-span-7 flex flex-col gap-lg">
+<div class="bg-surface rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant flex flex-col h-full">
+<div class="relative h-64 bg-surface-variant">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A stunning, high-resolution wide shot of Old Montreal at golden hour. The cobblestone streets are bathed in warm, directional sunlight. Historic stone architecture with classic green copper roofs lines the street. In the distance, the spires of the Notre-Dame Basilica catch the last rays of sun. The sky is a clear, gradient twilight blue. The mood is romantic, historic, and inviting, suitable for a premium travel application header." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJYSqP9EB6N7Ouypax7XGiCFHJe3QXGOYDaeSim5SoXENqRE5_X6t_aABptR68qnkoD51ltYCsJGg8YKmmbiQ2yNhDN4UyT_yPBXA4di4bfgKDjy_EKpQz0x82_Y9IAoioMQ3qnm1d6MmAwNM35fat5s5b3QXZtNmHLVxlOrM11V0faD1sttRZqVHbx8VB9mdmzzG0lRHbZVUq_B3AKmOwhincT66juuFFm_4LUbjkLEeehSNTK9RnfWKDjON5fWaHQro0KHw0PlI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-md left-md right-md text-white">
+<div class="inline-flex px-sm py-xs bg-primary-container/90 backdrop-blur-sm rounded text-label-sm font-label-sm text-on-primary-container mb-sm">Historic Walk</div>
+<h3 class="text-headline-md font-headline-md font-bold">Old Montreal Historic Walk</h3>
+</div>
+</div>
+<div class="p-lg flex flex-col gap-md flex-grow bg-surface">
+<div class="flex items-center justify-between border-b border-surface-variant pb-md">
+<div class="flex flex-col">
+<span class="text-metric-lg font-metric-lg text-on-surface">3.2 km</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Distance</span>
+</div>
+<div class="w-px h-10 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="text-metric-lg font-metric-lg text-on-surface">55 min</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Est. Time</span>
+</div>
+<div class="w-px h-10 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="text-metric-lg font-metric-lg text-on-surface">8 stops</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Points</span>
+</div>
+</div>
+<div class="flex flex-col gap-sm py-sm">
+<h4 class="text-label-md font-label-md text-on-surface">Included Highlights</h4>
+<ul class="flex flex-col gap-xs">
+<li class="flex items-center gap-sm text-body-md font-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container text-[20px]">location_on</span>
+                                    Place d'Armes
+                                </li>
+<li class="flex items-center gap-sm text-body-md font-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container text-[20px]">church</span>
+                                    Notre-Dame Basilica
+                                </li>
+<li class="flex items-center gap-sm text-body-md font-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container text-[20px]">museum</span>
+                                    Pointe-à-Callière Museum
+                                </li>
+</ul>
+</div>
+<div class="mt-auto pt-md">
+<button class="w-full bg-primary-container text-on-primary-container hover:bg-primary py-sm rounded-lg text-label-md font-label-md transition-colors shadow-sm">Start Route</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Content -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl mt-lg">
+<div class="flex flex-col gap-md">
+<h3 class="text-label-md font-label-md text-on-surface uppercase tracking-wider">Recent Shares</h3>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center justify-between p-sm bg-surface rounded-lg border border-surface-variant shadow-[0px_2px_4px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-sm">
+<div class="p-sm bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-secondary text-[20px]">link</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-md font-body-md text-on-surface">Copied to WhatsApp</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">2h ago • 14 views</span>
+</div>
+</div>
+<button class="text-label-sm font-label-sm text-error hover:underline px-sm py-xs">Revoke</button>
+</div>
+<div class="flex items-center justify-between p-sm bg-surface rounded-lg border border-surface-variant shadow-[0px_2px_4px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-sm">
+<div class="p-sm bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-secondary text-[20px]">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-md font-body-md text-on-surface">Emailed to Sarah</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Yesterday • 0 views</span>
+</div>
+</div>
+<button class="text-label-sm font-label-sm text-error hover:underline px-sm py-xs">Revoke</button>
+</div>
+</div>
+</div>
+<div class="p-lg bg-surface-container-low rounded-xl border border-surface-variant flex gap-md items-start">
+<span class="material-symbols-outlined text-primary-container mt-xs">shield</span>
+<div class="flex flex-col gap-xs">
+<h4 class="text-label-md font-label-md text-on-surface">Privacy &amp; Safety</h4>
+<p class="text-body-md font-body-md text-on-surface-variant">Your exact live location is never shared when sharing a route plan. For completed walks, you can choose to mask specific timestamps and personal notes to protect your privacy while still sharing the journey.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container dark:bg-surface-container-lowest mt-auto border-t border-surface-variant">
+<div class="text-headline-sm font-headline-sm text-on-surface font-semibold">PathFinder</div>
+<div class="flex gap-md text-label-sm font-label-sm text-on-surface-variant">
+<a class="hover:underline hover:text-primary transition-colors" href="#">About Us</a>
+<a class="hover:underline hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:underline hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:underline hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+<div class="text-label-sm font-label-sm text-secondary dark:text-secondary-fixed-dim">© 2024 PathFinder Hiking Guides</div>
+</footer>
+</body></html>

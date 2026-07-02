@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meaningful Routes - Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#002201",
+                      "surface-dim": "#dad9e3",
+                      "on-tertiary": "#ffffff",
+                      "inverse-primary": "#a1d494",
+                      "background": "#fbf8ff",
+                      "secondary": "#3f627e",
+                      "surface-container": "#eeedf7",
+                      "primary": "#154212",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "outline-variant": "#c2c9bb",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#fbf8ff",
+                      "tertiary-fixed-dim": "#ffb77d",
+                      "primary-fixed-dim": "#a1d494",
+                      "on-error": "#ffffff",
+                      "outline": "#72796e",
+                      "on-tertiary-fixed": "#2f1500",
+                      "surface-container-highest": "#e3e1ec",
+                      "primary-container": "#2d5a27",
+                      "on-secondary-fixed": "#001e30",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f1effa",
+                      "on-surface": "#1a1b22",
+                      "surface-container-low": "#f4f2fd",
+                      "secondary-fixed": "#cbe6ff",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#3b6934",
+                      "on-tertiary-container": "#ffb273",
+                      "secondary-container": "#badeff",
+                      "on-background": "#1a1b22",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#42493e",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e3e1ec",
+                      "on-primary-fixed-variant": "#23501e",
+                      "on-secondary-fixed-variant": "#254a65",
+                      "inverse-surface": "#2f3038",
+                      "tertiary-container": "#7c4100",
+                      "tertiary-fixed": "#ffdcc3",
+                      "on-secondary-container": "#3f637e",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "on-primary-container": "#9dd090",
+                      "surface-container-high": "#e8e7f1",
+                      "surface": "#fbf8ff",
+                      "tertiary": "#5a2e00",
+                      "primary-fixed": "#bcf0ae",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "lg": "24px",
+                      "margin-desktop": "48px",
+                      "margin-mobile": "16px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "sm": "8px",
+                      "gutter": "16px",
+                      "xs": "4px",
+                      "safe-bottom": "env(safe-area-inset-bottom, 20px)"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "metric-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                      "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                      "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                      "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "metric-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+                      "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                      "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                      "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                      "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen relative pb-[90px] md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none">
+<button class="flex items-center justify-center p-2 -ml-2 text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim flex-1 text-center pr-8">Search</h1>
+<div class="absolute right-margin-mobile top-1/2 -translate-y-1/2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A small, professional headshot photograph of a user profile avatar. The person has a friendly expression, soft natural lighting, set against a solid light neutral background reflecting a clean, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTeBLWDrVHmJcGdlqUliYWeMmH73O6ivfBaEvvaz2tBXP6XsLYrhBPKaKd1i2MVj6mKl4Of30wsn64LOnoUPntRTM8GviqqtF9YeqMK-p2-VdpfLrqrc3hh1dcLQfLl6eYY5kIWM_EVZ7OKsyK5iDn6HRcCTsD8KXQBi0KbypFP_3oz3uKE9imVhNL5OfCzOulvU9OEQtq1RCI7gAjn_Txex3nHjhot0vKzWfp7WqTD27w9TNYnL6ODw2tP2F7LPJpFoZ9WSMBtCI"/>
+</div>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile flex flex-col gap-lg max-w-2xl mx-auto">
+<!-- Hero Search Section -->
+<section class="flex flex-col gap-sm animate-fade-in-up">
+<div class="relative bg-surface-container-lowest border border-outline-variant focus-within:border-primary transition-colors duration-200 rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<textarea class="w-full bg-transparent border-none focus:ring-0 p-0 font-body-lg text-body-lg text-on-surface resize-none placeholder-on-surface-variant/50" rows="2" spellcheck="false">quiet architecture walk near cafes under 90 minutes</textarea>
+<div class="flex justify-between items-end border-t border-surface-variant pt-3">
+<div class="flex flex-wrap gap-2 items-center">
+<button class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                            Montreal
+                        </button>
+<button class="p-1.5 text-outline hover:text-primary transition-colors rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+</div>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-lg hover:brightness-95 transition-all shadow-sm active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+</button>
+</div>
+</div>
+<!-- Suggestion Chips -->
+<div class="flex gap-2 overflow-x-auto pb-1 hide-scrollbar -mx-margin-mobile px-margin-mobile">
+<button class="shrink-0 bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-4 py-2 rounded-full border border-surface-variant hover:border-outline-variant transition-colors">Rainy day museums</button>
+<button class="shrink-0 bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-4 py-2 rounded-full border border-surface-variant hover:border-outline-variant transition-colors">Accessible sunset walk</button>
+<button class="shrink-0 bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-4 py-2 rounded-full border border-surface-variant hover:border-outline-variant transition-colors">Hidden courtyards</button>
+</div>
+</section>
+<!-- Query Interpretation -->
+<section class="flex flex-col gap-3 p-4 bg-surface-container-lowest rounded-xl border border-surface-variant shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/20 rounded-bl-full blur-2xl -z-10"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_awesome</span>
+<h3 class="font-label-md text-label-md text-on-surface">AI Understood:</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<div class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-primary/10">
+                    Quiet Mood <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-primary">close</span>
+</div>
+<div class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-primary/10">
+                    Architecture Theme <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-primary">close</span>
+</div>
+<div class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-primary/10">
+                    + Cafe Stops <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-primary">close</span>
+</div>
+<div class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-primary/10">
+                    &lt; 90 min <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-primary">close</span>
+</div>
+<div class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-primary/10 border-dashed bg-opacity-50">
+                    Low Crowds <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-primary">add</span>
+</div>
+</div>
+</section>
+<!-- Results Area -->
+<section class="flex flex-col gap-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Top Matches</h2>
+<!-- Result Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden flex flex-col transition-transform hover:-translate-y-1 duration-300">
+<div class="relative h-40 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A highly detailed, professional photograph of a quiet, cobblestone street in Old Montreal during early morning light. The architecture is historic European style with stone facades, large windows, and wrought iron details. The scene is peaceful with no crowds, bathed in soft, cool, light-mode aesthetic lighting. A small, cozy cafe is visible in the background. The mood is serene and discovery-focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_lcb07pVa5xBNr2XlmZyl96hkWeWumoI5yXRa1mxpz8HSQbsojhCLy5NKVu8gBQHcGozcdPKe5E5EN-IdCWbTOim8UTYAHCdSnCq7L4SQdGK4vUdsbEfS-xD093Stw050b4awBwkUQMcsuSYKPPz_fLOFMmsb0vfgaIuc6TyaMpM88ZkM2xEEVSqcigAhzqkT_rax45z4hw1w9z3PfsrPWWdT_7Fu23r2ZeBo_-aHJ2nA5pGY1L4fszh5Movzuvv_cqfS_DhoW5Q"/>
+<div class="absolute top-3 left-3 bg-primary text-on-primary font-label-sm text-label-sm px-2.5 py-1 rounded-md flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[14px]">stars</span> 98% Match
+                    </div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur text-on-surface flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[20px]">bookmark_border</span>
+</button>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex justify-between items-start gap-2">
+<h3 class="font-headline-md text-[20px] leading-[28px] font-semibold text-on-surface">Old Montreal Historic Walk</h3>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-surface-variant flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-0.5">format_quote</span>
+<p class="font-body-md text-body-md text-on-surface-variant italic">"Features quiet morning streets with stunning 19th-century windows. Passes by three highly-rated artisan cafes before the 90-minute mark."</p>
+</div>
+<!-- Metrics Dashboard Ribbon -->
+<div class="flex items-center justify-between py-3 px-1 border-b border-surface-variant">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Distance</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">3.2km</span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Est. Time</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">55min</span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Difficulty</span>
+<span class="font-metric-lg text-metric-lg text-primary">Easy</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 items-center justify-between mt-1">
+<div class="flex gap-2">
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2.5 py-1 rounded-md border border-outline-variant/30">History</span>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2.5 py-1 rounded-md border border-outline-variant/30">Architecture</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="font-label-sm text-label-sm font-semibold">Quiet now</span>
+</div>
+</div>
+<div class="flex gap-3 mt-2">
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg shadow-sm hover:brightness-110 transition-all active:scale-95">View Route</button>
+<button class="flex-1 bg-surface-container-lowest border border-outline text-on-surface font-label-md text-label-md py-3 rounded-lg hover:bg-surface-container-low transition-all active:scale-95">Save for Later</button>
+</div>
+</div>
+</article>
+<!-- Result Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant overflow-hidden flex flex-col mt-2 opacity-95">
+<div class="relative h-32 w-full bg-surface-container">
+<img class="w-full h-full object-cover grayscale-[20%]" data-alt="A vibrant yet peaceful daytime photograph of the Plateau Mont-Royal neighborhood in Montreal, featuring iconic external staircases and colorful brick townhouses. The composition focuses on architectural details under bright, clear sunlight, establishing a clean, modern aesthetic. Lush green trees line the street, harmonizing with the app's forest green accents. The scene conveys a relaxed, exploratory walking experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa4azwEU4MJ7Xd1k6R6wpfNnr4JuMVAenLcI3CPnjc-jiGpNhuS6s-uNaP1CdQRHtbjBaY0OuCUB7sAoFyxvTx9TK2gDY1Rx3jyrJPhfgq9DX4UH06e9AVzT9YthDSzlrDFn786ONoNguiT7oSFUM3Wfv0Cy-Tc3NmNHCklic33UTWsHPjOCQpM4RjIhmzUSyi9VpUyG7_26xlB-QNJGRN0FAisn4_W1BH95t2PdoBg_ugeXLxDtp7Q3iIDyzIngSlXGK2Lx4VJhU"/>
+<div class="absolute top-3 left-3 bg-surface-container-highest text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm border border-outline-variant/50">
+                        85% Match
+                    </div>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<h3 class="font-headline-md text-[18px] leading-[24px] font-semibold text-on-surface">Plateau Architecture &amp; Cafe Crawl</h3>
+<p class="font-body-md text-[14px] leading-[20px] text-on-surface-variant">Famous staircases and indie cafes, slightly busier vibe but excellent architecture.</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="font-label-md text-label-md text-on-surface">4.5km</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-md text-label-md text-on-surface">80min</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">Moderate</span>
+</div>
+</div>
+</article>
+</section>
+<!-- Map View Card -->
+<button class="w-full bg-surface-container-low rounded-xl p-4 flex items-center justify-between border border-surface-variant shadow-sm hover:bg-surface-container transition-colors active:scale-95 group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined">map</span>
+</div>
+<div class="flex flex-col items-start">
+<span class="font-label-md text-label-md text-on-surface font-bold">Map View</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">View 5 matches on map</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<!-- Search Assistant -->
+<section class="flex flex-col gap-3 mt-4 mb-8">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest pl-1">Search Assistant</h3>
+<div class="bg-secondary-container/30 border border-secondary-container rounded-xl p-4 flex flex-col gap-3 relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[100px]">park</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface relative z-10">You're searching for quiet spots. Would you like to explicitly include routes that pass through major parks?</p>
+<div class="flex gap-2 relative z-10">
+<button class="bg-surface-container-lowest border border-outline text-on-surface font-label-md text-label-md px-5 py-2 rounded-lg hover:bg-surface-container-low transition-colors">Yes, include parks</button>
+<button class="bg-transparent text-on-surface-variant font-label-md text-label-md px-4 py-2 hover:bg-surface-variant/50 rounded-lg transition-colors">No thanks</button>
+</div>
+</div>
+<div class="mt-4 flex flex-col gap-2">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant">Recent Searches</h4>
+<div class="flex items-center gap-3 py-2 border-b border-surface-variant text-on-surface cursor-pointer hover:text-primary">
+<span class="material-symbols-outlined text-outline text-[18px]">history</span>
+<span class="font-body-md text-[14px]">brutalism montreal downtown</span>
+</div>
+<div class="flex items-center gap-3 py-2 border-b border-surface-variant text-on-surface cursor-pointer hover:text-primary">
+<span class="material-symbols-outlined text-outline text-[18px]">history</span>
+<span class="font-body-md text-[14px]">waterfront run 5k</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-[env(safe-area-inset-bottom,12px)] bg-surface dark:bg-surface-dim shadow-[0_-4px_16px_rgba(0,0,0,0.05)] dark:shadow-none md:hidden">
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-all scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-sm text-label-sm mt-1">Explore</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-all">
+<span class="material-symbols-outlined">directions_walk</span>
+<span class="font-label-sm text-label-sm mt-1">Routes</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-all">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-label-sm text-label-sm mt-1">Monuments</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-all">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-label-sm text-label-sm mt-1">Saved</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Export Route - Meaningful Routes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#72796e",
+                      "inverse-primary": "#a1d494",
+                      "primary": "#154212",
+                      "surface-tint": "#3b6934",
+                      "on-error-container": "#93000a",
+                      "primary-container": "#2d5a27",
+                      "on-primary-fixed-variant": "#23501e",
+                      "inverse-on-surface": "#f1effa",
+                      "surface-container-highest": "#e3e1ec",
+                      "on-secondary-container": "#3f637e",
+                      "tertiary-container": "#7c4100",
+                      "outline-variant": "#c2c9bb",
+                      "on-tertiary-fixed": "#2f1500",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#e3e1ec",
+                      "error-container": "#ffdad6",
+                      "on-surface": "#1a1b22",
+                      "on-secondary-fixed-variant": "#254a65",
+                      "on-primary-fixed": "#002201",
+                      "on-background": "#1a1b22",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#001e30",
+                      "surface-container-lowest": "#ffffff",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#cbe6ff",
+                      "surface-container": "#eeedf7",
+                      "surface-container-high": "#e8e7f1",
+                      "secondary": "#3f627e",
+                      "on-tertiary-container": "#ffb273",
+                      "on-primary-container": "#9dd090",
+                      "background": "#fbf8ff",
+                      "primary-fixed-dim": "#a1d494",
+                      "tertiary-fixed": "#ffdcc3",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#f4f2fd",
+                      "secondary-container": "#badeff",
+                      "inverse-surface": "#2f3038",
+                      "surface-dim": "#dad9e3",
+                      "tertiary": "#5a2e00",
+                      "surface": "#fbf8ff",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "tertiary-fixed-dim": "#ffb77d",
+                      "primary-fixed": "#bcf0ae",
+                      "surface-bright": "#fbf8ff",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "on-surface-variant": "#42493e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "lg": "24px",
+                      "base": "4px",
+                      "xl": "32px",
+                      "gutter": "16px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "margin-desktop": "48px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "metric-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "metric-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col pt-16 pb-24 font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim shadow-sm flex items-center justify-between px-4 h-16 w-full z-50 fixed top-0">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 ease-in-out p-2 rounded-full">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile text-primary dark:text-primary-fixed-dim font-bold tracking-tight">Export Route</h1>
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 ease-in-out p-2 rounded-full hidden">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 ease-in-out p-2 rounded-full hidden">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 ease-in-out p-2 rounded-full">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col px-margin-mobile gap-lg mt-4">
+<!-- Route Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h2 class="font-headline-md text-headline-md-mobile text-on-surface font-semibold">Old Montreal Monuments Loop</h2>
+<div class="flex items-center gap-xs bg-primary-container text-on-primary-container px-2 py-1 rounded-full">
+<span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span>
+<span class="font-label-sm text-label-sm">Offline-ready</span>
+</div>
+</div>
+<div class="flex gap-md mt-2">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Distance</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">3.2 km</span>
+</div>
+<div class="w-px bg-outline-variant my-1"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Est. Time</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">55 min</span>
+</div>
+<div class="w-px bg-outline-variant my-1"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Stops</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">8</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Updated today</span>
+<span class="font-label-sm text-label-sm text-surface-tint border border-outline-variant px-2 py-0.5 rounded-full">Easy</span>
+</div>
+</section>
+<!-- Warning Card -->
+<section class="bg-error-container text-on-error-container rounded-lg p-md flex gap-sm items-start">
+<span class="material-symbols-outlined text-error mt-0.5">warning</span>
+<div>
+<h3 class="font-label-md text-label-md font-bold text-error">1 Temporary Closure</h3>
+<p class="font-body-md text-sm mt-1">Place d'Armes fountain area is under maintenance. Route preview adjusted.</p>
+</div>
+</section>
+<!-- Export Tabs & Form -->
+<section class="flex flex-col gap-md">
+<!-- Tabs -->
+<div class="flex bg-surface-container p-1 rounded-lg">
+<button class="flex-1 bg-surface-container-lowest text-on-surface font-label-md text-label-md py-2 rounded-md shadow-sm text-center">PDF Guide</button>
+<button class="flex-1 text-on-surface-variant font-label-md text-label-md py-2 text-center">GPX Track</button>
+<button class="flex-1 text-on-surface-variant font-label-md text-label-md py-2 text-center">Offline</button>
+</div>
+<!-- File Info & Actions -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-md">
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Format</span>
+<span class="font-body-md text-body-md font-medium text-on-surface">PDF</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Est. Size</span>
+<span class="font-body-md text-body-md font-medium text-on-surface">4.2 MB</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Language</span>
+<span class="font-body-md text-body-md font-medium text-on-surface">English (EN)</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-2 border-t border-outline-variant">
+<span class="font-body-md text-body-md text-on-surface">Include personal notes</span>
+<button class="w-11 h-6 bg-surface-container-highest rounded-full relative transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+<span class="absolute left-1 top-1 bg-outline w-4 h-4 rounded-full transition-transform"></span>
+</button>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-full flex items-center justify-center gap-2 mt-2">
+<span class="material-symbols-outlined">download</span>
+                    Download PDF
+                </button>
+</div>
+</section>
+<!-- Preview Area -->
+<section class="flex flex-col gap-sm">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Guide Preview</h3>
+<div class="grid grid-cols-12 gap-4 h-48">
+<!-- PDF Preview -->
+<div class="col-span-8 bg-surface-container-lowest border border-outline-variant rounded-lg p-2 shadow-sm relative overflow-hidden flex flex-col">
+<div class="w-full h-1/2 bg-surface-container rounded mb-2 overflow-hidden relative">
+<div class="bg-cover bg-center w-full h-full opacity-50" data-alt="A stylized miniature map thumbnail of Old Montreal showing a bright green route line tracing through historic streets. The map features a light mode aesthetic with soft whites and grays, and prominent numbered stop markers in dark green. The scene is illuminated evenly, emphasizing clarity and functional design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7cWeGhbDoWSX-CgNMrTDpEdDpFUkA8EnCBwod5PsCAkdidRS1jA-lENxWoMRQUOXSMauQAyM7nHb3JDUa3Za3PEQzIaBRRzr6XgY54BisDTESTyrhwp1EDbvvrBnEfnQHDo-RaxPHms1JQz-xqBwbrGhK5sYdTtiHxh52oL3plVmOTXpWh1dwUz4cezmQmgm3Ar_xAWC-G0tPqmkt-NUr3XSLgAXN4ZlQji9mAOI8c77wm4oSXvRnEr5ORNYSUs6zLqsqHdfqbfI')"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline-variant text-4xl">map</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<div class="h-2 w-3/4 bg-surface-container-highest rounded"></div>
+<div class="h-2 w-full bg-surface-container-highest rounded"></div>
+<div class="h-2 w-5/6 bg-surface-container-highest rounded"></div>
+</div>
+<div class="absolute bottom-2 right-2 w-8 h-8 bg-surface-container-highest rounded flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">qr_code_2</span>
+</div>
+</div>
+<!-- GPX Preview Mini -->
+<div class="col-span-4 bg-surface-container-lowest border border-outline-variant rounded-lg p-2 shadow-sm flex items-center justify-center overflow-hidden relative">
+<div class="absolute inset-0 bg-[radial-gradient(#e3e1ec_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
+<svg class="z-10" fill="none" height="80" viewbox="0 0 40 80" width="40" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 5L15 25L5 45L35 65L25 75" stroke="#2D5A27" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+</svg>
+</div>
+</div>
+</section>
+<!-- Customize Content -->
+<section class="flex flex-col gap-md">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Customize Content</h3>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-y-4">
+<label class="flex items-center gap-3">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Route Map</span>
+</label>
+<label class="flex items-center gap-3">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Turn-by-turn directions</span>
+</label>
+<label class="flex items-center gap-3">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Monument stories</span>
+</label>
+<label class="flex items-center gap-3">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Practical info (Hours/Entry)</span>
+</label>
+<label class="flex items-center gap-3">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Weather &amp; time tips</span>
+</label>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface dark:bg-surface-dim shadow-[0_-4px_12px_rgba(0,0,0,0.05)] shadow-lg fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-label-sm text-label-sm mt-1">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-3 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">export_notes</span>
+<span class="font-label-sm text-label-sm mt-1">Export</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

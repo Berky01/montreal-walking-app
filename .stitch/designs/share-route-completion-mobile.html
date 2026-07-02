@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Share Route &amp; Completion - Meaningful Routes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#a7cbeb",
+                        "secondary-container": "#badeff",
+                        "primary-fixed-dim": "#a1d494",
+                        "surface-container-high": "#e8e7f1",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "outline": "#72796e",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#23501e",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f4f2fd",
+                        "inverse-surface": "#2f3038",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "secondary-fixed": "#cbe6ff",
+                        "primary-container": "#2d5a27",
+                        "primary": "#154212",
+                        "primary-fixed": "#bcf0ae",
+                        "outline-variant": "#c2c9bb",
+                        "on-tertiary-fixed": "#2f1500",
+                        "on-background": "#1a1b22",
+                        "on-surface": "#1a1b22",
+                        "on-secondary-container": "#3f637e",
+                        "surface-bright": "#fbf8ff",
+                        "surface-variant": "#e3e1ec",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdcc3",
+                        "tertiary": "#5a2e00",
+                        "surface": "#fbf8ff",
+                        "on-primary-container": "#9dd090",
+                        "on-primary": "#ffffff",
+                        "secondary": "#3f627e",
+                        "on-secondary-fixed-variant": "#254a65",
+                        "surface-dim": "#dad9e3",
+                        "on-surface-variant": "#42493e",
+                        "tertiary-container": "#7c4100",
+                        "inverse-on-surface": "#f1effa",
+                        "on-primary-fixed": "#002201",
+                        "surface-container-highest": "#e3e1ec",
+                        "inverse-primary": "#a1d494",
+                        "surface-tint": "#3b6934",
+                        "on-tertiary-container": "#ffb273",
+                        "on-secondary-fixed": "#001e30",
+                        "background": "#fbf8ff",
+                        "surface-container": "#eeedf7",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "metric-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #FAFAFA; color: #1a1b22; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+        /* Hide scrollbar for clean UI */
+        ::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md antialiased pb-24 selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full bg-surface dark:bg-background z-40 transition-colors duration-200 ease-in-out flex items-center justify-between px-margin-mobile h-16 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<button aria-label="Back" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors text-primary dark:text-primary-fixed-dim">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<div class="flex flex-col items-center justify-center flex-1">
+<h1 class="font-headline-md text-headline-md-mobile text-primary dark:text-primary-fixed-dim tracking-tight">Share Route</h1>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant">Old Montreal Historic Walk</span>
+</div>
+<button aria-label="More options" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors text-primary dark:text-primary-fixed-dim">
+<span class="material-symbols-outlined text-[24px]">more_vert</span>
+</button>
+</header>
+<main class="pt-20 px-margin-mobile flex flex-col gap-md max-w-[600px] mx-auto pb-32">
+<!-- Share Preview Card -->
+<section class="bg-surface-container-lowest rounded-[16px] shadow-[0px_4px_12px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col">
+<div class="relative h-40 w-full">
+<img class="w-full h-full object-cover" data-alt="A cinematic, wide-angle photograph of the historic cobblestone streets of Old Montreal during golden hour. The majestic Notre-Dame Basilica stands in the background, bathed in warm, soft sunlight. The scene is bustling yet peaceful, capturing the timeless elegance of the city. The color palette features deep forest greens from surrounding foliage, warm golden tones, and crisp neutral greys of the stonework, aligning with a modern, sophisticated travel aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAld1FGX3_iDXD1cyQHgACVyGcd1pLlHIDibyq5x8eu9vXsPHUof7yus5Sya3lWOmaHKkxa9V22NYA1kgGOMUER4V-jObpYaHvf48rFoMRXWlKmU3M7aFqLCHqjBDQPQfeW_x1Vq2OqDZHjeUwCouTSN4Y_G6AvcRIqdJh-ia-sx9fk__jpjYBPEhn1q1_24vrG9PT8GpSudhtlzE4CXPO0-qdTHQSMibIqf5VgmcFgbdSf5_tkl1q3-i-YaqemOX-BfpwoaYJUd-I"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<h2 class="font-headline-md text-headline-md-mobile text-white drop-shadow-md">Old Montreal Walk</h2>
+</div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<!-- Segmented Control -->
+<div class="flex bg-surface-container rounded-lg p-1 w-full relative mb-2">
+<button class="flex-1 py-1.5 px-3 rounded-md bg-white shadow-sm font-label-md text-label-md text-primary text-center transition-all">Route plan</button>
+<button class="flex-1 py-1.5 px-3 rounded-md font-label-md text-label-md text-on-surface-variant hover:text-primary text-center transition-all">Completed</button>
+</div>
+<!-- Map Strip & Stats -->
+<div class="flex gap-md items-center bg-surface-container-low p-sm rounded-lg border border-surface-variant">
+<div class="w-16 h-16 rounded-md bg-surface-dim overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover opacity-80" data-alt="A stylized, minimalist map snippet of Old Montreal, focusing on the waterfront and historic district. The map uses a light mode, corporate aesthetic with pale neutral backgrounds, subtle grey roads, and a distinct forest green route line tracing a path through the streets. A small, elegant green pin marks the destination." data-location="Montreal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1Go90IdwzmDLD65oqP1pz6Lxo5dDE8KdUE1t3HHBILcNzbYe8iAqHLZ2uafAxG-BsMMOxyyZya2d1seF_aOb1C0WePSAvDRV2-nYeXm5Eizq-qAM3IWHfxsMBnZsOSZG87TNyamgzDEGFciZ8SMKEXymIFHdAlbU9MODlqvwcSFcMuEBttgZt3Rs8aorjGOB_j7ttHxi7DaWlfn4cceQoIwhrGZRDBdk_sPictHObwNwCuMWHwFy4M4jhxlpjKSw6Khr35TTMpuA"/>
+</div>
+<div class="flex-1 flex justify-between items-center pr-2">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Distance</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">3.2 km</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Time</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">55 min</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Stops</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">8</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Share Composer -->
+<section class="bg-surface-container-lowest rounded-[16px] shadow-[0px_4px_12px_rgba(0,0,0,0.05)] p-md flex flex-col gap-md">
+<!-- Chips -->
+<div class="flex flex-wrap gap-2">
+<div class="flex items-center gap-2 bg-primary-container/10 px-3 py-1.5 rounded-full border border-primary-container/20">
+<span class="material-symbols-outlined text-[16px] text-primary">person</span>
+<span class="font-label-sm text-label-sm text-primary">alex@example.com</span>
+<button class="w-4 h-4 flex items-center justify-center rounded-full hover:bg-primary-container/20 text-primary">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<button class="flex items-center justify-center w-8 h-8 rounded-full border border-outline-variant border-dashed text-outline hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<!-- Textarea -->
+<div class="relative">
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg p-3 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none" placeholder="Check out this walk I found!" rows="3"></textarea>
+</div>
+<!-- Share Channels -->
+<div class="flex justify-between items-center px-4 py-2">
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center group-hover:bg-primary-container/10 group-hover:text-primary text-on-surface-variant transition-colors border border-transparent group-hover:border-primary-container/30">
+<span class="material-symbols-outlined">link</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">Copy Link</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center group-hover:bg-primary-container/10 group-hover:text-primary text-on-surface-variant transition-colors border border-transparent group-hover:border-primary-container/30">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">Email</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center group-hover:bg-primary-container/10 group-hover:text-primary text-on-surface-variant transition-colors border border-transparent group-hover:border-primary-container/30">
+<span class="material-symbols-outlined">qr_code_2</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">QR Code</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center group-hover:bg-primary-container/10 group-hover:text-primary text-on-surface-variant transition-colors border border-transparent group-hover:border-primary-container/30">
+<span class="material-symbols-outlined">sms</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">SMS</span>
+</button>
+</div>
+<!-- Divider -->
+<div class="h-px w-full bg-surface-variant"></div>
+<!-- Privacy & Settings -->
+<div class="flex flex-col gap-3">
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3 text-on-surface group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-primary">visibility_off</span>
+<span class="font-label-md text-label-md">Hide personal notes</span>
+</div>
+<div class="relative">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3 text-on-surface group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-primary">schedule</span>
+<span class="font-label-md text-label-md">Mask exact timestamps</span>
+</div>
+<div class="relative">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<div class="flex items-center justify-between mt-1">
+<div class="flex items-center gap-3 text-on-surface">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">hourglass_empty</span>
+<span class="font-label-md text-label-md">Link Expiry</span>
+</div>
+<select class="bg-surface border border-outline-variant text-on-surface font-label-sm text-label-sm rounded-md py-1 pl-2 pr-8 focus:ring-primary focus:border-primary outline-none cursor-pointer">
+<option>7 days</option>
+<option>30 days</option>
+<option>Never</option>
+</select>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-[#2D5A27] hover:bg-primary text-white font-label-md text-label-md py-3.5 rounded-lg shadow-[0px_4px_12px_rgba(45,90,39,0.2)] transition-all flex items-center justify-center gap-2 mt-2">
+<span class="material-symbols-outlined icon-fill text-[20px]">send</span>
+                Share route
+            </button>
+</section>
+<!-- Postcard Previews -->
+<section class="flex flex-col gap-sm">
+<h3 class="font-label-md text-label-md text-on-surface-variant px-1 uppercase tracking-wider">Preview Styles</h3>
+<div class="flex overflow-x-auto gap-md pb-4 -mx-margin-mobile px-margin-mobile snap-x">
+<!-- Plan Preview Card -->
+<div class="min-w-[280px] w-[85%] bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm snap-center flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary-container/5 rounded-bl-full -z-0"></div>
+<div class="flex items-center gap-2 mb-1 relative z-10">
+<span class="material-symbols-outlined text-primary text-[20px]">map</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold uppercase tracking-wider">Plan Preview</span>
+</div>
+<h4 class="font-headline-md text-headline-md-mobile text-on-surface leading-tight relative z-10">Old Montreal Historic Walk</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 relative z-10 line-clamp-2">Highlights: Notre-Dame, Place d'Armes, Bonsecours Market.</p>
+<div class="mt-4 pt-3 border-t border-surface-variant flex justify-between items-center relative z-10">
+<span class="font-label-sm text-label-sm text-primary italic">"Join me on this route!"</span>
+</div>
+</div>
+<!-- Completed Preview Card -->
+<div class="min-w-[280px] w-[85%] bg-[#154212] text-white rounded-xl p-md shadow-[0px_8px_24px_rgba(21,66,18,0.2)] snap-center flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute -bottom-10 -right-10 opacity-10">
+<span class="material-symbols-outlined text-[120px] icon-fill">trophy</span>
+</div>
+<div class="flex items-center gap-2 mb-1 relative z-10">
+<span class="material-symbols-outlined text-primary-fixed-dim text-[20px] icon-fill">emoji_events</span>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim font-semibold uppercase tracking-wider">Walk Completed!</span>
+</div>
+<div class="flex gap-4 items-end mt-1 relative z-10">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-white/70">Stats</span>
+<span class="font-metric-lg text-metric-lg">3.4km • 58m</span>
+</div>
+</div>
+<div class="flex items-center gap-1 my-2 relative z-10">
+<span class="font-label-sm text-label-sm text-white/70 mr-2">Rating:</span>
+<span class="material-symbols-outlined text-[16px] text-[#ffb273] icon-fill">star</span>
+<span class="material-symbols-outlined text-[16px] text-[#ffb273] icon-fill">star</span>
+<span class="material-symbols-outlined text-[16px] text-[#ffb273] icon-fill">star</span>
+<span class="material-symbols-outlined text-[16px] text-[#ffb273] icon-fill">star</span>
+<span class="material-symbols-outlined text-[16px] text-[#ffb273] icon-fill">star</span>
+</div>
+<div class="mt-2 pt-3 border-t border-white/20 flex flex-col gap-1 relative z-10">
+<span class="font-label-sm text-label-sm text-white/70">Date: Oct 12</span>
+<p class="font-body-md text-body-md italic text-white/90 line-clamp-2">"Incredible views of the port area at sunset..."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Activity -->
+<section class="flex flex-col gap-sm">
+<h3 class="font-label-md text-label-md text-on-surface-variant px-1 uppercase tracking-wider">Recent Shares</h3>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden flex flex-col">
+<!-- Row 1 -->
+<div class="flex items-center justify-between p-3 border-b border-surface-variant hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-[#25D366]/10 text-[#25D366] flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">WhatsApp</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2h ago • 14 views</span>
+</div>
+</div>
+<button class="font-label-sm text-label-sm text-error hover:underline px-2 py-1">Revoke</button>
+</div>
+<!-- Row 2 -->
+<div class="flex items-center justify-between p-3 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Emailed to Sarah</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Yesterday • 0 views</span>
+</div>
+</div>
+<button class="font-label-sm text-label-sm text-error hover:underline px-2 py-1">Revoke</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Interactive Flow: Bottom Sheet (Partially Visible QR Code) -->
+<div class="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
+<div class="bg-surface-container-lowest rounded-t-2xl shadow-[0px_-8px_24px_rgba(0,0,0,0.1)] p-6 flex flex-col items-center transform translate-y-3/4 transition-transform duration-300 hover:translate-y-0 pointer-events-auto border-t border-outline-variant w-full max-w-[600px] mx-auto">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full mb-4"></div>
+<h3 class="font-headline-md text-headline-md-mobile text-on-surface mb-2">Scan to Route</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 text-center">Let your friends scan this code to instantly open the route plan.</p>
+<div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm w-48 h-48 flex items-center justify-center mb-16">
+<!-- Placeholder for QR Code, using a simple geometric pattern as a proxy for visual structure -->
+<div class="w-full h-full bg-[radial-gradient(#1a1b22_2px,transparent_2px)] [background-size:12px_12px] opacity-80 rounded-md border-4 border-white flex items-center justify-center">
+<div class="w-12 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">explore</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

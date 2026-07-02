@@ -1,0 +1,531 @@
+{
+  "cities": [
+    {
+      "id": "montreal-qc",
+      "name": "Montreal",
+      "region": "Quebec",
+      "country": "Canada",
+      "locale": "en-CA",
+      "timezone": "America/Montreal",
+      "center": {
+        "lat": 45.5017,
+        "lng": -73.5673
+      },
+      "isMvpCity": true,
+      "status": "active"
+    }
+  ],
+  "places": [
+    {
+      "id": "place-darmes",
+      "cityId": "montreal-qc",
+      "name": "Place d'Armes",
+      "category": "square",
+      "coordinates": {
+        "lat": 45.5044,
+        "lng": -73.5561
+      },
+      "shortDescription": "Historic square in Old Montreal.",
+      "whyItMatters": "A compact starting point surrounded by major Old Montreal landmarks.",
+      "tags": [
+        "history",
+        "architecture"
+      ],
+      "sourceQuality": "draft"
+    },
+    {
+      "id": "notre-dame-basilica",
+      "cityId": "montreal-qc",
+      "name": "Notre-Dame Basilica",
+      "category": "church",
+      "coordinates": {
+        "lat": 45.5045,
+        "lng": -73.5564
+      },
+      "shortDescription": "One of Montreal's most recognizable religious and architectural landmarks.",
+      "whyItMatters": "A defining stop for architecture, faith heritage, and Old Montreal identity.",
+      "tags": [
+        "churches",
+        "architecture",
+        "history"
+      ],
+      "sourceQuality": "draft"
+    },
+    {
+      "id": "pointe-a-calliere",
+      "cityId": "montreal-qc",
+      "name": "Pointe-à-Callière",
+      "category": "museum",
+      "coordinates": {
+        "lat": 45.5026,
+        "lng": -73.5543
+      },
+      "shortDescription": "Museum and archaeological site connected to Montreal's origins.",
+      "whyItMatters": "A strong cultural anchor for routes about early Montreal.",
+      "tags": [
+        "museums",
+        "history"
+      ],
+      "sourceQuality": "draft"
+    },
+    {
+      "id": "old-port",
+      "cityId": "montreal-qc",
+      "name": "Old Port Waterfront",
+      "category": "waterfront",
+      "coordinates": {
+        "lat": 45.506,
+        "lng": -73.55
+      },
+      "shortDescription": "Waterfront area along the St. Lawrence River.",
+      "whyItMatters": "Adds open views and breathing room to dense Old Montreal walks.",
+      "tags": [
+        "viewpoints",
+        "waterfront",
+        "scenic"
+      ],
+      "sourceQuality": "draft"
+    },
+    {
+      "id": "mount-royal-lookout",
+      "cityId": "montreal-qc",
+      "name": "Mount Royal Lookout",
+      "category": "viewpoint",
+      "coordinates": {
+        "lat": 45.5034,
+        "lng": -73.5875
+      },
+      "shortDescription": "Classic viewpoint over downtown Montreal.",
+      "whyItMatters": "One of the clearest scenic rewards in the city.",
+      "tags": [
+        "viewpoints",
+        "nature",
+        "photography"
+      ],
+      "sourceQuality": "draft"
+    },
+    {
+      "id": "saint-laurent-murals",
+      "cityId": "montreal-qc",
+      "name": "Saint-Laurent Murals",
+      "category": "mural",
+      "coordinates": {
+        "lat": 45.5155,
+        "lng": -73.5751
+      },
+      "shortDescription": "Street art and mural corridor along Saint-Laurent.",
+      "whyItMatters": "Good for a casual cultural walk with visual variety.",
+      "tags": [
+        "murals",
+        "street_art",
+        "photography"
+      ],
+      "sourceQuality": "draft"
+    },
+    {
+      "id": "mile-end-cafes",
+      "cityId": "montreal-qc",
+      "name": "Mile End Cafés",
+      "category": "cafe",
+      "coordinates": {
+        "lat": 45.5235,
+        "lng": -73.6
+      },
+      "shortDescription": "Café and local culture cluster in Mile End.",
+      "whyItMatters": "Adds a social/food stop to neighborhood walks.",
+      "tags": [
+        "cafes",
+        "food",
+        "neighborhood"
+      ],
+      "sourceQuality": "draft"
+    },
+    {
+      "id": "lachine-canal",
+      "cityId": "montreal-qc",
+      "name": "Lachine Canal",
+      "category": "canal",
+      "coordinates": {
+        "lat": 45.4807,
+        "lng": -73.5717
+      },
+      "shortDescription": "Canal-side route with industrial heritage and waterfront paths.",
+      "whyItMatters": "Strong for scenic, flat, longer walks.",
+      "tags": [
+        "waterfront",
+        "parks",
+        "history"
+      ],
+      "sourceQuality": "draft"
+    }
+  ],
+  "routes": [
+    {
+      "id": "old-montreal-stone-streets-loop",
+      "cityId": "montreal-qc",
+      "title": "Old Montreal Stone Streets Loop",
+      "slug": "old-montreal-stone-streets-loop",
+      "summary": "A compact introduction to Old Montreal through historic streets, churches, museum stops, and waterfront views.",
+      "routeType": "heritage_route",
+      "mode": "walk",
+      "tags": [
+        "history",
+        "architecture",
+        "waterfront",
+        "first_time_visitors"
+      ],
+      "interests": [
+        "history",
+        "architecture",
+        "churches",
+        "museums",
+        "viewpoints"
+      ],
+      "moodTags": [
+        "curious",
+        "scenic",
+        "cultural"
+      ],
+      "distanceMeters": 3200,
+      "estimatedDurationMinutes": 55,
+      "difficulty": "easy",
+      "pace": "relaxed",
+      "loopType": "loop",
+      "start": {
+        "name": "Place d'Armes",
+        "coordinates": {
+          "lat": 45.5044,
+          "lng": -73.5561
+        }
+      },
+      "end": {
+        "name": "Place d'Armes",
+        "coordinates": {
+          "lat": 45.5044,
+          "lng": -73.5561
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.5561,
+            45.5044
+          ],
+          [
+            -73.5564,
+            45.5045
+          ],
+          [
+            -73.5543,
+            45.5026
+          ],
+          [
+            -73.55,
+            45.506
+          ],
+          [
+            -73.5561,
+            45.5044
+          ]
+        ]
+      },
+      "stops": [
+        {
+          "placeId": "place-darmes",
+          "order": 1,
+          "recommendedStopMinutes": 5
+        },
+        {
+          "placeId": "notre-dame-basilica",
+          "order": 2,
+          "recommendedStopMinutes": 10
+        },
+        {
+          "placeId": "pointe-a-calliere",
+          "order": 3,
+          "recommendedStopMinutes": 10
+        },
+        {
+          "placeId": "old-port",
+          "order": 4,
+          "recommendedStopMinutes": 10
+        }
+      ],
+      "bestFor": [
+        "first-time visitors",
+        "architecture",
+        "relaxed walk",
+        "photography"
+      ],
+      "knowBeforeYouGo": [
+        "Some cobblestone sections",
+        "Can be busy on weekends",
+        "Good in daylight and early evening"
+      ],
+      "sourceQuality": "draft",
+      "status": "published",
+      "lastReviewedAt": "2026-06-30"
+    },
+    {
+      "id": "mount-royal-sunrise-viewpoint-walk",
+      "cityId": "montreal-qc",
+      "title": "Mount Royal Sunrise Viewpoint Walk",
+      "slug": "mount-royal-sunrise-viewpoint-walk",
+      "summary": "A scenic route toward one of Montreal's classic viewpoints, best for views and nature without leaving the city.",
+      "routeType": "scenic_walk",
+      "mode": "walk",
+      "tags": [
+        "nature",
+        "viewpoints",
+        "photography",
+        "moderate"
+      ],
+      "interests": [
+        "nature",
+        "viewpoints",
+        "parks",
+        "photography"
+      ],
+      "moodTags": [
+        "scenic",
+        "active",
+        "calm"
+      ],
+      "distanceMeters": 4100,
+      "estimatedDurationMinutes": 70,
+      "difficulty": "moderate",
+      "pace": "balanced",
+      "loopType": "out_and_back",
+      "start": {
+        "name": "Mount Royal lower access",
+        "coordinates": {
+          "lat": 45.506,
+          "lng": -73.579
+        }
+      },
+      "end": {
+        "name": "Mount Royal Lookout",
+        "coordinates": {
+          "lat": 45.5034,
+          "lng": -73.5875
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.579,
+            45.506
+          ],
+          [
+            -73.583,
+            45.505
+          ],
+          [
+            -73.5875,
+            45.5034
+          ]
+        ]
+      },
+      "stops": [
+        {
+          "placeId": "mount-royal-lookout",
+          "order": 1,
+          "recommendedStopMinutes": 15
+        }
+      ],
+      "bestFor": [
+        "views",
+        "sunrise",
+        "nature",
+        "photography"
+      ],
+      "knowBeforeYouGo": [
+        "Includes uphill sections",
+        "Bring water in warm weather",
+        "Can be icy in winter"
+      ],
+      "sourceQuality": "draft",
+      "status": "published",
+      "lastReviewedAt": "2026-06-30"
+    },
+    {
+      "id": "plateau-murals-cafe-walk",
+      "cityId": "montreal-qc",
+      "title": "Plateau Murals & Café Walk",
+      "slug": "plateau-murals-cafe-walk",
+      "summary": "A visual neighborhood walk combining murals, street life, cafés, and local culture.",
+      "routeType": "food_cafe_route",
+      "mode": "walk",
+      "tags": [
+        "murals",
+        "cafes",
+        "neighborhood",
+        "street_art"
+      ],
+      "interests": [
+        "murals",
+        "cafes",
+        "food",
+        "photography",
+        "old_streets"
+      ],
+      "moodTags": [
+        "curious",
+        "social",
+        "casual"
+      ],
+      "distanceMeters": 2600,
+      "estimatedDurationMinutes": 45,
+      "difficulty": "easy",
+      "pace": "relaxed",
+      "loopType": "one_way",
+      "start": {
+        "name": "Saint-Laurent",
+        "coordinates": {
+          "lat": 45.5155,
+          "lng": -73.5751
+        }
+      },
+      "end": {
+        "name": "Mile End",
+        "coordinates": {
+          "lat": 45.5235,
+          "lng": -73.6
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.5751,
+            45.5155
+          ],
+          [
+            -73.585,
+            45.52
+          ],
+          [
+            -73.6,
+            45.5235
+          ]
+        ]
+      },
+      "stops": [
+        {
+          "placeId": "saint-laurent-murals",
+          "order": 1,
+          "recommendedStopMinutes": 15
+        },
+        {
+          "placeId": "mile-end-cafes",
+          "order": 2,
+          "recommendedStopMinutes": 20
+        }
+      ],
+      "bestFor": [
+        "street art",
+        "coffee stop",
+        "casual afternoon",
+        "photos"
+      ],
+      "knowBeforeYouGo": [
+        "Best in daylight",
+        "Good route to combine with food stops",
+        "One-way route; check transit back"
+      ],
+      "sourceQuality": "draft",
+      "status": "published",
+      "lastReviewedAt": "2026-06-30"
+    },
+    {
+      "id": "lachine-canal-waterfront-loop",
+      "cityId": "montreal-qc",
+      "title": "Lachine Canal Waterfront Loop",
+      "slug": "lachine-canal-waterfront-loop",
+      "summary": "A flat scenic route along canal paths, water views, and traces of industrial heritage.",
+      "routeType": "scenic_walk",
+      "mode": "walk",
+      "tags": [
+        "waterfront",
+        "parks",
+        "history",
+        "flat"
+      ],
+      "interests": [
+        "nature",
+        "rivers_canals",
+        "history",
+        "parks",
+        "photography"
+      ],
+      "moodTags": [
+        "calm",
+        "scenic",
+        "active"
+      ],
+      "distanceMeters": 5200,
+      "estimatedDurationMinutes": 85,
+      "difficulty": "easy",
+      "pace": "balanced",
+      "loopType": "loop",
+      "start": {
+        "name": "Lachine Canal",
+        "coordinates": {
+          "lat": 45.4807,
+          "lng": -73.5717
+        }
+      },
+      "end": {
+        "name": "Lachine Canal",
+        "coordinates": {
+          "lat": 45.4807,
+          "lng": -73.5717
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.5717,
+            45.4807
+          ],
+          [
+            -73.565,
+            45.482
+          ],
+          [
+            -73.56,
+            45.485
+          ],
+          [
+            -73.5717,
+            45.4807
+          ]
+        ]
+      },
+      "stops": [
+        {
+          "placeId": "lachine-canal",
+          "order": 1,
+          "recommendedStopMinutes": 15
+        }
+      ],
+      "bestFor": [
+        "waterfront",
+        "longer relaxed walk",
+        "flat route",
+        "sunset"
+      ],
+      "knowBeforeYouGo": [
+        "Shared paths can be busy",
+        "Windy near water",
+        "Good for a longer easy route"
+      ],
+      "sourceQuality": "draft",
+      "status": "published",
+      "lastReviewedAt": "2026-06-30"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+services:
+  routeapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_SHA: ${BUILD_SHA:-unavailable}
+        BUILD_TIME: ${BUILD_TIME:-unavailable}
+    image: routeapp:latest
+    container_name: routeapp
+    networks:
+      - appdata_media
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - DATA_SOURCE=mock
+      - NEXT_PUBLIC_SITE_URL=https://routeapp.plexplease.xyz
+      - NEXT_PUBLIC_APP_NAME=Meaningful Routes
+      - NEXT_PUBLIC_DEFAULT_CITY=montreal
+      - NEXT_PUBLIC_DEFAULT_CENTER_LNG=-73.5673
+      - NEXT_PUBLIC_DEFAULT_CENTER_LAT=45.5017
+      - NEXT_PUBLIC_MAP_TILE_URL=
+      - NEXT_PUBLIC_MAP_STYLE_URL=
+      - MAP_PROVIDER_NAME=osm
+      - ROUTING_PROVIDER=none
+      - ROUTING_BASE_URL=
+      - ROUTING_PROFILE=walking
+      - ROUTING_TIMEOUT_MS=10000
+      - ENABLE_EXTERNAL_IMPORTS=false
+      - MEDIA_STORAGE=local
+      - MEDIA_PUBLIC_BASE_URL=/media
+      - ENABLE_ADMIN_WRITE_ACTIONS=false
+      - AI_PROVIDER=none
+      - ENABLE_AI_SEARCH=false
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  appdata_media:
+    external: true

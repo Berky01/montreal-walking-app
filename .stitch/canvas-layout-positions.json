@@ -1,0 +1,738 @@
+{
+  "projectId": "7741303272075430847",
+  "projectTitle": "Meaningful Routes Web Platform",
+  "designSystem": "assets/7afda6fefe6b4e6baeab8ab7fa4ea0b6",
+  "status": {
+    "generatedScreensComplete": true,
+    "positionsAppliedInStitch": false,
+    "blocker": "The exposed Stitch MCP tools do not include a canvas move, reorder, hide, or screenInstances position update operation."
+  },
+  "layoutRules": {
+    "desktopWidth": 1280,
+    "mobileWidth": 390,
+    "desktopMobileGap": 64,
+    "pairGap": 260,
+    "pairStride": 1994,
+    "rowGap": 2600,
+    "rowClearanceGap": 360,
+    "rowY": [
+      { "rowIndex": 1, "targetY": 0 },
+      { "rowIndex": 2, "targetY": 2600 },
+      { "rowIndex": 3, "targetY": 5200 },
+      { "rowIndex": 4, "targetY": 8400 },
+      { "rowIndex": 5, "targetY": 11800 },
+      { "rowIndex": 6, "targetY": 14400 }
+    ],
+    "pairX": [
+      { "pairIndex": 1, "desktopX": 0, "mobileX": 1344 },
+      { "pairIndex": 2, "desktopX": 1994, "mobileX": 3338 },
+      { "pairIndex": 3, "desktopX": 3988, "mobileX": 5332 },
+      { "pairIndex": 4, "desktopX": 5982, "mobileX": 7326 },
+      { "pairIndex": 5, "desktopX": 7976, "mobileX": 9320 },
+      { "pairIndex": 6, "desktopX": 9970, "mobileX": 11314 },
+      { "pairIndex": 7, "desktopX": 11964, "mobileX": 13308 },
+      { "pairIndex": 8, "desktopX": 13958, "mobileX": 15302 }
+    ]
+  },
+  "rows": [
+    {
+      "rowIndex": 1,
+      "rowName": "Core Discovery",
+      "priority": "Core/P0",
+      "targetY": 0,
+      "pairs": [
+        {
+          "pairIndex": 1,
+          "feature": "Landing page / first impression",
+          "desktop": {
+            "screenInstanceId": "acfcfb43b7fb454491494732a8233366",
+            "sourceScreen": "projects/7741303272075430847/screens/acfcfb43b7fb454491494732a8233366",
+            "targetX": 0,
+            "targetY": 0,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "1390a16b4d3744baa409038ffd849677",
+            "sourceScreen": "projects/7741303272075430847/screens/1390a16b4d3744baa409038ffd849677",
+            "targetX": 1344,
+            "targetY": 0,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 2,
+          "feature": "App home",
+          "desktop": {
+            "screenInstanceId": "d4ddd8802505418786eaea041f09ff5e",
+            "sourceScreen": "projects/7741303272075430847/screens/d4ddd8802505418786eaea041f09ff5e",
+            "targetX": 1994,
+            "targetY": 0,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "93c91968783d4525a462c601622f7162",
+            "sourceScreen": "projects/7741303272075430847/screens/93c91968783d4525a462c601622f7162",
+            "targetX": 3338,
+            "targetY": 0,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 3,
+          "feature": "Discover monuments",
+          "desktop": {
+            "screenInstanceId": "7f7a5529e5de489aa9f3c43238e4d089",
+            "sourceScreen": "projects/7741303272075430847/screens/7f7a5529e5de489aa9f3c43238e4d089",
+            "targetX": 3988,
+            "targetY": 0,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "0bdf6f8e03fb48879cebe378b610165c",
+            "sourceScreen": "projects/7741303272075430847/screens/0bdf6f8e03fb48879cebe378b610165c",
+            "targetX": 5332,
+            "targetY": 0,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 4,
+          "feature": "Route results",
+          "desktop": {
+            "screenInstanceId": "d34082ff85ea4ceb99d3c4c6f5b98f05",
+            "sourceScreen": "projects/7741303272075430847/screens/d34082ff85ea4ceb99d3c4c6f5b98f05",
+            "targetX": 5982,
+            "targetY": 0,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "11c0aa4f71714ed09f5af715dfa2ee57",
+            "sourceScreen": "projects/7741303272075430847/screens/11c0aa4f71714ed09f5af715dfa2ee57",
+            "targetX": 7326,
+            "targetY": 0,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 5,
+          "feature": "Map explorer",
+          "desktop": {
+            "screenInstanceId": "fca08ee193bd4ce1b25bdf16455d8587",
+            "sourceScreen": "projects/7741303272075430847/screens/fca08ee193bd4ce1b25bdf16455d8587",
+            "targetX": 7976,
+            "targetY": 0,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "85848be2bcca44f18bab60c84035dc5f",
+            "sourceScreen": "projects/7741303272075430847/screens/85848be2bcca44f18bab60c84035dc5f",
+            "targetX": 9320,
+            "targetY": 0,
+            "targetWidth": 390
+          }
+        }
+      ]
+    },
+    {
+      "rowIndex": 2,
+      "rowName": "Core Route, Session, Account, Reporting",
+      "priority": "Core/P0",
+      "targetY": 2600,
+      "pairs": [
+        {
+          "pairIndex": 1,
+          "feature": "Route detail",
+          "desktop": {
+            "screenInstanceId": "0c24733a88214d0b85a9ea69f801c33d",
+            "sourceScreen": "projects/7741303272075430847/screens/0c24733a88214d0b85a9ea69f801c33d",
+            "targetX": 0,
+            "targetY": 2600,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "742131844fb5417886715e6724697fce",
+            "sourceScreen": "projects/7741303272075430847/screens/742131844fb5417886715e6724697fce",
+            "targetX": 1344,
+            "targetY": 2600,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 2,
+          "feature": "Route comparison",
+          "desktop": {
+            "screenInstanceId": "5243c2a14eee44efaf3186096ce66814",
+            "sourceScreen": "projects/7741303272075430847/screens/5243c2a14eee44efaf3186096ce66814",
+            "targetX": 1994,
+            "targetY": 2600,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "96967772c08e4138887b4cf3b412e556",
+            "sourceScreen": "projects/7741303272075430847/screens/96967772c08e4138887b4cf3b412e556",
+            "targetX": 3338,
+            "targetY": 2600,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 3,
+          "feature": "Live route / next stop",
+          "desktop": {
+            "screenInstanceId": "af8f7a66243148d8b442d9889e95282b",
+            "sourceScreen": "projects/7741303272075430847/screens/af8f7a66243148d8b442d9889e95282b",
+            "targetX": 3988,
+            "targetY": 2600,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "151eef8ec3c048c68ff5475224e7eeff",
+            "sourceScreen": "projects/7741303272075430847/screens/151eef8ec3c048c68ff5475224e7eeff",
+            "targetX": 5332,
+            "targetY": 2600,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 4,
+          "feature": "Route completed",
+          "desktop": {
+            "screenInstanceId": "44b1e7c226a04ed5aff5f16d48ca2625",
+            "sourceScreen": "projects/7741303272075430847/screens/44b1e7c226a04ed5aff5f16d48ca2625",
+            "targetX": 5982,
+            "targetY": 2600,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "a76e325c7d164d0a8a3b6bc3a725b6ff",
+            "sourceScreen": "projects/7741303272075430847/screens/a76e325c7d164d0a8a3b6bc3a725b6ff",
+            "targetX": 7326,
+            "targetY": 2600,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 5,
+          "feature": "Saved routes",
+          "desktop": {
+            "screenInstanceId": "c8e9634c11a54c89b8cf5ed8a45bd57c",
+            "sourceScreen": "projects/7741303272075430847/screens/c8e9634c11a54c89b8cf5ed8a45bd57c",
+            "targetX": 7976,
+            "targetY": 2600,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "2007d20643364c6c9cae492527b3d6fe",
+            "sourceScreen": "projects/7741303272075430847/screens/2007d20643364c6c9cae492527b3d6fe",
+            "targetX": 9320,
+            "targetY": 2600,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 6,
+          "feature": "Route history",
+          "desktop": {
+            "screenInstanceId": "94d463aeb2184f5185b0e5dd30f62e0a",
+            "sourceScreen": "projects/7741303272075430847/screens/94d463aeb2184f5185b0e5dd30f62e0a",
+            "targetX": 9970,
+            "targetY": 2600,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "c62b560b7b0c493ba006ce8f960b9636",
+            "sourceScreen": "projects/7741303272075430847/screens/c62b560b7b0c493ba006ce8f960b9636",
+            "targetX": 11314,
+            "targetY": 2600,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 7,
+          "feature": "Settings",
+          "desktop": {
+            "screenInstanceId": "6dd67c816c7342b0bbeee6f9e8d0243b",
+            "sourceScreen": "projects/7741303272075430847/screens/6dd67c816c7342b0bbeee6f9e8d0243b",
+            "targetX": 11964,
+            "targetY": 2600,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "c11a2166108546fc86f0d0e4f8016a8f",
+            "sourceScreen": "projects/7741303272075430847/screens/c11a2166108546fc86f0d0e4f8016a8f",
+            "targetX": 13308,
+            "targetY": 2600,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 8,
+          "feature": "Issue reporting",
+          "desktop": {
+            "screenInstanceId": "da6ed5e45aa946148084685203b87a5c",
+            "sourceScreen": "projects/7741303272075430847/screens/da6ed5e45aa946148084685203b87a5c",
+            "targetX": 13958,
+            "targetY": 2600,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "ae1f5fe24dec4cf0a93d843bd14d7be9",
+            "sourceScreen": "projects/7741303272075430847/screens/ae1f5fe24dec4cf0a93d843bd14d7be9",
+            "targetX": 15302,
+            "targetY": 2600,
+            "targetWidth": 390
+          }
+        }
+      ]
+    },
+    {
+      "rowIndex": 3,
+      "rowName": "P1 Route Public, Neighborhood, Paid Packs, Offline, Share, Weather",
+      "priority": "P1",
+      "targetY": 5200,
+      "pairs": [
+        {
+          "pairIndex": 1,
+          "feature": "Public route page",
+          "desktop": {
+            "screenInstanceId": "1e8b9bbe23554d2aa842246224508d02",
+            "sourceScreen": "projects/7741303272075430847/screens/1e8b9bbe23554d2aa842246224508d02",
+            "targetX": 0,
+            "targetY": 5200,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "42121c2264a34b1a9580f05a876dc5f0",
+            "sourceScreen": "projects/7741303272075430847/screens/42121c2264a34b1a9580f05a876dc5f0",
+            "targetX": 1344,
+            "targetY": 5200,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 2,
+          "feature": "Neighborhood page",
+          "desktop": {
+            "screenInstanceId": "de561218a95d4a18b4d3309c869ed549",
+            "sourceScreen": "projects/7741303272075430847/screens/de561218a95d4a18b4d3309c869ed549",
+            "targetX": 1994,
+            "targetY": 5200,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "8b3b1c17fe1a4f8e895dc5626290c2bb",
+            "sourceScreen": "projects/7741303272075430847/screens/8b3b1c17fe1a4f8e895dc5626290c2bb",
+            "targetX": 3338,
+            "targetY": 5200,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 3,
+          "feature": "Premium city packs",
+          "desktop": {
+            "screenInstanceId": "a16695318a1042829817f35bb0c2bcc4",
+            "sourceScreen": "projects/7741303272075430847/screens/a16695318a1042829817f35bb0c2bcc4",
+            "targetX": 3988,
+            "targetY": 5200,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "85a27ff2ba294f3692ed44fdcd170650",
+            "sourceScreen": "projects/7741303272075430847/screens/85a27ff2ba294f3692ed44fdcd170650",
+            "targetX": 5332,
+            "targetY": 5200,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 4,
+          "feature": "Offline route cards",
+          "desktop": {
+            "screenInstanceId": "447a6baf1bb34e969afa08d7e51a063e",
+            "sourceScreen": "projects/7741303272075430847/screens/447a6baf1bb34e969afa08d7e51a063e",
+            "targetX": 5982,
+            "targetY": 5200,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "dd277ed5a3f042cfb980c9b218576d69",
+            "sourceScreen": "projects/7741303272075430847/screens/dd277ed5a3f042cfb980c9b218576d69",
+            "targetX": 7326,
+            "targetY": 5200,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 5,
+          "feature": "Share route and completion",
+          "desktop": {
+            "screenInstanceId": "c14575512c6d43528d946755a09e96d5",
+            "sourceScreen": "projects/7741303272075430847/screens/c14575512c6d43528d946755a09e96d5",
+            "targetX": 7976,
+            "targetY": 5200,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "2b868980b8864012af266948f1725111",
+            "sourceScreen": "projects/7741303272075430847/screens/2b868980b8864012af266948f1725111",
+            "targetX": 9320,
+            "targetY": 5200,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 6,
+          "feature": "Weather/time suggestions",
+          "desktop": {
+            "screenInstanceId": "d36c1aaaa82b4055964deb33336b1b41",
+            "sourceScreen": "projects/7741303272075430847/screens/d36c1aaaa82b4055964deb33336b1b41",
+            "targetX": 9970,
+            "targetY": 5200,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "04bb7dd25e344efcb941c185b47d431a",
+            "sourceScreen": "projects/7741303272075430847/screens/04bb7dd25e344efcb941c185b47d431a",
+            "targetX": 11314,
+            "targetY": 5200,
+            "targetWidth": 390
+          }
+        }
+      ]
+    },
+    {
+      "rowIndex": 4,
+      "rowName": "P1 Place, Accessibility, Partner, Admin",
+      "priority": "P1",
+      "targetY": 8400,
+      "pairs": [
+        {
+          "pairIndex": 1,
+          "feature": "Public place page",
+          "desktop": {
+            "screenInstanceId": "43fa5671d7ca4a08ae1d933062def0bb",
+            "sourceScreen": "projects/7741303272075430847/screens/43fa5671d7ca4a08ae1d933062def0bb",
+            "targetX": 0,
+            "targetY": 8400,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "13b1135590f548cca6aa294df3049705",
+            "sourceScreen": "projects/7741303272075430847/screens/13b1135590f548cca6aa294df3049705",
+            "targetX": 1344,
+            "targetY": 8400,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 2,
+          "feature": "Accessibility route notes",
+          "desktop": {
+            "screenInstanceId": "abea2342aaf9400bade6427059b01209",
+            "sourceScreen": "projects/7741303272075430847/screens/abea2342aaf9400bade6427059b01209",
+            "targetX": 1994,
+            "targetY": 8400,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "90a586a62694423989b6610df9c2e620",
+            "sourceScreen": "projects/7741303272075430847/screens/90a586a62694423989b6610df9c2e620",
+            "targetX": 3338,
+            "targetY": 8400,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 3,
+          "feature": "Partner guest route kits",
+          "desktop": {
+            "screenInstanceId": "0d162ecb839a46fab08f191e32d30a8f",
+            "sourceScreen": "projects/7741303272075430847/screens/0d162ecb839a46fab08f191e32d30a8f",
+            "targetX": 3988,
+            "targetY": 8400,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "f3ab96fc7eab4abab94b63ee3fde8500",
+            "sourceScreen": "projects/7741303272075430847/screens/f3ab96fc7eab4abab94b63ee3fde8500",
+            "targetX": 5332,
+            "targetY": 8400,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 4,
+          "feature": "Admin route QA",
+          "desktop": {
+            "screenInstanceId": "22e714c50fe14a77b6ecc94d5c0dc1fc",
+            "sourceScreen": "projects/7741303272075430847/screens/22e714c50fe14a77b6ecc94d5c0dc1fc",
+            "targetX": 5982,
+            "targetY": 8400,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "09634b3496b149b4a97aa5800a4edd9a",
+            "sourceScreen": "projects/7741303272075430847/screens/09634b3496b149b4a97aa5800a4edd9a",
+            "targetX": 7326,
+            "targetY": 8400,
+            "targetWidth": 390
+          }
+        }
+      ]
+    },
+    {
+      "rowIndex": 5,
+      "rowName": "P2 Expansion A",
+      "priority": "P2",
+      "targetY": 11800,
+      "pairs": [
+        {
+          "pairIndex": 1,
+          "feature": "More cities",
+          "desktop": {
+            "screenInstanceId": "1cbbbe619a074b048628bb2465a17aa3",
+            "sourceScreen": "projects/7741303272075430847/screens/1cbbbe619a074b048628bb2465a17aa3",
+            "targetX": 0,
+            "targetY": 11800,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "e6a2ad4d21364871b2bbab2f041adeb7",
+            "sourceScreen": "projects/7741303272075430847/screens/e6a2ad4d21364871b2bbab2f041adeb7",
+            "targetX": 1344,
+            "targetY": 11800,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 2,
+          "feature": "City pack detail",
+          "desktop": {
+            "screenInstanceId": "a4fa4e5c4d474c1d99ded2fe28e1fd69",
+            "sourceScreen": "projects/7741303272075430847/screens/a4fa4e5c4d474c1d99ded2fe28e1fd69",
+            "targetX": 1994,
+            "targetY": 11800,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "2582cfea638b4809bb18efaa65fbcc36",
+            "sourceScreen": "projects/7741303272075430847/screens/2582cfea638b4809bb18efaa65fbcc36",
+            "targetX": 3338,
+            "targetY": 11800,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 3,
+          "feature": "Audio snippets",
+          "desktop": {
+            "screenInstanceId": "2ecc79f7fba94fce9543de037ec664e4",
+            "sourceScreen": "projects/7741303272075430847/screens/2ecc79f7fba94fce9543de037ec664e4",
+            "targetX": 3988,
+            "targetY": 11800,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "f21731645ca94868b39567ca0959bf21",
+            "sourceScreen": "projects/7741303272075430847/screens/f21731645ca94868b39567ca0959bf21",
+            "targetX": 5332,
+            "targetY": 11800,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 4,
+          "feature": "Natural language search",
+          "desktop": {
+            "screenInstanceId": "478f7bb18cd34d939f35a8c5cd68c3d8",
+            "sourceScreen": "projects/7741303272075430847/screens/478f7bb18cd34d939f35a8c5cd68c3d8",
+            "targetX": 5982,
+            "targetY": 11800,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "a51d42f736d94314ab9efcfd7cefebba",
+            "sourceScreen": "projects/7741303272075430847/screens/a51d42f736d94314ab9efcfd7cefebba",
+            "targetX": 7326,
+            "targetY": 11800,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 5,
+          "feature": "Dynamic route generation",
+          "desktop": {
+            "screenInstanceId": "79d12998557e47ab8cbafc157c6e2d66",
+            "sourceScreen": "projects/7741303272075430847/screens/79d12998557e47ab8cbafc157c6e2d66",
+            "targetX": 7976,
+            "targetY": 11800,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "75bdee652e3a489ca934f68861464a37",
+            "sourceScreen": "projects/7741303272075430847/screens/75bdee652e3a489ca934f68861464a37",
+            "targetX": 9320,
+            "targetY": 11800,
+            "targetWidth": 390
+          }
+        }
+      ]
+    },
+    {
+      "rowIndex": 6,
+      "rowName": "P2 Expansion B",
+      "priority": "P2",
+      "targetY": 14400,
+      "pairs": [
+        {
+          "pairIndex": 1,
+          "feature": "Road-trip mode",
+          "desktop": {
+            "screenInstanceId": "97d4801b451f48e1bd0a2491ca58de3e",
+            "sourceScreen": "projects/7741303272075430847/screens/97d4801b451f48e1bd0a2491ca58de3e",
+            "targetX": 0,
+            "targetY": 14400,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "926ed747bffc482786ed9a179ff16e13",
+            "sourceScreen": "projects/7741303272075430847/screens/926ed747bffc482786ed9a179ff16e13",
+            "targetX": 1344,
+            "targetY": 14400,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 2,
+          "feature": "Heritage/UNESCO layer",
+          "desktop": {
+            "screenInstanceId": "76f9fd6943db45cea08f107f8fbe6cc3",
+            "sourceScreen": "projects/7741303272075430847/screens/76f9fd6943db45cea08f107f8fbe6cc3",
+            "targetX": 1994,
+            "targetY": 14400,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "712999d782f448f580a1682e1ef85579",
+            "sourceScreen": "projects/7741303272075430847/screens/712999d782f448f580a1682e1ef85579",
+            "targetX": 3338,
+            "targetY": 14400,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 3,
+          "feature": "Long-distance/pilgrimage mode",
+          "desktop": {
+            "screenInstanceId": "fc132247bf3b4d23ae603b88d1bd905a",
+            "sourceScreen": "projects/7741303272075430847/screens/fc132247bf3b4d23ae603b88d1bd905a",
+            "targetX": 3988,
+            "targetY": 14400,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "7e87640ad3aa46e99e0debdef40ea154",
+            "sourceScreen": "projects/7741303272075430847/screens/7e87640ad3aa46e99e0debdef40ea154",
+            "targetX": 5332,
+            "targetY": 14400,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 4,
+          "feature": "Ticket/tour affiliates",
+          "desktop": {
+            "screenInstanceId": "572b93b5743b43feb923383c3f1d2bcb",
+            "sourceScreen": "projects/7741303272075430847/screens/572b93b5743b43feb923383c3f1d2bcb",
+            "targetX": 5982,
+            "targetY": 14400,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "74a86512839f46b289c3a1035ccd18e9",
+            "sourceScreen": "projects/7741303272075430847/screens/74a86512839f46b289c3a1035ccd18e9",
+            "targetX": 7326,
+            "targetY": 14400,
+            "targetWidth": 390
+          }
+        },
+        {
+          "pairIndex": 5,
+          "feature": "PDF/GPX export",
+          "desktop": {
+            "screenInstanceId": "d5be518a97144138b12cb48b4a78c75a",
+            "sourceScreen": "projects/7741303272075430847/screens/d5be518a97144138b12cb48b4a78c75a",
+            "targetX": 7976,
+            "targetY": 14400,
+            "targetWidth": 1280
+          },
+          "mobile": {
+            "screenInstanceId": "1513a00e28fa48ccb974a0984846c6c6",
+            "sourceScreen": "projects/7741303272075430847/screens/1513a00e28fa48ccb974a0984846c6c6",
+            "targetX": 9320,
+            "targetY": 14400,
+            "targetWidth": 390
+          }
+        }
+      ]
+    }
+  ],
+  "parkingZone": {
+    "description": "Move utility, duplicate, failed, or superseded screens outside the walkthrough rows if a future canvas-position API becomes available.",
+    "targetX": -2400,
+    "startY": 0,
+    "verticalGap": 900,
+    "screens": [
+      {
+        "screenInstanceId": "77d5e526a1284d4183578c9376ba5dd0",
+        "reason": "Utility inventory markdown screen, not a product mockup",
+        "targetX": -2400,
+        "targetY": 0,
+        "hiddenPreferred": true
+      },
+      {
+        "screenInstanceId": "a40f3495abe54a9083b149d58a490ce4",
+        "reason": "Superseded long-distance mobile screen",
+        "targetX": -2400,
+        "targetY": 900,
+        "hiddenPreferred": true
+      },
+      {
+        "screenInstanceId": "41b70f765a2143b9a661eeec49eeb4f1",
+        "reason": "Hidden duplicate core attempt",
+        "targetX": -2400,
+        "targetY": 1800,
+        "hiddenPreferred": true
+      },
+      {
+        "screenInstanceId": "9136bee5797e421b9f57d00d5ea7a880",
+        "reason": "Hidden duplicate core attempt",
+        "targetX": -2400,
+        "targetY": 2700,
+        "hiddenPreferred": true
+      },
+      {
+        "screenInstanceId": "9eba016917df435bbb377a4d648101b3",
+        "reason": "Hidden duplicate core attempt",
+        "targetX": -2400,
+        "targetY": 3600,
+        "hiddenPreferred": true
+      },
+      {
+        "screenInstanceId": "a02fd9b5acce495f9d099edfdbf39760",
+        "reason": "Hidden duplicate core attempt",
+        "targetX": -2400,
+        "targetY": 4500,
+        "hiddenPreferred": true
+      },
+      {
+        "screenInstanceId": "d688da9ff45247b18b9080c575d37f2b",
+        "reason": "Hidden duplicate core attempt",
+        "targetX": -2400,
+        "targetY": 5400,
+        "hiddenPreferred": true
+      }
+    ]
+  }
+}

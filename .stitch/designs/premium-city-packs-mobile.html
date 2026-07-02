@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Premium City Packs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f4f2fd",
+                        "on-secondary-container": "#3f637e",
+                        "on-primary-fixed-variant": "#23501e",
+                        "surface-container-high": "#e8e7f1",
+                        "secondary-container": "#badeff",
+                        "on-primary-fixed": "#002201",
+                        "inverse-primary": "#a1d494",
+                        "surface-variant": "#e3e1ec",
+                        "surface-container": "#eeedf7",
+                        "primary": "#154212",
+                        "on-primary-container": "#9dd090",
+                        "on-secondary-fixed-variant": "#254a65",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#2f1500",
+                        "surface-tint": "#3b6934",
+                        "inverse-on-surface": "#f1effa",
+                        "error": "#ba1a1a",
+                        "outline": "#72796e",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#cbe6ff",
+                        "surface-bright": "#fbf8ff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c2c9bb",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdcc3",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbf8ff",
+                        "on-secondary-fixed": "#001e30",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "surface-container-highest": "#e3e1ec",
+                        "primary-fixed": "#bcf0ae",
+                        "primary-fixed-dim": "#a1d494",
+                        "tertiary-container": "#7c4100",
+                        "surface-dim": "#dad9e3",
+                        "secondary-fixed-dim": "#a7cbeb",
+                        "on-surface": "#1a1b22",
+                        "primary-container": "#2d5a27",
+                        "on-tertiary-container": "#ffb273",
+                        "on-primary": "#ffffff",
+                        "surface": "#fbf8ff",
+                        "inverse-surface": "#2f3038",
+                        "tertiary": "#5a2e00",
+                        "on-background": "#1a1b22",
+                        "secondary": "#3f627e",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "on-surface-variant": "#42493e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "margin-desktop": "48px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "metric-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "metric-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased md:hidden pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm flex items-center justify-between px-margin-mobile h-16 w-full">
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-variant dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-2 -ml-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed font-bold truncate">City Packs</h1>
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-variant dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-2 -mr-2 rounded-full">
+<span class="font-label-md text-label-md">Search</span>
+</button>
+</header>
+<main class="pt-20 px-margin-mobile flex flex-col gap-xl">
+<!-- Hero Section -->
+<section class="flex flex-col gap-md text-center py-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">City Packs</h2>
+<p class="font-body-md text-on-surface-variant">Curated route collections for deeper discovery. Unlock expert guides, offline access, and premium stop notes.</p>
+<button class="mt-sm self-center bg-primary text-on-primary font-label-md text-label-md py-3 px-6 rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.1)] active:scale-95 transition-transform">
+                Browse packs
+            </button>
+</section>
+<!-- Pack List -->
+<section class="flex flex-col gap-lg">
+<!-- Expanded Pack: Old Montreal Deep Dive -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant overflow-hidden flex flex-col">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover" data-alt="A beautiful wide shot of Old Montreal streets in summer, cobblestone paths, historic architecture, warm sunny lighting, clear blue sky, inviting travel photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANZEnaHNNf3yxZ_gDzkfqKvo_9aHsSZB31qCAdlNRmsQ3Exjuk2ELVK_FxX4-MXLE5fyrm8YFogrRXpZ7wEmpct1vRnqvwRCxTlH59zx54BDouRkfe4gzMYXeHkay55ACUusQuN4h0EtijkAt-kcvey_7kRZ8qPNkbyZ4rnTqxDMhCWWNLvZzAuR7VIbuixPNzdAM-9-AUSGKR7_KW3IKqnUiXW5I92ty9X1J1VwqKbIewc2_8kyQqa6FbGwPpE-fMkMGWEegQ4D4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div class="text-on-primary">
+<h3 class="font-headline-md text-headline-md leading-tight">Old Montreal Deep Dive</h3>
+<p class="font-label-md text-label-md opacity-90">Old Port, Architecture</p>
+</div>
+<span class="bg-surface-container-lowest text-primary font-metric-lg text-metric-lg px-3 py-1 rounded-lg shadow-sm">$12.99</span>
+</div>
+</div>
+<div class="p-md flex flex-col gap-md">
+<div class="flex items-center gap-4 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">route</span> 8 routes</div>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">timer</span> 12h total walking</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-sm border border-outline-variant">
+<h4 class="font-label-md text-label-md text-primary mb-2 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">verified</span> Expert Curation Note</h4>
+<p class="font-body-md text-body-md text-on-surface text-sm">"These routes bypass the standard tourist traps to reveal the architectural secrets of the Old Port. Highly recommended for history buffs." - Local Guide</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Included Routes Preview</h4>
+<ul class="flex flex-col gap-2">
+<li class="flex items-center gap-2 font-body-md text-body-md text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">map</span> Old Port Promenade
+                            </li>
+<li class="flex items-center gap-2 font-body-md text-body-md text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">map</span> Churches &amp; Courtyards
+                            </li>
+<li class="flex items-center gap-2 font-body-md text-body-md text-on-surface-variant text-sm text-primary">
+                                + 6 more premium routes
+                            </li>
+</ul>
+</div>
+<div class="flex items-center gap-sm mt-sm">
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span> Buy Pack
+                        </button>
+<button class="p-3 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-variant active:scale-95 transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Pack 2 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant p-md flex gap-md items-center">
+<div class="w-20 h-20 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Modern architecture in Montreal, abstract geometric lines, concrete and glass, bright daylight, clear sky, minimalist photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE_0efil8AJgyxCx1fbblkm3HOVfqtOH90-K1IKHY8jfuBWoj4QuATR1SouJjd-MZ46HIvVkmo-e6LhDQlsEPSuqg_KKG13QogDFV7dpxDrv44vBg16CKvfn6oVCsue6p0B-WMz-CnmVxwnQ2kKed1EWFGYovsKOL5t9XH3K7Fy8NWMr8ibTaW4MtrfzEGm9mI7qKFnPiJE7BcVmlBjqHCEuY_Tvhzol_qnnN0Est-0j-kzpPHbdDR7Xaq1HFGDm_BIDNDjxts6Lg"/>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg leading-tight">Architecture Weekend</h3>
+<div class="flex gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span>6 routes</span> • <span>9h walking</span>
+</div>
+<span class="font-label-md text-label-md text-primary mt-1">$9.99</span>
+</div>
+</article>
+<!-- Pack 3 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant p-md flex gap-md items-center">
+<div class="w-20 h-20 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A cozy Montreal cafe interior, people enjoying coffee, warm ambient lighting, wooden textures, relaxed atmosphere, lifestyle photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhndDgCN0d4F6B-9TiOiUcx4ePf5iZf3zPPf8g4JgAxDjbjygyrjhpiZs4pIg8ReFVplILE7XNruwSyCfTUBRPEjcJuzq80C5iPbsbqY1pQu3BRcOowGgjByZCzxtUCzvnjB71Jher3LiYw3iwX5jfSmrZWJiIP1QhNcJM9_Vd9OF3qyEpw9kZayhHBUsf1VYQNfOfNek3hbVqUB0NT_eV9j9D0k36HVnDJNQqKKBE1qHSPOtEMr3OeDKh3opXF6r1hy1HQd5Irg0"/>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg leading-tight">Cafe &amp; Culture Trails</h3>
+<div class="flex gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span>12 routes</span> • <span>18h walking</span>
+</div>
+<span class="font-label-md text-label-md text-primary mt-1">$14.99</span>
+</div>
+</article>
+<!-- Pack 4 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant p-md flex justify-between items-center">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface text-base">Family-Friendly Montreal</h3>
+<span class="font-label-md text-label-md text-primary mt-1 block">$10.99</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</article>
+<!-- Pack 5 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant p-md flex justify-between items-center">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface text-base">Rainy Day Indoor Routes</h3>
+<span class="font-label-md text-label-md text-primary mt-1 block">$8.99</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</article>
+</section>
+<!-- Comparison Section -->
+<section class="py-lg flex flex-col gap-md border-t border-outline-variant mt-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">Free vs Premium</h2>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container rounded-lg p-md border border-outline-variant flex flex-col gap-sm">
+<h3 class="font-label-md text-label-md text-on-surface">Basic (Free)</h3>
+<ul class="flex flex-col gap-2 font-body-md text-body-md text-on-surface-variant text-sm">
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] mt-0.5 text-primary">check</span> Discover fundamental routes</li>
+<li class="flex items-start gap-1 opacity-50"><span class="material-symbols-outlined text-[16px] mt-0.5">close</span> Offline-ready route cards</li>
+<li class="flex items-start gap-1 opacity-50"><span class="material-symbols-outlined text-[16px] mt-0.5">close</span> Richer stop notes</li>
+</ul>
+</div>
+<div class="bg-primary-container text-on-primary-container rounded-lg p-md shadow-sm flex flex-col gap-sm">
+<h3 class="font-label-md text-label-md text-on-primary-container">Premium Packs</h3>
+<ul class="flex flex-col gap-2 font-body-md text-body-md text-on-primary-container text-sm">
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] mt-0.5">check</span> Discover fundamental routes</li>
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] mt-0.5">check</span> Offline-ready route cards</li>
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] mt-0.5">check</span> Richer stop notes</li>
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] mt-0.5">check</span> Priority support</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- FAQ -->
+<section class="py-lg flex flex-col gap-md border-t border-outline-variant mb-xl">
+<h2 class="font-headline-md text-headline-md text-on-surface">Common Questions</h2>
+<div class="flex flex-col gap-2">
+<details class="group bg-surface-container-lowest rounded-lg border border-outline-variant p-4 [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface cursor-pointer">
+                        Do I keep the pack forever?
+                        <span class="material-symbols-outlined transition duration-300 group-open:-rotate-180">expand_more</span>
+</summary>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4 text-sm">Yes, once purchased, the pack is tied to your account and accessible indefinitely.</p>
+</details>
+<details class="group bg-surface-container-lowest rounded-lg border border-outline-variant p-4 [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface cursor-pointer">
+                        Can I use routes offline?
+                        <span class="material-symbols-outlined transition duration-300 group-open:-rotate-180">expand_more</span>
+</summary>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4 text-sm">Absolutely. Premium packs allow you to download all route data, including maps and notes, for offline use.</p>
+</details>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Bar -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface dark:bg-surface-container-lowest shadow-[0_-4px_24px_rgba(0,0,0,0.1)] px-margin-mobile py-4 pb-safe flex items-center justify-between border-t border-outline-variant/30">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Old Montreal Deep Dive</span>
+<span class="font-headline-md text-headline-md text-primary leading-none">$12.99</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md py-3 px-8 rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.1)] active:scale-95 transition-transform">
+            Buy pack
+        </button>
+</div>
+</body></html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Place d'Armes - Meaningful Routes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#5a2e00",
+                      "surface": "#fbf8ff",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#ffdcc3",
+                      "surface-dim": "#dad9e3",
+                      "on-surface-variant": "#42493e",
+                      "on-primary-container": "#9dd090",
+                      "on-primary": "#ffffff",
+                      "secondary": "#3f627e",
+                      "on-secondary-fixed-variant": "#254a65",
+                      "surface-tint": "#3b6934",
+                      "on-primary-fixed": "#002201",
+                      "surface-container-highest": "#e3e1ec",
+                      "inverse-primary": "#a1d494",
+                      "tertiary-container": "#7c4100",
+                      "inverse-on-surface": "#f1effa",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#eeedf7",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed": "#001e30",
+                      "background": "#fbf8ff",
+                      "on-tertiary-container": "#ffb273",
+                      "surface-container-high": "#e8e7f1",
+                      "primary-fixed-dim": "#a1d494",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "secondary-container": "#badeff",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#23501e",
+                      "outline": "#72796e",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "error": "#ba1a1a",
+                      "primary-container": "#2d5a27",
+                      "primary": "#154212",
+                      "tertiary-fixed-dim": "#ffb77d",
+                      "secondary-fixed": "#cbe6ff",
+                      "surface-container-low": "#f4f2fd",
+                      "inverse-surface": "#2f3038",
+                      "surface-variant": "#e3e1ec",
+                      "on-surface": "#1a1b22",
+                      "on-secondary-container": "#3f637e",
+                      "surface-bright": "#fbf8ff",
+                      "primary-fixed": "#bcf0ae",
+                      "outline-variant": "#c2c9bb",
+                      "on-tertiary-fixed": "#2f1500",
+                      "on-background": "#1a1b22"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "base": "4px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "gutter": "16px",
+                      "sm": "8px",
+                      "margin-desktop": "48px",
+                      "lg": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "label-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "metric-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "metric-lg": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Hide scrollbar for carousels */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased pt-16 pb-24 md:hidden">
+<!-- TopAppBar (Shared Component) -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm flex items-center justify-between px-margin-mobile h-16 w-full">
+<button class="text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-150 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary truncate px-4">Place d'Armes</h1>
+<button class="text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-150 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">share</span>
+</button>
+</header>
+<!-- Main Canvas -->
+<main class="flex flex-col gap-lg">
+<!-- Hero Section -->
+<section class="flex flex-col">
+<div class="relative w-full aspect-[4/3] bg-surface-container">
+<img class="object-cover w-full h-full" data-alt="A wide, bright, high-resolution architectural photography shot of Place d'Armes square in Old Montreal on a sunny morning. The majestic gothic revival Notre-Dame Basilica stands prominently in the background. The Art Deco Aldred building and the neoclassical Bank of Montreal flank the sides. In the center, the Maisonneuve Monument is visible. The lighting is crisp and natural, highlighting the contrasting architectural styles and historic cobblestone textures. Minimalist, modern travel aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcfFENT9qJuMn_f1iZUsI8HGJyyKUiYduPo9E7FKob5gfzL55nvfoJCfUI6Z_MBKLNqf8j-znZxVIwjERFk9tSt28GAE3lXtDdMmm9sMyYijuj2raIdedSGNp6Uc-uOKSH2GBNMnMF4xRlNjKP7TZW3qTDftXhOjIZAXISMPVYiYnptibNVE8OBKHvntm-opmYj69rzKp-p9c6h9f0Aqrqs4hxG7cs_n7z-PC_2fqpuacxi7yJmUnSLj4ZNc7wXxEOUi0rIZ1LcQo"/>
+</div>
+<div class="px-margin-mobile pt-lg flex flex-col gap-md">
+<div class="font-label-sm text-label-sm text-outline tracking-wider uppercase">
+                    Montreal / Old Montreal
+                </div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-secondary-container/20 text-on-secondary-container font-label-sm text-label-sm">Historic Square</span>
+<span class="px-3 py-1 rounded-full bg-secondary-container/20 text-on-secondary-container font-label-sm text-label-sm">Landmark</span>
+<span class="px-3 py-1 rounded-full bg-secondary-container/20 text-on-secondary-container font-label-sm text-label-sm">Architecture</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-surface leading-tight">Place d'Armes</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    The historic heart of Old Montreal, where centuries of history meet architectural grandeur.
+                </p>
+</div>
+</section>
+<!-- Visit Metrics Grid (Dashboard Ribbon) -->
+<section class="px-margin-mobile py-sm">
+<div class="flex overflow-x-auto no-scrollbar gap-lg py-2 border-y border-outline-variant/30">
+<div class="flex flex-col min-w-max">
+<span class="font-label-sm text-label-sm text-outline">Best Time</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">Morning</span>
+</div>
+<div class="w-px h-10 bg-outline-variant/30 self-center"></div>
+<div class="flex flex-col min-w-max">
+<span class="font-label-sm text-label-sm text-outline">Visit Length</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">20-30 mins</span>
+</div>
+<div class="w-px h-10 bg-outline-variant/30 self-center"></div>
+<div class="flex flex-col min-w-max">
+<span class="font-label-sm text-label-sm text-outline">Metro</span>
+<span class="font-metric-lg text-metric-lg text-on-surface">Place-d'Armes</span>
+</div>
+</div>
+</section>
+<!-- Content Sections -->
+<div class="px-margin-mobile flex flex-col gap-xl">
+<section class="flex flex-col gap-sm">
+<h3 class="font-headline-md text-headline-md-mobile text-on-surface">Why it matters</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    As the virtual birthplace of Montreal's civic life, this square holds 17th-century origins. It serves as a visual timeline, showcasing the city's evolution through its drastically varied architectural boundaries.
+                </p>
+</section>
+<section class="flex flex-col gap-sm">
+<h3 class="font-headline-md text-headline-md-mobile text-on-surface">Historical Story</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Originally serving as a military parade ground and public market, Place d'Armes transformed during the 19th and 20th centuries into Canada's primary financial hub, often referred to as the "Wall Street of Canada."
+                </p>
+</section>
+<section class="flex flex-col gap-sm">
+<h3 class="font-headline-md text-headline-md-mobile text-on-surface">What to notice</h3>
+<ul class="flex flex-col gap-3">
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">stat_0</span>
+<div>
+<strong class="font-label-md text-label-md text-on-surface">Maisonneuve Monument:</strong>
+<span class="font-body-md text-body-md text-on-surface-variant"> The striking central statue honoring the founder of Montreal.</span>
+</div>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">apartment</span>
+<div>
+<strong class="font-label-md text-label-md text-on-surface">Aldred Building:</strong>
+<span class="font-body-md text-body-md text-on-surface-variant"> Look up at the soaring Art Deco lines resembling the Empire State Building.</span>
+</div>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<div>
+<strong class="font-label-md text-label-md text-on-surface">Bank of Montreal:</strong>
+<span class="font-body-md text-body-md text-on-surface-variant"> A masterpiece of neoclassical architecture with massive Corinthian columns.</span>
+</div>
+</li>
+</ul>
+</section>
+</div>
+<!-- Photo Highlights Carousel -->
+<section class="flex flex-col gap-md pt-md">
+<div class="px-margin-mobile flex justify-between items-end">
+<h3 class="font-headline-md text-headline-md-mobile text-on-surface">Photo Highlights</h3>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 px-margin-mobile snap-x pb-4">
+<div class="snap-center shrink-0 w-64 h-48 rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A close-up, highly detailed architectural photograph of the ornate neoclassical Corinthian columns on the facade of the Bank of Montreal at Place d'Armes. The sunlight catches the textured grey stone, creating deep, dramatic shadows and highlighting the intricate leaf carvings. Clean, professional, well-lit aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN5iphKqwbxeSpoeUTlVOhLsW8IUvGtvq93MMFiyO8JUjCkU6ykNrmCk-EbWTRKmEbcGbeL3ccSWFXI1UOMi4gW8EGgGnfmw4K993jPTT46rFOAKfV5erH4U_R1Zd8pyBGu6HfO4jQZwj-j6Jg9N_VJ4xgIcKFzTe8vroNdQq-Mn86ug1mNL4ni86gKlfcwjolP2fRzV-28tkBdgEjmHPHKODy5Hac7yR6oiPCkpEanaZlYS1ajRjnHKjGVk3yjVyfu5HFhL783ew"/>
+</div>
+<div class="snap-center shrink-0 w-64 h-48 rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A striking vertical perspective looking straight up at the facade of the Aldred Building in Montreal. The strong, geometric Art Deco setbacks step upwards against a clear, pale blue sky. The warm sandstone material is brightly lit, emphasizing the sleek, modernist aesthetic and verticality of the structure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE7OJyBpe0ZLVQIv54jvl95zzTv_drzpAulKMlFl7z2arJENDJrZFdbW7bdBw2Sot7WdIo0x3U4NU0Hu6hlEWD-ceVBjYi0_FMzcIcm1mwn93F3qefyFkmuT6aWTI3D_abi1eolfl87PeSwduOQIXwrlRm22vAWTBi3zNq_BJjYOsacAsx65kxgRNr2qGjSWH2uq7dxSkyzPjHsESFy1vVO6zxh2TFGBu9yricSbJP3iaGfervMdrsTK-_AGMJiZiGH8B__atCb0A"/>
+</div>
+<div class="snap-center shrink-0 w-64 h-48 rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A detailed shot of the bronze Paul de Chomedey, sieur de Maisonneuve statue atop its pedestal in Place d'Armes. The weathered bronze texture is captured in sharp focus against a soft, out-of-focus background of surrounding historic buildings. Natural daylight, solemn and institutional mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOk3ujd10QoYCfUJyVFhPDu7Bb0oQ8HB5S_DCEGrNB-q4bDq3X49-4ajGDkY5VFPRO0BC_6qe8oECu4rVrxXi75IwN0jDKmw3gAWKF1oOtKvVnEh79WaXPI9bYgxSy0TDw0-QEtRhwcj_O5ORMyBx0LuRU1u8BSjHE_z1v6M293_GHk-Vg9C-feOyDP8b4_BvgkBkG0y_V3Si4GFIih9x1jStlYE60pjrHoeA2qKDi16-6CzRGTJ9TFUgKaTP4c7bO_UTtFTZBfOI"/>
+</div>
+</div>
+</section>
+<!-- Map Card -->
+<section class="px-margin-mobile py-md">
+<div class="bg-surface rounded-xl shadow-lg border border-outline-variant/30 overflow-hidden flex flex-col">
+<div class="h-40 w-full bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-location="Montreal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrkUuUdd9D8coLzvL_Ox06TIhB6GDwAwILJeO5xbykkm29la6ZKaUmrS5yJu86tEM-Flim5D_EcmoxnTHO30OVSY_bn2eDN1vpAaLm-3WYHXLey8VmBMNm0Dgxug35bejjfcMnwkj2XhRBtlhEqaWyg7jEIyW-GsbRqy0t5mvVymbcU2PgUXqC-zio--Gend3GqXxRUIrZ4SCiNbeisr8cfQ7nJAzYojUc25E_Kjs2KgpAQj3Hbj6V6myitjZqmnO63CUMcqQ23NU"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-4xl drop-shadow-md" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm">map</span>
+<span class="font-label-md text-label-md text-on-surface">126 Rue Saint-Sulpice</span>
+</div>
+<div class="flex flex-wrap gap-x-4 gap-y-2 mt-2">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-label-sm text-label-sm">Currently Open</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">train</span>
+<span class="font-label-sm text-label-sm">Orange Line</span>
+</div>
+<div class="flex items-center gap-1.5 text-tertiary w-full mt-1">
+<span class="material-symbols-outlined text-sm">groups</span>
+<span class="font-label-sm text-label-sm">Crowd Note: Bustling 11am-4pm</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Routes Carousel -->
+<section class="flex flex-col gap-md pt-sm">
+<div class="px-margin-mobile">
+<h3 class="font-headline-md text-headline-md-mobile text-on-surface">Routes including this stop</h3>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 px-margin-mobile snap-x pb-4">
+<div class="snap-start shrink-0 w-60 rounded-xl bg-surface shadow-sm border border-outline-variant/30 flex flex-col overflow-hidden">
+<div class="h-32 bg-surface-container w-full">
+<img class="w-full h-full object-cover" data-alt="A warm, inviting photo of a historic cobblestone street in Old Montreal, lined with 19th-century stone buildings housing small boutiques and cafes. The light is golden hour, creating a cozy, explorer-friendly atmosphere. A few pedestrians stroll leisurely." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARaNrDa3oI6wB_gfjIU2OeXANqt0wpqPbBIBu-mEeheyRcXbno9RIK5DnymCpLM1eDtOtKxxQKYpUm7vyxsplYJsGi7L4uMplEqwGikUCTRtBBfbGBsJS_eV765_A75tYjpnexU63ErChGVPm_uudhkkc36N9aBHdtC9iQb6_wVsg5HJx4ILXZ6ZGScKn909HWrw8yqUQJzEdMYNyygzM7DT_ItYbgB_VO5XWtNKdqX5pYySwi1_HTxX_d2onI7-yagmy5h7F4_IY"/>
+</div>
+<div class="p-3 flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface line-clamp-1">Old Montreal Historic Walk</span>
+<span class="font-label-sm text-label-sm text-outline">2.5 km • 1.5 hours</span>
+</div>
+</div>
+<div class="snap-start shrink-0 w-60 rounded-xl bg-surface shadow-sm border border-outline-variant/30 flex flex-col overflow-hidden">
+<div class="h-32 bg-surface-container w-full">
+<img class="w-full h-full object-cover" data-alt="An interior shot of a beautiful, serene stone courtyard attached to an old stone church in Montreal. Lush green ivy climbs the historic walls. Soft, diffused daylight filters down, creating a peaceful, contemplative oasis within the city." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWuDysOoLnIXUXJKokRfBDEpfBeDhHuHoqcEsrso7ZOuhuzQ3-goeAGEF4jxMJlwyEn_17kgv35U7eeAt7_9oJzQ6xmzljvcH7ovhAdjdgxEaGLeC2eSAUGEKcOuNtvYX_DdmiPZvwjDymAw7AV0OwZ4L2fPmlUeO3IXknB-6-tEGQpZ9wMfRx-Bk3ZJf4Sym4UponUQUgg4JJfvd_i_pEkuUOi4XoYDaD-dCKzd9xlCw4LZG91nSj8LdBUMbNmEetW8zOtWfB42Y"/>
+</div>
+<div class="p-3 flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface line-clamp-1">Churches &amp; Courtyards</span>
+<span class="font-label-sm text-label-sm text-outline">1.8 km • 1 hour</span>
+</div>
+</div>
+<div class="snap-start shrink-0 w-60 rounded-xl bg-surface shadow-sm border border-outline-variant/30 flex flex-col overflow-hidden">
+<div class="h-32 bg-surface-container w-full">
+<img class="w-full h-full object-cover" data-alt="A wide landscape view of the St. Lawrence River flowing past the historic port of Old Montreal. Modern skyscrapers contrast subtly with the older stone buildings in the foreground. Bright, clear daylight, expansive and institutional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXr5OlvA2gisGsSaN1ERYJzfpBRjbxc8N-ICcDcmGL-bi2SB5LWW5Ql3epd6Gm5wexZn4zcaiHnLSgdMiTJBRAQoughT0hLS0btSRjqJQJFNJ8peL_4yS7B5Lokk8dgzt-oP_lhI93pt8sFNTiRb0bZe8K-U3p-dJc15xUcRYl3wTn8huadTTFbBZFMM_qiSIYnNcTQsn1JkfWMM-DqJChgCt8nDzUWuydY3DnpfdZu5yaB9r9zVWHvKMiXc_AhvxyjHqiYR5sJGM"/>
+</div>
+<div class="p-3 flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface line-clamp-1">Architecture &amp; River Views</span>
+<span class="font-label-sm text-label-sm text-outline">3.2 km • 2 hours</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Shared Component) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center px-margin-mobile py-2">
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 hover:bg-surface-container transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-sm text-label-sm mt-1">Explore</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm mt-1">Map</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-label-sm text-label-sm mt-1">Saved</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm mt-1">Search</span>
+</button>
+</nav>
+</body></html>

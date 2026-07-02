@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Accessibility Route Notes - Old Montreal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#e8e7f1",
+                      "surface": "#fbf8ff",
+                      "secondary-fixed-dim": "#a7cbeb",
+                      "on-primary-container": "#9dd090",
+                      "tertiary-fixed": "#ffdcc3",
+                      "on-secondary-container": "#3f637e",
+                      "tertiary-container": "#7c4100",
+                      "on-primary": "#ffffff",
+                      "tertiary": "#5a2e00",
+                      "primary-fixed": "#bcf0ae",
+                      "on-primary-fixed-variant": "#23501e",
+                      "surface-variant": "#e3e1ec",
+                      "inverse-surface": "#2f3038",
+                      "on-secondary-fixed-variant": "#254a65",
+                      "secondary-container": "#badeff",
+                      "on-tertiary-container": "#ffb273",
+                      "surface-tint": "#3b6934",
+                      "secondary-fixed": "#cbe6ff",
+                      "on-secondary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#42493e",
+                      "on-error-container": "#93000a",
+                      "on-background": "#1a1b22",
+                      "inverse-on-surface": "#f1effa",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f4f2fd",
+                      "on-surface": "#1a1b22",
+                      "primary-fixed-dim": "#a1d494",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb77d",
+                      "on-secondary-fixed": "#001e30",
+                      "primary-container": "#2d5a27",
+                      "surface-container-highest": "#e3e1ec",
+                      "outline": "#72796e",
+                      "on-tertiary-fixed": "#2f1500",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#fbf8ff",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "primary": "#154212",
+                      "surface-container": "#eeedf7",
+                      "outline-variant": "#c2c9bb",
+                      "inverse-primary": "#a1d494",
+                      "surface-dim": "#dad9e3",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#002201",
+                      "secondary": "#3f627e",
+                      "background": "#fbf8ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "base": "4px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "48px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "metric-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              }
+            },
+          }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .font-metric-lg { font-family: "Inter", sans-serif; font-size: 20px; line-height: 24px; font-weight: 700; }
+            .font-label-md { font-family: "Inter", sans-serif; font-size: 14px; line-height: 20px; letter-spacing: 0.01em; font-weight: 600; }
+            .font-headline-md { font-family: "Inter", sans-serif; font-size: 24px; line-height: 32px; font-weight: 600; }
+            .font-display-lg { font-family: "Inter", sans-serif; font-size: 48px; line-height: 56px; letter-spacing: -0.02em; font-weight: 700; }
+            .font-headline-lg { font-family: "Inter", sans-serif; font-size: 32px; line-height: 40px; letter-spacing: -0.01em; font-weight: 600; }
+            .font-body-md { font-family: "Inter", sans-serif; font-size: 16px; line-height: 24px; font-weight: 400; }
+            .font-body-lg { font-family: "Inter", sans-serif; font-size: 18px; line-height: 28px; font-weight: 400; }
+            .font-label-sm { font-family: "Inter", sans-serif; font-size: 12px; line-height: 16px; font-weight: 500; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm full-width top-0 sticky flex justify-between items-center px-margin-desktop w-full h-16 z-50">
+<div class="flex items-center gap-6">
+<a class="font-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">Pathfinder</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative w-64 hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Search routes..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Notifications" class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button aria-label="Settings" class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant cursor-pointer">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A close up, well-lit professional headshot portrait of a mature hiker wearing a green outdoor jacket, neutral background. High resolution, clear details, outdoor lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFo6a40cwYyyQFLvQloTBXkPqiUMs1vIlOihswRxUAiKRGWODd-OOUCqvqkDIHjXxNznNNYDAVTG-c7AFyebVveyIsGQzK41zqi3eKSlwlq4I0oPRAaWbIV8mylrK6by3P2fcyMp8Ma-ndaFEv1srg9vQGHNxoluptXtwgo6dWdHcy6bevYo0Jl-t99MhJ7uUjpa9u6e1MOnrgQRE-GefMeuAOSXHmEHrMb0Z0mVEMeL8hU3s3qh-bBplMB1BTPPPtoqXA-jjCjck"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-[1440px] mx-auto pt-lg pb-xl px-margin-desktop">
+<!-- Hero Section -->
+<header class="mb-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-md">
+<div>
+<h1 class="font-display-lg text-on-surface mb-xs">Accessibility Notes</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl">Detailed surface checks, slope analysis, and rest point data for the Old Montreal Historic Walk. Curated for mobility devices and low-stamina explorers.</p>
+</div>
+<div class="flex items-center gap-sm bg-surface-container-low px-md py-sm rounded-lg border border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="font-metric-lg">82</span>
+</div>
+<div>
+<div class="font-label-md text-on-surface">Mostly Accessible</div>
+<div class="font-label-sm text-on-surface-variant">Score out of 100</div>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-sm mt-md">
+<div class="flex items-center gap-2 bg-surface border border-outline-variant px-3 py-1.5 rounded-full font-label-md text-on-surface">
+<span class="material-symbols-outlined text-[18px]">route</span>
+                    Old Montreal Historic Walk
+                </div>
+<div class="flex items-center gap-2 bg-surface border border-outline-variant px-3 py-1.5 rounded-full font-label-md text-on-surface">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+                    Montreal, QC
+                </div>
+<div class="flex items-center gap-2 bg-surface-container-low border border-outline-variant px-3 py-1.5 rounded-full font-label-md text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">verified</span>
+                    Community Verified (May 2024)
+                </div>
+</div>
+</header>
+<!-- Main Content Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg relative">
+<!-- Left Panel: Filters & Summary -->
+<div class="lg:col-span-3 space-y-lg">
+<section class="bg-surface rounded-lg border border-outline-variant p-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<h2 class="font-headline-md text-on-surface mb-md">Priority Needs</h2>
+<div class="space-y-sm">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Step-free route</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Avoid heavy cobblestone</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Frequent seating</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Accessible washrooms</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Low sensory zones</span>
+</label>
+</div>
+</section>
+<section class="bg-surface rounded-lg border border-outline-variant p-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<h2 class="font-label-md text-on-surface-variant uppercase tracking-wider mb-sm">Variant Summary</h2>
+<div class="grid grid-cols-2 gap-md mb-md">
+<div>
+<div class="font-label-sm text-on-surface-variant">Distance</div>
+<div class="font-metric-lg text-on-surface">3.5 km</div>
+</div>
+<div>
+<div class="font-label-sm text-on-surface-variant">Est. Time</div>
+<div class="font-metric-lg text-on-surface">1h 10m</div>
+</div>
+<div>
+<div class="font-label-sm text-on-surface-variant">Incline</div>
+<div class="font-metric-lg text-on-surface">Gentle</div>
+</div>
+<div>
+<div class="font-label-sm text-on-surface-variant">Surface</div>
+<div class="font-metric-lg text-on-surface">Mixed</div>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md py-3 rounded-lg hover:bg-on-primary-fixed-variant transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">map</span> Use Accessible Variant
+                    </button>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 bg-surface border border-outline-variant text-on-surface font-label-md py-2 rounded-lg hover:bg-surface-container-low transition-colors flex justify-center items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">bookmark</span> Save
+                        </button>
+<button class="flex-1 bg-surface border border-outline-variant text-on-surface font-label-md py-2 rounded-lg hover:bg-surface-container-low transition-colors flex justify-center items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">share</span> Share
+                        </button>
+</div>
+</section>
+</div>
+<!-- Center Panel: Timeline -->
+<div class="lg:col-span-5 space-y-md">
+<h2 class="font-headline-md text-on-surface mb-sm">Segment Analysis</h2>
+<div class="relative pl-6 space-y-lg before:absolute before:inset-y-0 before:left-2.5 before:w-px before:bg-outline-variant">
+<!-- Stop 1 -->
+<div class="relative">
+<div class="absolute -left-6 w-5 h-5 rounded-full bg-surface border-2 border-primary flex items-center justify-center top-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="bg-surface rounded-lg border border-outline-variant p-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)] hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-on-surface group-hover:text-primary">1. Place d'Armes Metro to Notre-Dame</h3>
+<span class="font-label-sm text-on-surface-variant">0.4 km</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-3">Start at St. Urbain exit (elevator available). Route follows paved sidewalk down slight decline.</p>
+<div class="flex flex-wrap gap-2">
+<div class="bg-surface-container-low text-on-surface font-label-sm px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">elevator</span> Elevator access
+                                </div>
+<div class="bg-surface-container-low text-on-surface font-label-sm px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_down</span> Gentle decline
+                                </div>
+<div class="bg-surface-container-low text-on-surface font-label-sm px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">directions_walk</span> Paved, smooth
+                                </div>
+</div>
+</div>
+</div>
+<!-- Stop 2 -->
+<div class="relative">
+<div class="absolute -left-6 w-5 h-5 rounded-full bg-surface border-2 border-outline-variant flex items-center justify-center top-1"></div>
+<div class="bg-surface rounded-lg border border-outline-variant p-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)] hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-on-surface group-hover:text-primary">2. Notre-Dame Basilica Plaza</h3>
+<span class="font-label-sm text-on-surface-variant">0.1 km</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-3">Wide open plaza. Mixed surface (large flat stones and some historic cobblestone). Seating available around monuments.</p>
+<div class="flex flex-wrap gap-2">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm px-2 py-1 rounded flex items-center gap-1 border border-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]">warning</span> Uneven surface
+                                </div>
+<div class="bg-surface-container-low text-on-surface font-label-sm px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">chair</span> Benches available
+                                </div>
+<div class="bg-surface-container-low text-on-surface font-label-sm px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">wc</span> Washrooms nearby (Hotel)
+                                </div>
+</div>
+</div>
+</div>
+<!-- Stop 3 -->
+<div class="relative">
+<div class="absolute -left-6 w-5 h-5 rounded-full bg-surface border-2 border-outline-variant flex items-center justify-center top-1"></div>
+<div class="bg-surface rounded-lg border border-outline-variant p-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)] hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-on-surface group-hover:text-primary">3. St. Paul Street Bypass</h3>
+<span class="font-label-sm text-on-surface-variant">0.8 km</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-3">Original route uses heavily cobbled St. Paul. Variant routes via De la Commune (waterfront path) which is fully paved and flat, though slightly longer.</p>
+<div class="flex flex-wrap gap-2">
+<div class="bg-primary-fixed text-on-primary-fixed font-label-sm px-2 py-1 rounded flex items-center gap-1 border border-primary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]">alt_route</span> Variant Path
+                                </div>
+<div class="bg-surface-container-low text-on-surface font-label-sm px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">horizontal_rule</span> Flat terrain
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Map -->
+<div class="lg:col-span-4 lg:sticky lg:top-24 h-[600px] bg-surface-container-low rounded-lg border border-outline-variant overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<div class="relative w-full h-full bg-surface-dim">
+<img alt="Map of Old Montreal route" class="w-full h-full object-cover opacity-80" data-alt="A clean, modern, minimalist map interface showing the streets of Old Montreal. The map uses a light neutral palette. A bright forest green route line weaves through the streets, avoiding cobblestone areas. Small, distinct markers indicate rest stops, washrooms, and accessible entrances. The map looks high-tech and practical, devoid of clutter." data-location="Montreal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATDxCnn5-ZysMZMCVNO5CH-yH8TLpzfcr_EG3M-TGjPXJ44Gcs3x7I3vpzVWsw730tXbpJjfOQgpiXGZ4gJ7JA32CwhWYbU58_cdOv-2Sa19z6tYVUbMGDOqhI_-J1U4OMPtWIyXNK_X8jnvqgSW_G2VGVqSBa0LpucFcKcVWBBqqUkVbRA9KoXdW9Fx1tLxO4IWkhEEDFpJ-QnchY3-OVsCdexfSSHkMIY0XyVbuoCaguAd7kNto-muOMQXCVQOx2XNggA_Np6X8"/>
+<!-- Map Controls overlay -->
+<div class="absolute bottom-4 right-4 flex flex-col gap-2">
+<button class="w-10 h-10 bg-surface rounded-full shadow-md flex items-center justify-center text-on-surface hover:text-primary border border-outline-variant">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 bg-surface rounded-full shadow-md flex items-center justify-center text-on-surface hover:text-primary border border-outline-variant">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="w-10 h-10 bg-surface rounded-full shadow-md flex items-center justify-center text-on-surface hover:text-primary border border-outline-variant mt-2">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-high border-t border-outline-variant flex flex-col md:flex-row justify-between items-center px-margin-desktop py-lg w-full mt-xl">
+<div class="flex items-center gap-4 mb-4 md:mb-0">
+<span class="font-label-md font-bold text-secondary dark:text-secondary-fixed-dim">Pathfinder</span>
+<span class="font-label-sm text-on-surface dark:text-on-surface-variant">© 2024 Pathfinder Accessibility. All rights reserved.</span>
+</div>
+<div class="flex flex-wrap gap-4 items-center justify-center">
+<a class="font-label-sm text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Accessibility Policy</a>
+<a class="font-label-sm text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Support Center</a>
+<a class="font-label-sm text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Privacy</a>
+<a class="font-label-sm text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Terms of Service</a>
+</div>
+</footer>
+</body></html>

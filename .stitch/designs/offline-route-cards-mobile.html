@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Offline Routes - Montreal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c2c9bb",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "on-secondary-fixed-variant": "#254a65",
+                        "secondary-fixed-dim": "#a7cbeb",
+                        "on-tertiary-container": "#ffb273",
+                        "secondary": "#3f627e",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f1effa",
+                        "tertiary-fixed": "#ffdcc3",
+                        "surface-container-low": "#f4f2fd",
+                        "surface-bright": "#fbf8ff",
+                        "secondary-container": "#badeff",
+                        "surface-container": "#eeedf7",
+                        "primary-container": "#2d5a27",
+                        "on-surface-variant": "#42493e",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "surface-variant": "#e3e1ec",
+                        "surface-container-highest": "#e3e1ec",
+                        "primary": "#154212",
+                        "on-secondary-fixed": "#001e30",
+                        "tertiary": "#5a2e00",
+                        "surface-container-high": "#e8e7f1",
+                        "on-primary-fixed": "#002201",
+                        "primary-fixed-dim": "#a1d494",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1a1b22",
+                        "on-primary-fixed-variant": "#23501e",
+                        "surface-dim": "#dad9e3",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#2f1500",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#3f637e",
+                        "background": "#fbf8ff",
+                        "surface": "#fbf8ff",
+                        "outline": "#72796e",
+                        "on-primary-container": "#9dd090",
+                        "inverse-surface": "#2f3038",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1a1b22",
+                        "primary-fixed": "#bcf0ae",
+                        "inverse-primary": "#a1d494",
+                        "surface-tint": "#3b6934",
+                        "tertiary-container": "#7c4100",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#cbe6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "metric-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "metric-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md pb-24 md:hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 shadow-sm bg-surface dark:bg-surface-dim transition-colors">
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:bg-surface-container-high active:scale-95 duration-150 p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="sync_saved_locally">sync_saved_locally</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed-dim">Offline</h1>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Montreal, QC</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined animate-spin" data-icon="sync" style="font-size: 16px;">sync</span>
+<span>45%</span>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container-high active:scale-95 duration-150 p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="cloud_sync">cloud_sync</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-20 px-margin-mobile flex flex-col gap-6">
+<!-- Readiness Panel -->
+<section class="bg-primary-container text-on-primary-container rounded-xl p-md shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline-md text-headline-md mb-1">12 Routes Saved</h2>
+<p class="font-body-md text-body-md opacity-90">184 MB used • Last sync: 2 hours ago</p>
+</div>
+<span class="material-symbols-outlined text-3xl" data-icon="offline_pin">offline_pin</span>
+</div>
+<button class="w-full bg-on-primary-container text-primary-container font-label-md text-label-md py-2 rounded-lg hover:bg-opacity-90 active:scale-[0.98] transition-transform">
+                Update all saved
+            </button>
+</section>
+<!-- Warning Row -->
+<div class="flex items-center gap-2 bg-[#fff3cd] text-[#856404] px-sm py-2 rounded-lg font-label-sm text-label-sm">
+<span class="material-symbols-outlined" data-icon="warning" style="font-size: 18px;">warning</span>
+<span class="flex-1">Some route details may be outdated.</span>
+<button class="underline font-semibold active:opacity-70">Refresh</button>
+</div>
+<!-- Primary List -->
+<section class="flex flex-col gap-4">
+<!-- Card 1: Old Montreal -->
+<article class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-variant overflow-hidden flex flex-col" onclick="toggleBottomSheet()">
+<div class="h-32 bg-surface-container w-full relative">
+<img class="w-full h-full object-cover absolute inset-0" data-alt="A high quality, bright outdoor photograph of historic cobblestone streets in Old Montreal during daytime. Classic architecture, clear blue sky, soft natural light, minimalist aesthetic, wide angle view." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFONoyzwHysDmF_rrcyvkXgoQWBtivHyG8KRVfN4X_-9xDw871_Ub51iXfLt5bk8xI3uKVdX56GUkgdwWYzhpwFuKEtB1ntWc7_cfL-VIDG63jh8K9Ka2vYujMrNL8WjqB4QfaSiJp1v6bqRwwI3SqNCXeM13MU7EUItg9tpGz3Gcoo9oHVow5kvFre5sFmC0gOVm7ATwt1Fd1NRfblE_dpKNWwDLXWG7FUVWIJFxum3pmPCECDwpDhLdKtk3a-ooqinaZbi08V2w"/>
+<div class="absolute top-sm right-sm bg-surface-container-lowest px-2 py-1 rounded-full flex items-center gap-1 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined" data-icon="download_done" style="font-size: 14px;">download_done</span>
+                        Downloaded
+                    </div>
+</div>
+<div class="p-md flex flex-col gap-3">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Old Montreal Historic Walk</h3>
+<div class="flex items-center gap-4 mt-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined" data-icon="route" style="font-size: 16px;">route</span> 3.2km</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined" data-icon="schedule" style="font-size: 16px;">schedule</span> 55m</span>
+</div>
+</div>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-2 rounded-lg hover:bg-opacity-90 transition-colors">Open Offline</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors flex items-center justify-center"><span class="material-symbols-outlined" data-icon="update">update</span></button>
+<button class="p-2 border border-outline-variant rounded-lg text-error hover:bg-error-container hover:border-error-container transition-colors flex items-center justify-center"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</div>
+</article>
+<!-- Card 2: Mount Royal -->
+<article class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-variant overflow-hidden flex flex-col opacity-80">
+<div class="h-24 bg-surface-container w-full relative">
+<img class="w-full h-full object-cover absolute inset-0 filter grayscale-[20%]" data-alt="A lush green view of Mount Royal park in Montreal on a sunny day. Wide walking paths, tall trees, clear skies, vibrant natural colors, bright light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKKK-g_bwNedFnw_5J200R0FTrjeUBMTYdtv13G3vxLo1eCFaJhoPy4RBKzi1uXNbP7p6akRVyxJzC6WM9ZbkTeZYyyXNYBezcH_Cgoad2Uzxfwc1aIFZb2RMeS0kGs2rIRw57xQ9HvAAcoiRCDrT32DpUgVUwtm5xjB7vY3c3tnthejQdBLCR5vAacKHXoC8-SljN1U6vqYhcb5B3BZDOV7vSIirM9Msa28yfCQWO57vomgBFpJk5ZuqUwtilnyvGSQeYPSqOiKU"/>
+<div class="absolute top-sm right-sm bg-surface-container-lowest px-2 py-1 rounded-full flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="cloud_download" style="font-size: 14px;">cloud_download</span>
+                        Available
+                    </div>
+</div>
+<div class="p-md flex flex-col gap-3">
+<h3 class="font-headline-md text-headline-md text-on-surface">Mount Royal Loop</h3>
+<button class="w-full border border-primary text-primary font-label-md text-label-md py-2 rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined" data-icon="download" style="font-size: 18px;">download</span> Download
+                    </button>
+</div>
+</article>
+<!-- Card 3: Plateau -->
+<article class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-variant overflow-hidden flex flex-col relative">
+<div class="absolute bottom-0 left-0 h-1 bg-primary w-[45%] z-10 transition-all duration-500"></div>
+<div class="p-md flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface">Plateau Cafe Crawl</h3>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined animate-spin" data-icon="sync" style="font-size: 16px;">sync</span> 45%
+                        </div>
+</div>
+<button class="w-full bg-surface-variant text-on-surface-variant font-label-md text-label-md py-2 rounded-lg hover:bg-surface-container-high transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined" data-icon="pause" style="font-size: 18px;">pause</span> Pause
+                    </button>
+</div>
+</article>
+</section>
+<!-- Sync Settings -->
+<section class="mt-4 bg-surface-container-low rounded-xl p-md border border-surface-variant">
+<h3 class="font-label-md text-label-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Sync Settings
+            </h3>
+<div class="flex flex-col gap-4 font-body-md text-body-md text-on-surface">
+<label class="flex justify-between items-center cursor-pointer">
+<span>Auto-download saved routes</span>
+<input checked="" class="form-checkbox text-primary rounded rounded-full h-5 w-5 bg-surface-variant border-transparent focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</label>
+<label class="flex justify-between items-center cursor-pointer">
+<span>Wi-Fi only sync</span>
+<input checked="" class="form-checkbox text-primary rounded rounded-full h-5 w-5 bg-surface-variant border-transparent focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+</label>
+<div class="flex justify-between items-center">
+<span>Map radius</span>
+<select class="form-select bg-transparent border-none text-primary font-label-md text-label-md py-0 pl-0 pr-8 focus:ring-0">
+<option>2 km</option>
+<option selected="">5 km</option>
+<option>10 km</option>
+</select>
+</div>
+</div>
+</section>
+</main>
+<!-- Expanded Preview Drawer (Hidden by default) -->
+<div class="fixed inset-0 z-[60] flex flex-col justify-end translate-y-full transition-transform duration-300" id="bottom-sheet">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="toggleBottomSheet()"></div>
+<div class="bg-surface rounded-t-[24px] shadow-xl relative z-10 max-h-[751px] overflow-y-auto flex flex-col">
+<div class="w-12 h-1.5 bg-surface-variant rounded-full mx-auto my-3"></div>
+<div class="h-48 w-full relative shrink-0">
+<div class="absolute inset-0 bg-surface-container-low" data-location="Montreal" style=""></div>
+<svg class="absolute inset-0 w-full h-full pointer-events-none stroke-primary" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M 10 90 Q 30 50 50 30 T 90 10" fill="none" stroke-dasharray="4 4" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<div class="p-lg flex flex-col gap-6">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Old Montreal Historic Walk</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Start at Metro Place-d'Armes. Follow Rue Notre-Dame.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-3 uppercase tracking-wider text-opacity-70">Waypoints</h4>
+<ol class="flex flex-col gap-3 font-body-md text-body-md">
+<li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center font-label-sm text-label-sm">1</div> Place d'Armes</li>
+<li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center font-label-sm text-label-sm">2</div> Notre-Dame Basilica</li>
+<li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center font-label-sm text-label-sm">3</div> Pointe-à-Callière</li>
+</ol>
+</div>
+<div class="bg-error-container text-on-error-container p-4 rounded-xl flex items-start gap-3">
+<span class="material-symbols-outlined mt-0.5" data-icon="emergency">emergency</span>
+<p class="font-body-md text-body-md">Local Emergency: 911<br/>Closest Hospital: CHUM.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-3 uppercase tracking-wider text-opacity-70">Data Checklist</h4>
+<ul class="flex flex-col gap-2 font-body-md text-body-md">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill" style="font-size: 20px;">check_circle</span> Route Geometry</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill" style="font-size: 20px;">check_circle</span> Monument Details</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill" style="font-size: 20px;">check_circle</span> Photos</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill" style="font-size: 20px;">check_circle</span> Offline Map Tiles</li>
+</ul>
+</div>
+<div class="pb-8">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-xl hover:bg-opacity-90 shadow-sm transition-transform active:scale-95">Open Offline Map</button>
+</div>
+</div>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface dark:bg-surface-container-lowest shadow-[0_-2px_10px_rgba(0,0,0,0.05)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="route">route</span>
+<span class="font-label-sm text-label-sm">Routes</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="castle">castle</span>
+<span class="font-label-sm text-label-sm">Monuments</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span class="font-label-sm text-label-sm">Saved</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</nav>
+<script>
+        function toggleBottomSheet() {
+            const sheet = document.getElementById('bottom-sheet');
+            if (sheet.classList.contains('translate-y-full')) {
+                sheet.classList.remove('translate-y-full');
+            } else {
+                sheet.classList.add('translate-y-full');
+            }
+        }
+    </script>
+</body></html>

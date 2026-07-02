@@ -1,0 +1,13 @@
+.next
+node_modules
+out
+coverage
+output
+test-results
+.npm-restore
+.playwright-cli
+.env*
+!.env.example
+*.tsbuildinfo
+dist
+*.log

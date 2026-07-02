@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Route",
+  "type": "object",
+  "required": [
+    "id",
+    "cityId",
+    "title",
+    "slug",
+    "summary",
+    "routeType",
+    "mode",
+    "distanceMeters",
+    "estimatedDurationMinutes",
+    "difficulty",
+    "loopType",
+    "start",
+    "end",
+    "geometry",
+    "stops",
+    "tags",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "routeType": {
+      "enum": [
+        "everyday_walk",
+        "scenic_walk",
+        "city_discovery",
+        "cultural_route",
+        "heritage_route",
+        "food_cafe_route",
+        "architecture_route",
+        "nature_route",
+        "weekend_route",
+        "road_trip",
+        "pilgrimage_stage"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "walk",
+        "city_discovery",
+        "scenic",
+        "heritage",
+        "weekend",
+        "road_trip",
+        "pilgrimage"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "moodTags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "distanceMeters": {
+      "type": "number",
+      "minimum": 1
+    },
+    "estimatedDurationMinutes": {
+      "type": "number",
+      "minimum": 1
+    },
+    "difficulty": {
+      "enum": [
+        "easy",
+        "moderate",
+        "hard"
+      ]
+    },
+    "pace": {
+      "enum": [
+        "relaxed",
+        "balanced",
+        "intense"
+      ]
+    },
+    "loopType": {
+      "enum": [
+        "loop",
+        "one_way",
+        "out_and_back"
+      ]
+    },
+    "start": {
+      "$ref": "#/$defs/endpoint"
+    },
+    "end": {
+      "$ref": "#/$defs/endpoint"
+    },
+    "geometry": {
+      "$ref": "#/$defs/geojsonLineString"
+    },
+    "stops": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/routeStop"
+      }
+    },
+    "bestFor": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "knowBeforeYouGo": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "published",
+        "needs_update",
+        "retired"
+      ]
+    },
+    "sourceQuality": {
+      "enum": [
+        "draft",
+        "verified",
+        "field_tested"
+      ]
+    },
+    "lastReviewedAt": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "endpoint": {
+      "type": "object",
+      "required": [
+        "name",
+        "coordinates"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "coordinates": {
+          "$ref": "#/$defs/coordinates"
+        }
+      }
+    },
+    "coordinates": {
+      "type": "object",
+      "required": [
+        "lat",
+        "lng"
+      ],
+      "properties": {
+        "lat": {
+          "type": "number"
+        },
+        "lng": {
+          "type": "number"
+        }
+      }
+    },
+    "geojsonLineString": {
+      "type": "object",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "properties": {
+        "type": {
+          "const": "LineString"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      }
+    },
+    "routeStop": {
+      "type": "object",
+      "required": [
+        "placeId",
+        "order"
+      ],
+      "properties": {
+        "placeId": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "recommendedStopMinutes": {
+          "type": "number"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

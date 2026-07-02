@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>St. Lawrence Heritage Way - Pilgrim Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#7c4100",
+                        "surface-container-low": "#f4f2fd",
+                        "surface-container-high": "#e8e7f1",
+                        "on-primary-container": "#9dd090",
+                        "primary-container": "#2d5a27",
+                        "secondary": "#3f627e",
+                        "on-secondary-container": "#3f637e",
+                        "surface-bright": "#fbf8ff",
+                        "on-tertiary-container": "#ffb273",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#eeedf7",
+                        "tertiary": "#5a2e00",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c2c9bb",
+                        "on-secondary-fixed-variant": "#254a65",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2f3038",
+                        "surface-tint": "#3b6934",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#42493e",
+                        "surface-dim": "#dad9e3",
+                        "secondary-fixed": "#cbe6ff",
+                        "inverse-on-surface": "#f1effa",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "primary-fixed": "#bcf0ae",
+                        "on-surface": "#1a1b22",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#a7cbeb",
+                        "on-background": "#1a1b22",
+                        "on-primary-fixed-variant": "#23501e",
+                        "surface-variant": "#e3e1ec",
+                        "surface-container-highest": "#e3e1ec",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#badeff",
+                        "primary-fixed-dim": "#a1d494",
+                        "inverse-primary": "#a1d494",
+                        "background": "#fbf8ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#001e30",
+                        "outline": "#72796e",
+                        "on-primary-fixed": "#002201",
+                        "surface": "#fbf8ff",
+                        "on-tertiary-fixed": "#2f1500",
+                        "primary": "#154212",
+                        "tertiary-fixed": "#ffdcc3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "md": "16px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "margin-desktop": "48px",
+                        "sm": "8px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "metric-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "metric-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin-mobile h-14 bg-surface dark:bg-on-background shadow-sm dark:shadow-none transition-colors duration-200">
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-high dark:hover:bg-inverse-surface p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed flex-1 text-center">Pilgrim Path</h1>
+<div class="flex gap-2">
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-high dark:hover:bg-inverse-surface p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-high dark:hover:bg-inverse-surface p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-high dark:hover:bg-inverse-surface p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-margin-mobile flex flex-col gap-6">
+<!-- Route Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] p-md border border-surface-variant flex flex-col gap-4">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">St. Lawrence Heritage Way</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Montreal to Quebec City</p>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-surface-variant">
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Distance</span>
+<span class="block font-metric-lg text-metric-lg text-primary">258 km</span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Duration</span>
+<span class="block font-metric-lg text-metric-lg text-primary">12-14 days</span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Stages</span>
+<span class="block font-metric-lg text-metric-lg text-primary">8</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm text-on-surface">Current: Stage 3</span>
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-label-sm">Moderate</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">Resume Stage</button>
+</div>
+</section>
+<!-- Map Area -->
+<section class="relative w-full h-64 rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A highly detailed illustrated map of the St. Lawrence Heritage Way from Montreal to Quebec City. The map is rendered in a modern, clean cartographic style suitable for outdoor readability. A vibrant forest green route line snakes along the river. The style features a very light gray base (#FAFAFA) with subtle topographic contours. Sharp, legible iconography marks key waypoints, creating a functional yet elegant travel guide aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzDlesUNXnGdERD2K5FmjrJ-5_bKVNNOFJeysD7Q4DGkNqDDo8Z9mSEDn7s7RyZJEvShDtQ3asNpTsB2mvYAhksEBZ5k9suSuvAFxtl1YfIs6Mphi8TntzXhytS40ofOutRJ9TugQXSBq0gRZmBILZu9S7ohCmjV6RLLPT6fXEX2e1POYuYnSYMkr7VmyrWMMpe6MprU4nqsLes5zw6zB8tDB0wMkTge0CsO4WgpM_uXTBoUKN4VR2q3ch5iNomBJFToNXyl-8_XA"/>
+<!-- Map Overlays -->
+<div class="absolute top-2 left-2 bg-surface-container-lowest/90 backdrop-blur-sm rounded-lg p-2 shadow-md border border-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-container" style="font-variation-settings: 'FILL' 1;">cloud_sync</span>
+<span class="font-label-sm text-label-sm text-on-surface">Weather Alert: Afternoon Showers</span>
+</div>
+<!-- Conceptual Map Pins (Positioned absolutely for demonstration) -->
+<div class="absolute top-1/2 left-1/3 w-4 h-4 bg-primary rounded-full shadow-[0px_8px_24px_rgba(0,0,0,0.1)] border-2 border-white translate-x-[-50%] translate-y-[-50%]"></div>
+<div class="absolute top-1/2 left-2/3 w-4 h-4 bg-primary rounded-full shadow-[0px_8px_24px_rgba(0,0,0,0.1)] border-2 border-white translate-x-[-50%] translate-y-[-50%]"></div>
+<!-- Path representation -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M33,50 C45,60 55,40 66,50" fill="none" stroke="#154212" stroke-dasharray="4,2" stroke-width="2"></path>
+</svg>
+</section>
+<!-- Stage Detail Tabs (BottomNavBar logical equivalent injected into content flow) -->
+<section class="flex flex-col gap-4">
+<div class="flex bg-surface-container rounded-lg p-1">
+<button class="flex-1 py-2 px-4 rounded-md bg-surface-container-lowest shadow-sm font-label-md text-label-md text-primary text-center">Today</button>
+<button class="flex-1 py-2 px-4 rounded-md font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant/50 transition-colors text-center">Stages</button>
+<button class="flex-1 py-2 px-4 rounded-md font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant/50 transition-colors text-center">Services</button>
+<button class="flex-1 py-2 px-4 rounded-md font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant/50 transition-colors text-center">Log</button>
+</div>
+<!-- Active Tab Content -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] p-md border border-surface-variant flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Stage 3</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Sorel-Tracy to Trois-Rivieres</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="px-2 py-1 bg-primary-container text-on-primary-container rounded-full font-label-sm text-label-sm mb-1">Offline Ready</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">98% Route Confidence</span>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-2 py-2 border-y border-surface-variant">
+<div class="text-center">
+<span class="block font-metric-lg text-metric-lg text-primary">25k</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Dist</span>
+</div>
+<div class="text-center">
+<span class="block font-metric-lg text-metric-lg text-primary">6h</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Est.</span>
+</div>
+<div class="text-center">
+<span class="block font-metric-lg text-metric-lg text-primary">Flat</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Terrain</span>
+</div>
+<div class="text-center">
+<span class="block font-metric-lg text-metric-lg text-primary">+30m</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Elev</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="flex items-center gap-1 px-3 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px]">water_drop</span> 4 Water Refills
+                    </span>
+<span class="flex items-center gap-1 px-3 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px]">local_cafe</span> 2 Cafes
+                    </span>
+<span class="flex items-center gap-1 px-3 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px]">bed</span> Hostel available
+                    </span>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-2">
+<button class="col-span-2 bg-primary text-on-primary font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-primary/90 transition-colors shadow-sm">Start Stage</button>
+<button class="bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span> Download
+                    </button>
+<button class="bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">share</span> Share
+                    </button>
+</div>
+</div>
+</section>
+<!-- Pilgrim Log Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] p-md border border-surface-variant flex flex-col gap-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Pilgrim Log</h3>
+<!-- Credential Stamps -->
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant mb-3">Credential Stamps (2/8)</h4>
+<div class="flex gap-4 overflow-x-auto pb-2">
+<div class="w-16 h-16 rounded-full bg-primary-container/20 border-2 border-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="w-16 h-16 rounded-full bg-primary-container/20 border-2 border-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="w-16 h-16 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center shrink-0 text-on-surface-variant opacity-50">
+<span class="font-label-sm text-label-sm">Next</span>
+</div>
+</div>
+</div>
+<!-- Reflection Input -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="reflection">Reflection</label>
+<textarea class="w-full rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-on-surface-variant/50" id="reflection" placeholder="Add a note about today's journey..." rows="3"></textarea>
+</div>
+<!-- Reminders & Tips Bento -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-secondary-container/30 rounded-lg p-3 border border-secondary-container/50">
+<div class="flex items-center gap-2 mb-2 text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+<span class="font-label-md text-label-md">Reminders</span>
+</div>
+<ul class="list-disc list-inside font-body-md text-body-md text-on-surface text-sm">
+<li>Check packing list</li>
+<li>Rest-day suggested in 2 stages</li>
+</ul>
+</div>
+<div class="bg-tertiary-container/10 rounded-lg p-3 border border-tertiary-container/30">
+<div class="flex items-center gap-2 mb-2 text-tertiary-container">
+<span class="material-symbols-outlined text-[18px]">tips_and_updates</span>
+<span class="font-label-md text-label-md">Community Tip</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface text-sm italic">"Try the bakery in Yamachiche for the best local bread."</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface dark:bg-inverse-surface shadow-lg md:hidden">
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">directions_walk</span>
+<span class="font-label-sm text-label-sm mt-1">Today</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-inverse-surface scale-95 transition-transform duration-150 rounded-full">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm mt-1">Stages</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-inverse-surface scale-95 transition-transform duration-150 rounded-full">
+<span class="material-symbols-outlined">home_repair_service</span>
+<span class="font-label-sm text-label-sm mt-1">Services</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-inverse-surface scale-95 transition-transform duration-150 rounded-full">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-sm text-label-sm mt-1">Log</span>
+</button>
+</nav>
+</body></html>

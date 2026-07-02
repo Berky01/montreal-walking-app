@@ -1,0 +1,30 @@
+priority,area,finding,recommended_fix,acceptance_criteria,effort
+P0,Repository access,GitHub URLs return 404,Make repository public or grant access; update project README/deployment docs,Auditor/dev can clone repo; CI visible; README includes run/deploy instructions,S
+P0,Broken place links,Multiple /places/* links return 530,"Run link crawl, compare list slugs to detail records, fix missing data/slug resolver/errors",All /places cards return 200; unknown slugs return designed 404,M
+P0,Error handling,530 Unknown Status Code on public pages,"Add error boundaries, server logging, not-found handlers, monitoring",No 530s in smoke crawl; actionable logs for exceptions,M
+P0,Map fallback,Map fallback text visible on public pages,Implement production map component and static fallback,Map renders on home/places/routes/detail/live; static fallback for no-JS,L
+P0,Issue report placeholder data,Report form includes massive future/placeholder lists,Filter to published current city data; use context-aware typeahead,No draft/future regions visible publicly; report submits to admin queue,M
+P0,Publish-state gating,Draft content appears in public routes/place pages,Add draft/qa/published states with validation,Only published records visible; draft data admin-only,M
+P0,Search MVP,Search page is mostly static suggestions,"Implement query/filter URL params, indexed search, ranking",Search returns explainable place+route results for key intents,L
+P0,Saved loop,Saved page is a shell/suggestion mix,Persist saves locally; separate saved vs suggested,Saving place/route persists after refresh,M
+P0,History loop,History page empty without functional completion flow,Persist route sessions and completion records,End route creates history entry with route/date/stops,M
+P0,Live route state,Live route defaults to 0% and needs durable state,Implement route session state machine,Visited/skip/pause/end persist and update progress,L
+P0,Content validation,Inconsistent source quality/draft labels on public pages,Schema validate required fields and QA thresholds,Build fails when published content is incomplete,M
+P0,CI smoke tests,No verified crawl/test evidence,Add Playwright crawler for nav/place/route/live/report flows,CI fails on 404/500/530 and broken primary CTA,M
+P0,Security baseline,No repo access to verify headers/secrets,"Add CSP, HSTS, frame-ancestors, referrer/permissions policies, secret scan",Headers verified in deploy; no secrets in repo,M
+P1,Design system,Static export uses Tailwind CDN and duplicate fonts,"Compile Tailwind, create tokens/components, de-dupe fonts",No Tailwind CDN; one font strategy; shared components,L
+P1,Accessibility,Static export has many images without alt,"Audit alt text, labels, focus states, keyboard map/list sync",WCAG smoke tests pass for core flows,M
+P1,SEO,Need metadata/sitemap/canonical/OG for public content,"Generate sitemap, robots, canonical URLs, per-page metadata and OG cards",Search/share previews correct for routes/places,M
+P1,Dynamic route builder,Prototype exists but not live-complete,Build constraints-based route generation over published places/routes,User can build route by time/theme/pace/accessibility,XL
+P1,Natural-language search,Prototype exists; live search static,Intent parser and search explanations,Queries like “quiet rainy-day churches under 1h” work,L
+P1,Offline route cards,Prototype exists but not live,PWA manifest/service worker/IndexedDB offline route packs,Saved route available offline with map/stop text,L
+P1,Weather/time suggestions,Prototype exists but not live,Integrate weather and best-time recommendations,Route cards show current weather suitability,M
+P1,Route completion/share,Prototype exists but not live,"Completion page, notes, rating, share card",Completed route can be saved/shared,M
+P1,Admin QA dashboard,Prototype exists but not live,"Admin auth, report queue, QA score, publish controls",Reviewer can triage reports and publish fixes,L
+P2,City expansion,Cities page lists future cities only,Create city ingestion and QA pipeline before unlocking cities,New city requires data coverage + QA before public,XL
+P2,Audio stories,Prototype exists,"Add audio scripts, licensing, player, offline audio option",Selected route has audio story segments,L
+P2,Premium city packs,Prototype exists,Gate after reliable free core; add purchase/entitlement,Paid pack unlocks curated content without breaking free app,XL
+P2,Partner portal,Prototype exists,"Partner kit creation, moderation, analytics",Partner can create guest route kit pending admin approval,XL
+P3,Tickets/tours,Prototype exists,Affiliate/ticket inventory integration,Tickets attach to relevant stops without dominating UX,XL
+P3,Road trip mode,Prototype exists,Multi-stop regional planner with day splits,Road trip creates multi-day itinerary from vetted places,XL
+P3,Pilgrimage/long-distance,Prototype exists,"Long-distance route segments, lodging/water/safety context",Long route mode supports staged progress,XL

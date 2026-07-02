@@ -1,0 +1,83 @@
+file,title,chars,imgs,missing_alt,buttons,links,inputs,labels,style_tags,script_tags,material_links,tailwind_cdn,duplicate_font_material
+best_time_to_walk_mobile/code.html,Best Time to Walk - Meaningful Routes,15961,0,0,3,5,0,0,2,2,2,True,2
+monument_detail_mobile/code.html,Meaningful Routes - Notre-Dame Basilica,20004,5,5,6,0,0,0,2,2,2,True,2
+admin_route_qa_dashboard_mobile/code.html,Meaningful Routes - Admin Route QA,22716,4,0,11,0,5,5,2,3,2,True,2
+discover_monuments_mobile/code.html,Discover Monuments - Meaningful Routes,16539,3,3,13,0,1,0,2,2,2,True,2
+route_detail_desktop/code.html,Route Detail - Meaningful Routes,27299,0,0,10,12,1,0,1,2,2,True,2
+partner_dashboard_guest_route_kits/code.html,Guest Route Kits - Meaningful Routes Partner Dashboard,24669,2,0,16,9,4,5,0,2,2,True,2
+route_results_mobile/code.html,Route Results - Meaningful Routes,19595,3,3,10,11,0,0,2,2,2,True,2
+landing_page_mobile/code.html,Meaningful Routes - Mobile,15884,3,3,10,1,1,0,2,2,2,True,2
+place_d_armes_public_page_mobile/code.html,Place d'Armes - Meaningful Routes,21424,8,8,6,0,0,0,2,2,2,True,2
+route_export_mobile/code.html,Export Route - Meaningful Routes,19169,0,0,9,4,5,5,2,2,2,True,2
+live_route_mobile/code.html,Active Route - Meaningful Routes,11620,0,0,5,0,0,0,2,2,2,True,2
+more_cities_explorer_desktop/code.html,More Cities - Meaningful Routes,20135,0,0,12,11,2,0,1,2,2,True,2
+public_route_page_desktop/code.html,Old Montreal Monuments Loop - Meaningful Routes,24746,4,4,7,11,1,0,1,2,2,True,2
+saved_library_mobile/code.html,Saved - Meaningful Routes,22816,0,0,16,6,0,0,2,2,2,True,2
+admin_route_qa_dashboard/code.html,Meaningful Routes - Admin Route QA,20378,1,0,8,9,4,4,1,2,2,True,2
+montreal_heritage_pack_detail_mobile/code.html,Montreal Heritage Pack - Meaningful Routes,19583,0,0,12,6,0,0,2,2,2,True,2
+share_route_completion_mobile/code.html,Share Route & Completion - Meaningful Routes,23262,2,2,13,0,4,2,2,2,2,True,2
+audio_stories_old_montreal_historic_walk/code.html,Audio Stories for the Walk - Meaningful Routes,26571,4,4,12,11,5,2,2,2,2,True,2
+meaningful_routes_app_flow/code.html,Meaningful Routes,21790,4,4,5,7,0,1,1,2,2,True,2
+post_mvp_feature_inventory_mobile/code.html,Post-MVP Feature Inventory - Mobile,25923,1,1,4,0,1,0,2,3,2,True,2
+public_route_page_mobile/code.html,Old Montreal Monuments Loop - Meaningful Routes,13316,2,0,8,0,0,0,2,2,2,True,2
+next_stop_preview_mobile/code.html,Meaningful Routes - Next Stop,16316,2,2,6,0,0,0,3,2,2,True,2
+public_place_page_place_d_armes_desktop/code.html,Place d'Armes - Meaningful Routes,34091,7,7,11,17,0,0,1,2,2,True,2
+offline_route_cards_desktop/code.html,Offline Route Cards - Meaningful Routes,28296,1,1,13,10,4,3,1,2,2,True,2
+route_completed_desktop/code.html,Meaningful Routes - Route Completed,20430,3,3,4,9,1,2,1,2,2,True,2
+natural_language_search_desktop/code.html,Natural Language Search - HeritageQuest,26309,3,3,11,3,1,0,1,2,2,True,2
+route_comparison_desktop/code.html,Route Comparison - Meaningful Routes,19858,3,3,10,6,0,0,1,2,2,True,2
+tickets_tours_old_montreal_loop/code.html,Meaningful Routes - Old Montreal Monuments Loop,24044,1,1,12,8,2,0,1,2,2,True,2
+settings_desktop/code.html,Meaningful Routes - Settings,18878,0,0,20,13,1,4,1,2,2,True,2
+heritage_unesco_layers_mobile/code.html,Meaningful Routes - Heritage Layers,19372,1,1,17,0,0,0,2,3,2,True,2
+route_detail_mobile/code.html,Old Montreal Monuments Loop - Route Detail,19807,1,1,7,0,0,0,2,2,2,True,2
+tickets_tours_mobile/code.html,Tickets & Tours - Meaningful Routes,19704,1,1,23,0,0,0,2,2,2,True,2
+monument_detail_desktop/code.html,Meaningful Routes - Monument Detail,22859,6,6,7,12,0,0,1,2,2,True,2
+build_route_mobile/code.html,Meaningful Routes - Build Route,16264,1,1,14,8,1,0,1,2,2,True,2
+heritage_unesco_explorer/code.html,Meaningful Routes - Heritage Layers,16719,2,2,13,8,0,0,1,2,2,True,2
+dynamic_route_generation/code.html,Dynamic Route Generation - Pathfinder,21311,0,0,16,11,8,8,1,2,2,True,2
+long_distance_pilgrimage_mode_mobile_1/code.html,St. Lawrence Heritage Way - Pilgrim Mode,19291,1,1,16,0,1,1,2,2,2,True,2
+discover_monuments_desktop/code.html,Discover Monuments - Meaningful Routes,25544,3,3,19,6,2,0,1,2,2,True,2
+map_explorer_mobile/code.html,Meaningful Routes - Map Explorer,20320,0,0,5,5,7,6,3,2,2,True,2
+premium_city_packs_mobile/code.html,Premium City Packs,18412,3,3,6,0,0,0,2,2,2,True,2
+neighborhood_page_mobile/code.html,Meaningful Routes - Old Montreal,16483,3,3,4,4,1,0,2,2,2,True,2
+monument_list_filters_mobile/code.html,Monument List & Filters,23174,2,2,23,0,9,7,2,3,2,True,2
+accessibility_route_notes_mobile/code.html,Accessibility Route Notes - Old Montreal Historic Walk,17505,1,1,6,4,0,0,1,2,2,True,2
+mvp_missing_surfaces/code.html,MVP Missing Surfaces | Meaningful Routes,24334,0,0,13,5,5,5,1,3,2,True,2
+road_trip_mode_planner_mobile/code.html,Road-trip Mode - Meaningful Routes,19765,0,0,9,0,0,0,2,2,2,True,2
+app_home_mobile/code.html,Meaningful Routes - Home,17507,4,4,11,0,1,0,2,2,2,True,2
+history_desktop/code.html,Meaningful Routes - History,8361,0,0,0,0,0,0,1,2,2,True,2
+route_comparison_mobile/code.html,Compare Routes - Meaningful Routes,21701,3,3,11,0,0,0,2,2,2,True,2
+road_trip_mode_planner_1/code.html,Meaningful Routes - Road Trip Planner,28870,2,0,8,7,10,9,1,2,2,True,2
+complete_p0_feature_inventory_mobile/code.html,Meaningful Routes - Mobile Feature Inventory,25923,1,1,13,0,0,3,2,2,2,True,2
+complete_p0_feature_inventory_desktop/code.html,Meaningful Routes | Product Design Inventory,41094,0,0,19,11,8,5,1,3,2,True,2
+premium_city_packs_desktop/code.html,City Packs - Meaningful Routes,20487,0,0,9,11,1,0,1,2,2,True,2
+road_trip_mode_planner_2/code.html,Meaningful Routes - Road-trip Mode,22951,3,3,12,4,6,5,1,2,2,True,2
+long_distance_pilgrimage_mode_mobile_2/code.html,St. Lawrence Heritage Way - Pilgrim Path,8085,0,0,0,0,0,0,2,2,2,True,2
+montreal_heritage_pack_detail/code.html,Montreal Heritage Pack - Meaningful Routes,20194,1,1,10,10,1,0,1,2,2,True,2
+natural_language_search_mobile/code.html,Meaningful Routes - Search,22562,3,2,18,0,1,0,2,2,2,True,2
+route_completed_mobile/code.html,Meaningful Routes - Completion,13344,0,0,3,0,1,0,2,3,2,True,2
+live_route_desktop_1/code.html,Live Route - Meaningful Routes,17844,0,0,8,6,0,0,1,2,2,True,2
+accessibility_route_notes_desktop/code.html,Accessibility Route Notes - Old Montreal,21081,2,0,8,5,6,5,1,2,2,True,2
+landing_page_desktop/code.html,Meaningful Routes,21779,4,4,5,7,0,1,1,2,2,True,2
+route_issue_report_mobile/code.html,Report Route Issue,17874,0,0,11,0,2,4,2,3,2,True,2
+live_route_desktop_2/code.html,Live Route - Meaningful Routes,16656,1,1,10,7,0,0,0,2,2,True,2
+settings_mobile/code.html,Settings - Meaningful Routes,26958,1,0,22,0,9,9,2,3,2,True,2
+share_route_completion_desktop/code.html,Share Route - PathFinder,22095,2,2,14,9,7,8,0,2,2,True,2
+history_mobile/code.html,Meaningful Routes - History,19992,3,3,12,5,0,0,2,2,2,True,2
+saved_library_desktop/code.html,Saved Places & Routes - Meaningful Routes,28410,9,9,14,19,1,0,0,2,2,True,2
+route_results_desktop/code.html,Route Results - Meaningful Routes,24394,3,3,9,7,5,3,1,2,2,True,2
+weather_time_suggestions_desktop/code.html,Best Time to Walk - Meaningful Routes,24502,0,0,5,12,4,3,1,2,2,True,2
+monument_list_filters_desktop/code.html,Monuments - Meaningful Routes,22854,0,0,17,7,9,7,1,3,2,True,2
+app_home_desktop/code.html,Home / Around Me - Meaningful Routes,27152,5,0,9,12,1,0,1,2,2,True,2
+route_export_workspace_desktop/code.html,Export route guide - Pathfinder,21537,1,1,6,9,10,10,1,2,2,True,2
+post_mvp_feature_inventory_desktop/code.html,Meaningful Routes | Post-MVP Feature Inventory,29068,0,0,3,4,0,0,1,3,2,True,2
+next_stop_preview_desktop/code.html,Next Stop Preview - Pathfinder,18546,2,0,6,4,0,0,0,2,2,True,2
+route_issue_report_desktop/code.html,Route Issue Report - Meaningful Routes,21112,2,2,8,1,8,11,1,3,2,True,2
+offline_route_cards_mobile/code.html,Offline Routes - Montreal,20778,2,2,15,0,3,2,2,3,2,True,2
+neighborhood_page_desktop/code.html,Old Montreal Neighborhood Guide - Meaningful Routes,29010,10,10,6,10,1,0,1,2,2,True,2
+tickets_tours_old_montreal_loop_mobile/code.html,Tickets & tours,21541,0,0,21,0,0,0,2,2,2,True,2
+explore_cities_mobile/code.html,Meaningful Routes - Explore by City,18917,0,0,8,0,1,0,3,2,2,True,2
+audio_stories_mobile/code.html,Audio Stories - Old Montreal Historic Walk,21681,1,1,9,4,0,0,2,2,2,True,2
+partner_portal_guest_route_kits/code.html,Meaningful Routes - Partner Portal,25133,4,3,15,0,3,3,2,2,2,True,2
+pilgrimage_planner_st._lawrence_heritage_way/code.html,Pilgrimage Planner - Peregrino,34100,1,1,7,17,7,8,1,2,2,True,2
+map_explorer_desktop/code.html,Heritage Layers - Map Explorer,27140,0,0,8,11,8,15,9,2,2,True,2

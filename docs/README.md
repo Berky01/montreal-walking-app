@@ -30,6 +30,8 @@ This folder contains the active engineering and operations docs for the live Mea
 |---|---|
 | `docs/LIVE_REAUDIT.md` | Current implementation summary and remaining risks |
 | `docs/LIVE_APP_AUDIT.md` | Phase 2A audit context |
+| `docs/implementation-report.md` | Current audit-package implementation status, baseline evidence, and P0/P1 closure notes |
+| `docs/audits/2026-07-02/` | 2026-07-02 external audit package, P0/P1 backlog CSV, and Stitch prototype metrics |
 | `docs/PHASE_2A_MAP_DATA_PLAN.md` | Map/data foundation plan |
 | `docs/PHASE_2B_REAL_ROUTES_VISUALS_PLAN.md` | Real routes and visuals plan |
 | `docs/MVP_SCOPE.md` | Montreal MVP scope boundaries |

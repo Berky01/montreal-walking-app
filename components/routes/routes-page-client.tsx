@@ -19,14 +19,10 @@ import {
 } from "@/lib/route-filters";
 import type { Place, Route, UserPreferences } from "@/lib/types";
 
-const interests = [
+const interestOrder = [
   "history",
   "architecture",
   "cafes",
-  "restaurants",
-  "nightlife",
-  "music venues",
-  "shopping",
   "scenic",
   "nature",
   "waterfront",
@@ -35,10 +31,7 @@ const interests = [
   "museums",
   "public art",
   "markets",
-  "family-friendly",
-  "bike-friendly",
-  "day-trip",
-  "date-night"
+  "family-friendly"
 ];
 const durations = [
   { label: "Any time", value: 999 },
@@ -82,6 +75,15 @@ export function RoutesPageClient({ routes, places }: { routes: Route[]; places: 
   const [compareCount, setCompareCount] = useState(0);
   const [preferences, setPreferences] = useState<UserPreferences | undefined>();
   const neighborhoods = useMemo(() => ["all", ...Array.from(new Set(routes.map((route) => route.area))).sort()], [routes]);
+  const interests = useMemo(() => {
+    const routeSignals = new Set(routes.flatMap((route) => [...route.tags, ...route.interests, ...route.moodTags]));
+    const ordered = interestOrder.filter((interest) => routeSignals.has(interest));
+    const extra = Array.from(routeSignals)
+      .filter((interest) => !interestOrder.includes(interest))
+      .sort();
+
+    return [...ordered, ...extra];
+  }, [routes]);
 
   useEffect(() => {
     setFilters(parseRouteFilterParams(new URLSearchParams(window.location.search)));

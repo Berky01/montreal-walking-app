@@ -2,10 +2,10 @@ import { AppShell } from "@/components/layout/app-shell";
 import { PageContainer } from "@/components/layout/page-container";
 import { Card } from "@/components/ui/card";
 import { Chip } from "@/components/ui/chip";
-import { getRoutes } from "@/lib/data/index";
+import { getAllRoutes } from "@/lib/data/index";
 
 export default function AdminRoutesContentPage() {
-  const routes = getRoutes();
+  const routes = getAllRoutes();
 
   return (
     <AppShell>

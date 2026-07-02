@@ -1,9 +1,9 @@
-import { getPlaces, getRoutes } from "@/lib/data/index";
+import { getAllPlaces, getAllRoutes } from "@/lib/data/index";
 import { buildMediaCoverageReport } from "@/lib/media/media-selection";
 import { validateMediaCatalog } from "@/lib/media/validation";
 
-const routes = getRoutes();
-const places = getPlaces();
+const routes = getAllRoutes();
+const places = getAllPlaces();
 const validation = validateMediaCatalog({ routes, places });
 const coverage = buildMediaCoverageReport({ routes, places });
 

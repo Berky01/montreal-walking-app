@@ -11,8 +11,7 @@ import type { Place } from "@/lib/types";
 import { getPlaceCategoryLabel } from "@/lib/visual-system";
 import { PlaceCard } from "./place-card";
 
-const filters: Array<Place["category"] | "all"> = [
-  "all",
+const categoryOrder: Place["category"][] = [
   "monument",
   "square",
   "public_square",
@@ -52,6 +51,15 @@ export function PlacesPageClient({ places }: { places: Place[] }) {
 
   const neighborhoods = useMemo(() => ["all", ...Array.from(new Set(places.map((place) => place.area))).sort()], [places]);
   const tags = useMemo(() => ["all", ...Array.from(new Set(places.flatMap((place) => place.tags))).sort()], [places]);
+  const categoryFilters = useMemo(() => {
+    const categories = new Set(places.map((place) => place.category));
+    const ordered = categoryOrder.filter((category) => categories.has(category));
+    const extra = Array.from(categories)
+      .filter((category) => !categoryOrder.includes(category))
+      .sort();
+
+    return ["all", ...ordered, ...extra] as Array<Place["category"] | "all">;
+  }, [places]);
   const filteredPlaces = useMemo(() => filterPlaces(places, filter), [filter, places]);
 
   useEffect(() => {
@@ -104,7 +112,7 @@ export function PlacesPageClient({ places }: { places: Place[] }) {
           </label>
         </div>
         <div className="mt-4 flex gap-2 overflow-x-auto pb-1 md:flex-wrap">
-          {filters.map((item) => (
+          {categoryFilters.map((item) => (
             <button
               className={`shrink-0 rounded-full px-3 py-2 text-label-sm ${filter.category === item ? "bg-primary text-on-primary" : "bg-surface-container text-on-surface-variant"}`}
               key={item}

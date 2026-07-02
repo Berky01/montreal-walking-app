@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { getPlaces } from "@/lib/data/index";
+import { getAllPlaces } from "@/lib/data/index";
 import type { MediaAsset } from "@/lib/types";
 
 type CommonsImageInfo = {
@@ -79,7 +79,7 @@ const curatedCommonsFiles: Record<string, string | null> = {
 };
 
 async function main() {
-  const places = getPlaces();
+  const places = getAllPlaces();
   const outputDir = path.join(process.cwd(), "public", "media", "places");
   const manifestPath = path.join(process.cwd(), "data", "media", "media-assets.json");
   const assets: MediaAsset[] = [];

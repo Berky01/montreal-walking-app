@@ -2,10 +2,10 @@ import { AppShell } from "@/components/layout/app-shell";
 import { PageContainer } from "@/components/layout/page-container";
 import { Card } from "@/components/ui/card";
 import { Chip } from "@/components/ui/chip";
-import { getPlaces } from "@/lib/data/index";
+import { getAllPlaces } from "@/lib/data/index";
 
 export default function AdminPlacesContentPage() {
-  const places = getPlaces();
+  const places = getAllPlaces();
 
   return (
     <AppShell>

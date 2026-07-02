@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { getPlaces } from "@/lib/data/index";
+import { getAllPlaces } from "@/lib/data/index";
 
 const userAgent = "MeaningfulRoutesPhotoSprint/0.1 local media candidate search";
 
@@ -9,7 +9,7 @@ async function main() {
   await fs.mkdir(path.dirname(outPath), { recursive: true });
   const results = [];
 
-  for (const place of getPlaces()) {
+  for (const place of getAllPlaces()) {
     const candidates = await searchCommons(`${place.name} Montreal`);
     results.push({ id: place.id, slug: place.slug, name: place.name, candidates });
     console.log(`${place.slug}: ${candidates[0]?.title ?? "no candidates"}`);

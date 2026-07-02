@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
-import { getPlaces, getRoutes } from "@/lib/data/index";
+import { getAllPlaces, getAllRoutes } from "@/lib/data/index";
 import { readDiscoveryConfig } from "@/lib/discovery/config";
 
 const args = process.argv.slice(2);
@@ -14,8 +14,8 @@ if (city !== config.defaultCity) {
   process.exit(1);
 }
 
-const places = getPlaces();
-const routes = getRoutes();
+const places = getAllPlaces();
+const routes = getAllRoutes();
 const generatedRoutes = routes.filter((route) => route.sources.some((source) => source.id === "source-generated-discovery-routes"));
 
 console.log(`Route sync ${write ? "write" : "dry-run"} for ${city}`);

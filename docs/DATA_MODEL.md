@@ -2,7 +2,7 @@
 
 These models define the TypeScript-facing shape for the Montreal MVP. The source of truth now lives in `lib/data/types.ts`; this document summarizes the route-first model.
 
-Release 2 keeps the catalog local-first and typed: at least 28 Montreal-region routes, at least 140 Montreal-region places, valid place coordinates, route LineString geometry, stop-to-place references, and geometry that passes through each route stop coordinate. Browser-local state is versioned under `meaningful-routes:v1:*`; compare baskets normalize to four unique route slugs, and saved-item writes report storage failure instead of showing false saved state.
+Release 2 keeps the catalog local-first and typed: at least 28 Montreal-region routes, at least 140 Montreal-region places, valid place coordinates, route LineString geometry, stop-to-place references, and geometry that passes through each route stop coordinate. Public data access is filtered through `lib/data/public-content.ts`: `getRoutes()`, `getPlaces()`, public detail lookups, search, and public GeoJSON return only public-ready curated records, while admin and validation tooling use `getAllRoutes()` and `getAllPlaces()` for the full internal catalog. Browser-local state is versioned under `meaningful-routes:v1:*`; compare baskets normalize to four unique route slugs, and saved-item writes report storage failure instead of showing false saved state.
 
 Expanded discovery places may include a `discovery` object with provider/source ID, rating, popularity, local-interest score, address, opening hours, website, image URL, cache timestamp, and ranking score. In Postgres mode this remains compatible with the existing flexible `places.body` JSON column until provider-backed persistence is wired.
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getPlaces, getRoutes } from "@/lib/data/index";
+import { getAllPlaces, getAllRoutes } from "@/lib/data/index";
 import { readDiscoveryConfig } from "@/lib/discovery/config";
 import { dedupePoiCandidates, rankPoiCandidates } from "@/lib/discovery/poi-ranking";
 import type { PoiCandidate } from "@/lib/discovery/types";
@@ -82,8 +82,8 @@ describe("Montreal discovery expansion", () => {
   });
 
   it("expands the mock catalog beyond the old central MVP limits", () => {
-    const places = getPlaces();
-    const routes = getRoutes();
+    const places = getAllPlaces();
+    const routes = getAllRoutes();
 
     expect(places.length).toBeGreaterThanOrEqual(140);
     expect(routes.length).toBeGreaterThanOrEqual(28);
@@ -96,7 +96,7 @@ describe("Montreal discovery expansion", () => {
 
   it("generates configurable routes from expanded POIs across expected themes", () => {
     const config = readDiscoveryConfig({});
-    const generatedRoutes = getRoutes().filter((route) => route.sources.some((source) => source.id === "source-generated-discovery-routes"));
+    const generatedRoutes = getAllRoutes().filter((route) => route.sources.some((source) => source.id === "source-generated-discovery-routes"));
     const routeTags = generatedRoutes.flatMap((route) => [...route.tags, ...route.interests, ...route.moodTags]);
 
     expect(generatedRoutes.length).toBeGreaterThanOrEqual(16);

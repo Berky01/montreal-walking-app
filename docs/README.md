@@ -18,7 +18,7 @@ This folder contains the active engineering and operations docs for the live Mea
 | `docs/DEPLOYMENT.md` | Production deployment target, Cloudflare route, and live verification |
 | `docs/UNRAID_DEPLOYMENT.md` | Unraid container defaults, validation, and update procedure |
 | `docs/BACKUPS.md` | Source, media, local state, and future database backup rules |
-| `docs/CONTENT_PIPELINE.md` | Import/review rules for future content workflows |
+| `docs/CONTENT_PIPELINE.md` | Public readiness boundary plus import/review rules for future content workflows |
 | `docs/EXTERNAL_SERVICES_PLAN.md` | External service boundaries and deferred integrations |
 | `docs/MAP_PROVIDER.md` | Map tile/provider strategy |
 | `docs/ROUTING_PROVIDER.md` | Routing provider boundary |

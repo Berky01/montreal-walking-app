@@ -15,6 +15,9 @@ export default function AdminIssuesPage() {
           <div>
             <Chip tone="tertiary">Issue reports</Chip>
             <h1 className="mt-3 text-headline-mobile text-on-surface md:text-headline-lg">Reported route issues</h1>
+            <p className="mt-2 max-w-2xl text-body-md text-on-surface-variant">
+              This queue only shows server-created reports. The public report form currently stores notes locally in the submitter&apos;s browser.
+            </p>
           </div>
           {issues.length ? (
             <div className="grid gap-3">
@@ -34,7 +37,7 @@ export default function AdminIssuesPage() {
               ))}
             </div>
           ) : (
-            <EmptyState title="No issue reports" description="Submitted route reports will appear here for review." />
+            <EmptyState title="No server issue reports" description="Public form reports are local-only until a server-backed storage layer is added." />
           )}
         </PageContainer>
       </main>

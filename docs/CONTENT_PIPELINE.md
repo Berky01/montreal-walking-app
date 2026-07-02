@@ -1,8 +1,20 @@
 # Content Pipeline
 
+## Public Content Boundary
+
+Public pages and public API defaults use the shared public-readiness helpers in `lib/data/public-content.ts`. The default `getRoutes()`, `getPlaces()`, detail lookups, route GeoJSON, nearby places, and route search exports only return public-ready records. Admin, validation, and import tooling must use `getAllRoutes()` and `getAllPlaces()` when they intentionally need the full internal catalog.
+
+Public routes require ready MVP content, verified editorial source quality, valid walking geometry, sane walking distance, safety/accessibility notes, media metadata, and stops that resolve only to public places. Generated, review-only, draft, regional, day-trip, bike-oriented, or overlong route records stay internal by default.
+
+Public places require ready MVP content, verified editorial source quality, valid coordinates, safety/accessibility notes, source attribution, and media metadata. Generated discovery places with `Place.discovery` metadata stay internal by default.
+
+The current public Montreal MVP is the curated set of 12 routes and 60 places. The expanded discovery catalog remains available to admin/validation flows as internal review material.
+
+Issue reports from the public report form are currently browser-local only. The admin issue queue only shows server-created reports until a future Unraid-safe storage layer is added.
+
 ## Content States
 
-The current catalog uses `contentStatus="ready"` with source/media placeholders. This means the records are complete enough for MVP rendering and validation, not field-published editorial content.
+Curated MVP records use `contentStatus="ready"` with verified editorial source metadata. This means the records are complete enough for MVP public rendering and validation, not final field-published editorial content. Generated discovery records stay review-labeled and are not public content.
 
 ## Import Sources
 

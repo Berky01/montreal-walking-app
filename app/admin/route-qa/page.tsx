@@ -4,11 +4,11 @@ import { MapShell } from "@/components/map/map-shell";
 import { Card } from "@/components/ui/card";
 import { Chip } from "@/components/ui/chip";
 import { MetricRibbon } from "@/components/ui/metric-ribbon";
-import { getPlaces, getRoutes } from "@/lib/data/index";
+import { getAllPlaces, getAllRoutes } from "@/lib/data/index";
 
 export default function RouteQaPage() {
-  const routes = getRoutes();
-  const places = getPlaces();
+  const routes = getAllRoutes();
+  const places = getAllPlaces();
   const metrics = [
     { label: "Routes", value: String(routes.length) },
     { label: "Review", value: String(routes.filter((route) => route.qaStatus.overall === "review").length) },

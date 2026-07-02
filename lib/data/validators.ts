@@ -1,10 +1,30 @@
 import type { Place, Route } from "@/lib/data/types";
+import {
+  getPublicPlaceReadinessIssues,
+  getPublicPlaces,
+  getPublicRouteReadinessIssues,
+  getPublicRoutes
+} from "@/lib/data/public-content";
 
 export type DataValidationResult = {
   ok: boolean;
   counts: {
     routes: number;
     places: number;
+  };
+  errors: string[];
+  warnings: string[];
+};
+
+export type PublicContentValidationResult = {
+  ok: boolean;
+  counts: {
+    routes: number;
+    places: number;
+    publicRoutes: number;
+    publicPlaces: number;
+    hiddenRoutes: number;
+    hiddenPlaces: number;
   };
   errors: string[];
   warnings: string[];
@@ -127,6 +147,91 @@ export function validateDataCatalog({
     counts: {
       routes: routes.length,
       places: places.length
+    },
+    errors,
+    warnings
+  };
+}
+
+export function validatePublicContentReadiness({
+  routes,
+  places,
+  publicRoutes = getPublicRoutes(routes, places),
+  publicPlaces = getPublicPlaces(places, routes)
+}: {
+  routes: Route[];
+  places: Place[];
+  publicRoutes?: Route[];
+  publicPlaces?: Place[];
+}): PublicContentValidationResult {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+  const allRouteSlugs = new Set(routes.map((route) => route.slug));
+  const publicRouteSlugs = new Set<string>();
+  const publicPlaceIds = new Set<string>();
+  const publicPlaceSlugs = new Set<string>();
+
+  for (const route of publicRoutes) {
+    if (publicRouteSlugs.has(route.slug)) {
+      errors.push(`Duplicate public route slug: ${route.slug}.`);
+    }
+    publicRouteSlugs.add(route.slug);
+
+    errors.push(...getPublicRouteReadinessIssues(route, places));
+  }
+
+  for (const place of publicPlaces) {
+    if (publicPlaceSlugs.has(place.slug)) {
+      errors.push(`Duplicate public place slug: ${place.slug}.`);
+    }
+    publicPlaceSlugs.add(place.slug);
+    publicPlaceIds.add(place.id);
+
+    errors.push(...getPublicPlaceReadinessIssues(place));
+  }
+
+  for (const route of publicRoutes) {
+    const stopIds = new Set<string>();
+    const stopOrders = new Set<number>();
+
+    for (const [index, stop] of route.stops.entries()) {
+      if (stopIds.has(stop.id)) {
+        errors.push(`Public route ${route.slug} has duplicate stop id ${stop.id}.`);
+      }
+      stopIds.add(stop.id);
+
+      if (stopOrders.has(stop.order)) {
+        errors.push(`Public route ${route.slug} has duplicate stop order ${stop.order}.`);
+      }
+      stopOrders.add(stop.order);
+
+      if (stop.order !== index + 1) {
+        errors.push(`Public route ${route.slug} stop order breaks at ${stop.id}.`);
+      }
+
+      if (!publicPlaceIds.has(stop.placeId)) {
+        errors.push(`Public route ${route.slug} references hidden place ${stop.placeId}.`);
+      }
+    }
+  }
+
+  for (const place of publicPlaces) {
+    for (const routeSlug of place.relatedRouteSlugs) {
+      if (!allRouteSlugs.has(routeSlug) || !publicRouteSlugs.has(routeSlug)) {
+        errors.push(`Public place ${place.slug} links hidden route ${routeSlug}.`);
+      }
+    }
+  }
+
+  return {
+    ok: errors.length === 0,
+    counts: {
+      routes: routes.length,
+      places: places.length,
+      publicRoutes: publicRoutes.length,
+      publicPlaces: publicPlaces.length,
+      hiddenRoutes: Math.max(0, routes.length - publicRoutes.length),
+      hiddenPlaces: Math.max(0, places.length - publicPlaces.length)
     },
     errors,
     warnings

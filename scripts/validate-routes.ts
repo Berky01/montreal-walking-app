@@ -1,4 +1,4 @@
-import { getRoutes } from "@/lib/data/index";
+import { getAllRoutes } from "@/lib/data/index";
 
 const requiredRouteSlugs = [
   "old-montreal-monuments-loop",
@@ -17,7 +17,7 @@ const requiredRouteSlugs = [
 
 const requiredGeneratedTags = ["nightlife", "family-friendly", "rainy day", "day-trip", "bike-friendly", "date-night"];
 
-const routes = getRoutes();
+const routes = getAllRoutes();
 const errors: string[] = [];
 
 if (routes.length < 28) {

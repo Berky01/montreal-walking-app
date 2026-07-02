@@ -39,7 +39,7 @@ type MapData = {
 };
 
 export function MapShell(props: MeaningfulMapProps) {
-  const config = useMemo(
+  const buildConfig = useMemo(
     () =>
       resolvePublicMapConfig({
         styleUrl: process.env.NEXT_PUBLIC_MAP_STYLE_URL,
@@ -51,17 +51,62 @@ export function MapShell(props: MeaningfulMapProps) {
       }),
     []
   );
+  const [config, setConfig] = useState<PublicMapConfig>(buildConfig);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadRuntimeConfig() {
+      try {
+        const response = await fetch("/api/map-config", { cache: "no-store" });
+        const runtimeConfig = await response.json();
+
+        if (!cancelled && isPublicMapConfig(runtimeConfig)) {
+          setConfig(runtimeConfig);
+        }
+      } catch {
+        if (!cancelled) {
+          setConfig(buildConfig);
+        }
+      }
+    }
+
+    loadRuntimeConfig();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [buildConfig]);
 
   if (!config.configured || !config.styleUrl) {
     return (
       <MapFallback
         {...props}
-        fallbackReason="Map preview - live tile style not configured"
+        fallbackReason="Map preview - live tile style is loading or unavailable in this browser"
       />
     );
   }
 
   return <MapLibreMapShell {...props} config={config} />;
+}
+
+function isPublicMapConfig(value: unknown): value is PublicMapConfig {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+
+  const candidate = value as Partial<PublicMapConfig>;
+
+  return (
+    (typeof candidate.styleUrl === "string" || candidate.styleUrl === undefined) &&
+    typeof candidate.attribution === "string" &&
+    typeof candidate.provider === "string" &&
+    typeof candidate.defaultCity === "string" &&
+    typeof candidate.configured === "boolean" &&
+    Boolean(candidate.center) &&
+    typeof candidate.center?.lat === "number" &&
+    typeof candidate.center?.lng === "number"
+  );
 }
 
 function MapLibreMapShell({

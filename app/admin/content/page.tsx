@@ -4,18 +4,22 @@ import { ButtonLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Chip } from "@/components/ui/chip";
 import { MetricRibbon } from "@/components/ui/metric-ribbon";
-import { getIssueReports, getPlaces, getRoutes } from "@/lib/data/index";
+import { getAllPlaces, getAllRoutes, getIssueReports, getPlaces, getRoutes } from "@/lib/data/index";
 import { summarizeContentReadiness, validateDataCatalog } from "@/lib/data/validators";
 
 export default function AdminContentPage() {
-  const routes = getRoutes();
-  const places = getPlaces();
+  const routes = getAllRoutes();
+  const places = getAllPlaces();
+  const publicRoutes = getRoutes();
+  const publicPlaces = getPlaces();
   const validation = validateDataCatalog({ routes, places });
   const readiness = summarizeContentReadiness({ routes, places });
   const issueReports = getIssueReports();
   const metrics = [
-    { label: "Routes", value: String(routes.length) },
-    { label: "Places", value: String(places.length) },
+    { label: "Public routes", value: String(publicRoutes.length) },
+    { label: "Public places", value: String(publicPlaces.length) },
+    { label: "Total routes", value: String(routes.length) },
+    { label: "Total places", value: String(places.length) },
     { label: "Issues", value: String(issueReports.length) },
     { label: "Validation", value: validation.ok ? "Pass" : "Review" }
   ];

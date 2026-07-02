@@ -16,7 +16,7 @@ export default function ReportIssuePage() {
             <Chip tone="primary">Place and route feedback</Chip>
             <h1 className="mt-3 text-headline-mobile text-on-surface md:text-headline-lg">Report a place or route issue</h1>
             <p className="mt-2 text-body-md text-on-surface-variant">
-              Send place details, photo/source, construction, safety, accessibility, or route updates for review.
+              Save place details, photo/source, construction, safety, accessibility, or route updates as local notes on this browser.
             </p>
           </div>
           <IssueReportForm places={places} routes={routes} />

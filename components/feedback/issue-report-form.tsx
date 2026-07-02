@@ -104,7 +104,7 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
           return;
         }
 
-        setSubmitState({ status: "success", message: "Report saved for content review on this browser." });
+        setSubmitState({ status: "success", message: "Report saved on this browser only for your local content review notes." });
         form.reset();
       }}
     >
@@ -195,6 +195,9 @@ export function IssueReportForm({ places, routes }: { places: Place[]; routes: R
         </Button>
         <ButtonLink href={returnHref} variant="secondary">Back to context</ButtonLink>
       </div>
+      <p className="text-label-md text-on-surface-variant">
+        Reports are stored locally in this browser and are not sent to the server or the admin issue queue.
+      </p>
       {submitState.status === "success" ? <p className="text-label-md text-primary" role="status">{submitState.message}</p> : null}
       {submitState.status === "error" ? <p className="text-label-md text-error" role="alert">{submitState.message}</p> : null}
     </form>

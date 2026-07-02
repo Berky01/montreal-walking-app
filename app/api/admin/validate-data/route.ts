@@ -1,11 +1,12 @@
-import { getPlaces, getRoutes } from "@/lib/data/index";
-import { validateDataCatalog } from "@/lib/data/validators";
+import { getAllPlaces, getAllRoutes } from "@/lib/data/index";
+import { validateDataCatalog, validatePublicContentReadiness } from "@/lib/data/validators";
 
 export function POST() {
-  const routes = getRoutes();
-  const places = getPlaces();
+  const routes = getAllRoutes();
+  const places = getAllPlaces();
 
   return Response.json({
+    publicReadiness: validatePublicContentReadiness({ routes, places }),
     validation: validateDataCatalog({ routes, places })
   });
 }

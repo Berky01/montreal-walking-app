@@ -3,11 +3,11 @@ import { PageContainer } from "@/components/layout/page-container";
 import { MapShell } from "@/components/map/map-shell";
 import { Card } from "@/components/ui/card";
 import { Chip } from "@/components/ui/chip";
-import { getPlaces, getRoutes } from "@/lib/data/index";
+import { getAllPlaces, getAllRoutes } from "@/lib/data/index";
 
 export default function RouteBuilderPage() {
-  const routes = getRoutes();
-  const places = getPlaces();
+  const routes = getAllRoutes();
+  const places = getAllPlaces();
   const previewRoute = routes[0];
 
   return (

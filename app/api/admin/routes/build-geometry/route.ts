@@ -1,4 +1,4 @@
-import { getRouteBySlug } from "@/lib/data/index";
+import { getAllRouteBySlug } from "@/lib/data/index";
 import { getRoutingProvider } from "@/lib/routing/index";
 
 export async function POST(request: Request) {
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "routeSlug is required" }, { status: 400 });
   }
 
-  const route = getRouteBySlug(routeSlug);
+  const route = getAllRouteBySlug(routeSlug);
   if (!route) {
     return Response.json({ error: "route not found" }, { status: 404 });
   }

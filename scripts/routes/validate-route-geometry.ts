@@ -1,8 +1,10 @@
-import { getRoutes } from "@/lib/data/index";
+import { getAllRoutes } from "@/lib/data/index";
 
 const errors: string[] = [];
 
-for (const route of getRoutes()) {
+const routes = getAllRoutes();
+
+for (const route of routes) {
   if (route.geometry.type !== "LineString") {
     errors.push(`${route.slug} geometry must be LineString.`);
   }
@@ -35,4 +37,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Route geometry validation passed: ${getRoutes().length} routes.`);
+console.log(`Route geometry validation passed: ${routes.length} routes.`);

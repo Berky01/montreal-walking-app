@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { getRoutes } from "@/lib/data/index";
-import { resolveComparedRoutes } from "@/lib/compare-routes";
+import { parseCompareRouteIds, resolveComparedRoutes } from "@/lib/compare-routes";
 
 describe("route comparison resolver", () => {
   it("uses persisted compare slugs in selected order and ignores unknown or duplicate slugs", () => {
@@ -17,6 +17,22 @@ describe("route comparison resolver", () => {
       "place-darmes-circuit",
       "old-montreal-monuments-loop"
     ]);
+  });
+
+  it("parses shareable compare URL ids with public-route sanitization order and a cap of four", () => {
+    const routes = getRoutes();
+    const parsed = parseCompareRouteIds(
+      "place-darmes-circuit,missing-route,old-montreal-monuments-loop,place-darmes-circuit,churches-courtyards-walk,architecture-river-views,mount-royal-sunrise-loop",
+      routes
+    );
+
+    expect(parsed.validSlugs).toEqual([
+      "place-darmes-circuit",
+      "old-montreal-monuments-loop",
+      "churches-courtyards-walk",
+      "architecture-river-views"
+    ]);
+    expect(parsed.missingSlugs).toEqual(["missing-route"]);
   });
 
   it("falls back to featured routes when the persisted basket is empty or invalid", () => {

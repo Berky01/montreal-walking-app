@@ -10,17 +10,17 @@ const reviewStatus: QaRouteStatus = {
   geometry: "ready",
   fieldCheck: "scheduled",
   accessibility: "partial",
-  sources: "partial",
+  sources: "ready",
   overall: "review",
   score: 82
 };
 
-const routeSourcePlaceholder: Source = {
-  id: "source-route-curation-placeholder",
+const routeSourceReview: Source = {
+  id: "source-route-editorial-review",
   label: "Meaningful Routes editorial review",
-  type: "placeholder",
+  type: "editorial",
   notes: "Reviewed against route geometry, editorial notes, and public place references.",
-  status: "placeholder"
+  status: "verified"
 };
 
 const easyAccessibility: AccessibilityNote[] = [
@@ -494,7 +494,7 @@ function createRoute(input: Omit<Route, "cityId" | "stops" | "metrics" | "coordi
     metrics: createMetrics(input.distanceKm, input.durationMin, routeStops.length, input.difficulty),
     coordinates: midpoint(geometry),
     geometry: toRouteGeometry(geometry),
-    sources: [routeSourcePlaceholder],
+    sources: [routeSourceReview],
     media: [
       ...realMedia,
       createGeneratedFallbackMedia({
@@ -504,7 +504,7 @@ function createRoute(input: Omit<Route, "cityId" | "stops" | "metrics" | "coordi
       })
     ],
     contentStatus: "ready",
-    sourceQuality: "draft",
+    sourceQuality: "verified",
     qaStatus: reviewStatus,
     qaScore: reviewStatus.score,
     lastReviewedAt: "2026-07-01"

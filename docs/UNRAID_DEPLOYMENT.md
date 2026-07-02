@@ -41,10 +41,12 @@ Do not switch `DATA_SOURCE=postgres` until the provider is implemented and resto
 Set `NEXT_PUBLIC_MAP_STYLE_URL` only after choosing a hosted or self-hosted MapLibre-compatible style URL:
 
 ```env
-NEXT_PUBLIC_MAP_STYLE_URL=https://tiles.example.com/style.json
-NEXT_PUBLIC_MAP_ATTRIBUTION="Example map attribution"
-NEXT_PUBLIC_MAP_PROVIDER=example
+NEXT_PUBLIC_MAP_STYLE_URL=https://basemaps.cartocdn.com/gl/positron-gl-style/style.json
+NEXT_PUBLIC_MAP_ATTRIBUTION="&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+NEXT_PUBLIC_MAP_PROVIDER=carto-positron
 ```
+
+The running app reads these values through `/api/map-config`, so the Unraid container can change providers through compose environment or a local `.env` file without rebuilding the image.
 
 Do not store private server keys in public variables. If a production provider requires secrets, use a provider-managed public style URL or a server-side proxy that emits a browser-safe style URL.
 

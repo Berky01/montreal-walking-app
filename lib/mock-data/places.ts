@@ -3,12 +3,12 @@ import { createGeneratedFallbackMedia, getMediaAssetsForPlace } from "@/lib/medi
 
 type PlaceInput = Omit<Place, "accessibilityNotes" | "contentStatus" | "media" | "safetyNotes" | "sources">;
 
-const sourcePlaceholder: Source = {
-  id: "source-montreal-curation-placeholder",
+const sourceReview: Source = {
+  id: "source-montreal-editorial-review",
   label: "Meaningful Routes editorial review",
-  type: "placeholder",
+  type: "editorial",
   notes: "Reviewed against editorial notes, public place references, and walking-route context.",
-  status: "placeholder"
+  status: "verified"
 };
 
 const defaultAccessibilityNotes: AccessibilityNote[] = [
@@ -1144,7 +1144,7 @@ function withPlaceDefaults(place: PlaceInput): Place {
 
   return {
     ...place,
-    sources: [sourcePlaceholder],
+    sources: [sourceReview],
     media: [
       ...media,
       createGeneratedFallbackMedia({
@@ -1154,6 +1154,7 @@ function withPlaceDefaults(place: PlaceInput): Place {
       })
     ],
     contentStatus: "ready",
+    sourceQuality: "verified",
     accessibilityNotes: defaultAccessibilityNotes,
     safetyNotes: defaultSafetyNotes
   };

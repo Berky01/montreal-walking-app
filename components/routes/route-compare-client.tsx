@@ -7,7 +7,7 @@ import { MapShell } from "@/components/map/map-shell";
 import type { MapSelection } from "@/components/map/mapTypes";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Chip } from "@/components/ui/chip";
-import { resolveComparedRoutes } from "@/lib/compare-routes";
+import { parseCompareRouteIds, resolveComparedRoutes } from "@/lib/compare-routes";
 import { clearCompareBasket, getCompareRouteSlugs, getUserPreferences, removeCompareRoute } from "@/lib/local-state";
 import { estimateDurationForPace, formatDistanceForUnits } from "@/lib/preferences";
 import type { Route, UserPreferences } from "@/lib/types";
@@ -16,12 +16,20 @@ import { getRouteShapeLabel } from "@/lib/visual-system";
 
 export function RouteCompareClient({ routes }: { routes: Route[] }) {
   const [routeSlugs, setRouteSlugs] = useState<string[]>([]);
+  const [urlMissingSlugs, setUrlMissingSlugs] = useState<string[]>([]);
+  const [usingUrlIds, setUsingUrlIds] = useState(false);
   const [preferences, setPreferences] = useState<UserPreferences | null>(null);
   const [selected, setSelected] = useState<MapSelection>(routes[0] ? { type: "route", slug: routes[0].slug } : null);
 
   useEffect(() => {
     function refreshState() {
-      setRouteSlugs(getCompareRouteSlugs());
+      const ids = new URLSearchParams(window.location.search).get("ids");
+      const parsed = parseCompareRouteIds(ids, routes);
+      const hasUrlIds = ids !== null;
+
+      setUsingUrlIds(hasUrlIds);
+      setUrlMissingSlugs(hasUrlIds ? parsed.missingSlugs : []);
+      setRouteSlugs(hasUrlIds ? parsed.validSlugs : getCompareRouteSlugs());
       setPreferences(getUserPreferences());
     }
 
@@ -32,10 +40,11 @@ export function RouteCompareClient({ routes }: { routes: Route[] }) {
       window.removeEventListener("meaningful-routes-local-state", refreshState);
       window.removeEventListener("storage", refreshState);
     };
-  }, []);
+  }, [routes]);
 
   const comparedResult = useMemo(() => resolveComparedRoutes(routes, routeSlugs), [routeSlugs, routes]);
   const comparedRoutes = comparedResult.routes;
+  const missingSlugs = usingUrlIds ? urlMissingSlugs : comparedResult.missingSlugs;
   const selectedRoutesCount = comparedResult.usedFallback ? 0 : comparedRoutes.length;
   const isUsingSuggestions = comparedResult.usedFallback;
   const selectedLabel = selectedRoutesCount === 1 ? "1 selected route" : `${selectedRoutesCount} selected routes`;
@@ -64,9 +73,9 @@ export function RouteCompareClient({ routes }: { routes: Route[] }) {
                   ? "Select optional route collections from the catalog to compare your own shortlist. For now, these recommended Montreal ways to explore are shown as a starting point."
                   : "This comparison uses the optional routes selected in this browser and updates as the basket changes."}
               </p>
-              {comparedResult.missingSlugs.length ? (
+              {missingSlugs.length ? (
                 <p className="mt-2 text-label-sm text-on-surface-variant">
-                  {comparedResult.missingSlugs.length} saved comparison item could not be found in the current route catalog.
+                  {missingSlugs.length} comparison item could not be found in the current public route catalog.
                 </p>
               ) : null}
             </div>
@@ -78,7 +87,12 @@ export function RouteCompareClient({ routes }: { routes: Route[] }) {
               {selectedRoutesCount ? (
                 <Button
                   onClick={() => {
-                    clearCompareBasket();
+                    if (usingUrlIds) {
+                      setRouteSlugs([]);
+                      setCompareIdsUrl([]);
+                    } else {
+                      clearCompareBasket();
+                    }
                     setRouteSlugs([]);
                   }}
                   variant="ghost"
@@ -143,7 +157,15 @@ export function RouteCompareClient({ routes }: { routes: Route[] }) {
                     {!isUsingSuggestions ? (
                       <Button
                         className="w-full"
-                        onClick={() => setRouteSlugs(removeCompareRoute(route.slug))}
+                        onClick={() => {
+                          if (usingUrlIds) {
+                            const next = routeSlugs.filter((slug) => slug !== route.slug);
+                            setRouteSlugs(next);
+                            setCompareIdsUrl(next);
+                          } else {
+                            setRouteSlugs(removeCompareRoute(route.slug));
+                          }
+                        }}
                         variant="ghost"
                       >
                         <Trash2 aria-hidden="true" size={16} />
@@ -159,6 +181,19 @@ export function RouteCompareClient({ routes }: { routes: Route[] }) {
       </div>
     </div>
   );
+}
+
+function setCompareIdsUrl(routeSlugs: string[]) {
+  const params = new URLSearchParams(window.location.search);
+
+  if (routeSlugs.length) {
+    params.set("ids", routeSlugs.join(","));
+  } else {
+    params.delete("ids");
+  }
+
+  const nextUrl = `${window.location.pathname}${params.toString() ? `?${params}` : ""}`;
+  window.history.replaceState(null, "", nextUrl);
 }
 
 type CompareRow = {

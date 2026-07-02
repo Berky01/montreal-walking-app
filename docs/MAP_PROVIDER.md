@@ -6,20 +6,26 @@ The app uses MapLibre GL JS as the browser map renderer. It does not load Mapbox
 
 When `NEXT_PUBLIC_MAP_STYLE_URL` is blank, `components/map/map-shell.tsx` renders the local `MapFallback`. The fallback uses stored place and route coordinates, so pages still boot and remain usable without an external map provider.
 
+The browser reads map config from `/api/map-config` at runtime. This lets the Docker/Unraid deployment change style providers through container environment variables without rebuilding the Next.js bundle.
+
 ## Configuration
 
 Set these public variables for a real tile-backed MapLibre map:
 
 ```env
-NEXT_PUBLIC_MAP_STYLE_URL="https://tiles.example.com/style.json"
-NEXT_PUBLIC_MAP_ATTRIBUTION="Example tiles and data attribution"
-NEXT_PUBLIC_MAP_PROVIDER="example"
+NEXT_PUBLIC_MAP_STYLE_URL="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+NEXT_PUBLIC_MAP_ATTRIBUTION="&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+NEXT_PUBLIC_MAP_PROVIDER="carto-positron"
 NEXT_PUBLIC_DEFAULT_CITY="montreal"
 NEXT_PUBLIC_DEFAULT_CENTER_LAT="45.5017"
 NEXT_PUBLIC_DEFAULT_CENTER_LNG="-73.5673"
 ```
 
+The CARTO Positron style is the currently tested hosted style because it provides city-level streets, water, parks, labels, and neighborhoods for Montreal without a Mapbox token. The previous `https://demotiles.maplibre.org/style.json` style is not suitable for production discovery maps: it is a low-detail country/coastline demo style and does not provide Montreal street-level basemap detail.
+
 These values are public by design because the browser loads the style. Do not put private server keys in public variables. If a provider requires a secret token, issue a browser-safe style URL through a server-side proxy or provider-managed public key.
+
+The runtime endpoint also accepts `PUBLIC_MAP_STYLE_URL`, `PUBLIC_MAP_ATTRIBUTION`, and `PUBLIC_MAP_PROVIDER` as aliases for environments that do not use the Next.js `NEXT_PUBLIC_` prefix.
 
 ## Data Flow
 
@@ -32,6 +38,7 @@ These values are public by design because the browser loads the style. Do not pu
 ## Renderer
 
 - `components/map/map-shell.tsx` dynamically imports `maplibre-gl`.
+- `app/api/map-config/route.ts` exposes only public map runtime config.
 - Places render as clustered place-first pins.
 - Route lines render as optional overlays when route context is supplied.
 - Route stops render as numbered secondary points on route detail and live route maps.

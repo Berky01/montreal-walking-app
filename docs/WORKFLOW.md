@@ -149,4 +149,6 @@ Update Markdown with the change when behavior changes. Prefer the active docs:
 - `FEATURE_MATRIX.md`
 - `ROADMAP.md`
 
+Dry-run sync commands such as `npm run sync:pois` and `npm run sync:routes` are allowed during content work. Only use their `-- --write` mode when the generated cache is intentionally part of the review workflow.
+
 Treat `meaningful_routes_codex_handoff/` as archived planning context unless the task specifically asks to update the handoff package.

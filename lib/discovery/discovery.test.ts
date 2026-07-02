@@ -87,11 +87,7 @@ describe("Montreal discovery expansion", () => {
 
     expect(places.length).toBeGreaterThanOrEqual(140);
     expect(routes.length).toBeGreaterThanOrEqual(28);
-    expect(new Set(places.map((place) => place.area))).toEqual(
-      expect.objectContaining({
-        size: expect.any(Number)
-      })
-    );
+    expect(new Set(places.map((place) => place.area)).size).toBeGreaterThanOrEqual(20);
     expect(places.map((place) => place.area)).toEqual(
       expect.arrayContaining(["Laval", "Longueuil", "South Shore", "North Shore", "West Island"])
     );

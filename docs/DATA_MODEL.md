@@ -2,7 +2,9 @@
 
 These models define the TypeScript-facing shape for the Montreal MVP. The source of truth now lives in `lib/data/types.ts`; this document summarizes the route-first model.
 
-Release 2 keeps the catalog local-first and typed: at least 12 Montreal routes, at least 60 Montreal places, valid place coordinates, route LineString geometry, stop-to-place references, and geometry that passes through each route stop coordinate. Browser-local state is versioned under `meaningful-routes:v1:*`; compare baskets normalize to four unique route slugs, and saved-item writes report storage failure instead of showing false saved state.
+Release 2 keeps the catalog local-first and typed: at least 28 Montreal-region routes, at least 140 Montreal-region places, valid place coordinates, route LineString geometry, stop-to-place references, and geometry that passes through each route stop coordinate. Browser-local state is versioned under `meaningful-routes:v1:*`; compare baskets normalize to four unique route slugs, and saved-item writes report storage failure instead of showing false saved state.
+
+Expanded discovery places may include a `discovery` object with provider/source ID, rating, popularity, local-interest score, address, opening hours, website, image URL, cache timestamp, and ranking score. In Postgres mode this remains compatible with the existing flexible `places.body` JSON column until provider-backed persistence is wired.
 
 ```ts
 export type City = {
@@ -30,17 +32,32 @@ export type Place = {
   name: string;
   category:
     | "monument"
+    | "architecture"
     | "historic_building"
+    | "heritage_building"
     | "church"
     | "museum"
     | "viewpoint"
     | "park"
     | "cafe"
+    | "cafe_adjacent_stop"
     | "market"
     | "square"
+    | "public_square"
     | "street"
     | "waterfront"
-    | "hidden_gem";
+    | "public_art"
+    | "campus"
+    | "hidden_gem"
+    | "attraction"
+    | "restaurant"
+    | "bar"
+    | "nightlife"
+    | "shopping"
+    | "music_venue"
+    | "art_culture"
+    | "outdoor_activity"
+    | "family_activity";
   area: string;
   coordinates: Coordinates;
   shortDescription: string;
@@ -52,6 +69,7 @@ export type Place = {
   tags: string[];
   relatedRouteSlugs: string[];
   sourceQuality: "draft" | "verified" | "field_tested";
+  discovery?: PlaceDiscoveryMeta;
   lastReviewedAt: string;
 };
 

@@ -20,3 +20,5 @@ Rules:
 - Keep external API responses small and intentional when they must be saved.
 - Move reviewed data into typed mock/provider data before runtime use.
 - Run `npm run validate:data`, `npm run validate:routes`, and `npm run validate:media` after data or media changes.
+- `npm run sync:pois` writes review caches under `data/imports/review/` only when called with `-- --write`.
+- `npm run sync:routes` writes generated route caches under `data/generated/` only when called with `-- --write`.

@@ -52,7 +52,11 @@ describe("route filters", () => {
     });
 
     expect(results.length).toBeGreaterThan(0);
-    expect(results.every((route) => [...route.tags, ...route.interests, ...route.moodTags].some((tag) => ["museums", "cafes", "markets", "rainy day"].includes(tag)))).toBe(true);
+    expect(
+      results.every((route) =>
+        [...route.tags, ...route.interests, ...route.moodTags].some((tag) => ["museums", "cafes", "markets", "restaurants", "shopping", "rainy day"].includes(tag))
+      )
+    ).toBe(true);
   });
 
   it("biases recommended sorting toward saved interests and accessibility preferences", () => {

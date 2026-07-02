@@ -23,6 +23,8 @@ Open the local Next.js URL printed by the dev server.
 | `npm run validate:data` | Validate catalog/data shape |
 | `npm run validate:routes` | Validate route geometry and stop coverage |
 | `npm run validate:media` | Validate local media, licensing, and attribution metadata |
+| `npm run sync:pois` | Dry-run the configured Montreal POI sync/review cache |
+| `npm run sync:routes` | Dry-run the generated Montreal route sync/review cache |
 | `npm run build` | Build the production Next.js app |
 | `npm test` | Run Vitest tests |
 | `npm run test:smoke` | Run the Playwright smoke test |

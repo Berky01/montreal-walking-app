@@ -2,6 +2,11 @@
 
 ## Source Materials
 
+- Active private Stitch project: `https://stitch.withgoogle.com/projects/7741303272075430847`
+- Active Stitch intake docs:
+  - `docs/design/stitch-screen-inventory.md`
+  - `docs/design/stitch-component-map.md`
+  - `docs/design/stitch-style-lock.md`
 - `C:\Users\valen\Downloads\stitch_meaningful_routes_web_platform.zip`
 - `stitch_meaningful_routes_web_platform/meaningful_routes/DESIGN.md`
 - `stitch_meaningful_routes_web_platform/meaningful_routes_reorganized_inventory.md`
@@ -9,7 +14,9 @@
 - `meaningful_routes_codex_handoff/` product handoff package
 - `C:\Users\valen\Downloads\FULL_PROJECT_ANALYSIS.md`
 
-The Stitch zip is a static visual export. It has standalone `code.html` screens and screenshots, but no runnable app scaffold, TypeScript source, reusable React components, backend, package manifest, routing layer, or stable map implementation.
+The Stitch zip is a static visual export. The private Stitch project is the current visual reference. Both have standalone generated HTML/screens, but neither is a runnable production app scaffold with TypeScript source, reusable React components, backend, package manifest, routing layer, or stable map implementation.
+
+Use the active `docs/design/` intake docs for current implementation mapping. Keep this audit as supporting historical context.
 
 ## Screen Inventory And Grouping
 

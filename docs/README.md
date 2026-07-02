@@ -23,6 +23,9 @@ This folder contains the active engineering and operations docs for the live Mea
 | `docs/MAP_PROVIDER.md` | Map tile/provider strategy |
 | `docs/ROUTING_PROVIDER.md` | Routing provider boundary |
 | `docs/MEDIA_ATTRIBUTION.md` | Public media attribution policy |
+| `docs/design/stitch-screen-inventory.md` | Approved Stitch project screen-to-route inventory |
+| `docs/design/stitch-component-map.md` | Stitch pattern to production component mapping |
+| `docs/design/stitch-style-lock.md` | Approved original-style visual lock and token guidance |
 
 ## Active Product And System Docs
 
@@ -32,6 +35,7 @@ This folder contains the active engineering and operations docs for the live Mea
 | `docs/LIVE_APP_AUDIT.md` | Phase 2A audit context |
 | `docs/implementation-report.md` | Current audit-package implementation status, baseline evidence, and P0/P1 closure notes |
 | `docs/audits/2026-07-02/` | 2026-07-02 external audit package, P0/P1 backlog CSV, and Stitch prototype metrics |
+| `docs/design/` | Active Stitch intake docs for the private project `7741303272075430847` |
 | `docs/PHASE_2A_MAP_DATA_PLAN.md` | Map/data foundation plan |
 | `docs/PHASE_2B_REAL_ROUTES_VISUALS_PLAN.md` | Real routes and visuals plan |
 | `docs/MVP_SCOPE.md` | Montreal MVP scope boundaries |

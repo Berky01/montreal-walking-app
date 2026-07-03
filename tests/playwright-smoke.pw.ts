@@ -8,8 +8,8 @@ const placeTitle = "Place d'Armes";
 test.use({ baseURL: process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3105" });
 
 async function gotoReady(page: Page, path: string) {
-  await page.goto(path);
-  await page.waitForLoadState("networkidle");
+  await page.goto(path, { waitUntil: "load" });
+  await expect(page.locator("main")).toBeVisible();
   await page.waitForTimeout(250);
 }
 

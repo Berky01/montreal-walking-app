@@ -99,7 +99,7 @@ Final validation after implementation:
 | Content validation | Done | Added `getAllPublicSlugsForCrawl()` and `scripts/content-health.ts`; `npm run validate:content` passes with 105 public crawl paths. |
 | CI smoke tests | Done | Playwright config now starts a local app server; smoke covers public route/place crawler, required paths, headers, SEO files, images, persistence flows, and viewport overflow. |
 | Security baseline | Done | Added security headers in `next.config.mjs`: CSP, HSTS, frame denial/frame-ancestors, nosniff, referrer policy, and permissions policy. |
-| Follow-up audit checks | Done locally / deploy pending | Expanded smoke verifies contextual report links, card save persistence after refresh, search URL and match explanations, unknown slugs, sitemap/robots, security headers, city count copy, and The Illuminated Crowd visual fallback. |
+| Follow-up audit checks | Done and deployed | Expanded smoke verifies contextual report links, card save persistence after refresh, search URL and match explanations, unknown slugs, sitemap/robots, security headers, city count copy, The Illuminated Crowd visual fallback, and viewport overflow. |
 
 ## P1/P2/P3 Work Completed
 
@@ -110,15 +110,15 @@ Final validation after implementation:
 
 | Item | Evidence | Status |
 |---|---|---:|
-| 1. Contextual report links | `tests/playwright-smoke.pw.ts` visits `/routes/old-montreal-monuments-loop`, `/routes/old-montreal-monuments-loop/live`, and `/places/place-darmes`, then verifies `/report-issue` preserves selected route, stop, and place context. | Pass local |
-| 2. Save/unsave on cards | `components/places/place-card.tsx` and `components/routes/route-card.tsx` render card-level `SaveButton`s; smoke saves from `/places` and `/routes`, refreshes, and verifies `aria-pressed="true"`. | Pass local |
-| 3. Search query URLs and explanations | Smoke verifies `/search?q=architecture`, `/search?q=old+montreal`, `/search?q=rainy+day`, and `/search?q=churches` keep `q=` in the URL, show published place results and optional route results, include `Why this matched`, and exclude draft/future/regional terms. | Pass local |
-| 4. Persistence flows | Smoke verifies saved place refresh, saved route refresh, live route progress refresh, completion history persistence, and report context from route/live/place paths. | Pass local |
-| 5. Unknown slugs | Smoke verifies `/places/not-a-real-place-123`, `/routes/not-a-real-route-123`, and `/not-a-real-page-123` return 404 and render `This page is not on the map`. | Pass local |
-| 6. Sitemap and robots | Smoke verifies `/robots.txt` and `/sitemap.xml` exist, sitemap includes 60 place URLs and 12 route URLs, and excludes `/admin`, `/api`, regional, day-trip, and bike-friendly content. | Pass local |
-| 7. Security headers | Smoke verifies `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, and CSP `frame-ancestors 'none'`; source config remains `next.config.mjs`. | Pass local |
-| 8. City copy mismatch | `/cities` now says 60 published places across 23 area filters with 6 featured neighborhood guides; smoke verifies the copy. | Pass local |
-| 9. The Illuminated Crowd media | Smoke visits `/places/illuminated-crowd`, verifies no broken images, confirms media labels include Illuminated Crowd, and confirms no placeholder or pending-media copy appears. | Pass local |
+| 1. Contextual report links | `tests/playwright-smoke.pw.ts` visits `/routes/old-montreal-monuments-loop`, `/routes/old-montreal-monuments-loop/live`, and `/places/place-darmes`, then verifies `/report-issue` preserves selected route, stop, and place context. | Pass local/live |
+| 2. Save/unsave on cards | `components/places/place-card.tsx` and `components/routes/route-card.tsx` render card-level `SaveButton`s; smoke saves from `/places` and `/routes`, refreshes, and verifies `aria-pressed="true"`. | Pass local/live |
+| 3. Search query URLs and explanations | Smoke verifies `/search?q=architecture`, `/search?q=old+montreal`, `/search?q=rainy+day`, and `/search?q=churches` keep `q=` in the URL, show published place results and optional route results, include `Why this matched`, and exclude draft/future/regional terms. | Pass local/live |
+| 4. Persistence flows | Smoke verifies saved place refresh, saved route refresh, live route progress refresh, completion history persistence, and report context from route/live/place paths. | Pass local/live |
+| 5. Unknown slugs | Smoke verifies `/places/not-a-real-place-123`, `/routes/not-a-real-route-123`, and `/not-a-real-page-123` return 404 and render `This page is not on the map`. | Pass local/live |
+| 6. Sitemap and robots | Smoke verifies `/robots.txt` and `/sitemap.xml` exist, sitemap includes 60 place URLs and 12 route URLs, and excludes `/admin`, `/api`, regional, day-trip, and bike-friendly content. | Pass local/live |
+| 7. Security headers | Smoke verifies `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, and CSP `frame-ancestors 'none'`; source config remains `next.config.mjs`. | Pass local/live |
+| 8. City copy mismatch | `/cities` now says 60 published places across 23 area filters with 6 featured neighborhood guides; smoke verifies the copy. | Pass local/live |
+| 9. The Illuminated Crowd media | Smoke visits `/places/illuminated-crowd`, verifies no broken images, confirms media labels include Illuminated Crowd, and confirms no placeholder or pending-media copy appears. | Pass local/live |
 | 10. Implementation report | This section records command, test, backlog, and deployment status for the follow-up closure slice. | Updated |
 
 ## Files Changed
@@ -131,7 +131,7 @@ Current follow-up closure slice:
 - `components/routes/route-card.tsx` - renders route search `Why this matched` explanations.
 - `lib/search/place-search.ts` - adds plural-aware matching for categories and tags such as `churches`.
 - `lib/search/place-search.test.ts` - covers plural category search matching.
-- `tests/playwright-smoke.pw.ts` - expands smoke coverage for persistence, search, report context, 404s, security/SEO, city copy, and The Illuminated Crowd.
+- `tests/playwright-smoke.pw.ts` - expands smoke coverage for persistence, search, report context, 404s, security/SEO, city copy, and The Illuminated Crowd; replaces brittle `networkidle` readiness with page load plus visible `main`.
 - `docs/implementation-report.md` - records current follow-up evidence.
 
 ## Commands Run
@@ -160,6 +160,15 @@ Current follow-up closure slice:
 - `npm test`
 - `npm run build`
 - `npm run test:smoke`
+- `git archive --format=tar HEAD | ssh plexplease "mkdir -p /mnt/user/appdata/routeapp && cd /mnt/user/appdata/routeapp && tar -xf -"`
+- `ssh plexplease "cd /mnt/user/appdata/routeapp && BUILD_SHA=6577c089ee3087d9a632a905b95fec77f576bd25 BUILD_TIME=2026-07-02T20:17:33.6445445-04:00 docker compose -f docker-compose.routeapp.yml up -d --build routeapp"`
+- `ssh plexplease "docker ps --filter name=routeapp --format '{{.Names}} {{.Status}} {{.Image}}'"`
+- `curl.exe -sS -D - https://routeapp.plexplease.xyz/api/health`
+- `curl.exe -sS https://routeapp.plexplease.xyz/api/build-info`
+- `ssh plexplease "docker exec cloudflared cloudflared tunnel --config /etc/cloudflared/config.yml ingress validate"`
+- `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts` (initial run: 10 passed, viewport overflow smoke timed out at brittle `networkidle` wait despite rendered `/settings`; green after smoke helper fix)
+- `npm run test:smoke`
+- `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts`
 - `npm ci --dry-run`
 - `git rev-parse HEAD`
 - `git archive --format=tar HEAD | ssh plexplease "cd /mnt/user/appdata/routeapp && tar -xf -"`
@@ -228,6 +237,7 @@ Latest follow-up closure validation:
 | `npm test` | Pass: 28 test files, 111 tests. |
 | `npm run build` | Pass: 128 static pages generated. |
 | `npm run test:smoke` | Pass: 11 Playwright smoke tests. |
+| `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts` | Pass: 11 live Playwright smoke tests after replacing the brittle `networkidle` wait. |
 
 ## Deploy Notes
 
@@ -264,8 +274,14 @@ Evidence:
   - Cloudflared ingress validation returned `OK`.
 
 - Current follow-up closure slice:
-  - Local validation passed.
-  - Runtime deployment is pending until this slice is committed, pushed, rebuilt on Unraid, and verified live.
+  - Branch pushed: `codex/stitch-discovery-redesign`.
+  - Deployed runtime commit: `6577c089ee3087d9a632a905b95fec77f576bd25`.
+  - Container: `routeapp` rebuilt and restarted on Unraid; Docker status reported `Up ... (healthy) routeapp:latest`.
+  - Live health: `https://routeapp.plexplease.xyz/api/health` returned HTTP 200 with `status="healthy"`, `publicRoutes=12`, `publicPlaces=60`, and `publicCrawlPaths=105`.
+  - Live build info: `https://routeapp.plexplease.xyz/api/build-info` returned `gitSha="6577c089ee3087d9a632a905b95fec77f576bd25"`.
+  - Live security headers include CSP `frame-ancestors 'none'`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, HSTS, and `Permissions-Policy`.
+  - Live full smoke: `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts` passed 11 tests.
+  - Cloudflared ingress validation returned `OK`.
 
 Previous deployment evidence:
 

@@ -162,29 +162,54 @@ Current search continuation slice:
 - `npm test`
 - `npm run build`
 - `npm run test:smoke`
+- `npm test -- lib/content-trust.test.ts lib/walk-metrics.test.ts`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run validate:data`
+- `npm run validate:routes`
+- `npm run validate:media`
+- `npm test`
+- `npm run build`
+- `npm run test:smoke`
+- `git archive --format=tar HEAD | ssh plexplease "mkdir -p /mnt/user/appdata/routeapp && cd /mnt/user/appdata/routeapp && tar -xf -"`
+- `ssh plexplease "cd /mnt/user/appdata/routeapp && BUILD_SHA=acb5a4167ccc8b038a74cf34d59668fea749daef BUILD_TIME=2026-07-02T20:07:58.6336910-04:00 docker compose -f docker-compose.routeapp.yml up -d --build routeapp"`
+- `ssh plexplease "docker ps --filter name=routeapp --format '{{.Names}} {{.Status}} {{.Image}}'"`
+- `curl.exe -sS -D - https://routeapp.plexplease.xyz/api/health`
+- `curl.exe -sS https://routeapp.plexplease.xyz/api/build-info`
+- `ssh plexplease "docker exec cloudflared cloudflared tunnel --config /etc/cloudflared/config.yml ingress validate"`
+- `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "core route and place pages render local photo assets without broken images"`
 
 ## Test Evidence
 
-Latest continuation validation:
+Latest source-trust continuation validation:
 
 | Command | Result |
 |---|---|
 | `npm run lint` | Pass. |
 | `npm run typecheck` | Pass. |
-| `npm run validate:content` | Pass: 12 public routes, 60 public places, 105 crawl paths. |
 | `npm run validate:data` | Pass: 32 routes, 190 places; public readiness 12 routes, 60 places. |
 | `npm run validate:routes` | Pass: 32 routes, 32 ready. |
 | `npm run validate:media` | Pass: 293 assets, 71 approved real photos, 222 generated fallbacks. |
-| `npm test` | Pass: 27 test files, 105 tests. |
+| `npm test -- lib/content-trust.test.ts lib/walk-metrics.test.ts` | Pass: 2 test files, 6 tests. |
+| `npm test` | Pass: 28 test files, 109 tests. |
 | `npm run build` | Pass: 128 static pages generated. |
 | `npm run test:smoke` | Pass: 6 Playwright smoke tests. |
-| `npm ci --dry-run` | Pass: dependency tree up to date. Existing npm `allow-scripts` review warning reported for install-script packages. |
 
 ## Deploy Notes
 
 Deployment completed to Unraid.
 
 Evidence:
+
+- Current Stitch source/trust implementation slice:
+  - Branch pushed: `codex/stitch-discovery-redesign`.
+  - Deployed commit: `acb5a4167ccc8b038a74cf34d59668fea749daef`.
+  - Container: `routeapp` rebuilt and restarted on Unraid; Docker status healthy.
+  - Live health: `https://routeapp.plexplease.xyz/api/health` returned HTTP 200 with `status="healthy"`, `publicRoutes=12`, `publicPlaces=60`, and `publicCrawlPaths=105`.
+  - Live build info: `https://routeapp.plexplease.xyz/api/build-info` returned `gitSha="acb5a4167ccc8b038a74cf34d59668fea749daef"`.
+  - Live focused smoke: `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "core route and place pages render local photo assets without broken images"` passed.
+  - Live rendered place check confirmed `Source drawer`, `Then and now`, `Source checked`, and `Approved media` on `/places/place-darmes`.
+  - Cloudflared ingress validation returned `OK` through the running `cloudflared` container.
 
 - Current search explanation slice:
   - Branch pushed: `codex/stitch-discovery-redesign`.

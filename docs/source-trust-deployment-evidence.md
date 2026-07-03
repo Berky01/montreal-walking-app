@@ -9,6 +9,7 @@ Accessible repo:
 - Repository: `https://github.com/Berky01/montreal-walking-app.git`
 - Branch: `codex/source-trust-publication`
 - Base commit before this work: `aa1bda7 Add Docker ignore file for CI`
+- First public implementation commit on this branch: `a8ca3d8b1b10fa768a1d279c4da6a2b92a611edf` (`Publish source trust audit surfaces`)
 
 Local deployment commit evidence:
 

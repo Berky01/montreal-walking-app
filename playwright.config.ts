@@ -8,7 +8,7 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
-        command: `node scripts/start-standalone-smoke.mjs`,
+        command: `npm run start -- -p ${port}`,
         reuseExistingServer: false,
         timeout: 180000,
         url: baseURL

@@ -269,7 +269,7 @@ Latest repo audit follow-up validation before final push/deploy:
 | `npm run validate:routes` | Pass: 32 routes, 32 ready. |
 | `npm run validate:media` | Pass: 293 assets, 71 approved real photos, 222 generated fallbacks. |
 | `npm run build` | Pass: 117 static pages generated. |
-| `npm run test:smoke` | Pass: 12 Playwright smoke tests using the standalone smoke server helper. |
+| `npm run test:smoke` | Pass: 12 Playwright smoke tests; local `next start` emits the known standalone-output warning. |
 
 ## Deploy Notes
 

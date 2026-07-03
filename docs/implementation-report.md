@@ -111,7 +111,7 @@ Final validation after implementation:
 | Item | Evidence | Status |
 |---|---|---:|
 | 1. Contextual report links | `tests/playwright-smoke.pw.ts` visits `/routes/old-montreal-monuments-loop`, `/routes/old-montreal-monuments-loop/live`, and `/places/place-darmes`, then verifies `/report-issue` preserves selected route, stop, and place context. | Pass local/live |
-| 2. Save/unsave on cards | `components/places/place-card.tsx` and `components/routes/route-card.tsx` render card-level `SaveButton`s; smoke saves from `/places` and `/routes`, refreshes, and verifies `aria-pressed="true"`. | Pass local/live |
+| 2. Save/unsave on cards | `components/places/place-card.tsx` and `components/routes/route-card.tsx` render card-level `SaveButton`s; those shared cards are used by landing, app home, search, places, routes, saved, history, and related-route surfaces. Smoke saves from `/places` and `/routes`, refreshes, and verifies `aria-pressed="true"`. | Pass local/live |
 | 3. Search query URLs and explanations | Smoke verifies `/search?q=architecture`, `/search?q=old+montreal`, `/search?q=rainy+day`, and `/search?q=churches` keep `q=` in the URL, show published place results and optional route results, include `Why this matched`, and exclude draft/future/regional terms. | Pass local/live |
 | 4. Persistence flows | Smoke verifies saved place refresh, saved route refresh, live route progress refresh, completion history persistence, and report context from route/live/place paths. | Pass local/live |
 | 5. Unknown slugs | Smoke verifies `/places/not-a-real-place-123`, `/routes/not-a-real-route-123`, and `/not-a-real-page-123` return 404 and render `This page is not on the map`. | Pass local/live |

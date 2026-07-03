@@ -12,6 +12,8 @@ Continuation slice on 2026-07-02: the public report issue form now keeps route-c
 
 Search continuation slice on 2026-07-02: place search now shares a tested ranking helper with visible "Why this matched" explanations on published place results. This completes the remaining local-first search MVP gap without introducing AI generation or changing the approved Stitch layout.
 
+Stitch P0 source/trust continuation slice on 2026-07-02: place detail pages now use reusable source-trust panels, an accessible source drawer, and honest then-now media states backed by existing source/media metadata. Live route pages now show estimated steps, pace, and current-stop context from local session data, and completion pages include a browser-local walk journal card. Admin route QA now surfaces source-readiness status behind the existing `ENABLE_ADMIN_TOOLS` gate.
+
 ## Stitch Implementation Status
 
 Active Stitch project inspected: `https://stitch.withgoogle.com/projects/7741303272075430847`
@@ -27,11 +29,11 @@ Active intake docs:
 | Landing Page | `/` | Implemented | `app/page.tsx` | Uses live production data/components, not Stitch static HTML. |
 | App Home | `/app` | Implemented | `app/app/page.tsx`, `components/app/app-home-experience.tsx` | Current green visual MVP retained. |
 | Places Catalog / Discover Monuments / Filters | `/places` | Implemented | `app/places/page.tsx`, `components/places/places-page-client.tsx` | Named as places/catalog to avoid monument-only scope. |
-| Place/Monument Detail | `/places/[slug]` | Implemented | `app/places/[slug]/page.tsx` | Public place examples consolidated into one dynamic template. |
+| Place/Monument Detail | `/places/[slug]` | Implemented | `app/places/[slug]/page.tsx`, `components/places/place-trust-panels.tsx`, `lib/content-trust.ts` | Public place examples consolidated into one dynamic template with source-trust, source drawer, and then-now media states. |
 | Route Results | `/routes` | Implemented | `app/routes/page.tsx`, `components/routes/routes-page-client.tsx` | Optional-route language retained. |
 | Route Detail / Public Route Page | `/routes/[slug]` | Implemented | `app/routes/[slug]/page.tsx`, `components/routes/route-guide-client.tsx` | Public route page consolidated with route detail to avoid duplicate surfaces. |
-| Live Route | `/routes/[slug]/live` | Implemented | `app/routes/[slug]/live/page.tsx`, `components/walk/live-route-client.tsx` | Local route session; no required geolocation. |
-| Completion / Share | `/routes/[slug]/complete` | Implemented/partial | `app/routes/[slug]/complete/page.tsx`, share component | Advanced share-card generation remains deferred. |
+| Live Route | `/routes/[slug]/live` | Implemented | `app/routes/[slug]/live/page.tsx`, `components/walk/live-route-client.tsx`, `lib/walk-metrics.ts` | Local route session with estimated steps/pace; no required geolocation or device integration. |
+| Completion / Share | `/routes/[slug]/complete` | Implemented/partial | `app/routes/[slug]/complete/page.tsx`, `components/walk/completion-summary-client.tsx`, share component | Browser-local journal card added. Advanced share-card generation remains deferred. |
 | Search | `/search` | Implemented | `app/search/page.tsx`, `components/search/search-page-client.tsx`, `lib/search/place-search.ts` | Deterministic local ranking with visible match reasons instead of real AI. |
 | Saved / History / Settings | `/saved`, `/history`, `/settings` | Implemented | App routes and `components/library`, `components/walk` | Browser-local state by design. |
 | Issue Reporting | `/report-issue` | Implemented for mock mode | `app/report-issue/page.tsx`, `components/feedback/issue-report-form.tsx` | Durable backend remains deferred. |

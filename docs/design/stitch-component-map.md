@@ -28,12 +28,15 @@ Deferred/mock-only prototype components remain out of current MVP implementation
 | Route catalog filters and compare basket | `components/routes/routes-page-client.tsx` | Published routes/places, preferences, local compare state | Reset and compare links are explicit. Avoid huge unrelated dropdown content. |
 | Search and natural-language-like discovery | `components/search/search-page-client.tsx`, `lib/route-engine` | Published routes/places and local ranking | No external AI dependency. Suggested queries must map to real local content. |
 | Route detail timeline | `components/routes/route-stop-timeline.tsx`, `route-guide-client.tsx` | Route stops and published places | Stop selection updates map but timeline remains the keyboard/list alternative. |
-| Live route controls | `components/walk/live-route-client.tsx`, `progress-bar.tsx` | Route, places, local route session state | Touch targets must stay large. Do not require geolocation for the public MVP. |
-| Completion and history | `components/walk/completion-summary-client.tsx`, `history-client.tsx` | Route, local history state | Saving completion must work locally and fail gracefully. |
+| Enriched POI source trust | `components/places/place-trust-panels.tsx`, `lib/content-trust.ts`, `app/places/[slug]/page.tsx` | Published place sources, source quality, reviewed date, approved media metadata | Keep source status visible in text, not color alone. Do not invent historical images when archival media is missing. |
+| Source drawer | `components/places/place-trust-panels.tsx` | Place source records and approved media source URLs | Use native `details`/`summary` so the drawer remains keyboard accessible without client JavaScript. |
+| Historical media / then-now | `ThenNowComparison` in `components/places/place-trust-panels.tsx` | Approved current media and optional archival media | Missing archival media must render an honest empty state instead of reusing current media as a fake historical view. |
+| Live route controls | `components/walk/live-route-client.tsx`, `progress-bar.tsx`, `lib/walk-metrics.ts` | Route, places, local route session state, estimated steps/pace | Touch targets must stay large. Do not require geolocation or health/device providers for the public MVP. |
+| Completion and history | `components/walk/completion-summary-client.tsx`, `history-client.tsx` | Route, local history state, estimated steps | Saving completion must work locally and fail gracefully. Journal data stays browser-local unless shared. |
 | Saved library | `components/library/saved-library-client.tsx`, `save-button.tsx` | Published places/routes, local saved state | Empty states explain the local device boundary. |
 | Preferences/settings | `components/library/preferences-form.tsx` | Local preferences schema | Form controls need visible labels and should immediately update local ranking behavior. |
 | Issue reporting | `components/feedback/issue-report-form.tsx`, `app/api/report-issue/route.ts` | Published routes/places, issue type, honeypot/rate limit | Public form must not expose draft/future content. User-facing messages must not reveal raw server errors. |
-| Admin QA | `app/admin/*`, `app/api/admin/*` | All routes/places and validation summaries | Disabled by default with `ENABLE_ADMIN_TOOLS`. Keep `robots` noindex and no public nav links. |
+| Admin QA | `app/admin/*`, `app/api/admin/*` | All routes/places, source QA status, validation summaries | Disabled by default with `ENABLE_ADMIN_TOOLS`. Keep `robots` noindex and no public nav links. |
 
 ## Production Rules
 

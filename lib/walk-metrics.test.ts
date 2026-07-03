@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { getRouteBySlug } from "@/lib/data/index";
 import type { RouteSession, UserPreferences } from "@/lib/types";
-import { buildLiveRouteMetrics, getSessionElapsedMin } from "@/lib/walk-metrics";
+import { buildLiveRouteMetrics, estimateStepsForDistanceKm, getSessionElapsedMin } from "@/lib/walk-metrics";
 
 const preferences: UserPreferences = {
   units: "metric",
@@ -50,9 +50,16 @@ describe("live walk metrics", () => {
       ["Elapsed", "15 min"],
       ["Walked", "1.2 km"],
       ["Remaining", "2.0 km"],
+      ["Steps", "1,572"],
+      ["Pace", "13 min/km"],
       ["Progress", "29%"],
       ["Visited", "2/7"],
       ["Status", "Active"]
     ]);
+  });
+
+  it("estimates steps from walked distance without device integrations", () => {
+    expect(estimateStepsForDistanceKm(0)).toBe(0);
+    expect(estimateStepsForDistanceKm(1.2)).toBe(1572);
   });
 });

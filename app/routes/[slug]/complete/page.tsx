@@ -7,7 +7,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ShareButton } from "@/components/share/share-button";
 import { RouteVisual } from "@/components/visual/visuals";
-import { CompletionStopsClient, CompletionSummaryClient } from "@/components/walk/completion-summary-client";
+import { CompletionJournalClient, CompletionStopsClient, CompletionSummaryClient } from "@/components/walk/completion-summary-client";
 import { SaveHistoryButton } from "@/components/walk/save-history-button";
 import { getRouteBySlug, getRoutes } from "@/lib/data/index";
 
@@ -50,6 +50,7 @@ export default async function RouteCompletePage({ params }: { params: Promise<{ 
           </section>
 
           <CompletionSummaryClient route={route} />
+          <CompletionJournalClient route={route} />
 
           <div className="grid gap-4 md:grid-cols-[1fr_0.7fr]">
             <Card className="p-5">

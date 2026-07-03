@@ -1,11 +1,15 @@
 "use client";
 
+import { BookOpen, Clock, Footprints, MapPinned } from "lucide-react";
+import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { MetricRibbon } from "@/components/ui/metric-ribbon";
+import { Card } from "@/components/ui/card";
 import { getActiveRouteSession, getUserPreferences, getWalkHistoryItems } from "@/lib/local-state";
 import { estimateDurationForPace, formatDistanceForUnits } from "@/lib/preferences";
 import type { Route, RouteSession, UserPreferences, WalkSession } from "@/lib/types";
 import { formatDuration } from "@/lib/utils/format";
+import { estimateStepsForDistanceKm } from "@/lib/walk-metrics";
 
 export function CompletionSummaryClient({ route }: { route: Route }) {
   const [activeSession, setActiveSession] = useState<RouteSession | null>(null);
@@ -35,6 +39,45 @@ export function CompletionSummaryClient({ route }: { route: Route }) {
   );
 
   return <MetricRibbon metrics={metrics} />;
+}
+
+export function CompletionJournalClient({ route }: { route: Route }) {
+  const [activeSession, setActiveSession] = useState<RouteSession | null>(null);
+  const [completedSession, setCompletedSession] = useState<WalkSession | null>(null);
+  const [preferences, setPreferences] = useState<UserPreferences | null>(null);
+
+  useEffect(() => {
+    setActiveSession(getActiveRouteSession(route.slug) ?? null);
+    setCompletedSession(getWalkHistoryItems().find((session) => session.routeSlug === route.slug) ?? null);
+    setPreferences(getUserPreferences());
+  }, [route.slug]);
+
+  const session = completedSession ?? activeSession;
+  const walkedDistanceKm = session?.actualDistanceKm ?? route.distanceKm;
+  const visitedStops = session?.visitedStopIds.length || route.stops.length;
+  const startedLabel = session ? formatSessionDate(session.startedAt) : "Estimated visit";
+  const endedLabel = session?.endedAt ? formatSessionDate(session.endedAt) : "Not saved yet";
+
+  return (
+    <Card className="p-5">
+      <div className="flex items-center gap-2 text-primary">
+        <BookOpen aria-hidden="true" size={18} />
+        <h2 className="text-headline-mobile text-on-surface">Walk journal</h2>
+      </div>
+      <p className="mt-2 text-body-md text-on-surface-variant">
+        {startedLabel} · {endedLabel}
+      </p>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <JournalStat icon={<Clock aria-hidden="true" size={18} />} label="Time" value={formatDuration(session?.elapsedMin ?? route.durationMin)} />
+        <JournalStat icon={<MapPinned aria-hidden="true" size={18} />} label="Distance" value={formatDistanceForUnits(walkedDistanceKm, preferences?.units ?? "metric")} />
+        <JournalStat icon={<Footprints aria-hidden="true" size={18} />} label="Steps" value={new Intl.NumberFormat("en-CA").format(estimateStepsForDistanceKm(walkedDistanceKm))} />
+        <JournalStat icon={<BookOpen aria-hidden="true" size={18} />} label="Stops" value={`${visitedStops}/${route.stops.length}`} />
+      </div>
+      <p className="mt-4 text-label-sm text-on-surface-variant">
+        Journal data stays in this browser unless you share it.
+      </p>
+    </Card>
+  );
 }
 
 export function CompletionStopsClient({ route }: { route: Route }) {
@@ -77,4 +120,23 @@ function estimateElapsed(route: Route, session: RouteSession | null): number {
 
   const elapsedMs = Date.now() - new Date(session.startedAt).getTime() - session.totalPausedMs;
   return Math.max(1, Math.round(elapsedMs / 60000));
+}
+
+function JournalStat({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
+  return (
+    <div className="rounded-card bg-surface-container-low p-3">
+      <div className="flex items-center gap-2 text-primary">
+        {icon}
+        <p className="text-label-sm text-on-surface-variant">{label}</p>
+      </div>
+      <p className="mt-2 text-metric-lg text-on-surface">{value}</p>
+    </div>
+  );
+}
+
+function formatSessionDate(value: string): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    dateStyle: "medium",
+    timeStyle: "short"
+  }).format(new Date(value));
 }

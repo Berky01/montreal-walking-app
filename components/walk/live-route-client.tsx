@@ -24,6 +24,7 @@ import {
 import { estimateDurationForPace } from "@/lib/preferences";
 import type { Place, Route, RouteSession, UserPreferences } from "@/lib/types";
 import { formatDuration } from "@/lib/utils/format";
+import { getPlaceSourceTrustSummary } from "@/lib/content-trust";
 import { buildLiveRouteMetrics } from "@/lib/walk-metrics";
 import { ProgressBar } from "./progress-bar";
 
@@ -80,6 +81,8 @@ export function LiveRouteClient({ places, route }: { places: Place[]; route: Rou
         { label: "Walked", value: "0.0 km" },
         { label: "Remaining", value: `${route.distanceKm.toFixed(1)} km` },
         timeLeft,
+        { label: "Steps", value: "0", helper: "Estimated" },
+        { label: "Pace", value: "Starting" },
         { label: "Progress", value: "0%" },
         { label: "Visited", value: `0/${route.stops.length}` },
         { label: "Status", value: "Starting" }
@@ -137,6 +140,8 @@ export function LiveRouteClient({ places, route }: { places: Place[]; route: Rou
       </section>
 
       <MetricRibbon metrics={metrics} />
+
+      {currentPlace ? <LiveStopContextPanel place={currentPlace} /> : null}
 
       <section className="rounded-card border border-outline-variant bg-surface-container-lowest p-5 shadow-card">
         <div className="flex items-center gap-2 text-primary">
@@ -243,5 +248,30 @@ export function LiveRouteClient({ places, route }: { places: Place[]; route: Rou
         />
       }
     />
+  );
+}
+
+function LiveStopContextPanel({ place }: { place: Place }) {
+  const trust = getPlaceSourceTrustSummary(place);
+
+  return (
+    <section className="rounded-card border border-outline-variant bg-surface-container-lowest p-5 shadow-card">
+      <div className="flex items-center gap-2 text-primary">
+        <CheckCircle2 aria-hidden="true" size={18} />
+        <h2 className="text-label-md">At this stop</h2>
+      </div>
+      <p className="mt-3 text-body-md text-on-surface">{place.whyItMatters}</p>
+      <ul className="mt-3 space-y-2 text-body-md text-on-surface-variant">
+        {place.whatToNotice.slice(0, 2).map((item) => (
+          <li className="flex gap-2" key={item}>
+            <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />
+            {item}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-4 text-label-sm text-on-surface-variant">
+        {trust.qualityLabel} · reviewed {trust.reviewDateLabel}
+      </p>
+    </section>
   );
 }

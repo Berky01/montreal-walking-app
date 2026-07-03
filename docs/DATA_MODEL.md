@@ -6,6 +6,8 @@ Release 2 keeps the catalog local-first and typed: at least 28 Montreal-region r
 
 Expanded discovery places may include a `discovery` object with provider/source ID, rating, popularity, local-interest score, address, opening hours, website, image URL, cache timestamp, and ranking score. In Postgres mode this remains compatible with the existing flexible `places.body` JSON column until provider-backed persistence is wired.
 
+The enriched POI trust UI derives its summaries from existing `Place.sources`, `Place.sourceQuality`, `Place.lastReviewedAt`, and `MediaAsset` license/source metadata through `lib/content-trust.ts`. Historical then-now comparison supports optional archival media when an approved media record is attached, but it renders an explicit missing-archival state instead of requiring or fabricating historical assets.
+
 ```ts
 export type City = {
   id: string;

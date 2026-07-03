@@ -1,3 +1,4 @@
+import { FileText } from "lucide-react";
 import { AppShell } from "@/components/layout/app-shell";
 import { PageContainer } from "@/components/layout/page-container";
 import { MapShell } from "@/components/map/map-shell";
@@ -9,10 +10,11 @@ import { getAllPlaces, getAllRoutes } from "@/lib/data/index";
 export default function RouteQaPage() {
   const routes = getAllRoutes();
   const places = getAllPlaces();
+  const sourceReviewRoutes = routes.filter((route) => route.qaStatus.sources !== "ready" || route.sources.length === 0);
   const metrics = [
     { label: "Routes", value: String(routes.length) },
     { label: "Review", value: String(routes.filter((route) => route.qaStatus.overall === "review").length) },
-    { label: "Rough geometry", value: String(routes.filter((route) => route.qaStatus.geometry === "rough").length) },
+    { label: "Source QA", value: `${routes.length - sourceReviewRoutes.length}/${routes.length}`, helper: "Ready routes" },
     { label: "City", value: "Montreal" }
   ];
 
@@ -36,7 +38,7 @@ export default function RouteQaPage() {
                     <div>
                       <h2 className="text-body-lg font-semibold text-on-surface">{route.title}</h2>
                       <p className="mt-1 text-label-sm text-on-surface-variant">
-                        Content {route.qaStatus.content} · Geometry {route.qaStatus.geometry} · Field {route.qaStatus.fieldCheck}
+                        Content {route.qaStatus.content} · Geometry {route.qaStatus.geometry} · Sources {route.qaStatus.sources} · Field {route.qaStatus.fieldCheck}
                       </p>
                     </div>
                     <Chip tone={route.qaStatus.overall === "published" ? "primary" : "tertiary"}>{route.qaStatus.overall}</Chip>
@@ -44,7 +46,29 @@ export default function RouteQaPage() {
                 </Card>
               ))}
             </div>
-            <MapShell className="min-h-[560px]" places={places} route={routes[0]} title="Route QA map preview" />
+            <div className="space-y-4">
+              <Card className="p-5">
+                <div className="flex items-center gap-2 text-primary">
+                  <FileText aria-hidden="true" size={18} />
+                  <h2 className="text-headline-mobile text-on-surface">Source QA</h2>
+                </div>
+                {sourceReviewRoutes.length ? (
+                  <ul className="mt-4 space-y-3">
+                    {sourceReviewRoutes.map((route) => (
+                      <li className="rounded-card bg-surface-container-low p-3" key={route.id}>
+                        <p className="text-body-md font-semibold text-on-surface">{route.title}</p>
+                        <p className="mt-1 text-label-sm text-on-surface-variant">
+                          {route.sources.length} sources · status {route.qaStatus.sources} · score {route.qaScore}/100
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-3 text-body-md text-on-surface-variant">All route source records are ready for the current mock data set.</p>
+                )}
+              </Card>
+              <MapShell className="min-h-[560px]" places={places} route={routes[0]} title="Route QA map preview" />
+            </div>
           </div>
         </PageContainer>
       </main>

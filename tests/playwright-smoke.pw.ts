@@ -5,7 +5,7 @@ const routeTitle = "Old Montreal Monuments Loop";
 const placeSlug = "place-darmes";
 const placeTitle = "Place d'Armes";
 
-test.use({ baseURL: process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3105" });
+test.use({ baseURL: process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${process.env.PORT ?? "3105"}` });
 
 async function gotoReady(page: Page, path: string) {
   await page.goto(path, { waitUntil: "load" });

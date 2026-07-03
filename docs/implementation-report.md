@@ -94,7 +94,7 @@ Final validation after implementation:
 | Broken place links | Done | Smoke crawler visits `/places`, every linked public place detail, `/routes`, every linked public route detail, and every linked route live page. Unknown place/route slugs return 404. |
 | Error handling | Done | Existing designed `app/not-found.tsx` retained; added `app/error.tsx` with non-sensitive error ID display and console logging. |
 | Map fallback | Done | Local static map remains the no-key default. Removed raw "Map preview" fallback copy from normal no-key state; tile-load failure shows concise static-map fallback copy. |
-| Issue reporting | Done for mock mode | Public form posts to `/api/report-issue`, validates published context, has honeypot/rate-limit guard, writes to mock provider queue, keeps local browser fallback, and limits place selectors to the selected route's public stops unless the user chooses a no-route place-only report. Durable DB store remains deferred. |
+| Issue reporting | Done for mock mode | Public form posts to `/api/report-issue`, validates published context, has honeypot/rate-limit guard, writes to the configured file-backed mock provider review store, keeps local browser fallback, and limits place selectors to the selected route's public stops unless the user chooses a no-route place-only report. Database-backed persistence remains deferred until `DATA_SOURCE` moves away from mock mode. |
 | Publish-state gating | Done | Public helpers expose 12 public routes and 60 public places only; tests verify generated/draft discovery content is blocked from public lookups and crawl manifest. |
 | Search MVP | Done | Existing route ranking and new tested place ranking map to the Stitch search surface while staying deterministic and local-first. Place cards now explain why each published result matched. |
 | Saved loop | Existing/prepared | Existing local-storage saved loop verified by smoke. No layout changes made. |
@@ -269,7 +269,7 @@ Latest repo audit follow-up validation before final push/deploy:
 | `npm run validate:routes` | Pass: 32 routes, 32 ready. |
 | `npm run validate:media` | Pass: 293 assets, 71 approved real photos, 222 generated fallbacks. |
 | `npm run build` | Pass: 117 static pages generated. |
-| `npm run test:smoke` | Pass: 12 Playwright smoke tests; Playwright completed despite the existing standalone-output warning from the local web server. |
+| `npm run test:smoke` | Pass: 12 Playwright smoke tests using the standalone smoke server helper. |
 
 ## Deploy Notes
 
@@ -329,7 +329,7 @@ Previous deployment evidence:
 Notes:
 
 - `DATA_SOURCE=mock` remains the default.
-- The public issue queue is in-process for mock mode and is not durable across server restarts.
+- Public issue reports in mock mode are stored in the configured file-backed review store; Unraid mounts `routeapp_runtime` at `/app/runtime` so reports survive container rebuilds.
 - The local map fallback is still the no-key default; configure `NEXT_PUBLIC_MAP_STYLE_URL` only when a browser-safe MapLibre style URL is available.
 
 ## Remaining Work

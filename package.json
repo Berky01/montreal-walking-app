@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node node_modules/next/dist/bin/next build",
     "start": "next start",
     "bridge:codex": "tsx tools/chatgpt-codex-bridge/server.ts",
     "lint": "eslint . --max-warnings=0",

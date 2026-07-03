@@ -9,7 +9,7 @@ export default defineConfig({
     ? undefined
     : {
         command: `node scripts/start-standalone-smoke.mjs`,
-        reuseExistingServer: !process.env.CI,
+        reuseExistingServer: false,
         timeout: 180000,
         url: baseURL
       },

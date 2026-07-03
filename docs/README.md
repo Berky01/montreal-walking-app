@@ -1,6 +1,6 @@
 # Documentation Index
 
-Updated: 2026-07-02
+Updated: 2026-07-03
 
 This folder contains the active engineering and operations docs for the live Meaningful Routes app. When docs conflict, use this priority order:
 
@@ -35,6 +35,7 @@ This folder contains the active engineering and operations docs for the live Mea
 | `docs/LIVE_APP_AUDIT.md` | Phase 2A audit context |
 | `docs/implementation-report.md` | Current audit-package implementation status, baseline evidence, and P0/P1 closure notes |
 | `docs/audits/2026-07-02/` | 2026-07-02 external audit package, P0/P1 backlog CSV, and Stitch prototype metrics |
+| `docs/audits/2026-07-03/dependency-audit.md` | Current dependency audit remediation and exact PostCSS/Next.js exception |
 | `docs/design/` | Active Stitch intake docs for the private project `7741303272075430847` |
 | `docs/PHASE_2A_MAP_DATA_PLAN.md` | Map/data foundation plan |
 | `docs/PHASE_2B_REAL_ROUTES_VISUALS_PLAN.md` | Real routes and visuals plan |
@@ -66,6 +67,13 @@ Do not rewrite archived handoff tickets unless the request is specifically about
 - Private repo: `https://github.com/Berky01/meaningful-routes`
 - Local remote: `origin` -> `https://github.com/Berky01/meaningful-routes.git`
 - Stable branch: `main`
-- Active Codex branch: `codex/phase-2a-live-app`
+- Current source/trust implementation branch: `codex/stitch-discovery-redesign`
+- Current audit follow-up branch: `codex/repo-audit-source-trust-followup`
+
+Audit reconciliation notes:
+
+- Local history contains deployment commit `acb5a4167ccc8b038a74cf34d59668fea749daef` on `codex/stitch-discovery-redesign`.
+- `git ls-remote https://github.com/Berky01/meaningful-routes.git HEAD` succeeds from this environment; external 404 reports are consistent with repo visibility/auth limitations.
+- `git ls-remote https://github.com/Berky01/montreal-walking-app.git HEAD` also succeeds, but its visible `main` HEAD is a different source line and did not contain the source/trust implementation before this follow-up branch is pushed there.
 
 Future sessions should run `git status --short --branch` and `git remote -v` before changing files. If the worktree is mixed, stage explicit file paths only.

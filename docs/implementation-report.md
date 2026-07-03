@@ -1,6 +1,6 @@
 # Meaningful Routes Implementation Report
 
-Updated: 2026-07-02
+Updated: 2026-07-03
 
 ## Summary
 
@@ -13,6 +13,10 @@ Continuation slice on 2026-07-02: the public report issue form now keeps route-c
 Search continuation slice on 2026-07-02: place search now shares a tested ranking helper with visible "Why this matched" explanations on published place results. This completes the remaining local-first search MVP gap without introducing AI generation or changing the approved Stitch layout.
 
 Stitch P0 source/trust continuation slice on 2026-07-02: place detail pages now use reusable source-trust panels, an accessible source drawer, and honest then-now media states backed by existing source/media metadata. Live route pages now show estimated steps, pace, and current-stop context from local session data, and completion pages include a browser-local walk journal card. Admin route QA now surfaces source-readiness status behind the existing `ENABLE_ADMIN_TOOLS` gate.
+
+Repo audit follow-up on 2026-07-03: the source/trust implementation is now exposed through the requested `src/lib/content-trust.ts` and `src/lib/content-trust.test.ts` entry points while keeping `lib/content-trust.ts` as a compatibility re-export. The shared POI model now names `PlaceSource`, `PlaceMedia`, `VerificationStatus`, `SourceQualityScore`, `MediaApprovalStatus`, and then-now media roles. Source drawer rendering now includes explicit verification and media attribution text, then-now rendering has focused server-render tests, admin route gating has a unit test, and live route stop context uses a tested helper for current/next/final-stop consistency.
+
+The same follow-up keeps the smoke-testable admin issue queue coherent with the provider interface: mock issue reports now use the configured file-backed review store, admin issue APIs are gated by `ENABLE_ADMIN_TOOLS`/`ENABLE_ADMIN_WRITE_ACTIONS`, and Docker/Unraid compose files mount `routeapp_runtime` at `/app/runtime`.
 
 Follow-up closure slice on 2026-07-02: contextual report links were added to route/place detail heroes, search now shows optional route matches for theme/location queries with explicit match explanations, place search handles plural category queries such as `churches`, card-level save/refresh persistence is covered by smoke tests, the `/cities` count copy now distinguishes published area filters from featured neighborhood guides, and the expanded smoke suite verifies 404, sitemap/robots, security headers, search, persistence, report context, and The Illuminated Crowd fallback behavior.
 
@@ -31,7 +35,7 @@ Active intake docs:
 | Landing Page | `/` | Implemented | `app/page.tsx` | Uses live production data/components, not Stitch static HTML. |
 | App Home | `/app` | Implemented | `app/app/page.tsx`, `components/app/app-home-experience.tsx` | Current green visual MVP retained. |
 | Places Catalog / Discover Monuments / Filters | `/places` | Implemented | `app/places/page.tsx`, `components/places/places-page-client.tsx` | Named as places/catalog to avoid monument-only scope. |
-| Place/Monument Detail | `/places/[slug]` | Implemented | `app/places/[slug]/page.tsx`, `components/visual/visuals.tsx`, `components/places/place-trust-panels.tsx`, `lib/content-trust.ts` | Public place examples consolidated into one dynamic template with source-trust, source drawer, then-now media states, and contextual report links. |
+| Place/Monument Detail | `/places/[slug]` | Implemented | `app/places/[slug]/page.tsx`, `components/visual/visuals.tsx`, `components/places/place-trust-panels.tsx`, `src/lib/content-trust.ts`, `lib/content-trust.ts` | Public place examples consolidated into one dynamic template with source-trust, source drawer, then-now media states, and contextual report links. |
 | Route Results | `/routes` | Implemented | `app/routes/page.tsx`, `components/routes/routes-page-client.tsx` | Optional-route language retained. |
 | Route Detail / Public Route Page | `/routes/[slug]` | Implemented | `app/routes/[slug]/page.tsx`, `components/visual/visuals.tsx`, `components/routes/route-guide-client.tsx` | Public route page consolidated with route detail to avoid duplicate surfaces; route reports now carry route context. |
 | Live Route | `/routes/[slug]/live` | Implemented | `app/routes/[slug]/live/page.tsx`, `components/walk/live-route-client.tsx`, `lib/walk-metrics.ts` | Local route session with estimated steps/pace; no required geolocation or device integration. |
@@ -120,6 +124,20 @@ Final validation after implementation:
 | 8. City copy mismatch | `/cities` now says 60 published places across 23 area filters with 6 featured neighborhood guides; smoke verifies the copy. | Pass local/live |
 | 9. The Illuminated Crowd media | Smoke visits `/places/illuminated-crowd`, verifies no broken images, confirms media labels include Illuminated Crowd, and confirms no placeholder or pending-media copy appears. | Pass local/live |
 | 10. Implementation report | This section records command, test, backlog, and deployment status for the follow-up closure slice. | Updated |
+
+## Repo Audit Follow-up Evidence
+
+| Requirement | Evidence | Status |
+|---|---|---:|
+| Exact deployed source/trust commit | Local `git show acb5a4167ccc8b038a74cf34d59668fea749daef` identifies `Implement Stitch source trust surfaces`; branch containment includes `codex/stitch-discovery-redesign`. | Identified |
+| Accessible repo mismatch | `Berky01/meaningful-routes` is reachable from this environment by `git ls-remote`; external 404 reports indicate visibility/auth mismatch. `Berky01/montreal-walking-app` is also reachable but its `main` HEAD differs from the source/trust line. | Documented |
+| Source/trust utility path | `src/lib/content-trust.ts` is canonical; `lib/content-trust.ts` re-exports it. | Done |
+| Source/trust utility tests | `src/lib/content-trust.test.ts` plus compatibility `lib/content-trust.test.ts`. | Done |
+| POI source/media data vocabulary | `lib/data/types.ts` exports `PlaceSource`, `PlaceMedia`, `VerificationStatus`, `SourceQualityScore`, `MediaApprovalStatus`, and `ThenNowMediaRole`. | Done |
+| Source drawer/media/then-now render tests | `tests/playwright-smoke.pw.ts` covers the real rendered place page source drawer, verification text, media attribution, then-now module, approved media section, and empty archival state. | Done |
+| Admin QA gating test | `app/admin/admin-layout.test.tsx` covers `ENABLE_ADMIN_TOOLS` gating and noindex metadata. | Done |
+| Live walk consistency tests | `lib/walk-metrics.test.ts` covers current/next/final stop context plus steps and pace consistency. | Done |
+| Smoke blocker: provider issue triage | `lib/data/issue-report-store.ts`, `lib/data/mockProvider.test.ts`, `lib/data/issue-report-store.test.ts`, and `app/api/admin/issues/route.test.ts` cover file-backed mock issue reports and gated triage updates. | Done |
 
 ## Files Changed
 
@@ -239,6 +257,20 @@ Latest follow-up closure validation:
 | `npm run test:smoke` | Pass: 11 Playwright smoke tests. |
 | `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts` | Pass: 11 live Playwright smoke tests after replacing the brittle `networkidle` wait. |
 
+Latest repo audit follow-up validation before final push/deploy:
+
+| Command | Result |
+|---|---|
+| `npm test` | Pass: 33 test files, 125 tests. |
+| `npm run lint` | Pass. |
+| `npm run typecheck` | Pass. |
+| `npm run validate:content` | Pass: 12 public routes, 60 public places, 105 crawl paths. |
+| `npm run validate:data` | Pass: 32 routes, 190 places; public readiness 12 routes, 60 places. |
+| `npm run validate:routes` | Pass: 32 routes, 32 ready. |
+| `npm run validate:media` | Pass: 293 assets, 71 approved real photos, 222 generated fallbacks. |
+| `npm run build` | Pass: 117 static pages generated. |
+| `npm run test:smoke` | Pass: 12 Playwright smoke tests; Playwright completed despite the existing standalone-output warning from the local web server. |
+
 ## Deploy Notes
 
 Deployment completed to Unraid.
@@ -302,6 +334,6 @@ Notes:
 
 ## Remaining Work
 
-- Add durable server-side persistence for issue reports before switching away from mock/in-process storage.
-- Consider addressing `npm ci` audit output from Docker build separately: 7 vulnerabilities reported by npm audit in existing dependencies.
+- Replace the file-backed mock issue report store with database-backed persistence before switching away from `DATA_SOURCE=mock`.
+- Dependency audit reduced from 7 findings to the documented `next@15.5.20` nested PostCSS exception in `docs/audits/2026-07-03/dependency-audit.md`; remove the exception after a stable Next.js release bundles `postcss >= 8.5.10`.
 - Use `docs/design/stitch-screen-inventory.md` and `docs/design/stitch-component-map.md` before future Stitch-backed layout work.

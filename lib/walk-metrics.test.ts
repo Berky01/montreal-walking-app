@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { getRouteBySlug } from "@/lib/data/index";
 import type { RouteSession, UserPreferences } from "@/lib/types";
-import { buildLiveRouteMetrics, estimateStepsForDistanceKm, getSessionElapsedMin } from "@/lib/walk-metrics";
+import { buildLiveRouteMetrics, estimateStepsForDistanceKm, getLiveRouteStopContext, getSessionElapsedMin } from "@/lib/walk-metrics";
 
 const preferences: UserPreferences = {
   units: "metric",
@@ -61,5 +61,36 @@ describe("live walk metrics", () => {
   it("estimates steps from walked distance without device integrations", () => {
     expect(estimateStepsForDistanceKm(0)).toBe(0);
     expect(estimateStepsForDistanceKm(1.2)).toBe(1572);
+  });
+
+  it("keeps current and next stop labels consistent at route boundaries", () => {
+    const route = getRouteBySlug("old-montreal-monuments-loop")!;
+    const session: RouteSession = {
+      id: "active-route",
+      routeId: route.id,
+      routeSlug: route.slug,
+      routeTitle: route.title,
+      status: "active",
+      startedAt: "2026-07-01T12:00:00.000Z",
+      endedAt: null,
+      pausedAt: null,
+      totalPausedMs: 0,
+      currentStopIndex: route.stops.length + 2,
+      currentStopId: route.stops.at(-1)?.id,
+      nextStopId: route.stops.at(-1)?.id,
+      visitedStopIds: route.stops.map((stop) => stop.id),
+      skippedStopIds: [],
+      progressPercent: 100,
+      elapsedMin: 0,
+      actualDistanceKm: route.distanceKm
+    };
+
+    const context = getLiveRouteStopContext(route, session);
+
+    expect(context.currentStop).toBe(route.stops.at(-1));
+    expect(context.nextStop).toBe(route.stops.at(-1));
+    expect(context.currentStopNumber).toBe(route.stops.length);
+    expect(context.nextStopNumber).toBe(route.stops.length);
+    expect(context.isFinalStop).toBe(true);
   });
 });

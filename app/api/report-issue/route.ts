@@ -2,6 +2,9 @@ import { createIssueReport, getPlaces, getRoutes } from "@/lib/data/index";
 import type { IssueReportInput } from "@/lib/data/types";
 import { validateIssueReportInput } from "@/lib/issue-reports";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const rateLimitWindowMs = 10 * 60 * 1000;
 const rateLimitMaxReports = 8;
 const reportAttempts = new Map<string, { count: number; resetAt: number }>();

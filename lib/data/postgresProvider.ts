@@ -18,6 +18,7 @@ export const postgresProvider: DataProvider = {
   getNearbyPlaces: notConfigured,
   searchRoutes: notConfigured,
   createIssueReport: notConfigured,
+  updateIssueReport: notConfigured,
   getIssueReports: notConfigured,
   getSavedLibrary: notConfigured,
   getWalkHistory: notConfigured

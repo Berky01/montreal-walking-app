@@ -1,8 +1,11 @@
+import { requireAdminWriteActionsResponse } from "@/lib/admin/access";
 import { getAllRouteBySlug } from "@/lib/data/index";
 import { getRoutingProvider } from "@/lib/routing/index";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
-  const adminError = requireAdminWriteIfEnabled(request);
+  const adminError = requireAdminWriteActionsResponse();
   if (adminError) {
     return adminError;
   }
@@ -43,19 +46,4 @@ export async function POST(request: Request) {
 
 function nullResponse(message: string): Response {
   return Response.json({ error: message }, { status: 400 });
-}
-
-function requireAdminWriteIfEnabled(request: Request): Response | null {
-  if (process.env.ENABLE_ADMIN_WRITE_ACTIONS !== "true") {
-    return null;
-  }
-
-  const expected = process.env.ADMIN_TOKEN;
-  const provided = request.headers.get("x-admin-token") ?? request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
-
-  if (!expected || expected === "change-me-local-only" || provided !== expected) {
-    return Response.json({ error: "admin token required" }, { status: 401 });
-  }
-
-  return null;
 }

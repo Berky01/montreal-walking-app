@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getIssueReportPlaceOptions, validateIssueReportInput } from "@/lib/issue-reports";
+import { getIssueReportPlaceOptions, validateIssueReportInput, validateIssueReportTriageInput } from "@/lib/issue-reports";
 import { getPlaces, getRouteBySlug } from "@/lib/data/index";
 
 describe("issue report validation", () => {
@@ -31,6 +31,36 @@ describe("issue report validation", () => {
     expect(validateIssueReportInput({ category: "bad", description: "The route is closed." })).toMatchObject({
       ok: false,
       error: "valid category is required"
+    });
+  });
+
+  it("validates issue triage updates before admin persistence", () => {
+    expect(
+      validateIssueReportTriageInput({
+        id: "issue-1",
+        status: "resolved",
+        severity: "low",
+        reviewer: "route QA",
+        resolutionNotes: "Resolved after source review."
+      })
+    ).toMatchObject({
+      ok: true,
+      data: {
+        id: "issue-1",
+        status: "resolved",
+        severity: "low",
+        reviewer: "route QA",
+        resolutionNotes: "Resolved after source review."
+      }
+    });
+
+    expect(validateIssueReportTriageInput({ id: "", status: "resolved" })).toMatchObject({
+      ok: false,
+      error: "issue id is required"
+    });
+    expect(validateIssueReportTriageInput({ id: "issue-1", status: "bad" })).toMatchObject({
+      ok: false,
+      error: "valid issue status is required"
     });
   });
 

@@ -6,7 +6,36 @@ Release 2 keeps the catalog local-first and typed: at least 28 Montreal-region r
 
 Expanded discovery places may include a `discovery` object with provider/source ID, rating, popularity, local-interest score, address, opening hours, website, image URL, cache timestamp, and ranking score. In Postgres mode this remains compatible with the existing flexible `places.body` JSON column until provider-backed persistence is wired.
 
-The enriched POI trust UI derives its summaries from existing `Place.sources`, `Place.sourceQuality`, `Place.lastReviewedAt`, and `MediaAsset` license/source metadata through `lib/content-trust.ts`. Historical then-now comparison supports optional archival media when an approved media record is attached, but it renders an explicit missing-archival state instead of requiring or fabricating historical assets.
+The enriched POI trust UI derives its summaries from `Place.sources`, `Place.sourceQuality`, optional `Place.sourceQualityScore`, `Place.lastReviewedAt`, and `PlaceMedia` license/source metadata through `src/lib/content-trust.ts`. `lib/content-trust.ts` remains a compatibility re-export for existing app imports. Historical then-now comparison supports optional archival media when an approved media record is attached, but it renders an explicit missing-archival state instead of requiring or fabricating historical assets.
+
+Source/trust records use explicit aliases so audit tools can inspect the data model without inferring from generic fields:
+
+```ts
+export type VerificationStatus = "placeholder" | "needs_review" | "verified";
+export type SourceQualityScore = "draft" | "verified" | "field_tested";
+export type MediaApprovalStatus = "approved" | "needs_review" | "rejected" | "fallback_only" | "placeholder" | "ready";
+export type ThenNowMediaRole = "then" | "now" | "historical" | "archival";
+
+export type Source = {
+  status: VerificationStatus;
+  verificationStatus?: VerificationStatus;
+  attribution?: SourceAttribution;
+  lastReviewedAt?: string;
+};
+
+export type PlaceSource = Source;
+
+export type MediaAsset = {
+  status: MediaApprovalStatus;
+  approvalStatus?: MediaApprovalStatus;
+  thenNowRole?: ThenNowMediaRole;
+  historicalRole?: ThenNowMediaRole;
+  historicalContext?: string;
+  attribution?: SourceAttribution;
+};
+
+export type PlaceMedia = MediaAsset;
+```
 
 ```ts
 export type City = {
@@ -70,7 +99,10 @@ export type Place = {
   periodOrStyle?: string;
   tags: string[];
   relatedRouteSlugs: string[];
-  sourceQuality: "draft" | "verified" | "field_tested";
+  sourceQuality: SourceQualityScore;
+  sourceQualityScore?: SourceQualityScore;
+  sources: PlaceSource[];
+  media: PlaceMedia[];
   discovery?: PlaceDiscoveryMeta;
   lastReviewedAt: string;
 };
@@ -227,7 +259,7 @@ export type UserPreferences = {
 - 12 complete routes.
 - Each route has metrics, stop timeline, LineString geometry, safety notes, accessibility notes, source placeholders, content status, QA score, and transparent QA status.
 - All first-pass content uses Montreal-specific names and context.
-- Browser-local state includes saved items, compare basket route slugs, active route sessions, completed walk history, preferences, feature flags, and issue reports.
+- Browser-local state includes saved items, compare basket route slugs, active route sessions, completed walk history, preferences, and feature flags. Public issue reports post to the mock provider's configured server-side review store and the client keeps a browser-local fallback copy when storage is available.
 
 ## Release 2 Functional State
 

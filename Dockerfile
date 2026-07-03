@@ -24,7 +24,7 @@ ENV HOSTNAME=0.0.0.0
 ENV BUILD_SHA=$BUILD_SHA
 ENV BUILD_TIME=$BUILD_TIME
 
-RUN groupadd --system --gid 1001 nodejs && useradd --system --uid 1001 --gid nodejs nextjs
+RUN groupadd --system --gid 1001 nodejs && useradd --system --uid 1001 --gid nodejs nextjs && mkdir -p /app/runtime && chown nextjs:nodejs /app/runtime
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static

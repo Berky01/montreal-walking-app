@@ -34,7 +34,7 @@ Make the existing Meaningful Routes MVP feel like a real map-backed Montreal wal
 1. Implement real request generation in one routing adapter, starting with local OSRM or another configured provider.
 2. Add route geometry review storage so generated geometry can be compared before curated replacement.
 3. Add dry-run Wikimedia Commons candidate search that writes review JSON, not public media.
-4. Add gated route-builder write actions behind `ENABLE_ADMIN_WRITE_ACTIONS` and `ADMIN_TOKEN`.
+4. Add gated route-builder write actions behind `ENABLE_ADMIN_TOOLS` and `ENABLE_ADMIN_WRITE_ACTIONS` in a protected admin environment.
 5. Add optional JSON provider before Postgres so curated data can move out of TypeScript without forcing a database.
 
 ## Non-Goals

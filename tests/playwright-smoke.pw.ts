@@ -319,6 +319,19 @@ test("illuminated crowd uses honest local visual fallback behavior", async ({ pa
   expect(mediaState.labels.join("\n")).not.toMatch(/pending licensed media|visual preview pending/i);
 });
 
+test("place source trust surfaces render verification, attribution, and then-now empty state", async ({ page }) => {
+  await gotoReady(page, `/places/${placeSlug}`);
+
+  const main = page.locator("main");
+  await expect(main).toContainText("Source drawer");
+  await expect(main).toContainText("Verification status: verified");
+  await expect(main).toContainText("Attribution:");
+  await expect(main).toContainText("Then and now");
+  await expect(main).toContainText("No archival image is attached yet");
+  await expect(main).toContainText("Archival reference needed");
+  await expect(main).toContainText("Approved media");
+});
+
 test("core pages do not overflow across product viewports", async ({ page }) => {
   test.setTimeout(120000);
   const viewports = [

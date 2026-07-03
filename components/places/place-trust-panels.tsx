@@ -211,7 +211,7 @@ function SourceList({ sources }: { sources: Source[] }) {
               <div>
                 <p className="text-body-md font-semibold text-on-surface">{source.label}</p>
                 <p className="mt-1 text-label-sm text-on-surface-variant">
-                  {getSourceTypeLabel(source)} · {source.status.replace("_", " ")}
+                  {getSourceTypeLabel(source)} · Verification status: {(source.verificationStatus ?? source.status).replace("_", " ")}
                 </p>
               </div>
               <TrustChip tone={source.status === "verified" ? "primary" : "tertiary"}>{source.status === "verified" ? "Verified" : "Review"}</TrustChip>
@@ -248,7 +248,9 @@ function MediaSourceList({ assets }: { assets: MediaAsset[] }) {
             <p className="mt-1 text-label-sm text-on-surface-variant">
               {getMediaSourceLabel(asset)} · {asset.licenseName ?? "License pending"}
             </p>
+            <p className="mt-1 text-label-sm text-on-surface-variant">Approval status: {(asset.approvalStatus ?? asset.status).replace("_", " ")}</p>
             {asset.creator ? <p className="mt-2 text-body-md text-on-surface-variant">Creator: {asset.creator}</p> : null}
+            {asset.attributionText ? <p className="mt-2 text-body-md text-on-surface-variant">Attribution: {asset.attributionText}</p> : null}
             {asset.sourceUrl ? <SourceLink href={asset.sourceUrl} label="Open media source" /> : null}
           </li>
         ))}

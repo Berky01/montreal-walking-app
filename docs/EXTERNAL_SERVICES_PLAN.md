@@ -7,6 +7,7 @@ The app must boot with no external runtime services:
 - `DATA_SOURCE=mock`
 - `NEXT_PUBLIC_MAP_STYLE_URL=""`
 - `NEXT_PUBLIC_MAP_PROVIDER="fallback"`
+- `ISSUE_REPORT_STORE_PATH="runtime/issue-reports.json"`
 - `ROUTING_PROVIDER=none`
 - `ENABLE_EXTERNAL_IMPORTS=false`
 - `AI_PROVIDER=none`
@@ -38,7 +39,7 @@ Current search remains deterministic.
 
 ## API Boundary
 
-Public read endpoints stay provider-backed and do not require admin tokens. Admin write-style endpoints are dry-run/read-only unless `ENABLE_ADMIN_WRITE_ACTIONS=true`.
+Public read endpoints stay provider-backed. Admin endpoints return 404 unless `ENABLE_ADMIN_TOOLS=true`; admin write-style endpoints remain read-only unless `ENABLE_ADMIN_WRITE_ACTIONS=true`.
 
 Current additions:
 

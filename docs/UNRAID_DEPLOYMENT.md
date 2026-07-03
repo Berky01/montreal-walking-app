@@ -8,6 +8,7 @@
 - `ROUTING_PROVIDER=none`
 - `ENABLE_EXTERNAL_IMPORTS=false`
 - `AI_PROVIDER=none`
+- `ISSUE_REPORT_STORE_PATH=/app/runtime/issue-reports.json`
 - `NEXT_PUBLIC_SITE_URL=https://routeapp.plexplease.xyz`
 - Deploy completed implementation work to Unraid so the live public URL is `https://routeapp.plexplease.xyz/` unless explicitly paused.
 
@@ -86,6 +87,7 @@ npm run validate:data
 - Mock data is source-controlled TypeScript content.
 - Placeholder media metadata is source-controlled; future local media should use `/app/public/media` or a mounted media volume.
 - Browser saved/history state lives in user `localStorage` and is not server-backed.
+- Public issue reports in mock mode are stored in the `routeapp_runtime` Docker volume at `ISSUE_REPORT_STORE_PATH`; include that volume in Unraid backup snapshots if reports must survive container rebuilds and host failures.
 - Future Postgres backups should include `pg_dump`, volume snapshot notes, and a restore drill before production use.
 
 ## Update Procedure

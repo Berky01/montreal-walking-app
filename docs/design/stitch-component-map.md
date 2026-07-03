@@ -1,6 +1,6 @@
 # Stitch Component Map
 
-Updated: 2026-07-02
+Updated: 2026-07-03
 
 This maps approved Stitch UI patterns to production React components. Use this before adding new pages from the Stitch project.
 
@@ -28,9 +28,9 @@ Deferred/mock-only prototype components remain out of current MVP implementation
 | Route catalog filters and compare basket | `components/routes/routes-page-client.tsx` | Published routes/places, preferences, local compare state | Reset and compare links are explicit. Avoid huge unrelated dropdown content. |
 | Search and natural-language-like discovery | `components/search/search-page-client.tsx`, `lib/route-engine` | Published routes/places and local ranking | No external AI dependency. Suggested queries must map to real local content. |
 | Route detail timeline | `components/routes/route-stop-timeline.tsx`, `route-guide-client.tsx` | Route stops and published places | Stop selection updates map but timeline remains the keyboard/list alternative. |
-| Enriched POI source trust | `components/places/place-trust-panels.tsx`, `lib/content-trust.ts`, `app/places/[slug]/page.tsx` | Published place sources, source quality, reviewed date, approved media metadata | Keep source status visible in text, not color alone. Do not invent historical images when archival media is missing. |
-| Source drawer | `components/places/place-trust-panels.tsx` | Place source records and approved media source URLs | Use native `details`/`summary` so the drawer remains keyboard accessible without client JavaScript. |
-| Historical media / then-now | `ThenNowComparison` in `components/places/place-trust-panels.tsx` | Approved current media and optional archival media | Missing archival media must render an honest empty state instead of reusing current media as a fake historical view. |
+| Enriched POI source trust | `components/places/place-trust-panels.tsx`, `src/lib/content-trust.ts`, `lib/content-trust.ts`, `app/places/[slug]/page.tsx` | Published place sources, source quality/sourceQualityScore, reviewed date, approved media metadata | Keep source status visible in text, not color alone. Do not invent historical images when archival media is missing. |
+| Source drawer | `components/places/place-trust-panels.tsx` | Place source records, verification status, approved media source URLs, creator/license/attribution text | Use native `details`/`summary` so the drawer remains keyboard accessible without client JavaScript. |
+| Historical media / then-now | `ThenNowComparison` in `components/places/place-trust-panels.tsx` | Approved current media and optional archival media with then-now roles | Missing archival media must render an honest empty state instead of reusing current media as a fake historical view. |
 | Live route controls | `components/walk/live-route-client.tsx`, `progress-bar.tsx`, `lib/walk-metrics.ts` | Route, places, local route session state, estimated steps/pace | Touch targets must stay large. Do not require geolocation or health/device providers for the public MVP. |
 | Completion and history | `components/walk/completion-summary-client.tsx`, `history-client.tsx` | Route, local history state, estimated steps | Saving completion must work locally and fail gracefully. Journal data stays browser-local unless shared. |
 | Saved library | `components/library/saved-library-client.tsx`, `save-button.tsx` | Published places/routes, local saved state | Empty states explain the local device boundary. |

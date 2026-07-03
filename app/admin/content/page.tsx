@@ -7,6 +7,8 @@ import { MetricRibbon } from "@/components/ui/metric-ribbon";
 import { getAllPlaces, getAllRoutes, getIssueReports, getPlaces, getRoutes } from "@/lib/data/index";
 import { summarizeContentReadiness, validateDataCatalog } from "@/lib/data/validators";
 
+export const dynamic = "force-dynamic";
+
 export default function AdminContentPage() {
   const routes = getAllRoutes();
   const places = getAllPlaces();

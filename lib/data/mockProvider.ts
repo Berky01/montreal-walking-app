@@ -1,12 +1,14 @@
 import { cities, cityPacks, neighborhoods, partnerKits } from "@/lib/mock-data";
 import { rankRoutes } from "@/lib/route-engine";
 import { routeToGeoJson } from "@/lib/data/geojson";
+import { appendIssueReportToStore, readIssueReportsFromStore, updateIssueReportInStore } from "@/lib/data/issue-report-store";
 import { discoveryPlaces as places, discoveryRoutes as routes } from "@/lib/discovery/catalog";
 import { readDiscoveryConfig } from "@/lib/discovery/config";
 import type {
   DataProvider,
   IssueReport,
   IssueReportInput,
+  IssueReportTriageInput,
   NearbyPlacesInput,
   Place,
   PlaceFilters,
@@ -16,7 +18,6 @@ import type {
   WalkSession
 } from "@/lib/data/types";
 
-const issueReports: IssueReport[] = [];
 const discoveryConfig = readDiscoveryConfig();
 
 export const mockProvider: DataProvider = {
@@ -33,6 +34,7 @@ export const mockProvider: DataProvider = {
   getNearbyPlaces,
   searchRoutes,
   createIssueReport,
+  updateIssueReport,
   getIssueReports,
   getSavedLibrary,
   getWalkHistory
@@ -140,12 +142,15 @@ export function createIssueReport(input: IssueReportInput): IssueReport {
     status: "new"
   };
 
-  issueReports.unshift(report);
-  return report;
+  return appendIssueReportToStore(report);
+}
+
+export function updateIssueReport(input: IssueReportTriageInput): IssueReport | undefined {
+  return updateIssueReportInStore(input);
 }
 
 export function getIssueReports(): IssueReport[] {
-  return issueReports;
+  return readIssueReportsFromStore();
 }
 
 export function getSavedLibrary(): SavedItem[] {

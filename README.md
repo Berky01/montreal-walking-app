@@ -2,7 +2,7 @@
 
 Meaningful Routes is a live Next.js web app for walking-based city discovery. The current MVP city is Montreal, and the public live target is `https://routeapp.plexplease.xyz/`.
 
-The app is intentionally local-first for the current phase: `DATA_SOURCE=mock` is the default, runtime pages do not require external APIs, and user state such as saved routes, walk history, preferences, compare baskets, and issue reports stays in browser storage.
+The app is intentionally local-first for the current phase: `DATA_SOURCE=mock` is the default and runtime pages do not require external APIs. User state such as saved routes, walk history, preferences, and compare baskets stays in browser storage; public issue reports post to the mock provider's server-side review store with browser-local fallback behavior in the UI.
 
 ## Quick Start
 
@@ -108,3 +108,7 @@ git push -u origin $(git branch --show-current)
 ```
 
 `gh` login is useful for pull requests, but it is not required for a basic `git push` when Git Credential Manager already has a GitHub credential.
+
+## Source/Trust Audit Note
+
+The deployed source/trust slice maps to local commit `acb5a4167ccc8b038a74cf34d59668fea749daef` on branch `codex/stitch-discovery-redesign` in `Berky01/meaningful-routes`. The canonical trust utility entry point is `src/lib/content-trust.ts`; `lib/content-trust.ts` re-exports it for existing imports.

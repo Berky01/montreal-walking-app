@@ -1,4 +1,4 @@
-import type { IssueReportInput, Place, Route } from "@/lib/types";
+import type { IssueReportInput, IssueReportTriageInput, Place, Route } from "@/lib/types";
 
 const categories = new Set([
   "closed",
@@ -16,9 +16,14 @@ const categories = new Set([
   "other"
 ]);
 const severities = new Set(["low", "medium", "high"]);
+const statuses = new Set(["new", "reviewing", "resolved", "dismissed"]);
 
 export type IssueReportValidationResult =
   | { ok: true; data: IssueReportInput }
+  | { ok: false; error: string };
+
+export type IssueReportTriageValidationResult =
+  | { ok: true; data: IssueReportTriageInput }
   | { ok: false; error: string };
 
 export function validateIssueReportInput(input: unknown): IssueReportValidationResult {
@@ -48,6 +53,38 @@ export function validateIssueReportInput(input: unknown): IssueReportValidationR
       category: category as IssueReportInput["category"],
       severity: severity as IssueReportInput["severity"],
       description
+    }
+  };
+}
+
+export function validateIssueReportTriageInput(input: unknown): IssueReportTriageValidationResult {
+  const body = input && typeof input === "object" ? (input as Record<string, unknown>) : {};
+  const id = typeof body.id === "string" ? body.id.trim() : "";
+  const status = typeof body.status === "string" ? body.status : "";
+  const severity = typeof body.severity === "string" && body.severity ? body.severity : undefined;
+  const reviewer = typeof body.reviewer === "string" ? body.reviewer.trim() : "";
+  const resolutionNotes = typeof body.resolutionNotes === "string" ? body.resolutionNotes.trim() : "";
+
+  if (!id) {
+    return { ok: false, error: "issue id is required" };
+  }
+
+  if (!statuses.has(status)) {
+    return { ok: false, error: "valid issue status is required" };
+  }
+
+  if (severity && !severities.has(severity)) {
+    return { ok: false, error: "valid severity is required" };
+  }
+
+  return {
+    ok: true,
+    data: {
+      id,
+      status: status as IssueReportTriageInput["status"],
+      severity: severity as IssueReportTriageInput["severity"],
+      reviewer: reviewer || undefined,
+      resolutionNotes: resolutionNotes || undefined
     }
   };
 }

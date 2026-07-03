@@ -11,9 +11,9 @@
 - `WalkSession`: local route session with route id/slug/title, status, started/ended/paused time, pause duration, current stop index, current/next stop pointers, visited/skipped stop ids, progress percent, elapsed minutes, and actual distance.
 - `CompletedWalk`: currently the same stored shape as `WalkSession` with status `completed`.
 - `UserPreferences`: units, pace, interests, quiet/rainy-day/accessibility preferences, location permission state, and local alert preferences.
-- `IssueReport`: route/place/stop context, category, severity, description, status, and created timestamp. Release 2 reports are saved browser-locally after client validation.
+- `IssueReport`: route/place/stop context, category, severity, description, status, reviewer/resolution fields, and created/updated timestamps. Release 2 reports are validated against public context and persisted to the mock provider's configured server-side review store, while the client keeps a browser-local fallback copy when available.
 - `MapMarkerModel`: derived client model for route markers, place markers, numbered stop markers, selected state, live current/next/visited states, marker coordinates, and route/place selection targets.
-- `ContentSource`, `SourceAttribution`, `MediaLicense`, and `MediaAsset`: media governance records for local photos, generated fallbacks, source URLs, creator/license metadata, owner links, approval state, and validation confidence.
+- `PlaceSource`, `PlaceMedia`, `VerificationStatus`, `SourceQualityScore`, `MediaApprovalStatus`, `ThenNowMediaRole`, `ContentSource`, `SourceAttribution`, `MediaLicense`, and `MediaAsset`: source and media governance records for POI verification state, review date, source URLs, creator/license attribution, approval state, optional historical/then-now media roles, and validation confidence. Public trust summaries are normalized through `src/lib/content-trust.ts`; `lib/content-trust.ts` re-exports it for existing imports.
 - `DataImportSource`, `DataImportRun`, and `ExternalProviderConfig`: batch/manual/runtime integration tracking for media and future provider adapters.
 - `PlaceExternalRefs` and `RouteExternalRefs`: optional external identifiers for Wikidata, Wikimedia Commons, OSM, Google Places, Montreal open data, and official websites.
 - `MediaCoverageReport`: derived coverage summary with approved real photos, generated fallbacks, review/rejected counts, missing hero/card photos, and route/place coverage.
@@ -51,3 +51,4 @@ Each value is written as a schema-versioned envelope by `lib/storage.ts`. Legacy
 - Production image media must be approved, local, non-hotlinked, commercial-safe, and source/license attributed.
 - `needs_review` or `rejected` media cannot be used for hero/card roles.
 - Generated visuals can appear only as fallback media.
+- Place detail source drawers must render source verification status and media attribution text, and then-now modules must render an empty archival state when no approved historical media is present.

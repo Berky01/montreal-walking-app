@@ -17,6 +17,7 @@ export const getNeighborhoods = provider.getNeighborhoods;
 export const getCityPacks = provider.getCityPacks;
 export const getPartnerKits = provider.getPartnerKits;
 export const createIssueReport = provider.createIssueReport;
+export const updateIssueReport = provider.updateIssueReport;
 export const getIssueReports = provider.getIssueReports;
 export const getSavedLibrary = provider.getSavedLibrary;
 export const getWalkHistory = provider.getWalkHistory;
@@ -117,6 +118,7 @@ export type {
   GeoJsonFeatureCollection,
   IssueReport,
   IssueReportInput,
+  IssueReportTriageInput,
   MediaAsset,
   NearbyPlacesInput,
   CityPack,

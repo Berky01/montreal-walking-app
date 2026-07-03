@@ -8,6 +8,10 @@ When `NEXT_PUBLIC_MAP_STYLE_URL` is blank, `components/map/map-shell.tsx` render
 
 The browser reads map config from `/api/map-config` at runtime. This lets the Docker/Unraid deployment change style providers through container environment variables without rebuilding the Next.js bundle.
 
+## Beta Provider Posture
+
+The final beta provider path is MapLibre with a browser-safe style URL supplied through runtime environment. The tested hosted style example is CARTO Positron; it must be deployed with visible OpenStreetMap/CARTO attribution and only if its public basemap terms fit the deployment. When no acceptable hosted or self-hosted style URL is configured, the local projected `MapFallback` is the intentional safest provider because it uses stored route geometry and place coordinates without external calls.
+
 ## Configuration
 
 Set these public variables for a real tile-backed MapLibre map:

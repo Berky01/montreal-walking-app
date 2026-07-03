@@ -41,6 +41,9 @@ const securityHeaders = [
 
 const nextConfig = {
   output: "standalone",
+  outputFileTracingExcludes: {
+    "/*": ["./runtime/**/*"]
+  },
   poweredByHeader: false,
   async headers() {
     return [

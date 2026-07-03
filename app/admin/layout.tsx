@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
+import { areAdminToolsEnabled } from "@/lib/admin/access";
 
 export const metadata: Metadata = {
   robots: {
@@ -9,8 +10,10 @@ export const metadata: Metadata = {
   }
 };
 
+export const dynamic = "force-dynamic";
+
 export default function AdminLayout({ children }: { children: ReactNode }) {
-  if (process.env.ENABLE_ADMIN_TOOLS !== "true") {
+  if (!areAdminToolsEnabled()) {
     notFound();
   }
 

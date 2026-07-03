@@ -16,6 +16,7 @@ services:
       - PORT=3000
       - HOSTNAME=0.0.0.0
       - DATA_SOURCE=mock
+      - ISSUE_REPORT_STORE_PATH=/app/runtime/issue-reports.json
       - NEXT_PUBLIC_SITE_URL=https://routeapp.plexplease.xyz
       - NEXT_PUBLIC_APP_NAME=Meaningful Routes
       - NEXT_PUBLIC_DEFAULT_CITY=montreal
@@ -29,6 +30,7 @@ services:
       - ROUTING_PROFILE=walking
       - ROUTING_TIMEOUT_MS=10000
       - ENABLE_EXTERNAL_IMPORTS=false
+      - ENABLE_ADMIN_TOOLS=false
       - MEDIA_STORAGE=local
       - MEDIA_PUBLIC_BASE_URL=/media
       - ENABLE_ADMIN_WRITE_ACTIONS=false
@@ -36,6 +38,8 @@ services:
       - ENABLE_AI_SEARCH=false
     expose:
       - "3000"
+    volumes:
+      - routeapp_runtime:/app/runtime
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
       interval: 30s
@@ -49,3 +53,6 @@ services:
 networks:
   appdata_media:
     external: true
+
+volumes:
+  routeapp_runtime:

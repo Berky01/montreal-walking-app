@@ -22,6 +22,24 @@ export type Tag = {
   category: "interest" | "mood" | "place_type" | "practical" | "area";
 };
 
+export type VerificationStatus = "placeholder" | "needs_review" | "verified";
+
+export type SourceQualityScore = "draft" | "verified" | "field_tested";
+
+export type MediaApprovalStatus = "approved" | "needs_review" | "rejected" | "fallback_only" | "placeholder" | "ready";
+
+export type ThenNowMediaRole = "then" | "now" | "historical" | "archival";
+
+export type SourceAttribution = {
+  sourceUrl?: string;
+  creator?: string;
+  title?: string;
+  attributionText?: string;
+  licenseName?: string;
+  licenseUrl?: string;
+  accessedAt?: string;
+};
+
 export type Source = {
   id: string;
   label: string;
@@ -29,8 +47,13 @@ export type Source = {
   url?: string;
   accessedAt?: string;
   notes?: string;
-  status: "placeholder" | "needs_review" | "verified";
+  status: VerificationStatus;
+  verificationStatus?: VerificationStatus;
+  attribution?: SourceAttribution;
+  lastReviewedAt?: string;
 };
+
+export type PlaceSource = Source;
 
 export type ContentSource =
   | "owned_internal"
@@ -43,16 +66,6 @@ export type ContentSource =
   | "quebec_heritage"
   | "official_reference"
   | "generated_local";
-
-export type SourceAttribution = {
-  sourceUrl?: string;
-  creator?: string;
-  title?: string;
-  attributionText?: string;
-  licenseName?: string;
-  licenseUrl?: string;
-  accessedAt?: string;
-};
 
 export type MediaLicense = {
   name: string;
@@ -92,8 +105,15 @@ export type MediaAsset = {
   confidence?: "verified" | "likely" | "needs_review";
   credit?: string;
   source?: string;
-  status: "approved" | "needs_review" | "rejected" | "fallback_only" | "placeholder" | "ready";
+  status: MediaApprovalStatus;
+  approvalStatus?: MediaApprovalStatus;
+  thenNowRole?: ThenNowMediaRole;
+  historicalRole?: ThenNowMediaRole;
+  historicalContext?: string;
+  attribution?: SourceAttribution;
 };
+
+export type PlaceMedia = MediaAsset;
 
 export type ContentStatus = "draft" | "needs_review" | "ready" | "published" | "archived";
 
@@ -170,11 +190,12 @@ export type Place = {
   periodOrStyle?: string;
   tags: string[];
   relatedRouteSlugs: string[];
-  sourceQuality: "draft" | "verified" | "field_tested";
-  sources: Source[];
+  sourceQuality: SourceQualityScore;
+  sourceQualityScore?: SourceQualityScore;
+  sources: PlaceSource[];
   externalRefs?: PlaceExternalRefs;
   discovery?: PlaceDiscoveryMeta;
-  media: MediaAsset[];
+  media: PlaceMedia[];
   contentStatus: ContentStatus;
   accessibilityNotes: AccessibilityNote[];
   safetyNotes: SafetyNote[];
@@ -226,7 +247,7 @@ export type Route = {
   externalRefs?: RouteExternalRefs;
   media: MediaAsset[];
   contentStatus: ContentStatus;
-  sourceQuality: "draft" | "verified" | "field_tested";
+  sourceQuality: SourceQualityScore;
   qaStatus: RouteQaStatus;
   qaScore: number;
   lastReviewedAt: string;
@@ -455,7 +476,10 @@ export type IssueReport = {
   severity?: "low" | "medium" | "high";
   description: string;
   createdAt: string;
+  updatedAt?: string;
   status: "new" | "reviewing" | "resolved" | "dismissed";
+  reviewer?: string;
+  resolutionNotes?: string;
 };
 
 export type RouteQaStatus = {
@@ -520,6 +544,14 @@ export type IssueReportInput = {
   description: string;
 };
 
+export type IssueReportTriageInput = {
+  id: string;
+  status: IssueReport["status"];
+  severity?: IssueReport["severity"];
+  reviewer?: string;
+  resolutionNotes?: string;
+};
+
 export type DataProvider = {
   getCities(): City[];
   getNeighborhoods(): Neighborhood[];
@@ -534,6 +566,7 @@ export type DataProvider = {
   getNearbyPlaces(input: NearbyPlacesInput): Place[];
   searchRoutes(intent: string): RouteSearchResult[];
   createIssueReport(input: IssueReportInput): IssueReport;
+  updateIssueReport(input: IssueReportTriageInput): IssueReport | undefined;
   getIssueReports(): IssueReport[];
   getSavedLibrary(): SavedItem[];
   getWalkHistory(): WalkSession[];

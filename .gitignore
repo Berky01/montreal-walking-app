@@ -3,6 +3,7 @@ node_modules
 out
 coverage
 output
+runtime
 test-results
 .npm-restore
 .playwright-cli

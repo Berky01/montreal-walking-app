@@ -1,6 +1,15 @@
 import { formatDistanceForUnits } from "@/lib/preferences";
-import type { Route, RouteMetric, RouteSession, UserPreferences } from "@/lib/types";
+import type { Route, RouteMetric, RouteSession, RouteStop, UserPreferences } from "@/lib/types";
 import { formatDuration, titleCase } from "@/lib/utils/format";
+
+export type LiveRouteStopContext = {
+  currentStop?: RouteStop;
+  nextStop?: RouteStop;
+  currentStopIndex: number;
+  currentStopNumber: number;
+  nextStopNumber: number;
+  isFinalStop: boolean;
+};
 
 export function getSessionElapsedMin(session: RouteSession, now = new Date()): number {
   const pausedMs =
@@ -39,6 +48,24 @@ export function buildLiveRouteMetrics({
   ];
 }
 
+export function getLiveRouteStopContext(route: Route, session?: Pick<RouteSession, "currentStopIndex"> | null): LiveRouteStopContext {
+  const maxIndex = Math.max(route.stops.length - 1, 0);
+  const currentStopIndex = clamp(session?.currentStopIndex ?? 0, 0, maxIndex);
+  const currentStop = route.stops[currentStopIndex] ?? route.stops[0];
+  const nextStop = route.stops[Math.min(currentStopIndex + 1, maxIndex)] ?? currentStop;
+  const currentStopNumber = route.stops.length ? currentStopIndex + 1 : 0;
+  const nextStopNumber = route.stops.length ? Math.min(currentStopIndex + 2, route.stops.length) : 0;
+
+  return {
+    currentStop,
+    nextStop,
+    currentStopIndex,
+    currentStopNumber,
+    nextStopNumber,
+    isFinalStop: currentStop?.id === nextStop?.id
+  };
+}
+
 export function estimateStepsForDistanceKm(distanceKm: number): number {
   return Math.max(0, Math.round(distanceKm * 1310));
 }
@@ -53,4 +80,8 @@ function formatPace(elapsedMin: number, distanceKm: number): string {
   }
 
   return `${formatDuration(Math.max(1, Math.round(elapsedMin / distanceKm)))}/km`;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
 }

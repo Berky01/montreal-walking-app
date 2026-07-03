@@ -25,7 +25,7 @@ import { estimateDurationForPace } from "@/lib/preferences";
 import type { Place, Route, RouteSession, UserPreferences } from "@/lib/types";
 import { formatDuration } from "@/lib/utils/format";
 import { getPlaceSourceTrustSummary } from "@/lib/content-trust";
-import { buildLiveRouteMetrics } from "@/lib/walk-metrics";
+import { buildLiveRouteMetrics, getLiveRouteStopContext } from "@/lib/walk-metrics";
 import { ProgressBar } from "./progress-bar";
 
 export function LiveRouteClient({ places, route }: { places: Place[]; route: Route }) {
@@ -58,15 +58,15 @@ export function LiveRouteClient({ places, route }: { places: Place[]; route: Rou
   }, []);
 
   const progress = session?.progressPercent ?? 0;
-  const currentStop = route.stops[session?.currentStopIndex ?? 0] ?? route.stops[0];
-  const currentStopIndex = session?.currentStopIndex ?? 0;
-  const nextStop = route.stops[Math.min(currentStopIndex + 1, route.stops.length - 1)] ?? currentStop;
+  const stopContext = getLiveRouteStopContext(route, session);
+  const currentStop = stopContext.currentStop;
+  const nextStop = stopContext.nextStop;
   const currentPlace = places.find((place) => place.id === currentStop?.placeId);
   const nextPlace = places.find((place) => place.id === nextStop?.placeId);
   const skippedStops = session?.skippedStopIds.length ?? 0;
   const paused = session?.status === "paused";
-  const currentStopNumber = Math.min(currentStopIndex + 1, route.stops.length);
-  const nextStopNumber = Math.min(currentStopIndex + 2, route.stops.length);
+  const currentStopNumber = stopContext.currentStopNumber;
+  const nextStopNumber = stopContext.nextStopNumber;
 
   const metrics = useMemo(() => {
     const activePreferences = preferences ?? getUserPreferences();
@@ -143,23 +143,25 @@ export function LiveRouteClient({ places, route }: { places: Place[]; route: Rou
 
       {currentPlace ? <LiveStopContextPanel place={currentPlace} /> : null}
 
-      <section className="rounded-card border border-outline-variant bg-surface-container-lowest p-5 shadow-card">
-        <div className="flex items-center gap-2 text-primary">
-          <Flag aria-hidden="true" size={18} />
-          <h2 className="text-label-md">{nextStop.id === currentStop.id ? "Final stop" : `Next stop ${nextStopNumber}`}</h2>
-        </div>
-        <div className="mt-3 grid gap-3 sm:grid-cols-[112px_minmax(0,1fr)]">
-          {nextPlace ? (
-            <div className="relative h-24 overflow-hidden rounded-card bg-surface-container-high">
-              <PlaceCover place={nextPlace} />
-            </div>
-          ) : null}
-          <div>
-            <h3 className="text-body-lg font-semibold text-on-surface">{nextStop.title}</h3>
-            <p className="mt-2 text-body-md text-on-surface-variant">{nextStop.description}</p>
+      {nextStop ? (
+        <section className="rounded-card border border-outline-variant bg-surface-container-lowest p-5 shadow-card">
+          <div className="flex items-center gap-2 text-primary">
+            <Flag aria-hidden="true" size={18} />
+            <h2 className="text-label-md">{nextStop.id === currentStop?.id ? "Final stop" : `Next stop ${nextStopNumber}`}</h2>
           </div>
-        </div>
-      </section>
+          <div className="mt-3 grid gap-3 sm:grid-cols-[112px_minmax(0,1fr)]">
+            {nextPlace ? (
+              <div className="relative h-24 overflow-hidden rounded-card bg-surface-container-high">
+                <PlaceCover place={nextPlace} />
+              </div>
+            ) : null}
+            <div>
+              <h3 className="text-body-lg font-semibold text-on-surface">{nextStop.title}</h3>
+              <p className="mt-2 text-body-md text-on-surface-variant">{nextStop.description}</p>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="rounded-card border border-tertiary/30 bg-tertiary/10 p-4">
         <div className="flex items-start gap-3">

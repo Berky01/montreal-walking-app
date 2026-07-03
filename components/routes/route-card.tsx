@@ -122,8 +122,13 @@ export function RouteCard({
           ))}
         </div>
         {matchReasons?.length ? (
-          <div className="mt-4 border-t border-outline-variant pt-3">
-            <p className="text-label-sm text-primary">{matchReasons.slice(0, 2).join(" · ")}</p>
+          <div className="mt-3 rounded-control bg-surface-container-low px-3 py-2">
+            <p className="text-label-sm font-semibold text-on-surface">Why this matched</p>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {matchReasons.slice(0, 4).map((reason) => (
+                <Chip key={reason} tone="primary">{reason}</Chip>
+              ))}
+            </div>
           </div>
         ) : null}
         <div className="mt-4 grid gap-2 sm:grid-cols-2">

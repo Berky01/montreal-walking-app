@@ -53,18 +53,18 @@ function scorePlace(place: Place, normalizedQuery: string, terms: string[]): Pla
     matchReasons.push("Place name match");
   }
 
-  if (area.includes(normalizedQuery)) {
+  if (matchesSearchValue(area, normalizedQuery)) {
     score += 45;
     matchReasons.push(`In ${place.area}`);
   }
 
-  if (category.includes(normalizedQuery)) {
+  if (matchesSearchValue(category, normalizedQuery)) {
     score += 35;
     matchReasons.push(`Matches ${readableToken(place.category)}`);
   }
 
   for (const tag of place.tags) {
-    if (normalize(tag).includes(normalizedQuery)) {
+    if (matchesSearchValue(normalize(tag), normalizedQuery)) {
       score += 35;
       matchReasons.push(`Matches ${tag}`);
     }
@@ -75,16 +75,16 @@ function scorePlace(place: Place, normalizedQuery: string, terms: string[]): Pla
       score += 28;
       matchReasons.push("Place name match");
     }
-    if (area.includes(term)) {
+    if (matchesSearchValue(area, term)) {
       score += 12;
       matchReasons.push(`In ${place.area}`);
     }
-    if (category.includes(term)) {
+    if (matchesSearchValue(category, term)) {
       score += 12;
       matchReasons.push(`Matches ${readableToken(place.category)}`);
     }
 
-    const matchedTag = place.tags.find((tag) => normalize(tag).includes(term));
+    const matchedTag = place.tags.find((tag) => matchesSearchValue(normalize(tag), term));
     if (matchedTag) {
       score += 10;
       matchReasons.push(`Matches ${matchedTag}`);
@@ -92,7 +92,7 @@ function scorePlace(place: Place, normalizedQuery: string, terms: string[]): Pla
 
     if (searchable.some((value) => value.includes(term))) {
       score += 5;
-      if (!matchedTag && !area.includes(term) && !category.includes(term) && !name.includes(term)) {
+      if (!matchedTag && !matchesSearchValue(area, term) && !matchesSearchValue(category, term) && !name.includes(term)) {
         matchReasons.push(`Mentions ${term}`);
       }
     }
@@ -117,6 +117,35 @@ function normalize(value: string): string {
 
 function readableToken(value: string): string {
   return value.replace(/_/g, " ");
+}
+
+function matchesSearchValue(value: string, query: string): boolean {
+  if (value.includes(query)) {
+    return true;
+  }
+
+  const queryForms = tokenForms(query);
+  const valueForms = tokenForms(value);
+
+  return queryForms.some((form) => value.includes(form)) || valueForms.some((form) => query.includes(form));
+}
+
+function tokenForms(value: string): string[] {
+  const forms = [value];
+
+  for (const token of value.split(" ")) {
+    if (token.endsWith("ies") && token.length > 3) {
+      forms.push(token.slice(0, -3) + "y");
+    }
+    if (token.endsWith("es") && token.length > 2) {
+      forms.push(token.slice(0, -2));
+    }
+    if (token.endsWith("s") && token.length > 1) {
+      forms.push(token.slice(0, -1));
+    }
+  }
+
+  return unique(forms.filter(Boolean));
 }
 
 function unique<T>(items: T[]): T[] {

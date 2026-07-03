@@ -22,6 +22,7 @@ export default function CitiesPage() {
   const activeCity = cities.find((city) => city.status === "active") ?? cities[0];
   const places = getPlaces();
   const neighborhoods = getNeighborhoods();
+  const areaFilterCount = new Set(places.map((place) => place.area)).size;
 
   return (
     <AppShell>
@@ -52,7 +53,7 @@ export default function CitiesPage() {
                 <Chip tone="primary">Available now</Chip>
               </div>
               <p className="mt-3 text-body-md text-on-surface-variant">
-                {places.length} places across {neighborhoods.length} neighborhoods, with monuments, churches, markets, museums, viewpoints, public art, parks, and optional route collections.
+                {places.length} published places across {areaFilterCount} area filters, with {neighborhoods.length} featured neighborhood guides plus monuments, churches, markets, museums, viewpoints, public art, parks, and optional route collections.
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {neighborhoods.slice(0, 8).map((neighborhood) => (

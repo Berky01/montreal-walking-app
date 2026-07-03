@@ -109,7 +109,27 @@ test("security headers and SEO discovery files are present", async ({ request })
   const sitemapXml = await sitemap.text();
   expect(sitemapXml).toContain("https://routeapp.plexplease.xyz/places/montreal-city-hall");
   expect(sitemapXml).toContain("https://routeapp.plexplease.xyz/routes/old-montreal-monuments-loop");
+  expect(sitemapXml).not.toContain("/admin/");
+  expect(sitemapXml).not.toContain("/api/");
+  expect((sitemapXml.match(/\/places\//g) ?? []).length).toBe(60);
+  expect((sitemapXml.match(/\/routes\//g) ?? []).length).toBe(12);
   expect(sitemapXml).not.toMatch(/regional|day-trip|bike-friendly/i);
+});
+
+test("unknown slugs render the designed not-found page", async ({ page, request }) => {
+  const paths = [
+    "/places/not-a-real-place-123",
+    "/routes/not-a-real-route-123",
+    "/not-a-real-page-123"
+  ];
+
+  for (const path of paths) {
+    expect((await request.get(path)).status(), `${path} should return 404`).toBe(404);
+    await gotoReady(page, path);
+    await expect(page.locator("main")).toContainText("This page is not on the map");
+    await expect(page.locator("main")).toContainText("Browse places");
+    await expect(page.locator("body")).not.toContainText(/Application error|Internal Server Error|Unhandled Runtime Error|stack trace/i);
+  }
 });
 
 test("core route and place pages render local photo assets without broken images", async ({ page }) => {
@@ -141,15 +161,20 @@ test("core route and place pages render local photo assets without broken images
 
 test("saved, share, settings, live route, completion, history, and issue flows persist visibly", async ({ page }) => {
   test.setTimeout(120000);
+  await gotoReady(page, "/routes");
+  await page.getByRole("button", { name: `Save ${routeTitle}` }).first().click();
+  await expect(page.getByRole("button", { name: `Unsave ${routeTitle}` }).first()).toHaveAttribute("aria-pressed", "true");
+  await page.reload();
+  await expect(page.getByRole("button", { name: `Unsave ${routeTitle}` }).first()).toHaveAttribute("aria-pressed", "true");
   await gotoReady(page, `/routes/${routeSlug}`);
-  await page.getByRole("button", { name: "Save route", exact: true }).click();
-  await expect(page.getByRole("button", { name: "Saved" }).first()).toBeVisible();
   await page.getByRole("button", { name: "Share" }).first().click();
   await expect(page.getByRole("button", { name: /Copied|Shared/ }).first()).toBeVisible();
 
-  await gotoReady(page, `/places/${placeSlug}`);
-  await page.getByRole("button", { name: "Save place", exact: true }).click();
-  await expect(page.getByRole("button", { name: "Saved" }).first()).toBeVisible();
+  await gotoReady(page, "/places");
+  await page.getByRole("button", { name: `Save ${placeTitle}` }).first().click();
+  await expect(page.getByRole("button", { name: `Unsave ${placeTitle}` }).first()).toHaveAttribute("aria-pressed", "true");
+  await page.reload();
+  await expect(page.getByRole("button", { name: `Unsave ${placeTitle}` }).first()).toHaveAttribute("aria-pressed", "true");
 
   await gotoReady(page, "/saved");
   await expect(page.getByText(routeTitle).first()).toBeVisible();
@@ -225,6 +250,73 @@ test("saved, share, settings, live route, completion, history, and issue flows p
   await page.getByLabel("What changed?").fill("Temporary sidewalk closure near the first stop.");
   await page.getByRole("button", { name: "Submit report" }).click();
   await expect(page.getByText(/Report saved for content review|Report saved locally for content review/)).toBeVisible();
+});
+
+test("search query pages explain published matches and keep query state in the URL", async ({ page }) => {
+  const checks = [
+    { path: "/search?q=architecture", expected: /Matches architecture|Includes architecture/ },
+    { path: "/search?q=old+montreal", expected: /In Old Montreal|Starts in Old Montreal/ },
+    { path: "/search?q=rainy+day", expected: /Matches rainy day|Rainy-day friendly stops/ },
+    { path: "/search?q=churches", expected: /Matches churches|Matches church|Includes churches/ }
+  ];
+
+  for (const check of checks) {
+    await gotoReady(page, check.path);
+    await expect(page).toHaveURL(/\/search\?q=/);
+    await expect(page.locator("main")).toContainText("Best matching places");
+    await expect(page.locator("main")).toContainText("Optional routes that connect discoveries");
+    await expect(page.locator("main")).toContainText("Why this matched");
+    await expect(page.locator("main")).toContainText(check.expected);
+    await expect(page.locator("main")).not.toContainText(/\bLaval\b|\bLongueuil\b|\bSouth Shore\b|\bday-trip\b|\bdraft\b/i);
+  }
+});
+
+test("report issue links preserve route, live stop, and place context", async ({ page }) => {
+  await gotoReady(page, `/routes/${routeSlug}`);
+  await page.getByRole("link", { name: /Report issue/i }).first().click();
+  await expect(page).toHaveURL(new RegExp(`/report-issue\\?route=${routeSlug}`));
+  await expect(page.locator("#route")).toHaveValue(routeSlug);
+
+  await gotoReady(page, `/routes/${routeSlug}/live`);
+  await page.getByRole("link", { name: /Report issue/i }).first().click();
+  await expect(page).toHaveURL(new RegExp(`/report-issue\\?route=${routeSlug}&stop=${routeSlug}-stop-1`));
+  await expect(page.locator("#route")).toHaveValue(routeSlug);
+  await expect(page.locator("#stopId")).toHaveValue(`${routeSlug}-stop-1`);
+  await expect(page.locator("#placeSlug")).toHaveValue(placeSlug);
+
+  await gotoReady(page, `/places/${placeSlug}`);
+  await page.getByRole("link", { name: /Report issue/i }).first().click();
+  await expect(page).toHaveURL(new RegExp(`/report-issue\\?place=${placeSlug}`));
+  await expect(page.locator("#route")).toHaveValue("");
+  await expect(page.locator("#placeSlug")).toHaveValue(placeSlug);
+});
+
+test("city copy matches published place area filters", async ({ page }) => {
+  await gotoReady(page, "/cities");
+  await expect(page.locator("main")).toContainText(/60 published places across \d+ area filters/);
+  await expect(page.locator("main")).toContainText("6 featured neighborhood guides");
+});
+
+test("illuminated crowd uses honest local visual fallback behavior", async ({ page }) => {
+  await gotoReady(page, "/places/illuminated-crowd");
+  await expect(page.locator("main")).toContainText("The Illuminated Crowd");
+  await expect(page.locator("main")).toContainText("Source record");
+
+  const mediaState = await page.evaluate(() => {
+    const images = Array.from(document.images);
+    const visualLabels = Array.from(document.querySelectorAll<HTMLElement>('[role="img"]'))
+      .map((item) => item.getAttribute("aria-label") ?? "")
+      .filter(Boolean);
+
+    return {
+      broken: images.filter((img) => img.complete && img.naturalWidth === 0).map((img) => img.alt || img.currentSrc || img.src),
+      labels: [...images.map((img) => img.alt), ...visualLabels]
+    };
+  });
+
+  expect(mediaState.broken).toEqual([]);
+  expect(mediaState.labels.join("\n")).toMatch(/Illuminated Crowd/i);
+  expect(mediaState.labels.join("\n")).not.toMatch(/pending licensed media|visual preview pending/i);
 });
 
 test("core pages do not overflow across product viewports", async ({ page }) => {

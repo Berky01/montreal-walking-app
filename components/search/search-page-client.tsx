@@ -39,7 +39,10 @@ export function SearchPageClient({ routes, places }: { routes: Route[]; places: 
       (routeLikeQuery ||
         intent?.durationMaxMin ||
         intent?.difficulty ||
-        intent?.routeShape)
+        intent?.routeShape ||
+        intent?.interests.length ||
+        intent?.moods.length ||
+        intent?.areaHints.length)
   );
   const placeResults = useMemo(() => rankPlaces(query, places), [places, query]);
   const displayedResults = hasRouteIntent ? results : [];

@@ -10,6 +10,7 @@ import {
   Palette,
   Store,
   Trees,
+  TriangleAlert,
   University,
   Waves
 } from "lucide-react";
@@ -177,6 +178,10 @@ export function RouteHero({ route, startName }: { route: Route; startName?: stri
             </ButtonLink>
             <SaveButton itemId={route.id} itemSlug={route.slug} itemTitle={route.title} itemType="route" />
             <ShareButton text={route.description} title={route.title} variant="secondary" />
+            <ButtonLink href={`/report-issue?route=${route.slug}`} variant="ghost">
+              <TriangleAlert aria-hidden="true" size={17} />
+              Report issue
+            </ButtonLink>
           </div>
         </div>
         <PhotoWithCredit
@@ -205,6 +210,10 @@ export function PlaceHero({ place }: { place: Place }) {
           <div className="mt-6 flex flex-wrap gap-3">
             <SaveButton itemId={place.id} itemSlug={place.slug} itemTitle={place.name} itemType="place" label="Save place" />
             <ShareButton text={place.shortDescription} title={place.name} variant="secondary" />
+            <ButtonLink href={`/report-issue?place=${place.slug}`} variant="ghost">
+              <TriangleAlert aria-hidden="true" size={17} />
+              Report issue
+            </ButtonLink>
           </div>
         </div>
         <PhotoWithCredit

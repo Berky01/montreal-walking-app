@@ -14,6 +14,8 @@ Search continuation slice on 2026-07-02: place search now shares a tested rankin
 
 Stitch P0 source/trust continuation slice on 2026-07-02: place detail pages now use reusable source-trust panels, an accessible source drawer, and honest then-now media states backed by existing source/media metadata. Live route pages now show estimated steps, pace, and current-stop context from local session data, and completion pages include a browser-local walk journal card. Admin route QA now surfaces source-readiness status behind the existing `ENABLE_ADMIN_TOOLS` gate.
 
+Follow-up closure slice on 2026-07-02: contextual report links were added to route/place detail heroes, search now shows optional route matches for theme/location queries with explicit match explanations, place search handles plural category queries such as `churches`, card-level save/refresh persistence is covered by smoke tests, the `/cities` count copy now distinguishes published area filters from featured neighborhood guides, and the expanded smoke suite verifies 404, sitemap/robots, security headers, search, persistence, report context, and The Illuminated Crowd fallback behavior.
+
 ## Stitch Implementation Status
 
 Active Stitch project inspected: `https://stitch.withgoogle.com/projects/7741303272075430847`
@@ -29,12 +31,12 @@ Active intake docs:
 | Landing Page | `/` | Implemented | `app/page.tsx` | Uses live production data/components, not Stitch static HTML. |
 | App Home | `/app` | Implemented | `app/app/page.tsx`, `components/app/app-home-experience.tsx` | Current green visual MVP retained. |
 | Places Catalog / Discover Monuments / Filters | `/places` | Implemented | `app/places/page.tsx`, `components/places/places-page-client.tsx` | Named as places/catalog to avoid monument-only scope. |
-| Place/Monument Detail | `/places/[slug]` | Implemented | `app/places/[slug]/page.tsx`, `components/places/place-trust-panels.tsx`, `lib/content-trust.ts` | Public place examples consolidated into one dynamic template with source-trust, source drawer, and then-now media states. |
+| Place/Monument Detail | `/places/[slug]` | Implemented | `app/places/[slug]/page.tsx`, `components/visual/visuals.tsx`, `components/places/place-trust-panels.tsx`, `lib/content-trust.ts` | Public place examples consolidated into one dynamic template with source-trust, source drawer, then-now media states, and contextual report links. |
 | Route Results | `/routes` | Implemented | `app/routes/page.tsx`, `components/routes/routes-page-client.tsx` | Optional-route language retained. |
-| Route Detail / Public Route Page | `/routes/[slug]` | Implemented | `app/routes/[slug]/page.tsx`, `components/routes/route-guide-client.tsx` | Public route page consolidated with route detail to avoid duplicate surfaces. |
+| Route Detail / Public Route Page | `/routes/[slug]` | Implemented | `app/routes/[slug]/page.tsx`, `components/visual/visuals.tsx`, `components/routes/route-guide-client.tsx` | Public route page consolidated with route detail to avoid duplicate surfaces; route reports now carry route context. |
 | Live Route | `/routes/[slug]/live` | Implemented | `app/routes/[slug]/live/page.tsx`, `components/walk/live-route-client.tsx`, `lib/walk-metrics.ts` | Local route session with estimated steps/pace; no required geolocation or device integration. |
 | Completion / Share | `/routes/[slug]/complete` | Implemented/partial | `app/routes/[slug]/complete/page.tsx`, `components/walk/completion-summary-client.tsx`, share component | Browser-local journal card added. Advanced share-card generation remains deferred. |
-| Search | `/search` | Implemented | `app/search/page.tsx`, `components/search/search-page-client.tsx`, `lib/search/place-search.ts` | Deterministic local ranking with visible match reasons instead of real AI. |
+| Search | `/search` | Implemented | `app/search/page.tsx`, `components/search/search-page-client.tsx`, `components/routes/route-card.tsx`, `lib/search/place-search.ts` | Deterministic local place and route ranking with visible match reasons instead of real AI. |
 | Saved / History / Settings | `/saved`, `/history`, `/settings` | Implemented | App routes and `components/library`, `components/walk` | Browser-local state by design. |
 | Issue Reporting | `/report-issue` | Implemented for mock mode | `app/report-issue/page.tsx`, `components/feedback/issue-report-form.tsx` | Durable backend remains deferred. |
 | Admin QA | `/admin/route-qa` | Implemented, disabled by default | `app/admin/layout.tsx`, `app/admin/route-qa/page.tsx` | Uses `ENABLE_ADMIN_TOOLS` gate rather than public exposure. |
@@ -97,22 +99,40 @@ Final validation after implementation:
 | Content validation | Done | Added `getAllPublicSlugsForCrawl()` and `scripts/content-health.ts`; `npm run validate:content` passes with 105 public crawl paths. |
 | CI smoke tests | Done | Playwright config now starts a local app server; smoke covers public route/place crawler, required paths, headers, SEO files, images, persistence flows, and viewport overflow. |
 | Security baseline | Done | Added security headers in `next.config.mjs`: CSP, HSTS, frame denial/frame-ancestors, nosniff, referrer policy, and permissions policy. |
+| Follow-up audit checks | Done locally / deploy pending | Expanded smoke verifies contextual report links, card save persistence after refresh, search URL and match explanations, unknown slugs, sitemap/robots, security headers, city count copy, and The Illuminated Crowd visual fallback. |
 
 ## P1/P2/P3 Work Completed
 
 - SEO basics: added `app/robots.ts`, `app/sitemap.ts`, Open Graph/Twitter metadata basics, and route/place Open Graph metadata.
 - No wholesale UI rewrite was done. The current production UI already maps to the approved Stitch public MVP hierarchy through reusable app components, and deferred screens are now tracked in `docs/design/stitch-screen-inventory.md`.
 
+## Follow-up Audit Evidence
+
+| Item | Evidence | Status |
+|---|---|---:|
+| 1. Contextual report links | `tests/playwright-smoke.pw.ts` visits `/routes/old-montreal-monuments-loop`, `/routes/old-montreal-monuments-loop/live`, and `/places/place-darmes`, then verifies `/report-issue` preserves selected route, stop, and place context. | Pass local |
+| 2. Save/unsave on cards | `components/places/place-card.tsx` and `components/routes/route-card.tsx` render card-level `SaveButton`s; smoke saves from `/places` and `/routes`, refreshes, and verifies `aria-pressed="true"`. | Pass local |
+| 3. Search query URLs and explanations | Smoke verifies `/search?q=architecture`, `/search?q=old+montreal`, `/search?q=rainy+day`, and `/search?q=churches` keep `q=` in the URL, show published place results and optional route results, include `Why this matched`, and exclude draft/future/regional terms. | Pass local |
+| 4. Persistence flows | Smoke verifies saved place refresh, saved route refresh, live route progress refresh, completion history persistence, and report context from route/live/place paths. | Pass local |
+| 5. Unknown slugs | Smoke verifies `/places/not-a-real-place-123`, `/routes/not-a-real-route-123`, and `/not-a-real-page-123` return 404 and render `This page is not on the map`. | Pass local |
+| 6. Sitemap and robots | Smoke verifies `/robots.txt` and `/sitemap.xml` exist, sitemap includes 60 place URLs and 12 route URLs, and excludes `/admin`, `/api`, regional, day-trip, and bike-friendly content. | Pass local |
+| 7. Security headers | Smoke verifies `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, and CSP `frame-ancestors 'none'`; source config remains `next.config.mjs`. | Pass local |
+| 8. City copy mismatch | `/cities` now says 60 published places across 23 area filters with 6 featured neighborhood guides; smoke verifies the copy. | Pass local |
+| 9. The Illuminated Crowd media | Smoke visits `/places/illuminated-crowd`, verifies no broken images, confirms media labels include Illuminated Crowd, and confirms no placeholder or pending-media copy appears. | Pass local |
+| 10. Implementation report | This section records command, test, backlog, and deployment status for the follow-up closure slice. | Updated |
+
 ## Files Changed
 
-Current search continuation slice:
+Current follow-up closure slice:
 
-- `components/search/search-page-client.tsx` - uses the shared place ranking helper and passes match reasons to place cards.
-- `components/places/place-card.tsx` - renders compact match explanations when search results provide them.
-- `lib/search/place-search.ts` - deterministic place scoring and match-reason generation.
-- `lib/search/place-search.test.ts` - regression coverage for place ranking explanations.
-- `tests/playwright-smoke.pw.ts` - smoke coverage for rendered search match explanations.
-- `docs/implementation-report.md` - current implementation evidence.
+- `app/cities/page.tsx` - makes the city summary count public area filters separately from featured neighborhood guides.
+- `components/visual/visuals.tsx` - adds contextual report links to route and place detail heroes.
+- `components/search/search-page-client.tsx` - includes optional route results for theme, mood, and area search queries.
+- `components/routes/route-card.tsx` - renders route search `Why this matched` explanations.
+- `lib/search/place-search.ts` - adds plural-aware matching for categories and tags such as `churches`.
+- `lib/search/place-search.test.ts` - covers plural category search matching.
+- `tests/playwright-smoke.pw.ts` - expands smoke coverage for persistence, search, report context, 404s, security/SEO, city copy, and The Illuminated Crowd.
+- `docs/implementation-report.md` - records current follow-up evidence.
 
 ## Commands Run
 
@@ -178,22 +198,36 @@ Current search continuation slice:
 - `curl.exe -sS https://routeapp.plexplease.xyz/api/build-info`
 - `ssh plexplease "docker exec cloudflared cloudflared tunnel --config /etc/cloudflared/config.yml ingress validate"`
 - `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "core route and place pages render local photo assets without broken images"`
+- `npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "search query|report issue links|city copy|illuminated|unknown slugs|saved, share"` (red before implementation: missing optional route search results, missing route detail report link, stale `/cities` copy; green after implementation)
+- `npm test -- lib/search/place-search.test.ts` (red before implementation: `churches` did not match singular `church`; green after plural-aware matching)
+- `npm ci --dry-run`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run validate:content`
+- `npm run validate:data`
+- `npm run validate:routes`
+- `npm run validate:media`
+- `npm test`
+- `npm run build`
+- `npm run test:smoke`
 
 ## Test Evidence
 
-Latest source-trust continuation validation:
+Latest follow-up closure validation:
 
 | Command | Result |
 |---|---|
+| `npm ci --dry-run` | Pass; npm repeated the existing `allow-scripts` warning for `esbuild`, `sharp`, and `unrs-resolver`. |
 | `npm run lint` | Pass. |
 | `npm run typecheck` | Pass. |
+| `npm run validate:content` | Pass: 12 public routes, 60 public places, 105 crawl paths. |
 | `npm run validate:data` | Pass: 32 routes, 190 places; public readiness 12 routes, 60 places. |
 | `npm run validate:routes` | Pass: 32 routes, 32 ready. |
 | `npm run validate:media` | Pass: 293 assets, 71 approved real photos, 222 generated fallbacks. |
-| `npm test -- lib/content-trust.test.ts lib/walk-metrics.test.ts` | Pass: 2 test files, 6 tests. |
-| `npm test` | Pass: 28 test files, 109 tests. |
+| `npm test -- lib/search/place-search.test.ts` | Pass: 1 test file, 2 tests. |
+| `npm test` | Pass: 28 test files, 111 tests. |
 | `npm run build` | Pass: 128 static pages generated. |
-| `npm run test:smoke` | Pass: 6 Playwright smoke tests. |
+| `npm run test:smoke` | Pass: 11 Playwright smoke tests. |
 
 ## Deploy Notes
 
@@ -228,6 +262,10 @@ Evidence:
   - Live build info: `https://routeapp.plexplease.xyz/api/build-info` returned `gitSha="98f049597f0c04352c2d69f34915d90968d04f7f"`.
   - Live focused smoke: `PLAYWRIGHT_BASE_URL=https://routeapp.plexplease.xyz npx playwright test --config=playwright.config.ts tests/playwright-smoke.pw.ts -g "production pages do not expose"` passed.
   - Cloudflared ingress validation returned `OK`.
+
+- Current follow-up closure slice:
+  - Local validation passed.
+  - Runtime deployment is pending until this slice is committed, pushed, rebuilt on Unraid, and verified live.
 
 Previous deployment evidence:
 

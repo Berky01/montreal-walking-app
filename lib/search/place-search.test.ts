@@ -54,4 +54,21 @@ describe("place search", () => {
     );
     expect(results[0]?.score).toBeGreaterThan(results[1]?.score ?? 0);
   });
+
+  it("matches plural queries against singular place categories", () => {
+    const results = rankPlaces("churches", [
+      {
+        ...basePlace,
+        id: "place-3",
+        slug: "st-patricks-basilica",
+        name: "St. Patrick's Basilica",
+        category: "church",
+        area: "Downtown",
+        tags: ["history"]
+      }
+    ]);
+
+    expect(results[0]?.place.slug).toBe("st-patricks-basilica");
+    expect(results[0]?.matchReasons).toContain("Matches church");
+  });
 });

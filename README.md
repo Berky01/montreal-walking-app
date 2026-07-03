@@ -98,12 +98,31 @@ DATABASE_URL=
 
 ```bash
 npm run test
+npm run lint
+npm run typecheck
+npm run validate:data
+npm run validate:routes
+npm run validate:media
 npm run build
+npm run test:smoke
 npm run test:mobile:unit
 npm run doctor
 ```
 
 `npm run doctor` checks API readiness, provider configuration, public endpoints, and canonical Montreal route smoke tests.
+
+## Source trust audit routes
+
+This repo exposes source/trust audit surfaces for public review:
+
+- `/places/place-darmes`
+- `/places/notre-dame-basilica`
+- `/places/saint-joseph-oratory`
+- `/routes/old-montreal-monuments-loop/live`
+- `/routes/churches-courtyards-walk/live`
+- `/admin/route-qa` and `/admin/route-qa?admin=1`
+
+See `docs/source-trust-data-model.md`, `docs/stitch-component-mapping.md`, and `docs/source-trust-deployment-evidence.md`.
 
 ## Open-source roadmap
 

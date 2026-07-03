@@ -25,6 +25,7 @@ import {
   User,
 } from 'lucide-react';
 import { RouteMap } from './components/RouteMap';
+import { AdminRouteQaPage, LiveRouteTrustPage, PlaceTrustPage } from './components/PlaceTrustPage';
 import { feedbackOptions } from './domain/feedback';
 import { getActiveStitchReviewScreen, StitchReviewApp } from './stitchReview';
 import { buildBailoutOptions, buildNextMove, buildTimeGuardrail } from './domain/walkCompanion';
@@ -315,6 +316,11 @@ function reasonForPOI(category: Interest) {
 
 export default function App() {
   if (getActiveStitchReviewScreen()) return <StitchReviewApp />;
+
+  const trustRoute = parseTrustRoute(window.location.pathname, window.location.search);
+  if (trustRoute?.type === 'place') return <PlaceTrustPage slug={trustRoute.slug} />;
+  if (trustRoute?.type === 'live-route') return <LiveRouteTrustPage slug={trustRoute.slug} />;
+  if (trustRoute?.type === 'admin-route-qa') return <AdminRouteQaPage enabled={trustRoute.enabled} />;
 
   const [screen, setScreen] = useState<AppScreen>('home');
   const [startInput, setStartInput] = useState(defaultStart.label);
@@ -1120,6 +1126,21 @@ export default function App() {
       </section>
     </main>
   );
+}
+
+function parseTrustRoute(pathname: string, search: string): { type: 'place' | 'live-route'; slug: string } | { type: 'admin-route-qa'; enabled: boolean } | null {
+  const placeMatch = pathname.match(/^\/places\/([^/]+)$/);
+  if (placeMatch?.[1]) return { type: 'place', slug: decodeURIComponent(placeMatch[1]) };
+
+  const liveRouteMatch = pathname.match(/^\/routes\/([^/]+)\/live$/);
+  if (liveRouteMatch?.[1]) return { type: 'live-route', slug: decodeURIComponent(liveRouteMatch[1]) };
+
+  if (pathname === '/admin/route-qa') {
+    const enabled = new URLSearchParams(search).get('admin') === '1' || import.meta.env.VITE_ENABLE_ADMIN_QA === 'true';
+    return { type: 'admin-route-qa', enabled };
+  }
+
+  return null;
 }
 
 function ScreenTitle({ title, detail }: { title: string; detail: string }) {

@@ -47,3 +47,15 @@ The project supports seeded/local providers for development and optional live pr
 ## Data
 
 `data/montreal-pois.json` is a seeded POI cache for local Montreal development. `data/route-store.json` is local runtime output and is intentionally ignored by Git.
+
+## Source trust audit surfaces
+
+`src/lib/content-trust.ts` defines the local source/trust domain model for POI verification, source quality, approved media, and then-now pairing. `src/data/placeTrustData.ts` contains the current mock trust records used by the public audit surfaces.
+
+Visible source/trust routes are handled by the Vite SPA:
+
+- `/places/[slug]`
+- `/routes/[slug]/live`
+- `/admin/route-qa`
+
+See `docs/source-trust-data-model.md` and `docs/stitch-component-mapping.md` for the detailed model and Stitch derivation.

@@ -42,9 +42,9 @@ const securityHeaders = [
 const nextConfig = {
   output: "standalone",
   outputFileTracingExcludes: {
-    "/*": ["./runtime/**/*"],
-    "/admin/*": ["./runtime/**/*"],
-    "/api/admin/*": ["./runtime/**/*"],
+    "/**/*": ["./runtime/**/*"],
+    "/admin/**/*": ["./runtime/**/*"],
+    "/api/admin/**/*": ["./runtime/**/*"],
     "/api/report-issue": ["./runtime/**/*"]
   },
   poweredByHeader: false,

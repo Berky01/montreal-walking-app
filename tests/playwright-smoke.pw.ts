@@ -162,19 +162,21 @@ test("core route and place pages render local photo assets without broken images
 test("saved, share, settings, live route, completion, history, and issue flows persist visibly", async ({ page }) => {
   test.setTimeout(120000);
   await gotoReady(page, "/routes");
-  await page.getByRole("button", { name: `Save ${routeTitle}` }).first().click();
-  await expect(page.getByRole("button", { name: `Unsave ${routeTitle}` }).first()).toHaveAttribute("aria-pressed", "true");
+  const routeSaveButton = page.locator(`button[aria-label="Save ${routeTitle}"], button[aria-label="Unsave ${routeTitle}"]`).first();
+  await routeSaveButton.click();
+  await expect(routeSaveButton).toHaveAttribute("aria-pressed", "true");
   await page.reload();
-  await expect(page.getByRole("button", { name: `Unsave ${routeTitle}` }).first()).toHaveAttribute("aria-pressed", "true");
+  await expect(routeSaveButton).toHaveAttribute("aria-pressed", "true");
   await gotoReady(page, `/routes/${routeSlug}`);
   await page.getByRole("button", { name: "Share" }).first().click();
   await expect(page.getByRole("button", { name: /Copied|Shared/ }).first()).toBeVisible();
 
   await gotoReady(page, "/places");
-  await page.getByRole("button", { name: `Save ${placeTitle}` }).first().click();
-  await expect(page.getByRole("button", { name: `Unsave ${placeTitle}` }).first()).toHaveAttribute("aria-pressed", "true");
+  const placeSaveButton = page.locator(`button[aria-label="Save ${placeTitle}"], button[aria-label="Unsave ${placeTitle}"]`).first();
+  await placeSaveButton.click();
+  await expect(placeSaveButton).toHaveAttribute("aria-pressed", "true");
   await page.reload();
-  await expect(page.getByRole("button", { name: `Unsave ${placeTitle}` }).first()).toHaveAttribute("aria-pressed", "true");
+  await expect(placeSaveButton).toHaveAttribute("aria-pressed", "true");
 
   await gotoReady(page, "/saved");
   await expect(page.getByText(routeTitle).first()).toBeVisible();
